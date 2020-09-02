@@ -5,7 +5,12 @@ output:
     df_print: paged
 ---
 Before we get started with the motivating dataset, we need to cover the very basics of R.
-title(main = object)
+
+# 2.2.1 objects
+Suppose a high school student asks us for help solving several quadratic equations of the form $$ax^2+bx+c=0.$$ The quadratic formula gives us the solutions:
+$${-b-\sqrt{b^2-4ac} \over 2a}and{-b+\sqrt{b^2-4ac} \over 2a}$$
+
+
 ```{r}
 plot(cars)
 ```
