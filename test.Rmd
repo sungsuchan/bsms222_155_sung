@@ -1,9 +1,12 @@
 ---
-title: "Chapter2 Rbasis"
+title: "2.2 The very basics"
 output: html_notebook
 ---
-In this book, we will be using the R software environment for all our analysis. You will learn R and data analysis techniques simultaneously. To follow along you will therefore need access to R. We also recommend the use of an integrated
-
+Before we get started with the motivating dataset, we need to cover the very basics of R.
+---
+title: "2.2.1 Objects"
+output: html_notebook
+---
 ```{r}
 plot(cars)
 ```
