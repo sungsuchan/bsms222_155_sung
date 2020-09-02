@@ -5,6 +5,7 @@ output:
     df_print: paged
 ---
 Before we get started with the motivating dataset, we need to cover the very basics of R.
+title(main = object)
 ```{r}
 plot(cars)
 ```
