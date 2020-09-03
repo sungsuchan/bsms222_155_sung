@@ -7,16 +7,18 @@ output:
 Before we get started with the motivating dataset, we need to cover the very basics of R.
 
 # 2.2.1 objects
-Suppose a high school student asks us for help solving several quadratic equations of the form $$ax^2+bx+c=0.$$ The quadratic formula gives us the solutions:
+Suppose a high school student asks us for help solving several quadratic equations of the form $ax^2+bx+c=0.$ The quadratic formula gives us the solutions:
 $${-b-\sqrt{b^2-4ac} \over 2a}and{-b+\sqrt{b^2-4ac} \over 2a}$$
-
-
+which of course change depending on the values of $a,$ $b,$ $c.$ One advantage of programming languages is that we can define variables and write expressions with these variables, similar to how we do so in math, but obtain a numeric solution. We will write out general code for the quadratic equation below, but if we are asked to solve $x^2+x-1=0,$ then we define:
 ```{r}
-plot(cars)
+a <- 1
+b <- 1
+c <- -1
 ```
+which stores the values for later use. We use ```<-``` to assign values to the variables.
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+We can also assign values using ```=``` instead of ```<-```, but we recommend against using ```=``` to avoid confusion.
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+Copy and paste the code above into your console to define the three variables. Note that R does not print anything when we make this assignment. This means the objects were defined successfully. Had you made a mistake, you would have received an error message.
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
