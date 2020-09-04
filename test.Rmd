@@ -465,6 +465,42 @@ library(dslabs)
 data(murders)
 ```
 
+Use the function ```str``` to examine the structure of the ```murders``` object. Which of the following best describes the variables represented in this data frame?
+
+a. The 51 states.
+b. The murder rates for all 50 states and DC.
+c. The state name, the abbreviation of the state name, the state’s region, and the state’s population and total number of murders for 2010.
+d. ```str``` shows no relevant information.
+```{r}
+str(murders)
+#answer is a.
+```
+
+2. What are the column names used by the data frame for these five variables?
+```{r}
+#answer is state, abb, region, population, total.
+```
+
+3. Use the accessor ```$``` to extract the state abbreviations and assign them to the object ```a```. What is the class of this object?
+```{r}
+murders$abb
+a <- murders$abb
+
+class(a)
+```
+
+4. Now use the square brackets to extract the state abbreviations and assign them to the object ```b```. Use the ```identical``` function to determine if ```a``` and ```b``` are the same.
+```{r}
+murders[["abb"]]
+
+b <- murders[["abb"]]
+
+a == b
+```
+
+
+
+
 
 
 
