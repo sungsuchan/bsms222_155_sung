@@ -473,7 +473,7 @@ c. The state name, the abbreviation of the state name, the state’s region, and
 d. ```str``` shows no relevant information.
 ```{r}
 str(murders)
-#answer is a.
+#answer is c.
 ```
 
 2. What are the column names used by the data frame for these five variables?
@@ -497,6 +497,52 @@ b <- murders[["abb"]]
 
 a == b
 ```
+
+5. We saw that the ```region``` column stores a factor. You can corroborate this by typing:
+```{r}
+class(murders$region)
+```
+
+With one line of code, use the function ```levels``` and ```length``` to determine the number of regions defined by this dataset.
+```{r}
+levels(murders$region)
+length(murders$region)
+```
+
+6. The function ```table``` takes a vector and returns the frequency of each element. You can quickly see how many states are in each region by applying this function. Use this function in one line of code to create a table of states per region.
+```{r}
+table(murders$region)
+```
+
+# **2.6 Vectors**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

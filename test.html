@@ -2125,7 +2125,7 @@ data(murders)</code></pre>
 ##  $ region    : Factor w/ 4 levels &quot;Northeast&quot;,&quot;South&quot;,..: 2 4 4 2 4 4 1 2 2 2 ...
 ##  $ population: num  4779736 710231 6392017 2915918 37253956 ...
 ##  $ total     : num  135 19 232 93 1257 ...</code></pre>
-<pre class="r"><code>#answer is a.</code></pre>
+<pre class="r"><code>#answer is c.</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>What are the column names used by the data frame for these five variables?</li>
 </ol>
@@ -2157,6 +2157,26 @@ a == b</code></pre>
 ## [16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 ## [31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 ## [46] TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>We saw that the <code>region</code> column stores a factor. You can corroborate this by typing:</li>
+</ol>
+<pre class="r"><code>class(murders$region)</code></pre>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<p>With one line of code, use the function <code>levels</code> and <code>length</code> to determine the number of regions defined by this dataset.</p>
+<pre class="r"><code>levels(murders$region)</code></pre>
+<pre><code>## [1] &quot;Northeast&quot;     &quot;South&quot;         &quot;North Central&quot; &quot;West&quot;</code></pre>
+<pre class="r"><code>length(murders$region)</code></pre>
+<pre><code>## [1] 51</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>The function <code>table</code> takes a vector and returns the frequency of each element. You can quickly see how many states are in each region by applying this function. Use this function in one line of code to create a table of states per region.</li>
+</ol>
+<pre class="r"><code>table(murders$region)</code></pre>
+<pre><code>## 
+##     Northeast         South North Central          West 
+##             9            17            12            13</code></pre>
+</div>
+<div id="vectors" class="section level1">
+<h1><strong>2.6 Vectors</strong></h1>
 </div>
 
 
