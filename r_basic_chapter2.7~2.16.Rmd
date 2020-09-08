@@ -206,12 +206,9 @@ a <- x
 b <- sort(x)
 c <- order(x)
 d <- rank(x)
-content <- c(a,b,c,d)
-mat <- matrix(content, nrow=5,ncol=4)
-o <- c("original","sort","order","rank")
-O <- data.frame(mat)
-colnames(O) <- o
-O
+
+numbering <- data.frame(original=a,sort=b,order=c,rank=d)
+numbering
 
 ```
 
@@ -219,17 +216,394 @@ O
 
 Another common source of unnoticed errors in R is the use of *recycling*. We saw that vectors are added elementwise. So if the vectors don’t match in length, it is natural to assume that we should get an error. But we don’t. Notice what happens:
 ```{r}
+x <- c(1,2,3)
+y <- c(10,20,30,40,50,60,70)
+x+y
+```
+
+We do get a warning, but no error. For the output, R has recycled the numbers in ```x```. Notice the last digit of numbers in the output.
+
+
+# **2.10 Exercises**
+
+For these exercises we will use the US murders dataset. Make sure you load it prior to starting.
+```{r}
+library(dslabs)
+data("murders")
+```
+
+1. Use the ```$``` operator to access the population size data and store it as the object ```pop```. Then use the ```sort``` function to redefine ```pop``` so that it is sorted. Finally, use the ```[``` operator to report the smallest population size.
+```{r}
+pop <- murders$population
+smal <- sort(pop)
+smal[1]
+```
+
+2. Now instead of the smallest population size, find the index of the entry with the smallest population size. Hint: use ```order``` instead of ```sort```.
+```{r}
+s <- order(pop)
+s[1]
+```
+
+3. We can actually perform the same operation as in the previous exercise using the function ```which.min```. Write one line of code that does this.
+```{r}
+which.min(pop)
+```
+
+4. Now we know how small the smallest state is and we know which row represents it. Which state is it? Define a variable ```states``` to be the state names from the ```murders``` data frame. Report the name of the state with the smallest population.
+```{r}
+murders$state
+
+murders$state[51]
 
 ```
 
+5. You can create a data frame using the ```data.frame``` function. Here is a quick example:
+```{r}
+temp <- c(35,88,42,84,81,30)
+city <- c("Beijing","Lagos","Paris","Rio de Janeiro","San Juan","Toronto")
+city_temps <- data.frame(name = city, temperature = temp)
+```
+
+Use the ```rank``` function to determine the population rank of each state from smallest population size to biggest. Save these ranks in an object called ```ranks```, then create a data frame with the state name and its rank. Call the data frame ```my_df```.
+```{r}
+ranks <- rank(pop)
+my_df <- data.frame(name=murders$state,rank=ranks)
+my_df
+```
+
+6. Repeat the previous exercise, but this time order ```my_df``` so that the states are ordered from least populous to most populous. Hint: create an object ```ind``` that stores the indexes needed to order the population values. Then use the bracket operator ```[``` to re-order each column in the data frame.
+```{r}
+ind <- order(pop)
+stat <- murders$state
+my_df <- data.frame(name=stat[ind],rank=ranks[ind])
+my_df
+```
 
 
+7. The ```na_example``` vector represents a series of counts. You can quickly examine the object using:
+```{r}
+data("na_example")
+str(na_example)
+```
+However, when we compute the average with the function ```mean```, we obtain an ```NA```:
+```{r}
+mean(na_example)
+```
+
+The ```is.na``` function returns a logical vector that tells us which entries are ```NA```. Assign this logical vector to an object called ```ind``` and determine how many ```NA```s does ```na_example``` have.
+```{r}
+ind <- is.na(na_example)
+sum(ind)
+```
+
+8. Now compute the average again, but only for the entries that are not ```NA```. Hint: remember the ```!``` operator.
+```{r}
+mean(na_example[!ind])
+```
+
+# **2.11 Vector arithmetics**
+
+California had the most murders, but does this mean it is the most dangerous state? What if it just has many more people than any other state? We can quickly confirm that California indeed has the largest population:
+```{r}
+library(dslabs)
+data("murders")
+murders$state[which.max(murders$population)]
+
+```
+
+with over 37 million inhabitants. It is therefore unfair to compare the totals if we are interested in learning how safe the state is. What we really should be computing is the murders per capita. The reports we describe in the motivating section used murders per 100,000 as the unit. To compute this quantity, the powerful vector arithmetic capabilities of R come in handy.
+
+## **2.11.1 Rescaling a vector**
+
+In R, arithmetic operations on vectors occur *element-wise*. For a quick example, suppose we have height in inches:
+```{r}
+inches <- c(69,62,66,70,70,73,67,73,67,70)
+```
+
+and want to convert to centimeters. Notice what happens when we multiply ```inches``` by 2.54:
+```{r}
+inches*2.54
+```
+
+In the line above, we multiplied each element by 2.54. Similarly, if for each entry we want to compute how many inches taller or shorter than 69 inches, the average height for males, we can subtract it from every entry like this:
+```{r}
+inches-69
+```
 
 
+## **2.11.2 Two vectors**
+
+If we have two vectors of the same length, and we sum them in R, they will be added entry by entry as follows:
+$$\begin{pmatrix}
+a\\b\\c\\d\end{pmatrix} + \begin{pmatrix}e\\f\\g\\h\end{pmatrix}=\begin{pmatrix}a+e\\b+f\\c+g\\d+h\end{pmatrix}$$
+
+The same holds for other mathematical operations, such as ```-```, ```*``` and ```/```.
+
+This implies that to compute the murder rates we can simply type:
+```{r}
+murder_rate <- murders$total / murders$population *100000
+
+```
+
+Once we do this, we notice that California is no longer near the top of the list. In fact, we can use what we have learned to order the states by murder rate:
+```{r}
+murders$abb[order(murder_rate)]
+```
 
 
+# **2.12 Exercises**
+
+1. Previously we created this data frame:
+```{r}
+temp <- c(35,88,42,84,81,30)
+city <- c("Beijing","Lagos","Paris","Rio de Janeiro","San Juan","Toronto")
+city_temps <- data.frame(name=city,temperature=temp)
+```
+
+Remake the data frame using the code above, but add a line that converts the temperature from Fahrenheit to Celsius. The conversion is $C= {5\over9}×(F-32)$.
+```{r}
+cel <- 5/9*(temp-32)
+city_temps <- data.frame(name=city,temperature=cel)
+city_temps
+```
+
+2. What is the following sum $1+1/2^2+1/3^2+...1/100^2$? Hint: thanks to Euler, we know it should be close to $\pi^2/6$.
+```{r}
+n <- 100
+x <- seq(1:n)
+sum(1/x^2)
+```
+
+3. Compute the per 100,000 murder rate for each state and store it in the object ```murder_rate```. Then compute the average murder rate for the US using the function ```mean```. What is the average?
+```{r}
+mean(murder_rate)
+```
+
+# **2.13 Indexing**
+
+R provides a powerful and convenient way of indexing vectors. We can, for example, subset a vector based on properties of another vector. In this section, we continue working with our US murders example, which we can load like this:
+```{r}
+library(dslabs)
+data("murders")
+```
+
+## **2.13.1 Subsetting with logicals**
+
+We have now calculated the murder rate using:
+```{r}
+murder_rate <- murders$total/murders$population*100000
+```
+
+Imagine you are moving from Italy where, according to an ABC news report, the murder rate is only 0.71 per 100,000. You would prefer to move to a state with a similar murder rate. Another powerful feature of R is that we can use logicals to index vectors. If we compare a vector to a single number, it actually performs the test for each entry. The following is an example related to the question above:
+```{r}
+ind <- murder_rate < 0.71
+
+```
+
+If we instead want to know if a value is less or equal, we can use:
+```{r}
+ind <- murder_rate <= 0.71
+```
 
 
+Note that we get back a logical vector with ```TRUE``` for each entry smaller than or equal to 0.71. To see which states these are, we can leverage the fact that vectors can be indexed with logicals.
+```{r}
+murders$state[ind]
+```
+
+In order to count how many are TRUE, the function ```sum``` returns the sum of the entries of a vector and logical vectors get coerced to numeric with ```TRUE``` coded as 1 and ```FALSE``` as 0. Thus we can count the states using:
+```{r}
+sum(ind)
+```
+
+## **2.13.2 Logical operators**
+
+Suppose we like the mountains and we want to move to a safe state in the western region of the country. We want the murder rate to be at most 1. In this case, we want two different things to be true. Here we can use the logical operator *and*, which in R is represented with ```&```. This operation results in ```TRUE``` only when both logicals are ```TRUE```. To see this, consider this example:
+```{r}
+TRUE&TRUE
+TRUE&FALSE
+FALSE&FALSE
+```
+
+For our example, we can form two logicals:
+```{r}
+west <- murders$region == "West"
+safe <- murder_rate <= 1
+```
+
+and we can use the ```&``` to get a vector of logicals that tells us which states satisfy both conditions:
+```{r}
+ind <- safe&west
+murders$state[ind]
+```
+
+## **2.13.3 ```which```**
+
+Suppose we want to look up California’s murder rate. For this type of operation, it is convenient to convert vectors of logicals into indexes instead of keeping long vectors of logicals. The function ```which``` tells us which entries of a logical vector are TRUE. So we can type:
+```{r}
+ind <- which(murders$state == "California")
+murder_rate[ind]
+```
+
+## **2.13.4 ```match```**
+
+If instead of just one state we want to find out the murder rates for several states, say New York, Florida, and Texas, we can use the function ```match```. This function tells us which indexes of a second vector match each of the entries of a first vector:
+```{r}
+ind <- match(c("New York","Florida","Texas"),murders$state)
+ind
+```
+
+Now we can look at the murder rates:
+```{r}
+murder_rate[ind]
+```
+
+## **2.13.5 ```%in%```**
+
+If rather than an index we want a logical that tells us whether or not each element of a first vector is in a second, we can use the function ```%in%```. Let’s imagine you are not sure if Boston, Dakota, and Washington are states. You can find out like this:
+```{r}
+c("Boston","Dakota","Washington")%in%murders$state
+```
+
+Note that we will be using ```%in%``` often throughout the book.
+
+**Advanced**: There is a connection between ```match``` and ```%in%``` through ```which```. To see this, notice that the following two lines produce the same index (although in different order):
+```{r}
+match(c("New York","Florida","Texas"),murders$state)
+which(murders$state%in%c("New York","Florida","Texas"))
+```
+
+# **2.14 Exercises**
+
+Start by loading the library and data.
+```{r}
+library(dslabs)
+data(murders)
+```
+
+1. Compute the per 100,000 murder rate for each state and store it in an object called ```murder_rate```. Then use logical operators to create a logical vector named ```low``` that tells us which entries of ```murder_rate``` are lower than 1.
+```{r}
+murder_rate <- murders$total/murders$population*100000
+low <- murder_rate < 1
+```
+
+2. Now use the results from the previous exercise and the function ```which``` to determine the indices of ```murder_rate``` associated with values lower than 1.
+```{r}
+which(low)
+```
+
+3. Use the results from the previous exercise to report the names of the states with murder rates lower than 1.
+```{r}
+murders$state[which(low)]
+```
+
+4. Now extend the code from exercises 2 and 3 to report the states in the Northeast with murder rates lower than 1. Hint: use the previously defined logical vector ```low``` and the logical operator ```&```.
+```{r}
+ind <- low&murders$region=="Northeast"
+murders$state[ind]
+```
+
+5. In a previous exercise we computed the murder rate for each state and the average of these numbers. How many states are below the average?
+```{r}
+sum(murder_rate<mean(murder_rate))
+```
+
+6. Use the match function to identify the states with abbreviations AK, MI, and IA. Hint: start by defining an index of the entries of ```murders$abb``` that match the three abbreviations, then use the ```[``` operator to extract the states.
+```{r}
+ind <- match(c("AK","MI","IA"),murders$abb)
+murders$state[ind]
+```
+
+7. Use the ```%in%``` operator to create a logical vector that answers the question: which of the following are actual abbreviations: MA, ME, MI, MO, MU?
+```{r}
+c("MA","ME","MI","MO","MU") %in% murders$abb
+```
+
+8. Extend the code you used in exercise 7 to report the one entry that is **not** an actual abbreviation. Hint: use the ```!``` operator, which turns ```FALSE``` into ```TRUE``` and vice versa, then ```which``` to obtain an index.
+```{r}
+k <- c("MA","ME","MI","MO","MU")
+ind <- c("MA","ME","MI","MO","MU") %in% murders$abb
+k[which(!ind)]
+```
+
+# **2.15 Basic plots**
+
+In Chapter 7 we describe an add-on package that provides a powerful approach to producing plots in R. We then have an entire part on Data Visualization in which we provide many examples. Here we briefly describe some of the functions that are available in a basic R installation.
+
+## **2.15.1 ```plot```**
+
+The ```plot``` function can be used to make scatterplots. Here is a plot of total murders versus population.
+```{r}
+x <- murders$population/10^6
+y <- murders$total
+plot(x,y)
+```
+For a quick plot that avoids accessing variables twice, we can use the ```with``` function:
+```{r}
+with(murders,plot(population,total))
+```
+
+The function ```with``` lets us use the ```murders``` column names in the ```plot``` function. It also works with any data frames and any function.
+
+
+## **2.15.2 ```hist```**
+
+We will describe histograms as they relate to distributions in the Data Visualization part of the book. Here we will simply note that histograms are a powerful graphical summary of a list of numbers that gives you a general overview of the types of values you have. We can make a histogram of our murder rates by simply typing:
+```{r}
+x <- with(murders, total/population*100000)
+hist(x)
+```
+
+We can see that there is a wide range of values with most of them between 2 and 3 and one very extreme case with a murder rate of more than 15:
+```{r}
+murders$state[which.max(x)]
+```
+
+## **2.15.3 ```boxplot```**
+
+Boxplots will also be described in the Data Visualization part of the book. They provide a more terse summary than histograms, but they are easier to stack with other boxplots. For example, here we can use them to compare the different regions:
+```{r}
+murders$rate <- with(murders,total/population*100000)
+boxplot(rate~region,data=murders)
+```
+
+We can see that the South has higher murder rates than the other three regions.
+
+## **2.15.4 ```image```**
+
+The image function displays the values in a matrix using color. Here is a quick example:
+```{r}
+x <- matrix(1:120,12,10)
+image(x)
+```
+
+# **2.16 Exercises**
+
+1. We made a plot of total murders versus population and noted a strong relationship. Not surprisingly, states with larger populations had more murders.
+```{r}
+library(dslabs)
+data(murders)
+population_in_million <- murders$population/10^6
+total_gun_murders <- murders$total
+plot(population_in_million,total_gun_murders)
+```
+Keep in mind that many states have populations below 5 million and are bunched up. We may gain further insights from making this plot in the log scale. Transform the variables using the ```log10``` transformation and then plot them.
+```{r}
+log10_pop <- log10(murders$population)
+log10_tot <- log10(total_gun_murders)
+plot(log10_pop,log10_tot)
+```
+
+2. Create a histogram of the state populations.
+```{r}
+hist(population_in_million)
+```
+
+3. Generate boxplots of the state populations by region.
+```{r}
+boxplot(population~region,data=murders)
+```
 
 
 
