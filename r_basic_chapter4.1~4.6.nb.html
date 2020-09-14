@@ -1749,9 +1749,36 @@ summary {
 
 
 <!-- rnb-text-begin -->
+<div id="chapter4-the-tidyverse" class="section level1">
+<h1><strong>Chapter4 The tidyverse</strong></h1>
+<p>Up to now we have been manipulating vectors by reordering and subsetting them through indexing. However, once we start more advanced analyses, the preferred unit for data storage is not the vector but the data frame. In this chapter we learn to work directly with data frames, which greatly facilitate the organization of information. We will be using data frames for the majority of this book. We will focus on a specific data format referred to as <em>tidy</em> and on specific collection of packages that are particularly helpful for working with <em>tidy</em> data referred to as the <em>tidyverse</em>.</p>
+<p>We can load all the tidyverse packages at once by installing and loading the <strong>tidyverse</strong> package:</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5cbmBgYCJ9 -->
+<pre class="r"><code>library(tidyverse)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxu4pSA4pSAIEF0dGFjaGluZyBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbuKckyBnZ3Bsb3QyIDMuMy4yICAgICDinJMgcHVycnIgICAwLjMuNFxu4pyTIHRpYmJsZSAgMy4wLjMgICAgIOKckyBkcGx5ciAgIDEuMC4yXG7inJMgdGlkeXIgICAxLjEuMiAgICAg4pyTIHN0cmluZ3IgMS40LjBcbuKckyByZWFkciAgIDEuMy4xICAgICDinJMgZm9yY2F0cyAwLjUuMFxu4pSA4pSAIENvbmZsaWN0cyDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxueCBkcGx5cjo6ZmlsdGVyKCkgbWFza3Mgc3RhdHM6OmZpbHRlcigpXG54IGRwbHlyOjpsYWcoKSAgICBtYXNrcyBzdGF0czo6bGFnKClcbiJ9 -->
+<pre><code>Registered S3 methods overwritten by &#39;dbplyr&#39;:
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+── Attaching packages ──────────────────
+✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+✓ tibble  3.0.3     ✓ dplyr   1.0.2
+✓ tidyr   1.1.2     ✓ stringr 1.4.0
+✓ readr   1.3.1     ✓ forcats 0.5.0
+── Conflicts ── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3VjaGFuJ3NfUl9ub3RlYm9va+KZpSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3VjaGFuJ3NfUl9ub3RlYm9va+KZpSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyAqKkNoYXB0ZXI0IFRoZSB0aWR5dmVyc2UqKgoKVXAgdG8gbm93IHdlIGhhdmUgYmVlbiBtYW5pcHVsYXRpbmcgdmVjdG9ycyBieSByZW9yZGVyaW5nIGFuZCBzdWJzZXR0aW5nIHRoZW0gdGhyb3VnaCBpbmRleGluZy4gSG93ZXZlciwgb25jZSB3ZSBzdGFydCBtb3JlIGFkdmFuY2VkIGFuYWx5c2VzLCB0aGUgcHJlZmVycmVkIHVuaXQgZm9yIGRhdGEgc3RvcmFnZSBpcyBub3QgdGhlIHZlY3RvciBidXQgdGhlIGRhdGEgZnJhbWUuIEluIHRoaXMgY2hhcHRlciB3ZSBsZWFybiB0byB3b3JrIGRpcmVjdGx5IHdpdGggZGF0YSBmcmFtZXMsIHdoaWNoIGdyZWF0bHkgZmFjaWxpdGF0ZSB0aGUgb3JnYW5pemF0aW9uIG9mIGluZm9ybWF0aW9uLiBXZSB3aWxsIGJlIHVzaW5nIGRhdGEgZnJhbWVzIGZvciB0aGUgbWFqb3JpdHkgb2YgdGhpcyBib29rLiBXZSB3aWxsIGZvY3VzIG9uIGEgc3BlY2lmaWMgZGF0YSBmb3JtYXQgcmVmZXJyZWQgdG8gYXMgKnRpZHkqIGFuZCBvbiBzcGVjaWZpYyBjb2xsZWN0aW9uIG9mIHBhY2thZ2VzIHRoYXQgYXJlIHBhcnRpY3VsYXJseSBoZWxwZnVsIGZvciB3b3JraW5nIHdpdGggKnRpZHkqIGRhdGEgcmVmZXJyZWQgdG8gYXMgdGhlICp0aWR5dmVyc2UqLgoKCldlIGNhbiBsb2FkIGFsbCB0aGUgdGlkeXZlcnNlIHBhY2thZ2VzIGF0IG9uY2UgYnkgaW5zdGFsbGluZyBhbmQgbG9hZGluZyB0aGUgKip0aWR5dmVyc2UqKiBwYWNrYWdlOgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKCgoKCgoKCgoK</div>
 
 
 
