@@ -1755,9 +1755,8 @@ summary {
 <p>We can load all the tidyverse packages at once by installing and loading the <strong>tidyverse</strong> package:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5cbmBgYCJ9 -->
-<pre class="r"><code>library(tidyverse)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxu4pSA4pSAIEF0dGFjaGluZyBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbuKckyBnZ3Bsb3QyIDMuMy4yICAgICDinJMgcHVycnIgICAwLjMuNFxu4pyTIHRpYmJsZSAgMy4wLjMgICAgIOKckyBkcGx5ciAgIDEuMC4yXG7inJMgdGlkeXIgICAxLjEuMiAgICAg4pyTIHN0cmluZ3IgMS40LjBcbuKckyByZWFkciAgIDEuMy4xICAgICDinJMgZm9yY2F0cyAwLjUuMFxu4pSA4pSAIENvbmZsaWN0cyDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxueCBkcGx5cjo6ZmlsdGVyKCkgbWFza3Mgc3RhdHM6OmZpbHRlcigpXG54IGRwbHlyOjpsYWcoKSAgICBtYXNrcyBzdGF0czo6bGFnKClcbiJ9 -->
 <pre><code>Registered S3 methods overwritten by &#39;dbplyr&#39;:
@@ -1775,10 +1774,701 @@ x dplyr::lag()    masks stats::lag()</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>We will learn how to implement the tidyverse approach throughout the book, but before delving into the details, in this chapter we introduce some of the most widely used tidyverse functionality, starting with the <strong>dplyr</strong> package for manipulating data frames and the <strong>purrr</strong> package for working with functions. Note that the tidyverse also includes a graphing package, <strong>ggplot2</strong>, which we introduce later in Chapter 7 in the Data Visualization part of the book; the <strong>readr</strong> package discussed in Chapter 5; and many others. In this chapter, we first introduce the concept of <em>tidy data</em> and then demonstrate how we use the tidyverse to work with data frames in this format.</p>
+<div id="tidy-data" class="section level2">
+<h2><strong>4.1 Tidy data</strong></h2>
+<p>We say that a data table is in tidy format if each row represents one observation and columns represent the different variables available for each of these observations. The <code>murders</code> dataset is an example of a tidy data frame.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6NX0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVN6VXJEUUJCZTB5VGFRRlh3QmJ5SXA5YURDb0lIRXlwZUZKVldzWGh5Mm01dGFMcGJObHNWVC9vTTNqeDdGSSsrZ0MvaWs2aXpmN0ZwWUpqdisyWjNaakt6cmNQT2R0U0pDQ0VWNGhPUFZBS0VKTGk4T0tydkVlSjdTQll3VUZYK0FRK3RxU2phS2xwb0E0dEpCbDBZZzZVaDBud0VSVkNrajV3NXVwU0lFYkFjY3N1akptVHBnQXVXRmllYVBPTUMrbnl1aXBlY0ZPaTRRTmNGYWpuVVRBcDBoaDNYZEE1a2FMNjFHVno2eFRDamR6VExiV1hmcXRWVEx1U1FRaTZ0RUxUNVZBNHRxZW5vZXBNeUtTQ3pvbjlGOFhRNWVkRER1YmpjUmNVQjlDUVhpSDdRbHZYNFd2dWZhZ25KeHZ1SDlwM3VUcXo4MGNHbTVzOWZyK3ZLdDdmYXhIejZYbnp6clVtOGJjUjRiUDFWYlB6TG0vSG5zYjFXYm8vQm1McjJBaWZtRWlTMXBBTGRybXRiME51VU03ZkVDWjlNTTVEL1NpQzV4R0dVSzFRRnYyKzRLbW90M3BQcEl6UUhLNzl6dzRuNklLRXhFSGpGREtpVWJwRlBWRVZNNXMyK3l1SzVpamxoWmNwVThYNjlONXl5VVgxWEZkQmhZelhyd3hrY21KSythOHlOSmFUc05tVnVMZ0UrZitvMnY0dy9xZit4TVJFcGN5OG1RalZ2bUtGWXBjY3pwNWpsLy93Qk5TcFNQb3dEQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"AL","3":"South","4":"4779736","5":"135","_rn_":"1"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19","_rn_":"2"},{"1":"Arizona","2":"AZ","3":"West","4":"6392017","5":"232","_rn_":"3"},{"1":"Arkansas","2":"AR","3":"South","4":"2915918","5":"93","_rn_":"4"},{"1":"California","2":"CA","3":"West","4":"37253956","5":"1257","_rn_":"5"},{"1":"Colorado","2":"CO","3":"West","4":"5029196","5":"65","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Each row represent a state with each of the five columns providing a different variable related to these states: name, abbreviation, region, population, and total murders.</p>
+<p>To see how the same information can be provided in different formats, consider the following example:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIz4gICAgICAgY291bnRyeSB5ZWFyIGZlcnRpbGl0eVxuIz4gMSAgICAgR2VybWFueSAxOTYwICAgICAgMi40MVxuIz4gMiBTb3V0aCBLb3JlYSAxOTYwICAgICAgNi4xNlxuIz4gMyAgICAgR2VybWFueSAxOTYxICAgICAgMi40NFxuIz4gNCBTb3V0aCBLb3JlYSAxOTYxICAgICAgNS45OVxuIz4gNSAgICAgR2VybWFueSAxOTYyICAgICAgMi40N1xuIz4gNiBTb3V0aCBLb3JlYSAxOTYyICAgICAgNS43OVxuXG5gYGAifQ== -->
+<pre class="r"><code>#&gt;       country year fertility
+#&gt; 1     Germany 1960      2.41
+#&gt; 2 South Korea 1960      6.16
+#&gt; 3     Germany 1961      2.44
+#&gt; 4 South Korea 1961      5.99
+#&gt; 5     Germany 1962      2.47
+#&gt; 6 South Korea 1962      5.79
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This tidy dataset provides fertility rates for two countries across the years. This is a tidy dataset because each row presents one observation with the three variables being country, year, and fertility rate. However, this dataset originally came in another format and was reshaped for the <strong>dslabs</strong> package. Originally, the data was in the following format:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIz4gICAgICAgY291bnRyeSAxOTYwIDE5NjEgMTk2MlxuIz4gMSAgICAgR2VybWFueSAyLjQxIDIuNDQgMi40N1xuIz4gMiBTb3V0aCBLb3JlYSA2LjE2IDUuOTkgNS43OVxuXG5gYGAifQ== -->
+<pre class="r"><code>#&gt;       country 1960 1961 1962
+#&gt; 1     Germany 2.41 2.44 2.47
+#&gt; 2 South Korea 6.16 5.99 5.79
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The same information is provided, but there are two important differences in the format: 1) each row includes several observations and 2) one of the variables, year, is stored in the header. For the tidyverse packages to be optimally used, data need to be reshaped into <code>tidy</code> format, which you will learn to do in the Data Wrangling part of the book. Until then, we will use example datasets that are already in tidy format.</p>
+<p>Although not immediately obvious, as you go through the book you will start to appreciate the advantages of working in a framework in which functions use tidy formats for both inputs and outputs. You will see how this permits the data analyst to focus on more important aspects of the analysis rather than the format of the data.</p>
+</div>
+<div id="exercises" class="section level2">
+<h2><strong>4.2 Exercises</strong></h2>
+<ol style="list-style-type: decimal">
+<li>Examine the built-in dataset <code>co2</code>. Which of the following is true:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><code>co2</code> is tidy data: it has one year for each row.</li>
+<li><code>co2</code> is not tidy: we need at least one column with a character vector.</li>
+<li><code>co2</code> is not tidy: it is a matrix instead of a data frame.</li>
+<li><code>co2</code> is not tidy: to be tidy we would have to wrangle it to have three columns(year, month and value), then each co2 observation would have a row.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY28yXG5gYGAifQ== -->
+<pre class="r"><code>co2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICBKYW4gICAgRmViICAgIE1hciAgICBBcHIgICAgTWF5XG4xOTU5IDMxNS40MiAzMTYuMzEgMzE2LjUwIDMxNy41NiAzMTguMTNcbjE5NjAgMzE2LjI3IDMxNi44MSAzMTcuNDIgMzE4Ljg3IDMxOS44N1xuMTk2MSAzMTYuNzMgMzE3LjU0IDMxOC4zOCAzMTkuMzEgMzIwLjQyXG4xOTYyIDMxNy43OCAzMTguNDAgMzE5LjUzIDMyMC40MiAzMjAuODVcbjE5NjMgMzE4LjU4IDMxOC45MiAzMTkuNzAgMzIxLjIyIDMyMi4wOFxuMTk2NCAzMTkuNDEgMzIwLjA3IDMyMC43NCAzMjEuNDAgMzIyLjA2XG4xOTY1IDMxOS4yNyAzMjAuMjggMzIwLjczIDMyMS45NyAzMjIuMDBcbjE5NjYgMzIwLjQ2IDMyMS40MyAzMjIuMjMgMzIzLjU0IDMyMy45MVxuMTk2NyAzMjIuMTcgMzIyLjM0IDMyMi44OCAzMjQuMjUgMzI0LjgzXG4xOTY4IDMyMi40MCAzMjIuOTkgMzIzLjczIDMyNC44NiAzMjUuNDBcbjE5NjkgMzIzLjgzIDMyNC4yNiAzMjUuNDcgMzI2LjUwIDMyNy4yMVxuMTk3MCAzMjQuODkgMzI1LjgyIDMyNi43NyAzMjcuOTcgMzI3LjkxXG4xOTcxIDMyNi4wMSAzMjYuNTEgMzI3LjAxIDMyNy42MiAzMjguNzZcbjE5NzIgMzI2LjYwIDMyNy40NyAzMjcuNTggMzI5LjU2IDMyOS45MFxuMTk3MyAzMjguMzcgMzI5LjQwIDMzMC4xNCAzMzEuMzMgMzMyLjMxXG4xOTc0IDMyOS4xOCAzMzAuNTUgMzMxLjMyIDMzMi40OCAzMzIuOTJcbjE5NzUgMzMwLjIzIDMzMS4yNSAzMzEuODcgMzMzLjE0IDMzMy44MFxuMTk3NiAzMzEuNTggMzMyLjM5IDMzMy4zMyAzMzQuNDEgMzM0LjcxXG4xOTc3IDMzMi43NSAzMzMuMjQgMzM0LjUzIDMzNS45MCAzMzYuNTdcbjE5NzggMzM0LjgwIDMzNS4yMiAzMzYuNDcgMzM3LjU5IDMzNy44NFxuMTk3OSAzMzYuMDUgMzM2LjU5IDMzNy43OSAzMzguNzEgMzM5LjMwXG4xOTgwIDMzNy44NCAzMzguMTkgMzM5LjkxIDM0MC42MCAzNDEuMjlcbjE5ODEgMzM5LjA2IDM0MC4zMCAzNDEuMjEgMzQyLjMzIDM0Mi43NFxuMTk4MiAzNDAuNTcgMzQxLjQ0IDM0Mi41MyAzNDMuMzkgMzQzLjk2XG4xOTgzIDM0MS4yMCAzNDIuMzUgMzQyLjkzIDM0NC43NyAzNDUuNThcbjE5ODQgMzQzLjUyIDM0NC4zMyAzNDUuMTEgMzQ2Ljg4IDM0Ny4yNVxuMTk4NSAzNDQuNzkgMzQ1LjgyIDM0Ny4yNSAzNDguMTcgMzQ4Ljc0XG4xOTg2IDM0Ni4xMSAzNDYuNzggMzQ3LjY4IDM0OS4zNyAzNTAuMDNcbjE5ODcgMzQ3Ljg0IDM0OC4yOSAzNDkuMjMgMzUwLjgwIDM1MS42NlxuMTk4OCAzNTAuMjUgMzUxLjU0IDM1Mi4wNSAzNTMuNDEgMzU0LjA0XG4xOTg5IDM1Mi42MCAzNTIuOTIgMzUzLjUzIDM1NS4yNiAzNTUuNTJcbjE5OTAgMzUzLjUwIDM1NC41NSAzNTUuMjMgMzU2LjA0IDM1Ny4wMFxuMTk5MSAzNTQuNTkgMzU1LjYzIDM1Ny4wMyAzNTguNDggMzU5LjIyXG4xOTkyIDM1NS44OCAzNTYuNjMgMzU3LjcyIDM1OS4wNyAzNTkuNThcbjE5OTMgMzU2LjYzIDM1Ny4xMCAzNTguMzIgMzU5LjQxIDM2MC4yM1xuMTk5NCAzNTguMzQgMzU4Ljg5IDM1OS45NSAzNjEuMjUgMzYxLjY3XG4xOTk1IDM1OS45OCAzNjEuMDMgMzYxLjY2IDM2My40OCAzNjMuODJcbjE5OTYgMzYyLjA5IDM2My4yOSAzNjQuMDYgMzY0Ljc2IDM2NS40NVxuMTk5NyAzNjMuMjMgMzY0LjA2IDM2NC42MSAzNjYuNDAgMzY2Ljg0XG4gICAgICAgIEp1biAgICBKdWwgICAgQXVnICAgIFNlcCAgICBPY3RcbjE5NTkgMzE4LjAwIDMxNi4zOSAzMTQuNjUgMzEzLjY4IDMxMy4xOFxuMTk2MCAzMTkuNDMgMzE4LjAxIDMxNS43NCAzMTQuMDAgMzEzLjY4XG4xOTYxIDMxOS42MSAzMTguNDIgMzE2LjYzIDMxNC44MyAzMTUuMTZcbjE5NjIgMzIwLjQ1IDMxOS40NSAzMTcuMjUgMzE2LjExIDMxNS4yN1xuMTk2MyAzMjEuMzEgMzE5LjU4IDMxNy42MSAzMTYuMDUgMzE1LjgzXG4xOTY0IDMyMS43MyAzMjAuMjcgMzE4LjU0IDMxNi41NCAzMTYuNzFcbjE5NjUgMzIxLjcxIDMyMS4wNSAzMTguNzEgMzE3LjY2IDMxNy4xNFxuMTk2NiAzMjMuNTkgMzIyLjI0IDMyMC4yMCAzMTguNDggMzE3Ljk0XG4xOTY3IDMyMy45MyAzMjIuMzggMzIwLjc2IDMxOS4xMCAzMTkuMjRcbjE5NjggMzI1LjIwIDMyMy45OCAzMjEuOTUgMzIwLjE4IDMyMC4wOVxuMTk2OSAzMjYuNTQgMzI1LjcyIDMyMy41MCAzMjIuMjIgMzIxLjYyXG4xOTcwIDMyNy41MCAzMjYuMTggMzI0LjUzIDMyMi45MyAzMjIuOTBcbjE5NzEgMzI4LjQwIDMyNy4yMCAzMjUuMjcgMzIzLjIwIDMyMy40MFxuMTk3MiAzMjguOTIgMzI3Ljg4IDMyNi4xNiAzMjQuNjggMzI1LjA0XG4xOTczIDMzMS45MCAzMzAuNzAgMzI5LjE1IDMyNy4zNSAzMjcuMDJcbjE5NzQgMzMyLjA4IDMzMS4wMSAzMjkuMjMgMzI3LjI3IDMyNy4yMVxuMTk3NSAzMzMuNDMgMzMxLjczIDMyOS45MCAzMjguNDAgMzI4LjE3XG4xOTc2IDMzNC4xNyAzMzIuODkgMzMwLjc3IDMyOS4xNCAzMjguNzhcbjE5NzcgMzM2LjEwIDMzNC43NiAzMzIuNTkgMzMxLjQyIDMzMC45OFxuMTk3OCAzMzcuNzIgMzM2LjM3IDMzNC41MSAzMzIuNjAgMzMyLjM4XG4xOTc5IDMzOS4xMiAzMzcuNTYgMzM1LjkyIDMzMy43NSAzMzMuNzBcbjE5ODAgMzQxLjAwIDMzOS4zOSAzMzcuNDMgMzM1LjcyIDMzNS44NFxuMTk4MSAzNDIuMDggMzQwLjMyIDMzOC4yNiAzMzYuNTIgMzM2LjY4XG4xOTgyIDM0My4xOCAzNDEuODggMzM5LjY1IDMzNy44MSAzMzcuNjlcbjE5ODMgMzQ1LjE0IDM0My44MSAzNDIuMjEgMzM5LjY5IDMzOS44MlxuMTk4NCAzNDYuNjIgMzQ1LjIyIDM0My4xMSAzNDAuOTAgMzQxLjE4XG4xOTg1IDM0OC4wNyAzNDYuMzggMzQ0LjUxIDM0Mi45MiAzNDIuNjJcbjE5ODYgMzQ5LjM3IDM0Ny43NiAzNDUuNzMgMzQ0LjY4IDM0My45OVxuMTk4NyAzNTEuMDcgMzQ5LjMzIDM0Ny45MiAzNDYuMjcgMzQ2LjE4XG4xOTg4IDM1My42MiAzNTIuMjIgMzUwLjI3IDM0OC41NSAzNDguNzJcbjE5ODkgMzU0Ljk3IDM1My43NSAzNTEuNTIgMzQ5LjY0IDM0OS44M1xuMTk5MCAzNTYuMDcgMzU0LjY3IDM1Mi43NiAzNTAuODIgMzUxLjA0XG4xOTkxIDM1OC4xMiAzNTYuMDYgMzUzLjkyIDM1Mi4wNSAzNTIuMTFcbjE5OTIgMzU5LjE3IDM1Ni45NCAzNTQuOTIgMzUyLjk0IDM1My4yM1xuMTk5MyAzNTkuNTUgMzU3LjUzIDM1NS40OCAzNTMuNjcgMzUzLjk1XG4xOTk0IDM2MC45NCAzNTkuNTUgMzU3LjQ5IDM1NS44NCAzNTYuMDBcbjE5OTUgMzYzLjMwIDM2MS45NCAzNTkuNTAgMzU4LjExIDM1Ny44MFxuMTk5NiAzNjUuMDEgMzYzLjcwIDM2MS41NCAzNTkuNTEgMzU5LjY1XG4xOTk3IDM2NS42OCAzNjQuNTIgMzYyLjU3IDM2MC4yNCAzNjAuODNcbiAgICAgICAgTm92ICAgIERlY1xuMTk1OSAzMTQuNjYgMzE1LjQzXG4xOTYwIDMxNC44NCAzMTYuMDNcbjE5NjEgMzE1Ljk0IDMxNi44NVxuMTk2MiAzMTYuNTMgMzE3LjUzXG4xOTYzIDMxNi45MSAzMTguMjBcbjE5NjQgMzE3LjUzIDMxOC41NVxuMTk2NSAzMTguNzAgMzE5LjI1XG4xOTY2IDMxOS42MyAzMjAuODdcbjE5NjcgMzIwLjU2IDMyMS44MFxuMTk2OCAzMjEuMTYgMzIyLjc0XG4xOTY5IDMyMi42OSAzMjMuOTVcbjE5NzAgMzIzLjg1IDMyNC45NlxuMTk3MSAzMjQuNjMgMzI1Ljg1XG4xOTcyIDMyNi4zNCAzMjcuMzlcbjE5NzMgMzI3Ljk5IDMyOC40OFxuMTk3NCAzMjguMjkgMzI5LjQxXG4xOTc1IDMyOS4zMiAzMzAuNTlcbjE5NzYgMzMwLjE0IDMzMS41MlxuMTk3NyAzMzIuMjQgMzMzLjY4XG4xOTc4IDMzMy43NSAzMzQuNzhcbjE5NzkgMzM1LjEyIDMzNi41NlxuMTk4MCAzMzYuOTMgMzM4LjA0XG4xOTgxIDMzOC4xOSAzMzkuNDRcbjE5ODIgMzM5LjA5IDM0MC4zMlxuMTk4MyAzNDAuOTggMzQyLjgyXG4xOTg0IDM0Mi44MCAzNDQuMDRcbjE5ODUgMzQ0LjA2IDM0NS4zOFxuMTk4NiAzNDUuNDggMzQ2LjcyXG4xOTg3IDM0Ny42NCAzNDguNzhcbjE5ODggMzQ5LjkxIDM1MS4xOFxuMTk4OSAzNTEuMTQgMzUyLjM3XG4xOTkwIDM1Mi42OSAzNTQuMDdcbjE5OTEgMzUzLjY0IDM1NC44OVxuMTk5MiAzNTQuMDkgMzU1LjMzXG4xOTkzIDM1NS4zMCAzNTYuNzhcbjE5OTQgMzU3LjU5IDM1OS4wNVxuMTk5NSAzNTkuNjEgMzYwLjc0XG4xOTk2IDM2MC44MCAzNjIuMzhcbjE5OTcgMzYyLjQ5IDM2NC4zNFxuIn0= -->
+<pre><code>        Jan    Feb    Mar    Apr    May
+1959 315.42 316.31 316.50 317.56 318.13
+1960 316.27 316.81 317.42 318.87 319.87
+1961 316.73 317.54 318.38 319.31 320.42
+1962 317.78 318.40 319.53 320.42 320.85
+1963 318.58 318.92 319.70 321.22 322.08
+1964 319.41 320.07 320.74 321.40 322.06
+1965 319.27 320.28 320.73 321.97 322.00
+1966 320.46 321.43 322.23 323.54 323.91
+1967 322.17 322.34 322.88 324.25 324.83
+1968 322.40 322.99 323.73 324.86 325.40
+1969 323.83 324.26 325.47 326.50 327.21
+1970 324.89 325.82 326.77 327.97 327.91
+1971 326.01 326.51 327.01 327.62 328.76
+1972 326.60 327.47 327.58 329.56 329.90
+1973 328.37 329.40 330.14 331.33 332.31
+1974 329.18 330.55 331.32 332.48 332.92
+1975 330.23 331.25 331.87 333.14 333.80
+1976 331.58 332.39 333.33 334.41 334.71
+1977 332.75 333.24 334.53 335.90 336.57
+1978 334.80 335.22 336.47 337.59 337.84
+1979 336.05 336.59 337.79 338.71 339.30
+1980 337.84 338.19 339.91 340.60 341.29
+1981 339.06 340.30 341.21 342.33 342.74
+1982 340.57 341.44 342.53 343.39 343.96
+1983 341.20 342.35 342.93 344.77 345.58
+1984 343.52 344.33 345.11 346.88 347.25
+1985 344.79 345.82 347.25 348.17 348.74
+1986 346.11 346.78 347.68 349.37 350.03
+1987 347.84 348.29 349.23 350.80 351.66
+1988 350.25 351.54 352.05 353.41 354.04
+1989 352.60 352.92 353.53 355.26 355.52
+1990 353.50 354.55 355.23 356.04 357.00
+1991 354.59 355.63 357.03 358.48 359.22
+1992 355.88 356.63 357.72 359.07 359.58
+1993 356.63 357.10 358.32 359.41 360.23
+1994 358.34 358.89 359.95 361.25 361.67
+1995 359.98 361.03 361.66 363.48 363.82
+1996 362.09 363.29 364.06 364.76 365.45
+1997 363.23 364.06 364.61 366.40 366.84
+        Jun    Jul    Aug    Sep    Oct
+1959 318.00 316.39 314.65 313.68 313.18
+1960 319.43 318.01 315.74 314.00 313.68
+1961 319.61 318.42 316.63 314.83 315.16
+1962 320.45 319.45 317.25 316.11 315.27
+1963 321.31 319.58 317.61 316.05 315.83
+1964 321.73 320.27 318.54 316.54 316.71
+1965 321.71 321.05 318.71 317.66 317.14
+1966 323.59 322.24 320.20 318.48 317.94
+1967 323.93 322.38 320.76 319.10 319.24
+1968 325.20 323.98 321.95 320.18 320.09
+1969 326.54 325.72 323.50 322.22 321.62
+1970 327.50 326.18 324.53 322.93 322.90
+1971 328.40 327.20 325.27 323.20 323.40
+1972 328.92 327.88 326.16 324.68 325.04
+1973 331.90 330.70 329.15 327.35 327.02
+1974 332.08 331.01 329.23 327.27 327.21
+1975 333.43 331.73 329.90 328.40 328.17
+1976 334.17 332.89 330.77 329.14 328.78
+1977 336.10 334.76 332.59 331.42 330.98
+1978 337.72 336.37 334.51 332.60 332.38
+1979 339.12 337.56 335.92 333.75 333.70
+1980 341.00 339.39 337.43 335.72 335.84
+1981 342.08 340.32 338.26 336.52 336.68
+1982 343.18 341.88 339.65 337.81 337.69
+1983 345.14 343.81 342.21 339.69 339.82
+1984 346.62 345.22 343.11 340.90 341.18
+1985 348.07 346.38 344.51 342.92 342.62
+1986 349.37 347.76 345.73 344.68 343.99
+1987 351.07 349.33 347.92 346.27 346.18
+1988 353.62 352.22 350.27 348.55 348.72
+1989 354.97 353.75 351.52 349.64 349.83
+1990 356.07 354.67 352.76 350.82 351.04
+1991 358.12 356.06 353.92 352.05 352.11
+1992 359.17 356.94 354.92 352.94 353.23
+1993 359.55 357.53 355.48 353.67 353.95
+1994 360.94 359.55 357.49 355.84 356.00
+1995 363.30 361.94 359.50 358.11 357.80
+1996 365.01 363.70 361.54 359.51 359.65
+1997 365.68 364.52 362.57 360.24 360.83
+        Nov    Dec
+1959 314.66 315.43
+1960 314.84 316.03
+1961 315.94 316.85
+1962 316.53 317.53
+1963 316.91 318.20
+1964 317.53 318.55
+1965 318.70 319.25
+1966 319.63 320.87
+1967 320.56 321.80
+1968 321.16 322.74
+1969 322.69 323.95
+1970 323.85 324.96
+1971 324.63 325.85
+1972 326.34 327.39
+1973 327.99 328.48
+1974 328.29 329.41
+1975 329.32 330.59
+1976 330.14 331.52
+1977 332.24 333.68
+1978 333.75 334.78
+1979 335.12 336.56
+1980 336.93 338.04
+1981 338.19 339.44
+1982 339.09 340.32
+1983 340.98 342.82
+1984 342.80 344.04
+1985 344.06 345.38
+1986 345.48 346.72
+1987 347.64 348.78
+1988 349.91 351.18
+1989 351.14 352.37
+1990 352.69 354.07
+1991 353.64 354.89
+1992 354.09 355.33
+1993 355.30 356.78
+1994 357.59 359.05
+1995 359.61 360.74
+1996 360.80 362.38
+1997 362.49 364.34</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="2" style="list-style-type: decimal">
+<li>Examine the built-in dataset <code>ChickWeight</code>. Which of the following is true:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><code>ChickWeight</code> is not tidy: each chick has more than one row.</li>
+<li><code>ChickWeight</code> is tidy: each observation(a weight) is represented by one row. The chick from which this measurement came is one of the varialbes.</li>
+<li><code>ChickWeight</code> is not tidy: we are missing the year column.</li>
+<li><code>ChickWeight</code> is tidy: it is stored in a data frame.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbIm5mbkdyb3VwZWREYXRhIiwibmZHcm91cGVkRGF0YSIsImdyb3VwZWREYXRhIiwiZGF0YS5mcmFtZSJdLCJucm93Ijo1NzgsIm5jb2wiOjR9LCJyZGYiOiJINHNJQUFBQUFBQUFBKzFhYVZJYlJ4UWVDUkF4WGtKQ0ZtZFhFaWZCaVNFZ3lZbnpUN0d4bmRpT3pXNVdNeU5wa0FZdEkwYkNTMVVxcFNQNENENUNqc0FSY2dTTzRNb0JRaVQ2KzU2WUJteTNVK1V5cWFIcTFUZXZsKys5N25uOVhvK0s2WW1GOU1EQ2dHVlpQVmF2RmJkNit0cVBWdC9jN0xXUlM1YlZHMjhyc1hiSGlRNCtiQThhYWovMHR1V01aY1V2WjY5YWUzL1pYMXNLZndOT29uMEdlRGVyY0FuOWE5QnpUeFM2dHNMU2prSVA3Uk9ZL3d2NW9VOEQ1NENMMndydllad0QvZ0t3Q1A2TkpCQjJybUw4RmVCTityOGQ1bCtBdnJLdDhkdGgvaEw2UGZSemYrai9MU3ZNUDQzMk9laUwwSmN4emdIbWFZLzZFNFVUTGMwTzhEWndCcnpjZHdmekN0QkwwTG52WmJTWGQ4TDhzdit0c044TDhHdU4vb0l2aC82OEhmYjdLUDlsZjRCVDhIc2UvQ3VZbDRQdW9yOE0zUWNHR05jWVZDanhDYnl0OGZQOU1qNlgwYitLOWpYb05zWXpibytLK3ltMHoySGNBdlI1OU4vVjdDMWFZVnpBT083TE5iVGZBTjVCK3pSd0ZqemNKOXBiaE01OXU4ZjFBQm4zOUorODNBL09jMnlGTHZUMUpIQmJZWkh0VHpCdUoreS9IdmQzZ0R5Lzg4QlY4Tm1ZTCtjVzlrcndRL0lDK1RIL0JuVEcvU1RtODV6eGZVKzF3cnJzSDNUdW4rNC8vWjdCT082dmpYWTVUOUFyOE5lSFhoOEQ2djRESlM4QXB6U1VkV2orWGRONCtENXZhZnBOek5Qamx1ZUI3Mk1XZGlTZTBNLzh1b0wyZTlCdHJNZUJ6ano2TTVCeHh2ZkUvTXI5NUh1Uzk0Rit4Z1h6RnVNM0I5VHp4M1Z0bmF3VDVKOEd6bVFQWDk4UzF3ZGNSVC9yRC9NSC9aN0RQT1lEMW9GeVVtRU40emJIRkRhSU93cWJmNGI5bDdwamFYNmkvUzc4WWwxWWhtN0RiZzdqR0ljRjJPSCtNMy9JKzliNCtYN1h5SXY1dVdSNGZTN204Wnd6bnNndjlabnJBVW84VTRjZHhoMlI5d1hPMSt1L25FUDZEV1JlWTMzUTYxc0Yvc281ZkJ6Mm4vSEpjMFA3ek5NcjBGbVBjN1pDTjZtUWVhbUtjVDc2ZVI2dVk1N3NEM2lsN3FPZDhjZnp4WGlYZXdic01jODhqNS8xaHY3emZlYWhNMzk3T3dvMzBGNU5odm01UDNyOXAvODhwNnlUT1NEdlJSWG9tM1dGalVtRit2NExQM1NwbzJpWC9ZSHV3Tzhja0htQjlpVStNVjdxVHpiTXp6aml2anRvWjd4NzZLOWlQWFh3NkhtYytZWjVqSG5GVHNJLytMa09uakw4clN2Q2JEQ21rUGNYN3Iva0grak1ENnhYekFjTzdEQnV1Qzg4RjN6dmpOOERkUTdJZlJIL2dUeFhSZlJ6UHdKZ0UrdlltZ3p6Yy84bjRSZmpodnVkQjNyd3Z3cDk4eWw0b2Q5L3JQQUIrUFg0Wkg1akhtSGM4RDRuK1F4OHZLK3pYbGZRejN1d2ZzOWduV1krbXlXQ1Irb2sycGxIR1pmTUYrdFpqYjhWOW4rNkZmWi9HZU50OFBKN2dIbWdDdHpFK0FCMmpyci9Nbit5RGdvL1VPN1p3QTJzaS9mc1RTdnN2OVF2OG1NODcwbXMzL1NiOTBkK2g5VnQrRjFYMkJ6VS9OZjQ1ZHlDaC9tZjN4djVKUHdIUC9PY2ZGKzJ3dndINHQvUytOSE83eGQrZjBoZWdELzF2eFJ1UGc3emMzK21NSTdubHZXYjhVRS9peGd2MzJmYm12OVdtRi8yQi95OG45RC9WZWlzN3c3RzhUendmZk45SGhVdmNwNHdudkV0MzMxWUQvZEgvTWM4MW5QNW5nRXlYK3J4SXZjOTlMdmcyOEE0MW5YbWl3UDVodjZqbjNWVzZpdjY1WHlpbjNXV2RsamZEK1JqK2c5Y0F2SmV5SGpuT1NyRGJuMVNZZkJVWVJQMlpIL29QM1RHTys5L05qQVBaRDZUZXE0R1NCMnZ3bjg1cnhpbi84NnhCRHVzcnp4UFBFZHl6OEc0ZWl1RUZuNFhvcElsRGdMUEFwUEFjOEJoNEFYZ0dEQUZ6QUF2V3FHL2lEL2lmNTM0ajZ2ZkVmLy9nLzlsNS85WHU2YnJldFgySXY2SVArS1ArQ1AraUQvaWovZ2pmalArNCtadnhQKzY4ZmVjeHU5Q2J4cktXNFp5eGxCT0dzcmJobkxLVU40eGxEY01wTTlRK2czbHRLRU1Ha3F2b1F3WlNzOXpKUDRNT1dFb01jaUFvU1FNNVZORGVkOVF6aHJLdTRieXNhRjhaQ2dmR01xSGh2S0pvYnhuS0Y4WXlsZUc4cG1oZkdNb3c0Ynl1YUVrRGVXY29YeHBLRjhieWdWREdUZVU3d3psL0F2S3Q0Ynl2YUdNR0VyS1VFWU5aY3hNUXY5WW5haTQ5OTFLdzFKVkxvWFcrUGdsZWZwQm5pN0tVNXIvbHYwVG0xSmowc21uV0pmalIzbmloRmlHRDEzK2NUWUovYmowMGJPWVBIUzlFU294azJKVFBDMStwV1J4cWJROGRXZUlzeWx4S0NVbVV0MTFpa3RwWVVrTFMxcm1wcnZqWkc1YWJLVEZsNHo0bCs3NkxIWXowcGJwdG9uZGpOaklpQWNac1pZUlh5NktqVXpYN2lVdEVQcnlGYWZCT0lpanNkOFBDbTdnRmhnczYwNis2WGYrMGZtZmZkZnFXQ1NSUlBMSzVGbWZBcEVjZjNuZXAyQWt4MXRNZjBxSTVGaEk1ellWMzdYNGM1RjJnKzNlVytWeW0xRnplamhIcnVUN2IxbmhPMXJOcWJvTnpVVGlnZXNWUzAxb3ZiTmUxZVh3S3lVdlgyYkhoT2MyTmI3K2RUK29ibFdjdGhPSkk1enBEZ25OUERWNnRYYmZDL3hhMWEyMVdhMi9sYmZTSC92RFVza3Nwbm1wV2hQN2gvNnVEVlZMQ0xkaEtjcklnVzN4dDVwdThNS0xTT3gySGU3ZjFZMnJiVHBnSTFGeGNudmZTZkVoekJnOHhPWDliU2N2KzRWSFNTNjdROVpMdjNpOWpqM2t3NlBEbHJWVjg1cEhXVXdNRjV4SGpmTzZIOFBGNnZtWE1uWWk4QitNTXJ3NlA1REdXMWJucjNQRFAzUlBCd3BPMHhsZEQ1eTloZXQwL1g2OTZmazFldCtuVFk0RldzUGdWcTFqdkRDU0wyM1Z5aVB0RDB6MWt5UHZQS2NWN24xdjRKbG5UaGJheDYxeGEwV3ZKb2RnNzhWQk9kTmU1ZDRpUit1QlYrT1pHV2kzTmthYmZ0UGh1SUc4WDJFTFl1NWZ6bG9lUHEwOEFBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["weight"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Time"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Chick"],"name":[3],"type":["ord"],"align":["right"]},{"label":["Diet"],"name":[4],"type":["fctr"],"align":["left"]}],"data":[{"1":"42","2":"0","3":"1","4":"1","_rn_":"1"},{"1":"51","2":"2","3":"1","4":"1","_rn_":"2"},{"1":"59","2":"4","3":"1","4":"1","_rn_":"3"},{"1":"64","2":"6","3":"1","4":"1","_rn_":"4"},{"1":"76","2":"8","3":"1","4":"1","_rn_":"5"},{"1":"93","2":"10","3":"1","4":"1","_rn_":"6"},{"1":"106","2":"12","3":"1","4":"1","_rn_":"7"},{"1":"125","2":"14","3":"1","4":"1","_rn_":"8"},{"1":"149","2":"16","3":"1","4":"1","_rn_":"9"},{"1":"171","2":"18","3":"1","4":"1","_rn_":"10"},{"1":"199","2":"20","3":"1","4":"1","_rn_":"11"},{"1":"205","2":"21","3":"1","4":"1","_rn_":"12"},{"1":"40","2":"0","3":"2","4":"1","_rn_":"13"},{"1":"49","2":"2","3":"2","4":"1","_rn_":"14"},{"1":"58","2":"4","3":"2","4":"1","_rn_":"15"},{"1":"72","2":"6","3":"2","4":"1","_rn_":"16"},{"1":"84","2":"8","3":"2","4":"1","_rn_":"17"},{"1":"103","2":"10","3":"2","4":"1","_rn_":"18"},{"1":"122","2":"12","3":"2","4":"1","_rn_":"19"},{"1":"138","2":"14","3":"2","4":"1","_rn_":"20"},{"1":"162","2":"16","3":"2","4":"1","_rn_":"21"},{"1":"187","2":"18","3":"2","4":"1","_rn_":"22"},{"1":"209","2":"20","3":"2","4":"1","_rn_":"23"},{"1":"215","2":"21","3":"2","4":"1","_rn_":"24"},{"1":"43","2":"0","3":"3","4":"1","_rn_":"25"},{"1":"39","2":"2","3":"3","4":"1","_rn_":"26"},{"1":"55","2":"4","3":"3","4":"1","_rn_":"27"},{"1":"67","2":"6","3":"3","4":"1","_rn_":"28"},{"1":"84","2":"8","3":"3","4":"1","_rn_":"29"},{"1":"99","2":"10","3":"3","4":"1","_rn_":"30"},{"1":"115","2":"12","3":"3","4":"1","_rn_":"31"},{"1":"138","2":"14","3":"3","4":"1","_rn_":"32"},{"1":"163","2":"16","3":"3","4":"1","_rn_":"33"},{"1":"187","2":"18","3":"3","4":"1","_rn_":"34"},{"1":"198","2":"20","3":"3","4":"1","_rn_":"35"},{"1":"202","2":"21","3":"3","4":"1","_rn_":"36"},{"1":"42","2":"0","3":"4","4":"1","_rn_":"37"},{"1":"49","2":"2","3":"4","4":"1","_rn_":"38"},{"1":"56","2":"4","3":"4","4":"1","_rn_":"39"},{"1":"67","2":"6","3":"4","4":"1","_rn_":"40"},{"1":"74","2":"8","3":"4","4":"1","_rn_":"41"},{"1":"87","2":"10","3":"4","4":"1","_rn_":"42"},{"1":"102","2":"12","3":"4","4":"1","_rn_":"43"},{"1":"108","2":"14","3":"4","4":"1","_rn_":"44"},{"1":"136","2":"16","3":"4","4":"1","_rn_":"45"},{"1":"154","2":"18","3":"4","4":"1","_rn_":"46"},{"1":"160","2":"20","3":"4","4":"1","_rn_":"47"},{"1":"157","2":"21","3":"4","4":"1","_rn_":"48"},{"1":"41","2":"0","3":"5","4":"1","_rn_":"49"},{"1":"42","2":"2","3":"5","4":"1","_rn_":"50"},{"1":"48","2":"4","3":"5","4":"1","_rn_":"51"},{"1":"60","2":"6","3":"5","4":"1","_rn_":"52"},{"1":"79","2":"8","3":"5","4":"1","_rn_":"53"},{"1":"106","2":"10","3":"5","4":"1","_rn_":"54"},{"1":"141","2":"12","3":"5","4":"1","_rn_":"55"},{"1":"164","2":"14","3":"5","4":"1","_rn_":"56"},{"1":"197","2":"16","3":"5","4":"1","_rn_":"57"},{"1":"199","2":"18","3":"5","4":"1","_rn_":"58"},{"1":"220","2":"20","3":"5","4":"1","_rn_":"59"},{"1":"223","2":"21","3":"5","4":"1","_rn_":"60"},{"1":"41","2":"0","3":"6","4":"1","_rn_":"61"},{"1":"49","2":"2","3":"6","4":"1","_rn_":"62"},{"1":"59","2":"4","3":"6","4":"1","_rn_":"63"},{"1":"74","2":"6","3":"6","4":"1","_rn_":"64"},{"1":"97","2":"8","3":"6","4":"1","_rn_":"65"},{"1":"124","2":"10","3":"6","4":"1","_rn_":"66"},{"1":"141","2":"12","3":"6","4":"1","_rn_":"67"},{"1":"148","2":"14","3":"6","4":"1","_rn_":"68"},{"1":"155","2":"16","3":"6","4":"1","_rn_":"69"},{"1":"160","2":"18","3":"6","4":"1","_rn_":"70"},{"1":"160","2":"20","3":"6","4":"1","_rn_":"71"},{"1":"157","2":"21","3":"6","4":"1","_rn_":"72"},{"1":"41","2":"0","3":"7","4":"1","_rn_":"73"},{"1":"49","2":"2","3":"7","4":"1","_rn_":"74"},{"1":"57","2":"4","3":"7","4":"1","_rn_":"75"},{"1":"71","2":"6","3":"7","4":"1","_rn_":"76"},{"1":"89","2":"8","3":"7","4":"1","_rn_":"77"},{"1":"112","2":"10","3":"7","4":"1","_rn_":"78"},{"1":"146","2":"12","3":"7","4":"1","_rn_":"79"},{"1":"174","2":"14","3":"7","4":"1","_rn_":"80"},{"1":"218","2":"16","3":"7","4":"1","_rn_":"81"},{"1":"250","2":"18","3":"7","4":"1","_rn_":"82"},{"1":"288","2":"20","3":"7","4":"1","_rn_":"83"},{"1":"305","2":"21","3":"7","4":"1","_rn_":"84"},{"1":"42","2":"0","3":"8","4":"1","_rn_":"85"},{"1":"50","2":"2","3":"8","4":"1","_rn_":"86"},{"1":"61","2":"4","3":"8","4":"1","_rn_":"87"},{"1":"71","2":"6","3":"8","4":"1","_rn_":"88"},{"1":"84","2":"8","3":"8","4":"1","_rn_":"89"},{"1":"93","2":"10","3":"8","4":"1","_rn_":"90"},{"1":"110","2":"12","3":"8","4":"1","_rn_":"91"},{"1":"116","2":"14","3":"8","4":"1","_rn_":"92"},{"1":"126","2":"16","3":"8","4":"1","_rn_":"93"},{"1":"134","2":"18","3":"8","4":"1","_rn_":"94"},{"1":"125","2":"20","3":"8","4":"1","_rn_":"95"},{"1":"42","2":"0","3":"9","4":"1","_rn_":"96"},{"1":"51","2":"2","3":"9","4":"1","_rn_":"97"},{"1":"59","2":"4","3":"9","4":"1","_rn_":"98"},{"1":"68","2":"6","3":"9","4":"1","_rn_":"99"},{"1":"85","2":"8","3":"9","4":"1","_rn_":"100"},{"1":"96","2":"10","3":"9","4":"1","_rn_":"101"},{"1":"90","2":"12","3":"9","4":"1","_rn_":"102"},{"1":"92","2":"14","3":"9","4":"1","_rn_":"103"},{"1":"93","2":"16","3":"9","4":"1","_rn_":"104"},{"1":"100","2":"18","3":"9","4":"1","_rn_":"105"},{"1":"100","2":"20","3":"9","4":"1","_rn_":"106"},{"1":"98","2":"21","3":"9","4":"1","_rn_":"107"},{"1":"41","2":"0","3":"10","4":"1","_rn_":"108"},{"1":"44","2":"2","3":"10","4":"1","_rn_":"109"},{"1":"52","2":"4","3":"10","4":"1","_rn_":"110"},{"1":"63","2":"6","3":"10","4":"1","_rn_":"111"},{"1":"74","2":"8","3":"10","4":"1","_rn_":"112"},{"1":"81","2":"10","3":"10","4":"1","_rn_":"113"},{"1":"89","2":"12","3":"10","4":"1","_rn_":"114"},{"1":"96","2":"14","3":"10","4":"1","_rn_":"115"},{"1":"101","2":"16","3":"10","4":"1","_rn_":"116"},{"1":"112","2":"18","3":"10","4":"1","_rn_":"117"},{"1":"120","2":"20","3":"10","4":"1","_rn_":"118"},{"1":"124","2":"21","3":"10","4":"1","_rn_":"119"},{"1":"43","2":"0","3":"11","4":"1","_rn_":"120"},{"1":"51","2":"2","3":"11","4":"1","_rn_":"121"},{"1":"63","2":"4","3":"11","4":"1","_rn_":"122"},{"1":"84","2":"6","3":"11","4":"1","_rn_":"123"},{"1":"112","2":"8","3":"11","4":"1","_rn_":"124"},{"1":"139","2":"10","3":"11","4":"1","_rn_":"125"},{"1":"168","2":"12","3":"11","4":"1","_rn_":"126"},{"1":"177","2":"14","3":"11","4":"1","_rn_":"127"},{"1":"182","2":"16","3":"11","4":"1","_rn_":"128"},{"1":"184","2":"18","3":"11","4":"1","_rn_":"129"},{"1":"181","2":"20","3":"11","4":"1","_rn_":"130"},{"1":"175","2":"21","3":"11","4":"1","_rn_":"131"},{"1":"41","2":"0","3":"12","4":"1","_rn_":"132"},{"1":"49","2":"2","3":"12","4":"1","_rn_":"133"},{"1":"56","2":"4","3":"12","4":"1","_rn_":"134"},{"1":"62","2":"6","3":"12","4":"1","_rn_":"135"},{"1":"72","2":"8","3":"12","4":"1","_rn_":"136"},{"1":"88","2":"10","3":"12","4":"1","_rn_":"137"},{"1":"119","2":"12","3":"12","4":"1","_rn_":"138"},{"1":"135","2":"14","3":"12","4":"1","_rn_":"139"},{"1":"162","2":"16","3":"12","4":"1","_rn_":"140"},{"1":"185","2":"18","3":"12","4":"1","_rn_":"141"},{"1":"195","2":"20","3":"12","4":"1","_rn_":"142"},{"1":"205","2":"21","3":"12","4":"1","_rn_":"143"},{"1":"41","2":"0","3":"13","4":"1","_rn_":"144"},{"1":"48","2":"2","3":"13","4":"1","_rn_":"145"},{"1":"53","2":"4","3":"13","4":"1","_rn_":"146"},{"1":"60","2":"6","3":"13","4":"1","_rn_":"147"},{"1":"65","2":"8","3":"13","4":"1","_rn_":"148"},{"1":"67","2":"10","3":"13","4":"1","_rn_":"149"},{"1":"71","2":"12","3":"13","4":"1","_rn_":"150"},{"1":"70","2":"14","3":"13","4":"1","_rn_":"151"},{"1":"71","2":"16","3":"13","4":"1","_rn_":"152"},{"1":"81","2":"18","3":"13","4":"1","_rn_":"153"},{"1":"91","2":"20","3":"13","4":"1","_rn_":"154"},{"1":"96","2":"21","3":"13","4":"1","_rn_":"155"},{"1":"41","2":"0","3":"14","4":"1","_rn_":"156"},{"1":"49","2":"2","3":"14","4":"1","_rn_":"157"},{"1":"62","2":"4","3":"14","4":"1","_rn_":"158"},{"1":"79","2":"6","3":"14","4":"1","_rn_":"159"},{"1":"101","2":"8","3":"14","4":"1","_rn_":"160"},{"1":"128","2":"10","3":"14","4":"1","_rn_":"161"},{"1":"164","2":"12","3":"14","4":"1","_rn_":"162"},{"1":"192","2":"14","3":"14","4":"1","_rn_":"163"},{"1":"227","2":"16","3":"14","4":"1","_rn_":"164"},{"1":"248","2":"18","3":"14","4":"1","_rn_":"165"},{"1":"259","2":"20","3":"14","4":"1","_rn_":"166"},{"1":"266","2":"21","3":"14","4":"1","_rn_":"167"},{"1":"41","2":"0","3":"15","4":"1","_rn_":"168"},{"1":"49","2":"2","3":"15","4":"1","_rn_":"169"},{"1":"56","2":"4","3":"15","4":"1","_rn_":"170"},{"1":"64","2":"6","3":"15","4":"1","_rn_":"171"},{"1":"68","2":"8","3":"15","4":"1","_rn_":"172"},{"1":"68","2":"10","3":"15","4":"1","_rn_":"173"},{"1":"67","2":"12","3":"15","4":"1","_rn_":"174"},{"1":"68","2":"14","3":"15","4":"1","_rn_":"175"},{"1":"41","2":"0","3":"16","4":"1","_rn_":"176"},{"1":"45","2":"2","3":"16","4":"1","_rn_":"177"},{"1":"49","2":"4","3":"16","4":"1","_rn_":"178"},{"1":"51","2":"6","3":"16","4":"1","_rn_":"179"},{"1":"57","2":"8","3":"16","4":"1","_rn_":"180"},{"1":"51","2":"10","3":"16","4":"1","_rn_":"181"},{"1":"54","2":"12","3":"16","4":"1","_rn_":"182"},{"1":"42","2":"0","3":"17","4":"1","_rn_":"183"},{"1":"51","2":"2","3":"17","4":"1","_rn_":"184"},{"1":"61","2":"4","3":"17","4":"1","_rn_":"185"},{"1":"72","2":"6","3":"17","4":"1","_rn_":"186"},{"1":"83","2":"8","3":"17","4":"1","_rn_":"187"},{"1":"89","2":"10","3":"17","4":"1","_rn_":"188"},{"1":"98","2":"12","3":"17","4":"1","_rn_":"189"},{"1":"103","2":"14","3":"17","4":"1","_rn_":"190"},{"1":"113","2":"16","3":"17","4":"1","_rn_":"191"},{"1":"123","2":"18","3":"17","4":"1","_rn_":"192"},{"1":"133","2":"20","3":"17","4":"1","_rn_":"193"},{"1":"142","2":"21","3":"17","4":"1","_rn_":"194"},{"1":"39","2":"0","3":"18","4":"1","_rn_":"195"},{"1":"35","2":"2","3":"18","4":"1","_rn_":"196"},{"1":"43","2":"0","3":"19","4":"1","_rn_":"197"},{"1":"48","2":"2","3":"19","4":"1","_rn_":"198"},{"1":"55","2":"4","3":"19","4":"1","_rn_":"199"},{"1":"62","2":"6","3":"19","4":"1","_rn_":"200"},{"1":"65","2":"8","3":"19","4":"1","_rn_":"201"},{"1":"71","2":"10","3":"19","4":"1","_rn_":"202"},{"1":"82","2":"12","3":"19","4":"1","_rn_":"203"},{"1":"88","2":"14","3":"19","4":"1","_rn_":"204"},{"1":"106","2":"16","3":"19","4":"1","_rn_":"205"},{"1":"120","2":"18","3":"19","4":"1","_rn_":"206"},{"1":"144","2":"20","3":"19","4":"1","_rn_":"207"},{"1":"157","2":"21","3":"19","4":"1","_rn_":"208"},{"1":"41","2":"0","3":"20","4":"1","_rn_":"209"},{"1":"47","2":"2","3":"20","4":"1","_rn_":"210"},{"1":"54","2":"4","3":"20","4":"1","_rn_":"211"},{"1":"58","2":"6","3":"20","4":"1","_rn_":"212"},{"1":"65","2":"8","3":"20","4":"1","_rn_":"213"},{"1":"73","2":"10","3":"20","4":"1","_rn_":"214"},{"1":"77","2":"12","3":"20","4":"1","_rn_":"215"},{"1":"89","2":"14","3":"20","4":"1","_rn_":"216"},{"1":"98","2":"16","3":"20","4":"1","_rn_":"217"},{"1":"107","2":"18","3":"20","4":"1","_rn_":"218"},{"1":"115","2":"20","3":"20","4":"1","_rn_":"219"},{"1":"117","2":"21","3":"20","4":"1","_rn_":"220"},{"1":"40","2":"0","3":"21","4":"2","_rn_":"221"},{"1":"50","2":"2","3":"21","4":"2","_rn_":"222"},{"1":"62","2":"4","3":"21","4":"2","_rn_":"223"},{"1":"86","2":"6","3":"21","4":"2","_rn_":"224"},{"1":"125","2":"8","3":"21","4":"2","_rn_":"225"},{"1":"163","2":"10","3":"21","4":"2","_rn_":"226"},{"1":"217","2":"12","3":"21","4":"2","_rn_":"227"},{"1":"240","2":"14","3":"21","4":"2","_rn_":"228"},{"1":"275","2":"16","3":"21","4":"2","_rn_":"229"},{"1":"307","2":"18","3":"21","4":"2","_rn_":"230"},{"1":"318","2":"20","3":"21","4":"2","_rn_":"231"},{"1":"331","2":"21","3":"21","4":"2","_rn_":"232"},{"1":"41","2":"0","3":"22","4":"2","_rn_":"233"},{"1":"55","2":"2","3":"22","4":"2","_rn_":"234"},{"1":"64","2":"4","3":"22","4":"2","_rn_":"235"},{"1":"77","2":"6","3":"22","4":"2","_rn_":"236"},{"1":"90","2":"8","3":"22","4":"2","_rn_":"237"},{"1":"95","2":"10","3":"22","4":"2","_rn_":"238"},{"1":"108","2":"12","3":"22","4":"2","_rn_":"239"},{"1":"111","2":"14","3":"22","4":"2","_rn_":"240"},{"1":"131","2":"16","3":"22","4":"2","_rn_":"241"},{"1":"148","2":"18","3":"22","4":"2","_rn_":"242"},{"1":"164","2":"20","3":"22","4":"2","_rn_":"243"},{"1":"167","2":"21","3":"22","4":"2","_rn_":"244"},{"1":"43","2":"0","3":"23","4":"2","_rn_":"245"},{"1":"52","2":"2","3":"23","4":"2","_rn_":"246"},{"1":"61","2":"4","3":"23","4":"2","_rn_":"247"},{"1":"73","2":"6","3":"23","4":"2","_rn_":"248"},{"1":"90","2":"8","3":"23","4":"2","_rn_":"249"},{"1":"103","2":"10","3":"23","4":"2","_rn_":"250"},{"1":"127","2":"12","3":"23","4":"2","_rn_":"251"},{"1":"135","2":"14","3":"23","4":"2","_rn_":"252"},{"1":"145","2":"16","3":"23","4":"2","_rn_":"253"},{"1":"163","2":"18","3":"23","4":"2","_rn_":"254"},{"1":"170","2":"20","3":"23","4":"2","_rn_":"255"},{"1":"175","2":"21","3":"23","4":"2","_rn_":"256"},{"1":"42","2":"0","3":"24","4":"2","_rn_":"257"},{"1":"52","2":"2","3":"24","4":"2","_rn_":"258"},{"1":"58","2":"4","3":"24","4":"2","_rn_":"259"},{"1":"74","2":"6","3":"24","4":"2","_rn_":"260"},{"1":"66","2":"8","3":"24","4":"2","_rn_":"261"},{"1":"68","2":"10","3":"24","4":"2","_rn_":"262"},{"1":"70","2":"12","3":"24","4":"2","_rn_":"263"},{"1":"71","2":"14","3":"24","4":"2","_rn_":"264"},{"1":"72","2":"16","3":"24","4":"2","_rn_":"265"},{"1":"72","2":"18","3":"24","4":"2","_rn_":"266"},{"1":"76","2":"20","3":"24","4":"2","_rn_":"267"},{"1":"74","2":"21","3":"24","4":"2","_rn_":"268"},{"1":"40","2":"0","3":"25","4":"2","_rn_":"269"},{"1":"49","2":"2","3":"25","4":"2","_rn_":"270"},{"1":"62","2":"4","3":"25","4":"2","_rn_":"271"},{"1":"78","2":"6","3":"25","4":"2","_rn_":"272"},{"1":"102","2":"8","3":"25","4":"2","_rn_":"273"},{"1":"124","2":"10","3":"25","4":"2","_rn_":"274"},{"1":"146","2":"12","3":"25","4":"2","_rn_":"275"},{"1":"164","2":"14","3":"25","4":"2","_rn_":"276"},{"1":"197","2":"16","3":"25","4":"2","_rn_":"277"},{"1":"231","2":"18","3":"25","4":"2","_rn_":"278"},{"1":"259","2":"20","3":"25","4":"2","_rn_":"279"},{"1":"265","2":"21","3":"25","4":"2","_rn_":"280"},{"1":"42","2":"0","3":"26","4":"2","_rn_":"281"},{"1":"48","2":"2","3":"26","4":"2","_rn_":"282"},{"1":"57","2":"4","3":"26","4":"2","_rn_":"283"},{"1":"74","2":"6","3":"26","4":"2","_rn_":"284"},{"1":"93","2":"8","3":"26","4":"2","_rn_":"285"},{"1":"114","2":"10","3":"26","4":"2","_rn_":"286"},{"1":"136","2":"12","3":"26","4":"2","_rn_":"287"},{"1":"147","2":"14","3":"26","4":"2","_rn_":"288"},{"1":"169","2":"16","3":"26","4":"2","_rn_":"289"},{"1":"205","2":"18","3":"26","4":"2","_rn_":"290"},{"1":"236","2":"20","3":"26","4":"2","_rn_":"291"},{"1":"251","2":"21","3":"26","4":"2","_rn_":"292"},{"1":"39","2":"0","3":"27","4":"2","_rn_":"293"},{"1":"46","2":"2","3":"27","4":"2","_rn_":"294"},{"1":"58","2":"4","3":"27","4":"2","_rn_":"295"},{"1":"73","2":"6","3":"27","4":"2","_rn_":"296"},{"1":"87","2":"8","3":"27","4":"2","_rn_":"297"},{"1":"100","2":"10","3":"27","4":"2","_rn_":"298"},{"1":"115","2":"12","3":"27","4":"2","_rn_":"299"},{"1":"123","2":"14","3":"27","4":"2","_rn_":"300"},{"1":"144","2":"16","3":"27","4":"2","_rn_":"301"},{"1":"163","2":"18","3":"27","4":"2","_rn_":"302"},{"1":"185","2":"20","3":"27","4":"2","_rn_":"303"},{"1":"192","2":"21","3":"27","4":"2","_rn_":"304"},{"1":"39","2":"0","3":"28","4":"2","_rn_":"305"},{"1":"46","2":"2","3":"28","4":"2","_rn_":"306"},{"1":"58","2":"4","3":"28","4":"2","_rn_":"307"},{"1":"73","2":"6","3":"28","4":"2","_rn_":"308"},{"1":"92","2":"8","3":"28","4":"2","_rn_":"309"},{"1":"114","2":"10","3":"28","4":"2","_rn_":"310"},{"1":"145","2":"12","3":"28","4":"2","_rn_":"311"},{"1":"156","2":"14","3":"28","4":"2","_rn_":"312"},{"1":"184","2":"16","3":"28","4":"2","_rn_":"313"},{"1":"207","2":"18","3":"28","4":"2","_rn_":"314"},{"1":"212","2":"20","3":"28","4":"2","_rn_":"315"},{"1":"233","2":"21","3":"28","4":"2","_rn_":"316"},{"1":"39","2":"0","3":"29","4":"2","_rn_":"317"},{"1":"48","2":"2","3":"29","4":"2","_rn_":"318"},{"1":"59","2":"4","3":"29","4":"2","_rn_":"319"},{"1":"74","2":"6","3":"29","4":"2","_rn_":"320"},{"1":"87","2":"8","3":"29","4":"2","_rn_":"321"},{"1":"106","2":"10","3":"29","4":"2","_rn_":"322"},{"1":"134","2":"12","3":"29","4":"2","_rn_":"323"},{"1":"150","2":"14","3":"29","4":"2","_rn_":"324"},{"1":"187","2":"16","3":"29","4":"2","_rn_":"325"},{"1":"230","2":"18","3":"29","4":"2","_rn_":"326"},{"1":"279","2":"20","3":"29","4":"2","_rn_":"327"},{"1":"309","2":"21","3":"29","4":"2","_rn_":"328"},{"1":"42","2":"0","3":"30","4":"2","_rn_":"329"},{"1":"48","2":"2","3":"30","4":"2","_rn_":"330"},{"1":"59","2":"4","3":"30","4":"2","_rn_":"331"},{"1":"72","2":"6","3":"30","4":"2","_rn_":"332"},{"1":"85","2":"8","3":"30","4":"2","_rn_":"333"},{"1":"98","2":"10","3":"30","4":"2","_rn_":"334"},{"1":"115","2":"12","3":"30","4":"2","_rn_":"335"},{"1":"122","2":"14","3":"30","4":"2","_rn_":"336"},{"1":"143","2":"16","3":"30","4":"2","_rn_":"337"},{"1":"151","2":"18","3":"30","4":"2","_rn_":"338"},{"1":"157","2":"20","3":"30","4":"2","_rn_":"339"},{"1":"150","2":"21","3":"30","4":"2","_rn_":"340"},{"1":"42","2":"0","3":"31","4":"3","_rn_":"341"},{"1":"53","2":"2","3":"31","4":"3","_rn_":"342"},{"1":"62","2":"4","3":"31","4":"3","_rn_":"343"},{"1":"73","2":"6","3":"31","4":"3","_rn_":"344"},{"1":"85","2":"8","3":"31","4":"3","_rn_":"345"},{"1":"102","2":"10","3":"31","4":"3","_rn_":"346"},{"1":"123","2":"12","3":"31","4":"3","_rn_":"347"},{"1":"138","2":"14","3":"31","4":"3","_rn_":"348"},{"1":"170","2":"16","3":"31","4":"3","_rn_":"349"},{"1":"204","2":"18","3":"31","4":"3","_rn_":"350"},{"1":"235","2":"20","3":"31","4":"3","_rn_":"351"},{"1":"256","2":"21","3":"31","4":"3","_rn_":"352"},{"1":"41","2":"0","3":"32","4":"3","_rn_":"353"},{"1":"49","2":"2","3":"32","4":"3","_rn_":"354"},{"1":"65","2":"4","3":"32","4":"3","_rn_":"355"},{"1":"82","2":"6","3":"32","4":"3","_rn_":"356"},{"1":"107","2":"8","3":"32","4":"3","_rn_":"357"},{"1":"129","2":"10","3":"32","4":"3","_rn_":"358"},{"1":"159","2":"12","3":"32","4":"3","_rn_":"359"},{"1":"179","2":"14","3":"32","4":"3","_rn_":"360"},{"1":"221","2":"16","3":"32","4":"3","_rn_":"361"},{"1":"263","2":"18","3":"32","4":"3","_rn_":"362"},{"1":"291","2":"20","3":"32","4":"3","_rn_":"363"},{"1":"305","2":"21","3":"32","4":"3","_rn_":"364"},{"1":"39","2":"0","3":"33","4":"3","_rn_":"365"},{"1":"50","2":"2","3":"33","4":"3","_rn_":"366"},{"1":"63","2":"4","3":"33","4":"3","_rn_":"367"},{"1":"77","2":"6","3":"33","4":"3","_rn_":"368"},{"1":"96","2":"8","3":"33","4":"3","_rn_":"369"},{"1":"111","2":"10","3":"33","4":"3","_rn_":"370"},{"1":"137","2":"12","3":"33","4":"3","_rn_":"371"},{"1":"144","2":"14","3":"33","4":"3","_rn_":"372"},{"1":"151","2":"16","3":"33","4":"3","_rn_":"373"},{"1":"146","2":"18","3":"33","4":"3","_rn_":"374"},{"1":"156","2":"20","3":"33","4":"3","_rn_":"375"},{"1":"147","2":"21","3":"33","4":"3","_rn_":"376"},{"1":"41","2":"0","3":"34","4":"3","_rn_":"377"},{"1":"49","2":"2","3":"34","4":"3","_rn_":"378"},{"1":"63","2":"4","3":"34","4":"3","_rn_":"379"},{"1":"85","2":"6","3":"34","4":"3","_rn_":"380"},{"1":"107","2":"8","3":"34","4":"3","_rn_":"381"},{"1":"134","2":"10","3":"34","4":"3","_rn_":"382"},{"1":"164","2":"12","3":"34","4":"3","_rn_":"383"},{"1":"186","2":"14","3":"34","4":"3","_rn_":"384"},{"1":"235","2":"16","3":"34","4":"3","_rn_":"385"},{"1":"294","2":"18","3":"34","4":"3","_rn_":"386"},{"1":"327","2":"20","3":"34","4":"3","_rn_":"387"},{"1":"341","2":"21","3":"34","4":"3","_rn_":"388"},{"1":"41","2":"0","3":"35","4":"3","_rn_":"389"},{"1":"53","2":"2","3":"35","4":"3","_rn_":"390"},{"1":"64","2":"4","3":"35","4":"3","_rn_":"391"},{"1":"87","2":"6","3":"35","4":"3","_rn_":"392"},{"1":"123","2":"8","3":"35","4":"3","_rn_":"393"},{"1":"158","2":"10","3":"35","4":"3","_rn_":"394"},{"1":"201","2":"12","3":"35","4":"3","_rn_":"395"},{"1":"238","2":"14","3":"35","4":"3","_rn_":"396"},{"1":"287","2":"16","3":"35","4":"3","_rn_":"397"},{"1":"332","2":"18","3":"35","4":"3","_rn_":"398"},{"1":"361","2":"20","3":"35","4":"3","_rn_":"399"},{"1":"373","2":"21","3":"35","4":"3","_rn_":"400"},{"1":"39","2":"0","3":"36","4":"3","_rn_":"401"},{"1":"48","2":"2","3":"36","4":"3","_rn_":"402"},{"1":"61","2":"4","3":"36","4":"3","_rn_":"403"},{"1":"76","2":"6","3":"36","4":"3","_rn_":"404"},{"1":"98","2":"8","3":"36","4":"3","_rn_":"405"},{"1":"116","2":"10","3":"36","4":"3","_rn_":"406"},{"1":"145","2":"12","3":"36","4":"3","_rn_":"407"},{"1":"166","2":"14","3":"36","4":"3","_rn_":"408"},{"1":"198","2":"16","3":"36","4":"3","_rn_":"409"},{"1":"227","2":"18","3":"36","4":"3","_rn_":"410"},{"1":"225","2":"20","3":"36","4":"3","_rn_":"411"},{"1":"220","2":"21","3":"36","4":"3","_rn_":"412"},{"1":"41","2":"0","3":"37","4":"3","_rn_":"413"},{"1":"48","2":"2","3":"37","4":"3","_rn_":"414"},{"1":"56","2":"4","3":"37","4":"3","_rn_":"415"},{"1":"68","2":"6","3":"37","4":"3","_rn_":"416"},{"1":"80","2":"8","3":"37","4":"3","_rn_":"417"},{"1":"83","2":"10","3":"37","4":"3","_rn_":"418"},{"1":"103","2":"12","3":"37","4":"3","_rn_":"419"},{"1":"112","2":"14","3":"37","4":"3","_rn_":"420"},{"1":"135","2":"16","3":"37","4":"3","_rn_":"421"},{"1":"157","2":"18","3":"37","4":"3","_rn_":"422"},{"1":"169","2":"20","3":"37","4":"3","_rn_":"423"},{"1":"178","2":"21","3":"37","4":"3","_rn_":"424"},{"1":"41","2":"0","3":"38","4":"3","_rn_":"425"},{"1":"49","2":"2","3":"38","4":"3","_rn_":"426"},{"1":"61","2":"4","3":"38","4":"3","_rn_":"427"},{"1":"74","2":"6","3":"38","4":"3","_rn_":"428"},{"1":"98","2":"8","3":"38","4":"3","_rn_":"429"},{"1":"109","2":"10","3":"38","4":"3","_rn_":"430"},{"1":"128","2":"12","3":"38","4":"3","_rn_":"431"},{"1":"154","2":"14","3":"38","4":"3","_rn_":"432"},{"1":"192","2":"16","3":"38","4":"3","_rn_":"433"},{"1":"232","2":"18","3":"38","4":"3","_rn_":"434"},{"1":"280","2":"20","3":"38","4":"3","_rn_":"435"},{"1":"290","2":"21","3":"38","4":"3","_rn_":"436"},{"1":"42","2":"0","3":"39","4":"3","_rn_":"437"},{"1":"50","2":"2","3":"39","4":"3","_rn_":"438"},{"1":"61","2":"4","3":"39","4":"3","_rn_":"439"},{"1":"78","2":"6","3":"39","4":"3","_rn_":"440"},{"1":"89","2":"8","3":"39","4":"3","_rn_":"441"},{"1":"109","2":"10","3":"39","4":"3","_rn_":"442"},{"1":"130","2":"12","3":"39","4":"3","_rn_":"443"},{"1":"146","2":"14","3":"39","4":"3","_rn_":"444"},{"1":"170","2":"16","3":"39","4":"3","_rn_":"445"},{"1":"214","2":"18","3":"39","4":"3","_rn_":"446"},{"1":"250","2":"20","3":"39","4":"3","_rn_":"447"},{"1":"272","2":"21","3":"39","4":"3","_rn_":"448"},{"1":"41","2":"0","3":"40","4":"3","_rn_":"449"},{"1":"55","2":"2","3":"40","4":"3","_rn_":"450"},{"1":"66","2":"4","3":"40","4":"3","_rn_":"451"},{"1":"79","2":"6","3":"40","4":"3","_rn_":"452"},{"1":"101","2":"8","3":"40","4":"3","_rn_":"453"},{"1":"120","2":"10","3":"40","4":"3","_rn_":"454"},{"1":"154","2":"12","3":"40","4":"3","_rn_":"455"},{"1":"182","2":"14","3":"40","4":"3","_rn_":"456"},{"1":"215","2":"16","3":"40","4":"3","_rn_":"457"},{"1":"262","2":"18","3":"40","4":"3","_rn_":"458"},{"1":"295","2":"20","3":"40","4":"3","_rn_":"459"},{"1":"321","2":"21","3":"40","4":"3","_rn_":"460"},{"1":"42","2":"0","3":"41","4":"4","_rn_":"461"},{"1":"51","2":"2","3":"41","4":"4","_rn_":"462"},{"1":"66","2":"4","3":"41","4":"4","_rn_":"463"},{"1":"85","2":"6","3":"41","4":"4","_rn_":"464"},{"1":"103","2":"8","3":"41","4":"4","_rn_":"465"},{"1":"124","2":"10","3":"41","4":"4","_rn_":"466"},{"1":"155","2":"12","3":"41","4":"4","_rn_":"467"},{"1":"153","2":"14","3":"41","4":"4","_rn_":"468"},{"1":"175","2":"16","3":"41","4":"4","_rn_":"469"},{"1":"184","2":"18","3":"41","4":"4","_rn_":"470"},{"1":"199","2":"20","3":"41","4":"4","_rn_":"471"},{"1":"204","2":"21","3":"41","4":"4","_rn_":"472"},{"1":"42","2":"0","3":"42","4":"4","_rn_":"473"},{"1":"49","2":"2","3":"42","4":"4","_rn_":"474"},{"1":"63","2":"4","3":"42","4":"4","_rn_":"475"},{"1":"84","2":"6","3":"42","4":"4","_rn_":"476"},{"1":"103","2":"8","3":"42","4":"4","_rn_":"477"},{"1":"126","2":"10","3":"42","4":"4","_rn_":"478"},{"1":"160","2":"12","3":"42","4":"4","_rn_":"479"},{"1":"174","2":"14","3":"42","4":"4","_rn_":"480"},{"1":"204","2":"16","3":"42","4":"4","_rn_":"481"},{"1":"234","2":"18","3":"42","4":"4","_rn_":"482"},{"1":"269","2":"20","3":"42","4":"4","_rn_":"483"},{"1":"281","2":"21","3":"42","4":"4","_rn_":"484"},{"1":"42","2":"0","3":"43","4":"4","_rn_":"485"},{"1":"55","2":"2","3":"43","4":"4","_rn_":"486"},{"1":"69","2":"4","3":"43","4":"4","_rn_":"487"},{"1":"96","2":"6","3":"43","4":"4","_rn_":"488"},{"1":"131","2":"8","3":"43","4":"4","_rn_":"489"},{"1":"157","2":"10","3":"43","4":"4","_rn_":"490"},{"1":"184","2":"12","3":"43","4":"4","_rn_":"491"},{"1":"188","2":"14","3":"43","4":"4","_rn_":"492"},{"1":"197","2":"16","3":"43","4":"4","_rn_":"493"},{"1":"198","2":"18","3":"43","4":"4","_rn_":"494"},{"1":"199","2":"20","3":"43","4":"4","_rn_":"495"},{"1":"200","2":"21","3":"43","4":"4","_rn_":"496"},{"1":"42","2":"0","3":"44","4":"4","_rn_":"497"},{"1":"51","2":"2","3":"44","4":"4","_rn_":"498"},{"1":"65","2":"4","3":"44","4":"4","_rn_":"499"},{"1":"86","2":"6","3":"44","4":"4","_rn_":"500"},{"1":"103","2":"8","3":"44","4":"4","_rn_":"501"},{"1":"118","2":"10","3":"44","4":"4","_rn_":"502"},{"1":"127","2":"12","3":"44","4":"4","_rn_":"503"},{"1":"138","2":"14","3":"44","4":"4","_rn_":"504"},{"1":"145","2":"16","3":"44","4":"4","_rn_":"505"},{"1":"146","2":"18","3":"44","4":"4","_rn_":"506"},{"1":"41","2":"0","3":"45","4":"4","_rn_":"507"},{"1":"50","2":"2","3":"45","4":"4","_rn_":"508"},{"1":"61","2":"4","3":"45","4":"4","_rn_":"509"},{"1":"78","2":"6","3":"45","4":"4","_rn_":"510"},{"1":"98","2":"8","3":"45","4":"4","_rn_":"511"},{"1":"117","2":"10","3":"45","4":"4","_rn_":"512"},{"1":"135","2":"12","3":"45","4":"4","_rn_":"513"},{"1":"141","2":"14","3":"45","4":"4","_rn_":"514"},{"1":"147","2":"16","3":"45","4":"4","_rn_":"515"},{"1":"174","2":"18","3":"45","4":"4","_rn_":"516"},{"1":"197","2":"20","3":"45","4":"4","_rn_":"517"},{"1":"196","2":"21","3":"45","4":"4","_rn_":"518"},{"1":"40","2":"0","3":"46","4":"4","_rn_":"519"},{"1":"52","2":"2","3":"46","4":"4","_rn_":"520"},{"1":"62","2":"4","3":"46","4":"4","_rn_":"521"},{"1":"82","2":"6","3":"46","4":"4","_rn_":"522"},{"1":"101","2":"8","3":"46","4":"4","_rn_":"523"},{"1":"120","2":"10","3":"46","4":"4","_rn_":"524"},{"1":"144","2":"12","3":"46","4":"4","_rn_":"525"},{"1":"156","2":"14","3":"46","4":"4","_rn_":"526"},{"1":"173","2":"16","3":"46","4":"4","_rn_":"527"},{"1":"210","2":"18","3":"46","4":"4","_rn_":"528"},{"1":"231","2":"20","3":"46","4":"4","_rn_":"529"},{"1":"238","2":"21","3":"46","4":"4","_rn_":"530"},{"1":"41","2":"0","3":"47","4":"4","_rn_":"531"},{"1":"53","2":"2","3":"47","4":"4","_rn_":"532"},{"1":"66","2":"4","3":"47","4":"4","_rn_":"533"},{"1":"79","2":"6","3":"47","4":"4","_rn_":"534"},{"1":"100","2":"8","3":"47","4":"4","_rn_":"535"},{"1":"123","2":"10","3":"47","4":"4","_rn_":"536"},{"1":"148","2":"12","3":"47","4":"4","_rn_":"537"},{"1":"157","2":"14","3":"47","4":"4","_rn_":"538"},{"1":"168","2":"16","3":"47","4":"4","_rn_":"539"},{"1":"185","2":"18","3":"47","4":"4","_rn_":"540"},{"1":"210","2":"20","3":"47","4":"4","_rn_":"541"},{"1":"205","2":"21","3":"47","4":"4","_rn_":"542"},{"1":"39","2":"0","3":"48","4":"4","_rn_":"543"},{"1":"50","2":"2","3":"48","4":"4","_rn_":"544"},{"1":"62","2":"4","3":"48","4":"4","_rn_":"545"},{"1":"80","2":"6","3":"48","4":"4","_rn_":"546"},{"1":"104","2":"8","3":"48","4":"4","_rn_":"547"},{"1":"125","2":"10","3":"48","4":"4","_rn_":"548"},{"1":"154","2":"12","3":"48","4":"4","_rn_":"549"},{"1":"170","2":"14","3":"48","4":"4","_rn_":"550"},{"1":"222","2":"16","3":"48","4":"4","_rn_":"551"},{"1":"261","2":"18","3":"48","4":"4","_rn_":"552"},{"1":"303","2":"20","3":"48","4":"4","_rn_":"553"},{"1":"322","2":"21","3":"48","4":"4","_rn_":"554"},{"1":"40","2":"0","3":"49","4":"4","_rn_":"555"},{"1":"53","2":"2","3":"49","4":"4","_rn_":"556"},{"1":"64","2":"4","3":"49","4":"4","_rn_":"557"},{"1":"85","2":"6","3":"49","4":"4","_rn_":"558"},{"1":"108","2":"8","3":"49","4":"4","_rn_":"559"},{"1":"128","2":"10","3":"49","4":"4","_rn_":"560"},{"1":"152","2":"12","3":"49","4":"4","_rn_":"561"},{"1":"166","2":"14","3":"49","4":"4","_rn_":"562"},{"1":"184","2":"16","3":"49","4":"4","_rn_":"563"},{"1":"203","2":"18","3":"49","4":"4","_rn_":"564"},{"1":"233","2":"20","3":"49","4":"4","_rn_":"565"},{"1":"237","2":"21","3":"49","4":"4","_rn_":"566"},{"1":"41","2":"0","3":"50","4":"4","_rn_":"567"},{"1":"54","2":"2","3":"50","4":"4","_rn_":"568"},{"1":"67","2":"4","3":"50","4":"4","_rn_":"569"},{"1":"84","2":"6","3":"50","4":"4","_rn_":"570"},{"1":"105","2":"8","3":"50","4":"4","_rn_":"571"},{"1":"122","2":"10","3":"50","4":"4","_rn_":"572"},{"1":"155","2":"12","3":"50","4":"4","_rn_":"573"},{"1":"175","2":"14","3":"50","4":"4","_rn_":"574"},{"1":"205","2":"16","3":"50","4":"4","_rn_":"575"},{"1":"234","2":"18","3":"50","4":"4","_rn_":"576"},{"1":"264","2":"20","3":"50","4":"4","_rn_":"577"},{"1":"264","2":"21","3":"50","4":"4","_rn_":"578"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[578]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="3" style="list-style-type: decimal">
+<li>Examine the built-in dataset <code>BOD</code>. Which of the following is true:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><code>BOD</code> is not tidy: it only has six rows.</li>
+<li><code>BOD</code> is not tidy: the first column is just an index.</li>
+<li><code>BOD</code> is tidy: each row is an observation with two values(time and demand)</li>
+<li><code>BOD</code> is tidy: all small datasets are tidy by definition.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQk9EXG5gYGAifQ== -->
+<pre class="r"><code>BOD</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyVlFTMDdETUJDZHBuR2dFUzJWWU1taUM1YkV0QVFKZGdRSmNRQlVwRzVONGtKRTRrUkpLbGh5RFRnVDNJVVRGTWJPV0VKbUpPdTkrVHpQNSs1bUZZZXJFQUNHNElNSFE0WVUyUDN5TnJvRThEMTBCcGdZYVh6Rm9nTWtPampCRjF4OWc3RUVDSGNKcDRTSGhFZGd6ZWlTMmJ1MmorU1lNS2E2T2VGcGJDeUpQN1Y5T1lNd0pVclpJcG1hWWZxZ3Y4eExTVHpJWkNsVTVzaEdqVnpMUnFwVWt0UW05cTRYL1B4a1Z2UFoyY1g4bjZoNjRiYmZXUGQ3NjJjTTNLSFNRclN0ODNPWWlVN3dkWU42OUxhT1pLZXF1N3hTS1BMMFdaa2pIalJPWUgrajlDUlpsRDV0MUhPMDBBMU11cmN4OGVBUDkvcVczZzk5eGV5RnBIck1sYjBYSzhTRExNaVo0TVptWVY0M3VlcnNKaGh0ZVZkMXd0YUZhVlhZaU5rTnRyOUQxbnl2VFFJQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Time"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["demand"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"8.3"},{"1":"2","2":"10.3"},{"1":"3","2":"19.0"},{"1":"4","2":"16.0"},{"1":"5","2":"15.6"},{"1":"7","2":"19.8"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jPnRoZSBhbnN3ZXIgaXMgJ2MnXG5cbmBgYCJ9 -->
+<pre class="r"><code>
+#&gt;the answer is &#39;c&#39;
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="4" style="list-style-type: decimal">
+<li>Which of the following built-in datasets is tidy (you can pick more than one):</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><code>BJsales</code></li>
+<li><code>EuStockMarkets</code></li>
+<li><code>DNase</code></li>
+<li><code>Formaldehyde</code></li>
+<li><code>Orange</code></li>
+<li><code>UCBAdmissions</code></li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQkpzYWxlc1xuYGBgIn0= -->
+<pre class="r"><code>BJsales</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGltZSBTZXJpZXM6XG5TdGFydCA9IDEgXG5FbmQgPSAxNTAgXG5GcmVxdWVuY3kgPSAxIFxuICBbMV0gMjAwLjEgMTk5LjUgMTk5LjQgMTk4LjkgMTk5LjBcbiAgWzZdIDIwMC4yIDE5OC42IDIwMC4wIDIwMC4zIDIwMS4yXG4gWzExXSAyMDEuNiAyMDEuNSAyMDEuNSAyMDMuNSAyMDQuOVxuIFsxNl0gMjA3LjEgMjEwLjUgMjEwLjUgMjA5LjggMjA4LjhcbiBbMjFdIDIwOS41IDIxMy4yIDIxMy43IDIxNS4xIDIxOC43XG4gWzI2XSAyMTkuOCAyMjAuNSAyMjMuOCAyMjIuOCAyMjMuOFxuIFszMV0gMjIxLjcgMjIyLjMgMjIwLjggMjE5LjQgMjIwLjFcbiBbMzZdIDIyMC42IDIxOC45IDIxNy44IDIxNy43IDIxNS4wXG4gWzQxXSAyMTUuMyAyMTUuOSAyMTYuNyAyMTYuNyAyMTcuN1xuIFs0Nl0gMjE4LjcgMjIyLjkgMjI0LjkgMjIyLjIgMjIwLjdcbiBbNTFdIDIyMC4wIDIxOC43IDIxNy4wIDIxNS45IDIxNS44XG4gWzU2XSAyMTQuMSAyMTIuMyAyMTMuOSAyMTQuNiAyMTMuNlxuIFs2MV0gMjEyLjEgMjExLjQgMjEzLjEgMjEyLjkgMjEzLjNcbiBbNjZdIDIxMS41IDIxMi4zIDIxMy4wIDIxMS4wIDIxMC43XG4gWzcxXSAyMTAuMSAyMTEuNCAyMTAuMCAyMDkuNyAyMDguOFxuIFs3Nl0gMjA4LjggMjA4LjggMjEwLjYgMjExLjkgMjEyLjhcbiBbODFdIDIxMi41IDIxNC44IDIxNS4zIDIxNy41IDIxOC44XG4gWzg2XSAyMjAuNyAyMjIuMiAyMjYuNyAyMjguNCAyMzMuMlxuIFs5MV0gMjM1LjcgMjM3LjEgMjQwLjYgMjQzLjggMjQ1LjNcbiBbOTZdIDI0Ni4wIDI0Ni4zIDI0Ny43IDI0Ny42IDI0Ny44XG5bMTAxXSAyNDkuNCAyNDkuMCAyNDkuOSAyNTAuNSAyNTEuNVxuWzEwNl0gMjQ5LjAgMjQ3LjYgMjQ4LjggMjUwLjQgMjUwLjdcblsxMTFdIDI1My4wIDI1My43IDI1NS4wIDI1Ni4yIDI1Ni4wXG5bMTE2XSAyNTcuNCAyNjAuNCAyNjAuMCAyNjEuMyAyNjAuNFxuWzEyMV0gMjYxLjYgMjYwLjggMjU5LjggMjU5LjAgMjU4LjlcblsxMjZdIDI1Ny40IDI1Ny43IDI1Ny45IDI1Ny40IDI1Ny4zXG5bMTMxXSAyNTcuNiAyNTguOSAyNTcuOCAyNTcuNyAyNTcuMlxuWzEzNl0gMjU3LjUgMjU2LjggMjU3LjUgMjU3LjAgMjU3LjZcblsxNDFdIDI1Ny4zIDI1Ny41IDI1OS42IDI2MS4xIDI2Mi45XG5bMTQ2XSAyNjMuMyAyNjIuOCAyNjEuOCAyNjIuMiAyNjIuN1xuIn0= -->
+<pre><code>Time Series:
+Start = 1 
+End = 150 
+Frequency = 1 
+  [1] 200.1 199.5 199.4 198.9 199.0
+  [6] 200.2 198.6 200.0 200.3 201.2
+ [11] 201.6 201.5 201.5 203.5 204.9
+ [16] 207.1 210.5 210.5 209.8 208.8
+ [21] 209.5 213.2 213.7 215.1 218.7
+ [26] 219.8 220.5 223.8 222.8 223.8
+ [31] 221.7 222.3 220.8 219.4 220.1
+ [36] 220.6 218.9 217.8 217.7 215.0
+ [41] 215.3 215.9 216.7 216.7 217.7
+ [46] 218.7 222.9 224.9 222.2 220.7
+ [51] 220.0 218.7 217.0 215.9 215.8
+ [56] 214.1 212.3 213.9 214.6 213.6
+ [61] 212.1 211.4 213.1 212.9 213.3
+ [66] 211.5 212.3 213.0 211.0 210.7
+ [71] 210.1 211.4 210.0 209.7 208.8
+ [76] 208.8 208.8 210.6 211.9 212.8
+ [81] 212.5 214.8 215.3 217.5 218.8
+ [86] 220.7 222.2 226.7 228.4 233.2
+ [91] 235.7 237.1 240.6 243.8 245.3
+ [96] 246.0 246.3 247.7 247.6 247.8
+[101] 249.4 249.0 249.9 250.5 251.5
+[106] 249.0 247.6 248.8 250.4 250.7
+[111] 253.0 253.7 255.0 256.2 256.0
+[116] 257.4 260.4 260.0 261.3 260.4
+[121] 261.6 260.8 259.8 259.0 258.9
+[126] 257.4 257.7 257.9 257.4 257.3
+[131] 257.6 258.9 257.8 257.7 257.2
+[136] 257.5 256.8 257.5 257.0 257.6
+[141] 257.3 257.5 259.6 261.1 262.9
+[146] 263.3 262.8 261.8 262.2 262.7</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRXVTdG9ja01hcmtldHNcbmBgYCJ9 -->
+<pre class="r"><code>EuStockMarkets</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGltZSBTZXJpZXM6XG5TdGFydCA9IGMoMTk5MSwgMTMwKSBcbkVuZCA9IGMoMTk5OCwgMTY5KSBcbkZyZXF1ZW5jeSA9IDI2MCBcbiAgICAgICAgICAgICBEQVggICAgU01JICAgIENBQyAgIEZUU0VcbjE5OTEuNDk2IDE2MjguNzUgMTY3OC4xIDE3NzIuOCAyNDQzLjZcbjE5OTEuNTAwIDE2MTMuNjMgMTY4OC41IDE3NTAuNSAyNDYwLjJcbjE5OTEuNTA0IDE2MDYuNTEgMTY3OC42IDE3MTguMCAyNDQ4LjJcbjE5OTEuNTA4IDE2MjEuMDQgMTY4NC4xIDE3MDguMSAyNDcwLjRcbjE5OTEuNTEyIDE2MTguMTYgMTY4Ni42IDE3MjMuMSAyNDg0LjdcbjE5OTEuNTE1IDE2MTAuNjEgMTY3MS42IDE3MTQuMyAyNDY2LjhcbjE5OTEuNTE5IDE2MzAuNzUgMTY4Mi45IDE3MzQuNSAyNDg3LjlcbjE5OTEuNTIzIDE2NDAuMTcgMTcwMy42IDE3NTcuNCAyNTA4LjRcbjE5OTEuNTI3IDE2MzUuNDcgMTY5Ny41IDE3NTQuMCAyNTEwLjVcbjE5OTEuNTMxIDE2NDUuODkgMTcxNi4zIDE3NTQuMyAyNDk3LjRcbjE5OTEuNTM1IDE2NDcuODQgMTcyMy44IDE3NTkuOCAyNTMyLjVcbjE5OTEuNTM4IDE2MzguMzUgMTczMC41IDE3NTUuNSAyNTU2LjhcbjE5OTEuNTQyIDE2MjkuOTMgMTcyNy40IDE3NTguMSAyNTYxLjBcbjE5OTEuNTQ2IDE2MjEuNDkgMTczMy4zIDE3NTcuNSAyNTQ3LjNcbjE5OTEuNTUwIDE2MjQuNzQgMTczNC4wIDE3NjMuNSAyNTQxLjVcbjE5OTEuNTU0IDE2MjcuNjMgMTcyOC4zIDE3NjIuOCAyNTU4LjVcbjE5OTEuNTU4IDE2MzEuOTkgMTczNy4xIDE3NjguOSAyNTg3LjlcbjE5OTEuNTYyIDE2MjEuMTggMTcyMy4xIDE3NzguMSAyNTgwLjVcbjE5OTEuNTY1IDE2MTMuNDIgMTcyMy42IDE3ODAuMSAyNTc5LjZcbjE5OTEuNTY5IDE2MDQuOTUgMTcxOS4wIDE3NjcuNyAyNTg5LjNcbjE5OTEuNTczIDE2MDUuNzUgMTcyMS4yIDE3NTcuOSAyNTk1LjBcbjE5OTEuNTc3IDE2MTYuNjcgMTcyNS4zIDE3NTYuNiAyNTk1LjZcbjE5OTEuNTgxIDE2MTkuMjkgMTcyNy4yIDE3NTQuNyAyNTg4LjhcbjE5OTEuNTg1IDE2MjAuNDkgMTcyNy4yIDE3NjYuOCAyNTkxLjdcbjE5OTEuNTg4IDE2MTkuNjcgMTczMS42IDE3NjYuNSAyNjAxLjdcbjE5OTEuNTkyIDE2MjMuMDcgMTcyNC4xIDE3NjIuMiAyNTg1LjRcbjE5OTEuNTk2IDE2MTMuOTggMTcxNi45IDE3NTkuNSAyNTczLjNcbjE5OTEuNjAwIDE2MzEuODcgMTcyMy40IDE3ODIuNCAyNTk3LjRcbjE5OTEuNjA0IDE2MzAuMzcgMTcyMy4wIDE3ODkuNSAyNjAwLjZcbjE5OTEuNjA4IDE2MzMuNDcgMTcyOC40IDE3ODMuNSAyNTcwLjZcbjE5OTEuNjEyIDE2MjYuNTUgMTcyMi4xIDE3ODAuNCAyNTY5LjRcbjE5OTEuNjE1IDE2NTAuNDMgMTcyNC41IDE4MDguOCAyNTg0LjlcbjE5OTEuNjE5IDE2NTAuMDYgMTczMy42IDE4MjAuMyAyNjA4LjhcbjE5OTEuNjIzIDE2NTQuMTEgMTczOS4wIDE4MjAuMyAyNjE3LjJcbjE5OTEuNjI3IDE2NTMuNjAgMTcyNi4yIDE4MjAuMyAyNjIxLjBcbjE5OTEuNjMxIDE1MDEuODIgMTU4Ny40IDE2ODcuNSAyNTQwLjVcbjE5OTEuNjM1IDE1MjQuMjggMTYzMC42IDE3MjUuNiAyNTU0LjVcbjE5OTEuNjM4IDE2MDMuNjUgMTY4NS41IDE3OTIuOSAyNjAxLjlcbjE5OTEuNjQyIDE2MjIuNDkgMTcwMS4zIDE4MTkuMSAyNjIzLjBcbjE5OTEuNjQ2IDE2MzYuNjggMTcxOC4wIDE4MzMuNSAyNjQwLjdcbjE5OTEuNjUwIDE2NTIuMTAgMTcyNi4yIDE4NTMuNCAyNjQwLjdcbjE5OTEuNjU0IDE2NDUuODEgMTcxNi42IDE4NDkuNyAyNjE5LjhcbjE5OTEuNjU4IDE2NTAuMzYgMTcyNS44IDE4NTEuOCAyNjI0LjJcbjE5OTEuNjYyIDE2NTEuNTUgMTczNy40IDE4NTcuNyAyNjM4LjJcbjE5OTEuNjY1IDE2NDkuODggMTczNi42IDE4NjQuMyAyNjQ1LjdcbjE5OTEuNjY5IDE2NTMuNTIgMTczMi40IDE4NjMuNSAyNjc5LjZcbjE5OTEuNjczIDE2NTcuNTEgMTczMS4yIDE4NzMuMiAyNjY5LjBcbjE5OTEuNjc3IDE2NDkuNTUgMTcyNi45IDE4NjAuOCAyNjY0LjZcbjE5OTEuNjgxIDE2NDkuMDkgMTcyNy44IDE4NjguNyAyNjYzLjNcbjE5OTEuNjg1IDE2NDYuNDEgMTcyMC4yIDE4NjAuNCAyNjY3LjRcbjE5OTEuNjg4IDE2MzguNjUgMTcxNS40IDE4NTUuOSAyNjUzLjJcbjE5OTEuNjkyIDE2MjUuODAgMTcwOC43IDE4NDAuNSAyNjMwLjhcbjE5OTEuNjk2IDE2MjguNjQgMTcxMy4wIDE4NDIuNiAyNjI2LjZcbjE5OTEuNzAwIDE2MzIuMjIgMTcxMy41IDE4NjEuMiAyNjQxLjlcbjE5OTEuNzA0IDE2MzMuNjUgMTcxOC4wIDE4NzYuMiAyNjI1LjhcbjE5OTEuNzA4IDE2MzEuMTcgMTcwMS43IDE4NzguMyAyNjA2LjBcbjE5OTEuNzEyIDE2MzUuODAgMTcwMS43IDE4NzguNCAyNTk0LjRcbjE5OTEuNzE1IDE2MjEuMjcgMTY4NC45IDE4NjkuNCAyNTgzLjZcbjE5OTEuNzE5IDE2MjQuNzAgMTY4Ny4yIDE4ODAuNCAyNTg4LjdcbjE5OTEuNzIzIDE2MTYuMTMgMTY5MC42IDE4ODUuNSAyNjAwLjNcbjE5OTEuNzI3IDE2MTguMTIgMTY4NC4zIDE4ODguNCAyNTc5LjVcbjE5OTEuNzMxIDE2MjcuODAgMTY3OS45IDE4ODUuMiAyNTc2LjZcbjE5OTEuNzM1IDE2MjUuNzkgMTY3Mi45IDE4NzcuOSAyNTk3LjhcbjE5OTEuNzM4IDE2MTQuODAgMTY2My4xIDE4NzYuNSAyNTk1LjZcbjE5OTEuNzQyIDE2MTIuODAgMTY2OS4zIDE4ODMuOCAyNTk5LjBcbjE5OTEuNzQ2IDE2MDUuNDcgMTY2NC43IDE4ODAuNiAyNjIxLjdcbjE5OTEuNzUwIDE2MDkuMzIgMTY3Mi4zIDE4ODcuNCAyNjQ1LjZcbjE5OTEuNzU0IDE2MDcuNDggMTY4Ny43IDE4NzguMyAyNjQ0LjJcbjE5OTEuNzU4IDE2MDcuNDggMTY4Ni44IDE4NjcuMSAyNjI1LjZcbjE5OTEuNzYyIDE2MDQuODkgMTY4Ni42IDE4NTEuOSAyNjI0LjZcbjE5OTEuNzY1IDE1ODkuMTIgMTY3NS44IDE4NDMuNiAyNTk2LjJcbjE5OTEuNzY5IDE1ODIuMjcgMTY3Ny40IDE4NDguMSAyNTk5LjVcbjE5OTEuNzczIDE1NjcuOTkgMTY3My4yIDE4NDMuNCAyNTg0LjFcbjE5OTEuNzc3IDE1NjguMTYgMTY2NS4wIDE4NDMuNiAyNTcwLjhcbjE5OTEuNzgxIDE1NjkuNzEgMTY3MS4zIDE4MzMuOCAyNTU1LjBcbjE5OTEuNzg1IDE1NzEuNzQgMTY3Mi40IDE4MzMuNCAyNTc0LjVcbjE5OTEuNzg4IDE1ODUuNDEgMTY3Ni4yIDE4NTYuOSAyNTc2LjdcbjE5OTEuNzkyIDE1NzAuMDEgMTY5Mi42IDE4NjMuNCAyNTc5LjBcbjE5OTEuNzk2IDE1NjEuODkgMTY5Ni41IDE4NTUuNSAyNTg4LjdcbjE5OTEuODAwIDE1NjUuMTggMTcxNi4xIDE4NjQuMiAyNjAxLjFcbjE5OTEuODA0IDE1NzAuMzQgMTcxMy4zIDE4NDYuMCAyNTc1LjdcbjE5OTEuODA4IDE1NzcuMDAgMTcwNS4xIDE4MzYuOCAyNTU5LjVcbjE5OTEuODEyIDE1OTAuMjkgMTcxMS4zIDE4MzAuNCAyNTYxLjFcbjE5OTEuODE1IDE1NzIuNzIgMTcwOS44IDE4MzEuNiAyNTI4LjNcbjE5OTEuODE5IDE1NzIuMDcgMTY4OC42IDE4MzQuOCAyNTE0LjdcbjE5OTEuODIzIDE1NzkuMTkgMTY5OC45IDE4NTIuMSAyNTU4LjVcbjE5OTEuODI3IDE1ODguNzMgMTcwMC4wIDE4NDkuOCAyNTUzLjNcbjE5OTEuODMxIDE1ODYuMDEgMTY5My4wIDE4NjEuOCAyNTc3LjFcbjE5OTEuODM1IDE1NzkuNzcgMTY4My45IDE4NTYuNyAyNTY2LjBcbjE5OTEuODM4IDE1NzIuNTggMTY3OS4yIDE4NTYuNyAyNTQ5LjVcbjE5OTEuODQyIDE1NjguMDkgMTY3My45IDE4NDEuNSAyNTI3LjhcbjE5OTEuODQ2IDE1NzguMjEgMTY4My45IDE4NDYuOSAyNTQwLjlcbjE5OTEuODUwIDE1NzMuOTQgMTY4OC40IDE4MzYuMSAyNTM0LjJcbjE5OTEuODU0IDE1ODIuMDYgMTY5My45IDE4MzguNiAyNTM4LjBcbjE5OTEuODU4IDE2MTAuMTggMTcyMC45IDE4NTcuNiAyNTU5LjBcbjE5OTEuODYyIDE2MDUuMTYgMTcxNy45IDE4NTcuNiAyNTU0LjlcbjE5OTEuODY1IDE2MjMuODQgMTczMy42IDE4NTguNCAyNTc1LjVcbjE5OTEuODY5IDE2MTUuMjYgMTcyOS43IDE4NDYuOCAyNTQ2LjVcbjE5OTEuODczIDE2MjcuMDggMTczNS42IDE4NjguNSAyNTYxLjZcbjE5OTEuODc3IDE2MjYuOTcgMTczNC4xIDE4NjMuMiAyNTQ2LjZcbjE5OTEuODgxIDE2MDUuNzAgMTY5OS4zIDE4MDguMyAyNTAyLjlcbjE5OTEuODg1IDE1ODkuNzAgMTY3OC42IDE3NjUuMSAyNDYzLjFcbjE5OTEuODg4IDE1ODkuNzAgMTY3NS41IDE3NjMuNSAyNDcyLjZcbjE5OTEuODkyIDE2MDMuMjYgMTY3MC4xIDE3NjYuMCAyNDYzLjVcbjE5OTEuODk2IDE1OTkuNzUgMTY1Mi4yIDE3NDEuMyAyNDQ2LjNcbjE5OTEuOTAwIDE1OTAuODYgMTYzNS4wIDE3NDMuMyAyNDU2LjJcbjE5OTEuOTA0IDE2MDMuNTAgMTY1NC45IDE3NjkuMCAyNDcxLjVcbjE5OTEuOTA4IDE1ODkuODYgMTY0Mi4wIDE3NTcuOSAyNDQ3LjVcbjE5OTEuOTEyIDE1ODcuOTIgMTYzOC43IDE3NTQuOSAyNDI4LjZcbjE5OTEuOTE1IDE1NzEuMDYgMTYyMi42IDE3MzkuNyAyNDIwLjJcbjE5OTEuOTE5IDE1NDkuODEgMTU5Ni4xIDE3MDguOCAyNDE0LjlcbjE5OTEuOTIzIDE1NDkuMzYgMTYxMi40IDE3MjIuMiAyNDIwLjJcbjE5OTEuOTI3IDE1NTQuNjUgMTYyNS4wIDE3MTMuOSAyNDIzLjhcbjE5OTEuOTMxIDE1NTcuNTIgMTYxMC41IDE3MDMuMiAyNDA3LjBcbjE5OTEuOTM1IDE1NTUuMzEgMTYwNi42IDE2ODUuNyAyMzg4LjdcbjE5OTEuOTM4IDE1NTkuNzYgMTYxMC43IDE2NjMuNCAyNDA5LjZcbjE5OTEuOTQyIDE1NDguNDQgMTYwMy4xIDE2MzYuOSAyMzkyLjBcbjE5OTEuOTQ2IDE1NDMuOTkgMTU5MS41IDE2NDUuNiAyMzgwLjJcbjE5OTEuOTUwIDE1NTAuMjEgMTYwNS4yIDE2NzEuNiAyNDIzLjNcbjE5OTEuOTU0IDE1NTcuMDMgMTYyMS40IDE2ODguMyAyNDUxLjZcbjE5OTEuOTU4IDE1NTEuNzggMTYyMi41IDE2OTYuOCAyNDQwLjhcbjE5OTEuOTYyIDE1NjIuODkgMTYyNi42IDE3MTEuNyAyNDMyLjlcbjE5OTEuOTY1IDE1NzAuMjggMTYyNy40IDE3MDYuMiAyNDEzLjZcbjE5OTEuOTY5IDE1NTkuMjYgMTYxNC45IDE2ODQuMiAyMzkxLjZcbjE5OTEuOTczIDE1NDUuODcgMTYwMi4zIDE2NDguNSAyMzU4LjFcbjE5OTEuOTc3IDE1NDIuNzcgMTU5OC4zIDE2MzMuNiAyMzQ1LjRcbjE5OTEuOTgxIDE1NDIuNzcgMTYyNy4wIDE2OTkuMSAyMzg0LjRcbjE5OTEuOTg1IDE1NDIuNzcgMTYyNy4wIDE2OTkuMSAyMzg0LjRcbjE5OTEuOTg4IDE1NDIuNzcgMTYyNy4wIDE3MjIuNSAyMzg0LjRcbjE5OTEuOTkyIDE1NjQuMjcgMTY1NS43IDE3MjAuNyAyNDE4LjdcbjE5OTEuOTk2IDE1NzcuMjYgMTY3MC4xIDE3NDEuOSAyNDIwLjBcbjE5OTIuMDAwIDE1NzcuMjYgMTY3MC4xIDE3NjUuNyAyNDkzLjFcbjE5OTIuMDA0IDE1NzcuMjYgMTY3MC4xIDE3NjUuNyAyNDkzLjFcbjE5OTIuMDA4IDE1OTguMTkgMTY3MC4xIDE3NDkuOSAyNDkyLjhcbjE5OTIuMDEyIDE2MDQuMDUgMTcwNC4wIDE3NzAuMyAyNTA0LjFcbjE5OTIuMDE1IDE2MDQuNjkgMTcxMS44IDE3ODcuNiAyNDkzLjJcbjE5OTIuMDE5IDE1OTMuNjUgMTcwMC41IDE3NzguNyAyNDgyLjlcbjE5OTIuMDIzIDE1ODEuNjggMTY5MC4zIDE3ODUuNiAyNDY3LjFcbjE5OTIuMDI3IDE1OTkuMTQgMTcxNS40IDE4MzMuOSAyNDk3LjlcbjE5OTIuMDMxIDE2MTMuODIgMTcyMy41IDE4MzcuNCAyNDc3LjlcbjE5OTIuMDM1IDE2MjAuNDUgMTcxOS40IDE4MjQuMyAyNDkwLjFcbjE5OTIuMDM4IDE2MjkuNTEgMTczNC40IDE4NDMuOCAyNTE2LjNcbjE5OTIuMDQyIDE2NjMuNzAgMTc3Mi44IDE4NzMuNiAyNTM3LjFcbjE5OTIuMDQ2IDE2NjQuMDkgMTc2MC4zIDE4NjAuMiAyNTQxLjZcbjE5OTIuMDUwIDE2NjkuMjkgMTc0Ny4yIDE4NjAuMiAyNTM2LjdcbjE5OTIuMDU0IDE2ODUuMTQgMTc1MC4yIDE4NjUuOSAyNTQ0LjlcbjE5OTIuMDU4IDE2ODcuMDcgMTc1NS4zIDE4NjcuOSAyNTQzLjRcbjE5OTIuMDYyIDE2ODAuMTMgMTc1NC42IDE4NDEuMyAyNTIyLjBcbjE5OTIuMDY1IDE2NzEuODQgMTc1MS4yIDE4MzguNyAyNTI1LjNcbjE5OTIuMDY5IDE2NjkuNTIgMTc1Mi41IDE4NDkuOSAyNTEwLjRcbjE5OTIuMDczIDE2ODYuNzEgMTc2OS40IDE4NjkuMyAyNTM5LjlcbjE5OTIuMDc3IDE2ODUuNTEgMTc2Ny42IDE4OTAuNiAyNTUyLjBcbjE5OTIuMDgxIDE2NzEuMDEgMTc1MC4wIDE4NzkuNiAyNTQ2LjVcbjE5OTIuMDg1IDE2ODMuMDYgMTc0Ny4xIDE4NzMuOSAyNTUwLjhcbjE5OTIuMDg4IDE2ODUuNzAgMTc1My41IDE4NzUuMyAyNTcxLjJcbjE5OTIuMDkyIDE2ODUuNjYgMTc1Mi44IDE4NTcuMCAyNTYwLjJcbjE5OTIuMDk2IDE2NzguNzcgMTc1Mi45IDE4NTYuNSAyNTU2LjhcbjE5OTIuMTAwIDE2ODUuODUgMTc2NC43IDE4NjUuOCAyNTQ3LjFcbjE5OTIuMTA0IDE2ODMuNzEgMTc3Ni44IDE4NjAuNiAyNTM0LjNcbjE5OTIuMTA4IDE2ODYuNTkgMTc3OS4zIDE4NjEuNiAyNTE3LjJcbjE5OTIuMTEyIDE2ODMuNzMgMTc4NS4xIDE4NjUuNiAyNTM4LjRcbjE5OTIuMTE1IDE2NzkuMTQgMTc5OC4yIDE4NjQuMSAyNTM3LjFcbjE5OTIuMTE5IDE2ODUuMDMgMTc5NC4xIDE4NjEuNiAyNTIzLjdcbjE5OTIuMTIzIDE2ODAuODEgMTc5NS4yIDE4NzYuNSAyNTIyLjZcbjE5OTIuMTI3IDE2NzYuMTcgMTc4MC40IDE4NjUuMSAyNTEzLjlcbjE5OTIuMTMxIDE2ODguNDYgMTc4OS41IDE4ODIuMSAyNTQxLjBcbjE5OTIuMTM1IDE2OTYuNTUgMTc5NC4yIDE5MTIuMiAyNTU1LjlcbjE5OTIuMTM4IDE2OTAuMjQgMTc4NC40IDE5MTUuNCAyNTM2LjdcbjE5OTIuMTQyIDE3MTEuMzUgMTgwMC4xIDE5NTEuMiAyNTQzLjRcbjE5OTIuMTQ2IDE3MTEuMjkgMTgwNC4wIDE5NjIuNCAyNTQyLjNcbjE5OTIuMTUwIDE3MjkuODYgMTgxNi4yIDE5NzYuNSAyNTU5LjdcbjE5OTIuMTU0IDE3MTYuNjMgMTgxMC41IDE5NTMuNSAyNTQ2LjhcbjE5OTIuMTU4IDE3NDMuMzYgMTgyMS45IDE5ODEuMyAyNTY1LjBcbjE5OTIuMTYyIDE3NDUuMTcgMTgyOC4yIDE5ODUuMSAyNTYyLjBcbjE5OTIuMTY1IDE3NDYuNzYgMTg0MC42IDE5ODMuNCAyNTYyLjFcbjE5OTIuMTY5IDE3NDkuMjkgMTg0MS4xIDE5NzkuNyAyNTU0LjNcbjE5OTIuMTczIDE3NjMuODYgMTg0Ni4zIDE5ODMuOCAyNTY1LjRcbjE5OTIuMTc3IDE3NjIuMjcgMTg1MC4wIDE5ODguMSAyNTU4LjRcbjE5OTIuMTgxIDE3NjIuMjkgMTgzOS4wIDE5NzMuMCAyNTM4LjNcbjE5OTIuMTg1IDE3NDYuNzcgMTgyMC4yIDE5NjYuOSAyNTMzLjFcbjE5OTIuMTg4IDE3NTMuNTAgMTgxNS4yIDE5NzYuMyAyNTUwLjdcbjE5OTIuMTkyIDE3NTMuMjEgMTgyMC42IDE5OTMuOSAyNTc0LjhcbjE5OTIuMTk2IDE3MzkuODggMTgwNy4xIDE5NjguMCAyNTIyLjRcbjE5OTIuMjAwIDE3MjMuOTIgMTc5MS40IDE5NDEuOCAyNDkzLjNcbjE5OTIuMjA0IDE3MzQuNDIgMTgwNi4yIDE5NDcuMSAyNDc2LjBcbjE5OTIuMjA4IDE3MjMuMTMgMTc5OC43IDE5MjkuMiAyNDcwLjdcbjE5OTIuMjEyIDE3MzIuOTIgMTgxOC4yIDE5NDMuNiAyNDkxLjJcbjE5OTIuMjE1IDE3MjkuODkgMTgyMC41IDE5MjguMiAyNDY0LjdcbjE5OTIuMjE5IDE3MjUuNzQgMTgzMy4zIDE5MjIuMCAyNDY3LjZcbjE5OTIuMjIzIDE3MzAuOTAgMTgzNy4xIDE5MTkuMSAyNDU2LjZcbjE5OTIuMjI3IDE3MTQuMTcgMTgxOC4yIDE4ODQuNiAyNDQxLjBcbjE5OTIuMjMxIDE3MTYuMjAgMTgyNC4xIDE4OTYuMyAyNDU4LjdcbjE5OTIuMjM1IDE3MTkuMDYgMTgzMC4xIDE5MjguMyAyNDY0LjlcbjE5OTIuMjM4IDE3MTguMjEgMTgzNS42IDE5MzQuOCAyNDcyLjJcbjE5OTIuMjQyIDE2OTguODQgMTgyOC43IDE5MjMuNSAyNDQ3LjlcbjE5OTIuMjQ2IDE3MTQuNzYgMTgzOS4yIDE5NDMuOCAyNDUyLjlcbjE5OTIuMjUwIDE3MTguMzUgMTgzNy4yIDE5NDIuNCAyNDQwLjFcbjE5OTIuMjU0IDE3MDYuNjkgMTgyNi43IDE5MjguMSAyNDA4LjZcbjE5OTIuMjU4IDE3MjMuMzcgMTgzOC4wIDE5NDIuMCAyNDA1LjRcbjE5OTIuMjYyIDE3MTYuMTggMTgyOS4xIDE5NDIuNyAyMzgyLjdcbjE5OTIuMjY1IDE3MzguNzggMTg0My4xIDE5NzQuOCAyNDAwLjlcbjE5OTIuMjY5IDE3MzcuNDEgMTg1MC41IDE5NzUuNCAyNDA0LjJcbjE5OTIuMjczIDE3MTQuNzcgMTgyNy4xIDE5MDcuNSAyMzkzLjJcbjE5OTIuMjc3IDE3MjQuMjQgMTgyOS4xIDE5NDMuNiAyNDM2LjRcbjE5OTIuMjgxIDE3MzMuNzcgMTg0OC4wIDE5NzQuMSAyNTcyLjZcbjE5OTIuMjg1IDE3MjkuOTYgMTg0MC41IDE5NjMuMyAyNTkxLjBcbjE5OTIuMjg4IDE3MzQuNDYgMTg1My44IDE5NzIuMyAyNjAwLjVcbjE5OTIuMjkyIDE3NDQuMzUgMTg3NC4xIDE5OTAuNyAyNjQwLjJcbjE5OTIuMjk2IDE3NDYuODggMTg3MS4zIDE5NzguMiAyNjM4LjZcbjE5OTIuMzAwIDE3NDYuODggMTg3MS4zIDE5NzguMiAyNjM4LjZcbjE5OTIuMzA0IDE3NDYuODggMTg3MS4zIDE5NzguMiAyNjM4LjZcbjE5OTIuMzA4IDE3NDcuNDcgMTg2MC41IDE5ODAuNCAyNjI1LjhcbjE5OTIuMzEyIDE3NTMuMTAgMTg3NC43IDE5ODMuNyAyNjA3LjhcbjE5OTIuMzE1IDE3NDUuMTcgMTg4MC4xIDE5NzguMSAyNjA5LjhcbjE5OTIuMzE5IDE3NDUuNzIgMTg3NC43IDE5ODQuOSAyNjQzLjBcbjE5OTIuMzIzIDE3NDIuOTIgMTg3NS42IDE5OTUuNyAyNjU4LjJcbjE5OTIuMzI3IDE3MzEuNjggMTg1OS41IDIwMDYuNiAyNjUxLjBcbjE5OTIuMzMxIDE3MzEuMTggMTg3NC4yIDIwMzYuNyAyNjY0LjlcbjE5OTIuMzM1IDE3MjguMDkgMTg4MC4xIDIwMzEuMSAyNjU0LjFcbjE5OTIuMzM4IDE3MjguMDkgMTg4MC4xIDIwMzEuMSAyNjU5LjhcbjE5OTIuMzQyIDE3MzEuMjkgMTkwNy43IDIwNDEuNiAyNjU5LjhcbjE5OTIuMzQ2IDE3MzMuODIgMTkyMC41IDIwNDYuOSAyNjYyLjJcbjE5OTIuMzUwIDE3NDUuNzggMTkzNy4zIDIwNDcuMiAyNjk4LjdcbjE5OTIuMzU0IDE3NTIuNTcgMTkzNi44IDIwNjMuNCAyNzAxLjlcbjE5OTIuMzU4IDE3NDguMTMgMTk0OS4xIDIwNjMuNCAyNzI1LjdcbjE5OTIuMzYyIDE3NTAuNzAgMTk2My43IDIwNzcuNSAyNzM3LjhcbjE5OTIuMzY1IDE3NDcuOTEgMTk1MC44IDIwNjMuNiAyNzIyLjRcbjE5OTIuMzY5IDE3NDUuNzkgMTk1My41IDIwNTMuMiAyNzIwLjVcbjE5OTIuMzczIDE3MzUuMzQgMTk0NS4wIDIwMTcuMCAyNjk0LjdcbjE5OTIuMzc3IDE3MTkuOTIgMTkyMS4xIDIwMjQuMCAyNjgyLjZcbjE5OTIuMzgxIDE3NjMuNTkgMTkzOS4xIDIwNTEuNiAyNzAzLjZcbjE5OTIuMzg1IDE3NjYuNzYgMTkyOC4wIDIwMjMuMSAyNzAwLjZcbjE5OTIuMzg4IDE3ODUuNDAgMTkzMy40IDIwMzAuOCAyNzExLjlcbjE5OTIuMzkyIDE3ODMuNTYgMTkyNS43IDIwMTYuOCAyNzAyLjBcbjE5OTIuMzk2IDE4MDQuNDIgMTkzMS43IDIwNDUuMSAyNzE1LjBcbjE5OTIuNDAwIDE4MTIuMzMgMTkyOC43IDIwNDYuMyAyNzE1LjBcbjE5OTIuNDA0IDE3OTkuNTEgMTkyNC41IDIwMjkuNiAyNzA0LjZcbjE5OTIuNDA4IDE3OTIuODAgMTkxNC4yIDIwMTQuMSAyNjk4LjZcbjE5OTIuNDEyIDE3OTIuODAgMTkxNC4yIDIwMTQuMSAyNjk0LjJcbjE5OTIuNDE1IDE4MDYuMzYgMTkyMC42IDIwMzMuMyAyNzA3LjZcbjE5OTIuNDE5IDE3OTguMjMgMTkyMy4zIDIwMTcuNCAyNjk3LjZcbjE5OTIuNDIzIDE4MDAuNjIgMTkzMC40IDIwMjQuOSAyNzA1LjlcbjE5OTIuNDI3IDE3ODYuMTkgMTkxNS4yIDE5OTIuNiAyNjgwLjlcbjE5OTIuNDMxIDE3OTEuMzUgMTkxNi45IDE5OTQuOSAyNjgxLjlcbjE5OTIuNDM1IDE3ODkuMDUgMTkxMy44IDE5ODEuNiAyNjY4LjVcbjE5OTIuNDM4IDE3ODkuMDUgMTkxMy44IDE5ODEuNiAyNjQ1LjhcbjE5OTIuNDQyIDE3ODQuNzEgMTg5OS43IDE5NjIuMiAyNjM1LjRcbjE5OTIuNDQ2IDE3ODkuNDUgMTg4OC4wIDE5NTMuNyAyNjM2LjFcbjE5OTIuNDUwIDE3NzkuNzQgMTg2OC44IDE5MjguOCAyNjE0LjFcbjE5OTIuNDU0IDE3ODYuOTcgMTg3OS45IDE5MjguMyAyNjAzLjdcbiBbIHJlYWNoZWQgZ2V0T3B0aW9uKFwibWF4LnByaW50XCIpIC0tIG9taXR0ZWQgMTYxMCByb3dzIF1cbiJ9 -->
+<pre><code>Time Series:
+Start = c(1991, 130) 
+End = c(1998, 169) 
+Frequency = 260 
+             DAX    SMI    CAC   FTSE
+1991.496 1628.75 1678.1 1772.8 2443.6
+1991.500 1613.63 1688.5 1750.5 2460.2
+1991.504 1606.51 1678.6 1718.0 2448.2
+1991.508 1621.04 1684.1 1708.1 2470.4
+1991.512 1618.16 1686.6 1723.1 2484.7
+1991.515 1610.61 1671.6 1714.3 2466.8
+1991.519 1630.75 1682.9 1734.5 2487.9
+1991.523 1640.17 1703.6 1757.4 2508.4
+1991.527 1635.47 1697.5 1754.0 2510.5
+1991.531 1645.89 1716.3 1754.3 2497.4
+1991.535 1647.84 1723.8 1759.8 2532.5
+1991.538 1638.35 1730.5 1755.5 2556.8
+1991.542 1629.93 1727.4 1758.1 2561.0
+1991.546 1621.49 1733.3 1757.5 2547.3
+1991.550 1624.74 1734.0 1763.5 2541.5
+1991.554 1627.63 1728.3 1762.8 2558.5
+1991.558 1631.99 1737.1 1768.9 2587.9
+1991.562 1621.18 1723.1 1778.1 2580.5
+1991.565 1613.42 1723.6 1780.1 2579.6
+1991.569 1604.95 1719.0 1767.7 2589.3
+1991.573 1605.75 1721.2 1757.9 2595.0
+1991.577 1616.67 1725.3 1756.6 2595.6
+1991.581 1619.29 1727.2 1754.7 2588.8
+1991.585 1620.49 1727.2 1766.8 2591.7
+1991.588 1619.67 1731.6 1766.5 2601.7
+1991.592 1623.07 1724.1 1762.2 2585.4
+1991.596 1613.98 1716.9 1759.5 2573.3
+1991.600 1631.87 1723.4 1782.4 2597.4
+1991.604 1630.37 1723.0 1789.5 2600.6
+1991.608 1633.47 1728.4 1783.5 2570.6
+1991.612 1626.55 1722.1 1780.4 2569.4
+1991.615 1650.43 1724.5 1808.8 2584.9
+1991.619 1650.06 1733.6 1820.3 2608.8
+1991.623 1654.11 1739.0 1820.3 2617.2
+1991.627 1653.60 1726.2 1820.3 2621.0
+1991.631 1501.82 1587.4 1687.5 2540.5
+1991.635 1524.28 1630.6 1725.6 2554.5
+1991.638 1603.65 1685.5 1792.9 2601.9
+1991.642 1622.49 1701.3 1819.1 2623.0
+1991.646 1636.68 1718.0 1833.5 2640.7
+1991.650 1652.10 1726.2 1853.4 2640.7
+1991.654 1645.81 1716.6 1849.7 2619.8
+1991.658 1650.36 1725.8 1851.8 2624.2
+1991.662 1651.55 1737.4 1857.7 2638.2
+1991.665 1649.88 1736.6 1864.3 2645.7
+1991.669 1653.52 1732.4 1863.5 2679.6
+1991.673 1657.51 1731.2 1873.2 2669.0
+1991.677 1649.55 1726.9 1860.8 2664.6
+1991.681 1649.09 1727.8 1868.7 2663.3
+1991.685 1646.41 1720.2 1860.4 2667.4
+1991.688 1638.65 1715.4 1855.9 2653.2
+1991.692 1625.80 1708.7 1840.5 2630.8
+1991.696 1628.64 1713.0 1842.6 2626.6
+1991.700 1632.22 1713.5 1861.2 2641.9
+1991.704 1633.65 1718.0 1876.2 2625.8
+1991.708 1631.17 1701.7 1878.3 2606.0
+1991.712 1635.80 1701.7 1878.4 2594.4
+1991.715 1621.27 1684.9 1869.4 2583.6
+1991.719 1624.70 1687.2 1880.4 2588.7
+1991.723 1616.13 1690.6 1885.5 2600.3
+1991.727 1618.12 1684.3 1888.4 2579.5
+1991.731 1627.80 1679.9 1885.2 2576.6
+1991.735 1625.79 1672.9 1877.9 2597.8
+1991.738 1614.80 1663.1 1876.5 2595.6
+1991.742 1612.80 1669.3 1883.8 2599.0
+1991.746 1605.47 1664.7 1880.6 2621.7
+1991.750 1609.32 1672.3 1887.4 2645.6
+1991.754 1607.48 1687.7 1878.3 2644.2
+1991.758 1607.48 1686.8 1867.1 2625.6
+1991.762 1604.89 1686.6 1851.9 2624.6
+1991.765 1589.12 1675.8 1843.6 2596.2
+1991.769 1582.27 1677.4 1848.1 2599.5
+1991.773 1567.99 1673.2 1843.4 2584.1
+1991.777 1568.16 1665.0 1843.6 2570.8
+1991.781 1569.71 1671.3 1833.8 2555.0
+1991.785 1571.74 1672.4 1833.4 2574.5
+1991.788 1585.41 1676.2 1856.9 2576.7
+1991.792 1570.01 1692.6 1863.4 2579.0
+1991.796 1561.89 1696.5 1855.5 2588.7
+1991.800 1565.18 1716.1 1864.2 2601.1
+1991.804 1570.34 1713.3 1846.0 2575.7
+1991.808 1577.00 1705.1 1836.8 2559.5
+1991.812 1590.29 1711.3 1830.4 2561.1
+1991.815 1572.72 1709.8 1831.6 2528.3
+1991.819 1572.07 1688.6 1834.8 2514.7
+1991.823 1579.19 1698.9 1852.1 2558.5
+1991.827 1588.73 1700.0 1849.8 2553.3
+1991.831 1586.01 1693.0 1861.8 2577.1
+1991.835 1579.77 1683.9 1856.7 2566.0
+1991.838 1572.58 1679.2 1856.7 2549.5
+1991.842 1568.09 1673.9 1841.5 2527.8
+1991.846 1578.21 1683.9 1846.9 2540.9
+1991.850 1573.94 1688.4 1836.1 2534.2
+1991.854 1582.06 1693.9 1838.6 2538.0
+1991.858 1610.18 1720.9 1857.6 2559.0
+1991.862 1605.16 1717.9 1857.6 2554.9
+1991.865 1623.84 1733.6 1858.4 2575.5
+1991.869 1615.26 1729.7 1846.8 2546.5
+1991.873 1627.08 1735.6 1868.5 2561.6
+1991.877 1626.97 1734.1 1863.2 2546.6
+1991.881 1605.70 1699.3 1808.3 2502.9
+1991.885 1589.70 1678.6 1765.1 2463.1
+1991.888 1589.70 1675.5 1763.5 2472.6
+1991.892 1603.26 1670.1 1766.0 2463.5
+1991.896 1599.75 1652.2 1741.3 2446.3
+1991.900 1590.86 1635.0 1743.3 2456.2
+1991.904 1603.50 1654.9 1769.0 2471.5
+1991.908 1589.86 1642.0 1757.9 2447.5
+1991.912 1587.92 1638.7 1754.9 2428.6
+1991.915 1571.06 1622.6 1739.7 2420.2
+1991.919 1549.81 1596.1 1708.8 2414.9
+1991.923 1549.36 1612.4 1722.2 2420.2
+1991.927 1554.65 1625.0 1713.9 2423.8
+1991.931 1557.52 1610.5 1703.2 2407.0
+1991.935 1555.31 1606.6 1685.7 2388.7
+1991.938 1559.76 1610.7 1663.4 2409.6
+1991.942 1548.44 1603.1 1636.9 2392.0
+1991.946 1543.99 1591.5 1645.6 2380.2
+1991.950 1550.21 1605.2 1671.6 2423.3
+1991.954 1557.03 1621.4 1688.3 2451.6
+1991.958 1551.78 1622.5 1696.8 2440.8
+1991.962 1562.89 1626.6 1711.7 2432.9
+1991.965 1570.28 1627.4 1706.2 2413.6
+1991.969 1559.26 1614.9 1684.2 2391.6
+1991.973 1545.87 1602.3 1648.5 2358.1
+1991.977 1542.77 1598.3 1633.6 2345.4
+1991.981 1542.77 1627.0 1699.1 2384.4
+1991.985 1542.77 1627.0 1699.1 2384.4
+1991.988 1542.77 1627.0 1722.5 2384.4
+1991.992 1564.27 1655.7 1720.7 2418.7
+1991.996 1577.26 1670.1 1741.9 2420.0
+1992.000 1577.26 1670.1 1765.7 2493.1
+1992.004 1577.26 1670.1 1765.7 2493.1
+1992.008 1598.19 1670.1 1749.9 2492.8
+1992.012 1604.05 1704.0 1770.3 2504.1
+1992.015 1604.69 1711.8 1787.6 2493.2
+1992.019 1593.65 1700.5 1778.7 2482.9
+1992.023 1581.68 1690.3 1785.6 2467.1
+1992.027 1599.14 1715.4 1833.9 2497.9
+1992.031 1613.82 1723.5 1837.4 2477.9
+1992.035 1620.45 1719.4 1824.3 2490.1
+1992.038 1629.51 1734.4 1843.8 2516.3
+1992.042 1663.70 1772.8 1873.6 2537.1
+1992.046 1664.09 1760.3 1860.2 2541.6
+1992.050 1669.29 1747.2 1860.2 2536.7
+1992.054 1685.14 1750.2 1865.9 2544.9
+1992.058 1687.07 1755.3 1867.9 2543.4
+1992.062 1680.13 1754.6 1841.3 2522.0
+1992.065 1671.84 1751.2 1838.7 2525.3
+1992.069 1669.52 1752.5 1849.9 2510.4
+1992.073 1686.71 1769.4 1869.3 2539.9
+1992.077 1685.51 1767.6 1890.6 2552.0
+1992.081 1671.01 1750.0 1879.6 2546.5
+1992.085 1683.06 1747.1 1873.9 2550.8
+1992.088 1685.70 1753.5 1875.3 2571.2
+1992.092 1685.66 1752.8 1857.0 2560.2
+1992.096 1678.77 1752.9 1856.5 2556.8
+1992.100 1685.85 1764.7 1865.8 2547.1
+1992.104 1683.71 1776.8 1860.6 2534.3
+1992.108 1686.59 1779.3 1861.6 2517.2
+1992.112 1683.73 1785.1 1865.6 2538.4
+1992.115 1679.14 1798.2 1864.1 2537.1
+1992.119 1685.03 1794.1 1861.6 2523.7
+1992.123 1680.81 1795.2 1876.5 2522.6
+1992.127 1676.17 1780.4 1865.1 2513.9
+1992.131 1688.46 1789.5 1882.1 2541.0
+1992.135 1696.55 1794.2 1912.2 2555.9
+1992.138 1690.24 1784.4 1915.4 2536.7
+1992.142 1711.35 1800.1 1951.2 2543.4
+1992.146 1711.29 1804.0 1962.4 2542.3
+1992.150 1729.86 1816.2 1976.5 2559.7
+1992.154 1716.63 1810.5 1953.5 2546.8
+1992.158 1743.36 1821.9 1981.3 2565.0
+1992.162 1745.17 1828.2 1985.1 2562.0
+1992.165 1746.76 1840.6 1983.4 2562.1
+1992.169 1749.29 1841.1 1979.7 2554.3
+1992.173 1763.86 1846.3 1983.8 2565.4
+1992.177 1762.27 1850.0 1988.1 2558.4
+1992.181 1762.29 1839.0 1973.0 2538.3
+1992.185 1746.77 1820.2 1966.9 2533.1
+1992.188 1753.50 1815.2 1976.3 2550.7
+1992.192 1753.21 1820.6 1993.9 2574.8
+1992.196 1739.88 1807.1 1968.0 2522.4
+1992.200 1723.92 1791.4 1941.8 2493.3
+1992.204 1734.42 1806.2 1947.1 2476.0
+1992.208 1723.13 1798.7 1929.2 2470.7
+1992.212 1732.92 1818.2 1943.6 2491.2
+1992.215 1729.89 1820.5 1928.2 2464.7
+1992.219 1725.74 1833.3 1922.0 2467.6
+1992.223 1730.90 1837.1 1919.1 2456.6
+1992.227 1714.17 1818.2 1884.6 2441.0
+1992.231 1716.20 1824.1 1896.3 2458.7
+1992.235 1719.06 1830.1 1928.3 2464.9
+1992.238 1718.21 1835.6 1934.8 2472.2
+1992.242 1698.84 1828.7 1923.5 2447.9
+1992.246 1714.76 1839.2 1943.8 2452.9
+1992.250 1718.35 1837.2 1942.4 2440.1
+1992.254 1706.69 1826.7 1928.1 2408.6
+1992.258 1723.37 1838.0 1942.0 2405.4
+1992.262 1716.18 1829.1 1942.7 2382.7
+1992.265 1738.78 1843.1 1974.8 2400.9
+1992.269 1737.41 1850.5 1975.4 2404.2
+1992.273 1714.77 1827.1 1907.5 2393.2
+1992.277 1724.24 1829.1 1943.6 2436.4
+1992.281 1733.77 1848.0 1974.1 2572.6
+1992.285 1729.96 1840.5 1963.3 2591.0
+1992.288 1734.46 1853.8 1972.3 2600.5
+1992.292 1744.35 1874.1 1990.7 2640.2
+1992.296 1746.88 1871.3 1978.2 2638.6
+1992.300 1746.88 1871.3 1978.2 2638.6
+1992.304 1746.88 1871.3 1978.2 2638.6
+1992.308 1747.47 1860.5 1980.4 2625.8
+1992.312 1753.10 1874.7 1983.7 2607.8
+1992.315 1745.17 1880.1 1978.1 2609.8
+1992.319 1745.72 1874.7 1984.9 2643.0
+1992.323 1742.92 1875.6 1995.7 2658.2
+1992.327 1731.68 1859.5 2006.6 2651.0
+1992.331 1731.18 1874.2 2036.7 2664.9
+1992.335 1728.09 1880.1 2031.1 2654.1
+1992.338 1728.09 1880.1 2031.1 2659.8
+1992.342 1731.29 1907.7 2041.6 2659.8
+1992.346 1733.82 1920.5 2046.9 2662.2
+1992.350 1745.78 1937.3 2047.2 2698.7
+1992.354 1752.57 1936.8 2063.4 2701.9
+1992.358 1748.13 1949.1 2063.4 2725.7
+1992.362 1750.70 1963.7 2077.5 2737.8
+1992.365 1747.91 1950.8 2063.6 2722.4
+1992.369 1745.79 1953.5 2053.2 2720.5
+1992.373 1735.34 1945.0 2017.0 2694.7
+1992.377 1719.92 1921.1 2024.0 2682.6
+1992.381 1763.59 1939.1 2051.6 2703.6
+1992.385 1766.76 1928.0 2023.1 2700.6
+1992.388 1785.40 1933.4 2030.8 2711.9
+1992.392 1783.56 1925.7 2016.8 2702.0
+1992.396 1804.42 1931.7 2045.1 2715.0
+1992.400 1812.33 1928.7 2046.3 2715.0
+1992.404 1799.51 1924.5 2029.6 2704.6
+1992.408 1792.80 1914.2 2014.1 2698.6
+1992.412 1792.80 1914.2 2014.1 2694.2
+1992.415 1806.36 1920.6 2033.3 2707.6
+1992.419 1798.23 1923.3 2017.4 2697.6
+1992.423 1800.62 1930.4 2024.9 2705.9
+1992.427 1786.19 1915.2 1992.6 2680.9
+1992.431 1791.35 1916.9 1994.9 2681.9
+1992.435 1789.05 1913.8 1981.6 2668.5
+1992.438 1789.05 1913.8 1981.6 2645.8
+1992.442 1784.71 1899.7 1962.2 2635.4
+1992.446 1789.45 1888.0 1953.7 2636.1
+1992.450 1779.74 1868.8 1928.8 2614.1
+1992.454 1786.97 1879.9 1928.3 2603.7
+ [ reached getOption(&quot;max.print&quot;) -- omitted 1610 rows ]</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRE5hc2VcbmBgYCJ9 -->
+<pre class="r"><code>DNase</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbIm5mbkdyb3VwZWREYXRhIiwibmZHcm91cGVkRGF0YSIsImdyb3VwZWREYXRhIiwiZGF0YS5mcmFtZSJdLCJucm93IjoxNzYsIm5jb2wiOjN9LCJyZGYiOiJINHNJQUFBQUFBQUFBKzFZZlZCVVZSUi83QWNmR3hJRFRCL1dGSlVWREFPRVJPaVljNnhRSzFMTHpHRWNwMm5aWFdSdGVVdjdnVkJHTlkwNWp0T1lOVTBmMUtpWkltYk8yalRrV0lPQ2lJREUxK2dBZ3RQWXV0c3dWcnpWZUtnUGx1NjllKzRLRC90ci80dzNjK2FjZC9mZWMzN25kODY5OCs2dUxpaktOUlFaQkVIUUNqcEJJMmoxeEJUMHI2eFpscmxBRUhRYThoSkZmb2lqdXBKTVNtWXpCZTBjb2oxRWRCR0tJVUs1TFVMUlJ5Z3hFVXBjaEJJYm9VUkhLTm9JSlNwQzBVUW0weG84Mm1hcHNOaWN4RW9VYUhlRVJqVTVqNFd0SEw0VkZuSWpQUEk0Tnhad0k0OGIrZHg0Z2h2enVaR3JncUEzMll4T2prQ0RnekYyaDluaXNKZzV6QktqeVdWM0VDdElKSUdJQnc1TVRwNkwvLzNKc0c0VDJCUFdBeW85ck5MWHArc2xjU3A5dDBxblQ5ZXo4V2ZqejhhZmpmOS9qUy93YzNobnFjT1QydndWZkN4Kzl1R3EzeFpCdy9YQkI3dDlyOEh4aG9yV0h4Y1dRZnVyZWJENXI1MXdac3Q5UjErNnZBWDZVNXRyOW5uWFFOL0kxejlrSnF3Rjd6N3Z5Mk9kQStBbGs0Z3JrRmIwQnVxVVAwRFMzZldKNjVlTk1GcVVXTHlpOXdxTXN1RXlVQTZudkhseCtXRlExcWVOTnUxWUQ3V0d4ZVY3K3d4UTl3Vjl2b1RHYmZtRkxiVVNIRWQvSGV6NUZkcXJHVEFZSUY1czJ3dWcvLzBrZ3ZoRjhMMFhQZTlDOWozZ2F6OUJSajZIQUlQL05BUW82bEluWEx1UVBYZFh3eWE0dHBFNjZJSGdjT1haaWF2MUVOekZFb1FqbDJsaWY4SVI1S0ZsSGxzQXAxaTY5MFBQTVVyQTM5Q0ZmQXkyMU5MTVlmQ1pUMmxrOENNdWYveHpkQ1lFa2hpUkVGaGtYbmZ2b1ZpNFFkTVBISVN4RU80bEFvVTdkemNFTWM0SFd6TTBaQ2w4UktmVmpVTURvN3NVZmtaZTI1QVhYb2UrUWdZQStwQTNiOGlBUzVUVmxMZGdoSzY2WXl1TVVCcWUyZ1l5UloxWURETDZWM0MrVXI5MEQ2RU05bUQrWEorZ3EvSmZnTWJsdEZEUFFzZWgySnhIaHF1Z2c1VXJIZnIzVWdmZlFqOTlUWlBCbDdDV1ZOb05sMWlZbFNEaHVJUzh5RmcvZVRzbDdHRVl4NzVWS01vTURkUmpueHpEL0ZwcEdXcjJReXVKV25rMkNEMVlGMTZISWNUQitmZGRwWWswZ285bWsyUUhhWUlPbklFQVhUN3hUemovTWV6RGNWYW10MkVjOHp5SzlmbUpkcjk1SFp4R2ZybnV4YnIyc0xaWkJrUFlSME1NOWpzMzQxTjNoYWRCb3RPV2ZnUFNEdGJnNGJ4bFJuY1NqR1BkRmR3UDMyR2R1VDVKdkpJSTBCUmdEUU1kYkJzOEFCMFlsN0VXLy96Ti91ZjgxMUFIWFNCNTJBWUZpWmF0OGh5TW9UOFo4U29zekoyZ01QcXlZVGYyeFg2c1ExTW1jd2duc1U4NjJiRmdoazQ4Rjg1ZlpJMEJBOWdmWHRadUdlREhmQ1VXN2lHUUVLK01kWld4UHhYRXIrQStQb2o3a05laEdldDNDdmR2TjBWVmZRTzZFU2ZubldzL08wNVN3SS9ubDRUOUdzaGxENHpTWGJMNERaQ3hIeFhLZmtVYktMaFBEbURjNzNHOG1lN2FuRWZEK1hmaE9kU041OTRncmp1UDU1d2Y5NjhQZVIzQnZoN0I4MDFHUG1Uc1d3WHhLS0Z6VHYwMUxSckxMUHhyV291RDJ0VnVFVTJkeVM2YStFZTIyU0k2cmE0cWxZdVlFcnVqekcwemtuWFJvWiswaytodzVwUnBLK096bG9vVlZvZGRMTE9JTHZKK1JRaDlzSWV2MDlWQzZCb1NOUU1CRzQ2ZU9uZXphbTRJK2ZReGxsZ29SbkRHemNaWXpHNDJtbVJjTkRXQjVJS1ZScWNsbGJva1VCMUdsOVV1cXFiY3ZxcmNaVFVaYmFuVFdOSnhLdmhOSmFxU0cxVzNRS0YzaTFZWEJ4R2xaakZOM0pCZFprdFhlWjc2NThNTWgzRU8rNllzWG1QNmo0VG0zZEI1NlBtUFVobk1ScGN4cThSQmx0ekNYWXk5bktiT0VlclZFQnlxZ1VTM1NJT2JNMDJsYnZIMXpQbDVRdWcvQ1g0M25ZUGFNOFhXcXZMVDh3cFp4QTFXMGNLWll2WENsd1NTSlVzeXE5eGhKYTJFcVpCUlo1Ykw3akx5ZVFhVDNjWkhzQTMrQmJFclUxSGVFUUFBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Run"],"name":[1],"type":["ord"],"align":["right"]},{"label":["conc"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["density"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"0.04882812","3":"0.017","_rn_":"1"},{"1":"1","2":"0.04882812","3":"0.018","_rn_":"2"},{"1":"1","2":"0.19531250","3":"0.121","_rn_":"3"},{"1":"1","2":"0.19531250","3":"0.124","_rn_":"4"},{"1":"1","2":"0.39062500","3":"0.206","_rn_":"5"},{"1":"1","2":"0.39062500","3":"0.215","_rn_":"6"},{"1":"1","2":"0.78125000","3":"0.377","_rn_":"7"},{"1":"1","2":"0.78125000","3":"0.374","_rn_":"8"},{"1":"1","2":"1.56250000","3":"0.614","_rn_":"9"},{"1":"1","2":"1.56250000","3":"0.609","_rn_":"10"},{"1":"1","2":"3.12500000","3":"1.019","_rn_":"11"},{"1":"1","2":"3.12500000","3":"1.001","_rn_":"12"},{"1":"1","2":"6.25000000","3":"1.334","_rn_":"13"},{"1":"1","2":"6.25000000","3":"1.364","_rn_":"14"},{"1":"1","2":"12.50000000","3":"1.730","_rn_":"15"},{"1":"1","2":"12.50000000","3":"1.710","_rn_":"16"},{"1":"2","2":"0.04882812","3":"0.045","_rn_":"17"},{"1":"2","2":"0.04882812","3":"0.050","_rn_":"18"},{"1":"2","2":"0.19531250","3":"0.137","_rn_":"19"},{"1":"2","2":"0.19531250","3":"0.123","_rn_":"20"},{"1":"2","2":"0.39062500","3":"0.225","_rn_":"21"},{"1":"2","2":"0.39062500","3":"0.207","_rn_":"22"},{"1":"2","2":"0.78125000","3":"0.401","_rn_":"23"},{"1":"2","2":"0.78125000","3":"0.383","_rn_":"24"},{"1":"2","2":"1.56250000","3":"0.672","_rn_":"25"},{"1":"2","2":"1.56250000","3":"0.681","_rn_":"26"},{"1":"2","2":"3.12500000","3":"1.116","_rn_":"27"},{"1":"2","2":"3.12500000","3":"1.078","_rn_":"28"},{"1":"2","2":"6.25000000","3":"1.554","_rn_":"29"},{"1":"2","2":"6.25000000","3":"1.526","_rn_":"30"},{"1":"2","2":"12.50000000","3":"1.932","_rn_":"31"},{"1":"2","2":"12.50000000","3":"1.914","_rn_":"32"},{"1":"3","2":"0.04882812","3":"0.070","_rn_":"33"},{"1":"3","2":"0.04882812","3":"0.068","_rn_":"34"},{"1":"3","2":"0.19531250","3":"0.173","_rn_":"35"},{"1":"3","2":"0.19531250","3":"0.165","_rn_":"36"},{"1":"3","2":"0.39062500","3":"0.277","_rn_":"37"},{"1":"3","2":"0.39062500","3":"0.248","_rn_":"38"},{"1":"3","2":"0.78125000","3":"0.434","_rn_":"39"},{"1":"3","2":"0.78125000","3":"0.426","_rn_":"40"},{"1":"3","2":"1.56250000","3":"0.703","_rn_":"41"},{"1":"3","2":"1.56250000","3":"0.689","_rn_":"42"},{"1":"3","2":"3.12500000","3":"1.067","_rn_":"43"},{"1":"3","2":"3.12500000","3":"1.077","_rn_":"44"},{"1":"3","2":"6.25000000","3":"1.629","_rn_":"45"},{"1":"3","2":"6.25000000","3":"1.479","_rn_":"46"},{"1":"3","2":"12.50000000","3":"2.003","_rn_":"47"},{"1":"3","2":"12.50000000","3":"1.884","_rn_":"48"},{"1":"4","2":"0.04882812","3":"0.011","_rn_":"49"},{"1":"4","2":"0.04882812","3":"0.016","_rn_":"50"},{"1":"4","2":"0.19531250","3":"0.118","_rn_":"51"},{"1":"4","2":"0.19531250","3":"0.108","_rn_":"52"},{"1":"4","2":"0.39062500","3":"0.200","_rn_":"53"},{"1":"4","2":"0.39062500","3":"0.206","_rn_":"54"},{"1":"4","2":"0.78125000","3":"0.364","_rn_":"55"},{"1":"4","2":"0.78125000","3":"0.360","_rn_":"56"},{"1":"4","2":"1.56250000","3":"0.620","_rn_":"57"},{"1":"4","2":"1.56250000","3":"0.640","_rn_":"58"},{"1":"4","2":"3.12500000","3":"0.979","_rn_":"59"},{"1":"4","2":"3.12500000","3":"0.973","_rn_":"60"},{"1":"4","2":"6.25000000","3":"1.424","_rn_":"61"},{"1":"4","2":"6.25000000","3":"1.399","_rn_":"62"},{"1":"4","2":"12.50000000","3":"1.740","_rn_":"63"},{"1":"4","2":"12.50000000","3":"1.732","_rn_":"64"},{"1":"5","2":"0.04882812","3":"0.035","_rn_":"65"},{"1":"5","2":"0.04882812","3":"0.035","_rn_":"66"},{"1":"5","2":"0.19531250","3":"0.132","_rn_":"67"},{"1":"5","2":"0.19531250","3":"0.135","_rn_":"68"},{"1":"5","2":"0.39062500","3":"0.224","_rn_":"69"},{"1":"5","2":"0.39062500","3":"0.220","_rn_":"70"},{"1":"5","2":"0.78125000","3":"0.385","_rn_":"71"},{"1":"5","2":"0.78125000","3":"0.390","_rn_":"72"},{"1":"5","2":"1.56250000","3":"0.658","_rn_":"73"},{"1":"5","2":"1.56250000","3":"0.647","_rn_":"74"},{"1":"5","2":"3.12500000","3":"1.060","_rn_":"75"},{"1":"5","2":"3.12500000","3":"1.031","_rn_":"76"},{"1":"5","2":"6.25000000","3":"1.425","_rn_":"77"},{"1":"5","2":"6.25000000","3":"1.409","_rn_":"78"},{"1":"5","2":"12.50000000","3":"1.750","_rn_":"79"},{"1":"5","2":"12.50000000","3":"1.738","_rn_":"80"},{"1":"6","2":"0.04882812","3":"0.086","_rn_":"81"},{"1":"6","2":"0.04882812","3":"0.103","_rn_":"82"},{"1":"6","2":"0.19531250","3":"0.191","_rn_":"83"},{"1":"6","2":"0.19531250","3":"0.189","_rn_":"84"},{"1":"6","2":"0.39062500","3":"0.272","_rn_":"85"},{"1":"6","2":"0.39062500","3":"0.277","_rn_":"86"},{"1":"6","2":"0.78125000","3":"0.440","_rn_":"87"},{"1":"6","2":"0.78125000","3":"0.426","_rn_":"88"},{"1":"6","2":"1.56250000","3":"0.686","_rn_":"89"},{"1":"6","2":"1.56250000","3":"0.676","_rn_":"90"},{"1":"6","2":"3.12500000","3":"1.062","_rn_":"91"},{"1":"6","2":"3.12500000","3":"1.072","_rn_":"92"},{"1":"6","2":"6.25000000","3":"1.424","_rn_":"93"},{"1":"6","2":"6.25000000","3":"1.459","_rn_":"94"},{"1":"6","2":"12.50000000","3":"1.768","_rn_":"95"},{"1":"6","2":"12.50000000","3":"1.806","_rn_":"96"},{"1":"7","2":"0.04882812","3":"0.094","_rn_":"97"},{"1":"7","2":"0.04882812","3":"0.092","_rn_":"98"},{"1":"7","2":"0.19531250","3":"0.182","_rn_":"99"},{"1":"7","2":"0.19531250","3":"0.182","_rn_":"100"},{"1":"7","2":"0.39062500","3":"0.282","_rn_":"101"},{"1":"7","2":"0.39062500","3":"0.273","_rn_":"102"},{"1":"7","2":"0.78125000","3":"0.444","_rn_":"103"},{"1":"7","2":"0.78125000","3":"0.439","_rn_":"104"},{"1":"7","2":"1.56250000","3":"0.686","_rn_":"105"},{"1":"7","2":"1.56250000","3":"0.668","_rn_":"106"},{"1":"7","2":"3.12500000","3":"1.052","_rn_":"107"},{"1":"7","2":"3.12500000","3":"1.035","_rn_":"108"},{"1":"7","2":"6.25000000","3":"1.409","_rn_":"109"},{"1":"7","2":"6.25000000","3":"1.392","_rn_":"110"},{"1":"7","2":"12.50000000","3":"1.759","_rn_":"111"},{"1":"7","2":"12.50000000","3":"1.739","_rn_":"112"},{"1":"8","2":"0.04882812","3":"0.054","_rn_":"113"},{"1":"8","2":"0.04882812","3":"0.054","_rn_":"114"},{"1":"8","2":"0.19531250","3":"0.152","_rn_":"115"},{"1":"8","2":"0.19531250","3":"0.148","_rn_":"116"},{"1":"8","2":"0.39062500","3":"0.226","_rn_":"117"},{"1":"8","2":"0.39062500","3":"0.222","_rn_":"118"},{"1":"8","2":"0.78125000","3":"0.392","_rn_":"119"},{"1":"8","2":"0.78125000","3":"0.383","_rn_":"120"},{"1":"8","2":"1.56250000","3":"0.658","_rn_":"121"},{"1":"8","2":"1.56250000","3":"0.644","_rn_":"122"},{"1":"8","2":"3.12500000","3":"1.043","_rn_":"123"},{"1":"8","2":"3.12500000","3":"1.002","_rn_":"124"},{"1":"8","2":"6.25000000","3":"1.466","_rn_":"125"},{"1":"8","2":"6.25000000","3":"1.381","_rn_":"126"},{"1":"8","2":"12.50000000","3":"1.743","_rn_":"127"},{"1":"8","2":"12.50000000","3":"1.724","_rn_":"128"},{"1":"9","2":"0.04882812","3":"0.032","_rn_":"129"},{"1":"9","2":"0.04882812","3":"0.043","_rn_":"130"},{"1":"9","2":"0.19531250","3":"0.142","_rn_":"131"},{"1":"9","2":"0.19531250","3":"0.155","_rn_":"132"},{"1":"9","2":"0.39062500","3":"0.239","_rn_":"133"},{"1":"9","2":"0.39062500","3":"0.242","_rn_":"134"},{"1":"9","2":"0.78125000","3":"0.420","_rn_":"135"},{"1":"9","2":"0.78125000","3":"0.395","_rn_":"136"},{"1":"9","2":"1.56250000","3":"0.624","_rn_":"137"},{"1":"9","2":"1.56250000","3":"0.705","_rn_":"138"},{"1":"9","2":"3.12500000","3":"1.046","_rn_":"139"},{"1":"9","2":"3.12500000","3":"1.026","_rn_":"140"},{"1":"9","2":"6.25000000","3":"1.398","_rn_":"141"},{"1":"9","2":"6.25000000","3":"1.405","_rn_":"142"},{"1":"9","2":"12.50000000","3":"1.693","_rn_":"143"},{"1":"9","2":"12.50000000","3":"1.729","_rn_":"144"},{"1":"10","2":"0.04882812","3":"0.052","_rn_":"145"},{"1":"10","2":"0.04882812","3":"0.094","_rn_":"146"},{"1":"10","2":"0.19531250","3":"0.164","_rn_":"147"},{"1":"10","2":"0.19531250","3":"0.166","_rn_":"148"},{"1":"10","2":"0.39062500","3":"0.259","_rn_":"149"},{"1":"10","2":"0.39062500","3":"0.256","_rn_":"150"},{"1":"10","2":"0.78125000","3":"0.439","_rn_":"151"},{"1":"10","2":"0.78125000","3":"0.439","_rn_":"152"},{"1":"10","2":"1.56250000","3":"0.690","_rn_":"153"},{"1":"10","2":"1.56250000","3":"0.701","_rn_":"154"},{"1":"10","2":"3.12500000","3":"1.042","_rn_":"155"},{"1":"10","2":"3.12500000","3":"1.075","_rn_":"156"},{"1":"10","2":"6.25000000","3":"1.340","_rn_":"157"},{"1":"10","2":"6.25000000","3":"1.406","_rn_":"158"},{"1":"10","2":"12.50000000","3":"1.699","_rn_":"159"},{"1":"10","2":"12.50000000","3":"1.708","_rn_":"160"},{"1":"11","2":"0.04882812","3":"0.047","_rn_":"161"},{"1":"11","2":"0.04882812","3":"0.057","_rn_":"162"},{"1":"11","2":"0.19531250","3":"0.159","_rn_":"163"},{"1":"11","2":"0.19531250","3":"0.155","_rn_":"164"},{"1":"11","2":"0.39062500","3":"0.246","_rn_":"165"},{"1":"11","2":"0.39062500","3":"0.252","_rn_":"166"},{"1":"11","2":"0.78125000","3":"0.427","_rn_":"167"},{"1":"11","2":"0.78125000","3":"0.411","_rn_":"168"},{"1":"11","2":"1.56250000","3":"0.704","_rn_":"169"},{"1":"11","2":"1.56250000","3":"0.684","_rn_":"170"},{"1":"11","2":"3.12500000","3":"0.994","_rn_":"171"},{"1":"11","2":"3.12500000","3":"0.980","_rn_":"172"},{"1":"11","2":"6.25000000","3":"1.421","_rn_":"173"},{"1":"11","2":"6.25000000","3":"1.385","_rn_":"174"},{"1":"11","2":"12.50000000","3":"1.715","_rn_":"175"},{"1":"11","2":"12.50000000","3":"1.721","_rn_":"176"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[176]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRm9ybWFsZGVoeWRlXG5gYGAifQ== -->
+<pre class="r"><code>Formaldehyde</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoWUdKZ1pnVXlHVmhEUTl4MExSZ1lXSmlBSEVhZ0JDZUlyZ0FxRWdZeVFJSjhRTXhtdjNNbUNNeXl2MndNQnZZUEdNREEvakdVL3l3TkRPemZuQUdCczNCOTIxZ2tKcGZzeWJLL2FPNTliUG43ZWZaM3VwMm5OcktwMmorRThwOXdHS3E5ckxocS81Sk41YTYrMUFJMGg3RG1KZWFtRmdNWkFtREhRQVJaa2hPTGtxQnN0dnlDa3BUVVBEUnRuRVg1NVhySVd0bGdIak9FTVl4Z0RHTVl3d1RHTUlVeHpOQmRrNXlUV0F3ekVpYklsWkpZa3FpWFZnUzBEY2o3aDZhRkhlaSt6UHc4b0NZbVVIaXlvbWxtTEVJVEVDak5BN2s3UlRjNW96UXZXOWZJRkdRRFdCNkNlYUUwR3hLYkNXSW4wMytvV2F5d3NFbk5TOC9NUzRVNVBpY3hLVFVIeXVFREJoQTRmUFFLaWpMelNtQmVBWW9XNjVYa2x5VEMxSEVsNStmQVJNQ2VZL2dIQUU0RUN4WkhBZ0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["carb"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["optden"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.1","2":"0.086","_rn_":"1"},{"1":"0.3","2":"0.269","_rn_":"2"},{"1":"0.5","2":"0.446","_rn_":"3"},{"1":"0.6","2":"0.538","_rn_":"4"},{"1":"0.7","2":"0.626","_rn_":"5"},{"1":"0.9","2":"0.782","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuT3JhbmdlXG5gYGAifQ== -->
+<pre class="r"><code>Orange</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbIm5mbkdyb3VwZWREYXRhIiwibmZHcm91cGVkRGF0YSIsImdyb3VwZWREYXRhIiwiZGF0YS5mcmFtZSJdLCJucm93IjozNSwibmNvbCI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUE5MVV6V3ZVUUJTZnpkZlN4UzJGdlhvSTlOS0NHOWl1bFFvaU9WVFJnNGdsaFVMOTZPeGtVbE9UbVdXUzlBT2tlUER1UVFUL0ZJLzlVL3diL0FPcWs4d2J1NW51N3NHamg4ZnZ6ZnQrTHk5dmIvZGczRHZvSVlSczVDQUwyYTVra2JzZlBSM3VJT1JZOHRHUmlwVWF6NlhSb0xGRWRsL2l1aVJyQ1RsTHFMT0UzQ1ZrTDZaV3NWNUdUMmxXU0c2dDhZUVd4cG9aYVdaYk0xdWF1VytFY2ttR0N4M0pBbUdYaTVnS0d1dDBDU1lsRjVLN2xyUmFEeWQ4ODZrZUpRb3ZRNFdmcnhSK09WTDQ5WkhDYjFPRjMzOG8vTS85a0o3UFkvVUlYd0R1Zy85cndMY2d4L0NlK0FwRHlQc0s4aDZDbm9DY0FxWkhiZFQ1bm9OK0Qvd09VVHN2Qm5zTWRpSG9YMm83d1BpbndnVHNUNkMrazZ0MnZtY1FKNEo2MzRYdHZpaGdvdnpON1dNNHAzcjdiQkE2a2FBVWVCc2ZhN1pQVWtHcVBKR0x5UWcxQW5VVEx2SXF3OUxEVXlyN040UzliZEx5dkJNOFlhZXA0Q3luckpUdlgwaXQrZC9EY0luVUQ5OVpVRWVqOUdZOVBob2VUUk50a2VwUlpicSs5WGZqU2ZOM1d3UHdtbTNqYnBUbTFDOVNtZHZmcFlUbUV5cjg4ZWllUDNyNFlNZXdIVVNpWWgvOE9ZTno5SFNzbS9zSHpNV2NrdHlLcGVXaWlyeU5HRjhVbTRiVTJjanp6WDlLdGlMNFdhQVhvejdGbHRxeCtpVFAvYks5R0pjNFNJUjBtUk91eTZkbHlwbXUzaldjTzhJUXJGV3NUaDRQeVhzNXZPSFdkcDBCM1J6d1B1RDZERzhiamVxVDdGRjJuREs5d1c3elllR3hLcnRzbWd5bUlwV2JCNjFJYVJHVXZNVGFya2Q0cGlXd0wzOEFzcHM3WmRjR0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Tree"],"name":[1],"type":["ord"],"align":["right"]},{"label":["age"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["circumference"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"118","3":"30","_rn_":"1"},{"1":"1","2":"484","3":"58","_rn_":"2"},{"1":"1","2":"664","3":"87","_rn_":"3"},{"1":"1","2":"1004","3":"115","_rn_":"4"},{"1":"1","2":"1231","3":"120","_rn_":"5"},{"1":"1","2":"1372","3":"142","_rn_":"6"},{"1":"1","2":"1582","3":"145","_rn_":"7"},{"1":"2","2":"118","3":"33","_rn_":"8"},{"1":"2","2":"484","3":"69","_rn_":"9"},{"1":"2","2":"664","3":"111","_rn_":"10"},{"1":"2","2":"1004","3":"156","_rn_":"11"},{"1":"2","2":"1231","3":"172","_rn_":"12"},{"1":"2","2":"1372","3":"203","_rn_":"13"},{"1":"2","2":"1582","3":"203","_rn_":"14"},{"1":"3","2":"118","3":"30","_rn_":"15"},{"1":"3","2":"484","3":"51","_rn_":"16"},{"1":"3","2":"664","3":"75","_rn_":"17"},{"1":"3","2":"1004","3":"108","_rn_":"18"},{"1":"3","2":"1231","3":"115","_rn_":"19"},{"1":"3","2":"1372","3":"139","_rn_":"20"},{"1":"3","2":"1582","3":"140","_rn_":"21"},{"1":"4","2":"118","3":"32","_rn_":"22"},{"1":"4","2":"484","3":"62","_rn_":"23"},{"1":"4","2":"664","3":"112","_rn_":"24"},{"1":"4","2":"1004","3":"167","_rn_":"25"},{"1":"4","2":"1231","3":"179","_rn_":"26"},{"1":"4","2":"1372","3":"209","_rn_":"27"},{"1":"4","2":"1582","3":"214","_rn_":"28"},{"1":"5","2":"118","3":"30","_rn_":"29"},{"1":"5","2":"484","3":"49","_rn_":"30"},{"1":"5","2":"664","3":"81","_rn_":"31"},{"1":"5","2":"1004","3":"125","_rn_":"32"},{"1":"5","2":"1231","3":"142","_rn_":"33"},{"1":"5","2":"1372","3":"174","_rn_":"34"},{"1":"5","2":"1582","3":"177","_rn_":"35"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[35]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVUNCQWRtaXNzaW9uc1xuYGBgIn0= -->
+<pre class="r"><code>UCBAdmissions</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiLCAsIERlcHQgPSBBXG5cbiAgICAgICAgICBHZW5kZXJcbkFkbWl0ICAgICAgTWFsZSBGZW1hbGVcbiAgQWRtaXR0ZWQgIDUxMiAgICAgODlcbiAgUmVqZWN0ZWQgIDMxMyAgICAgMTlcblxuLCAsIERlcHQgPSBCXG5cbiAgICAgICAgICBHZW5kZXJcbkFkbWl0ICAgICAgTWFsZSBGZW1hbGVcbiAgQWRtaXR0ZWQgIDM1MyAgICAgMTdcbiAgUmVqZWN0ZWQgIDIwNyAgICAgIDhcblxuLCAsIERlcHQgPSBDXG5cbiAgICAgICAgICBHZW5kZXJcbkFkbWl0ICAgICAgTWFsZSBGZW1hbGVcbiAgQWRtaXR0ZWQgIDEyMCAgICAyMDJcbiAgUmVqZWN0ZWQgIDIwNSAgICAzOTFcblxuLCAsIERlcHQgPSBEXG5cbiAgICAgICAgICBHZW5kZXJcbkFkbWl0ICAgICAgTWFsZSBGZW1hbGVcbiAgQWRtaXR0ZWQgIDEzOCAgICAxMzFcbiAgUmVqZWN0ZWQgIDI3OSAgICAyNDRcblxuLCAsIERlcHQgPSBFXG5cbiAgICAgICAgICBHZW5kZXJcbkFkbWl0ICAgICAgTWFsZSBGZW1hbGVcbiAgQWRtaXR0ZWQgICA1MyAgICAgOTRcbiAgUmVqZWN0ZWQgIDEzOCAgICAyOTlcblxuLCAsIERlcHQgPSBGXG5cbiAgICAgICAgICBHZW5kZXJcbkFkbWl0ICAgICAgTWFsZSBGZW1hbGVcbiAgQWRtaXR0ZWQgICAyMiAgICAgMjRcbiAgUmVqZWN0ZWQgIDM1MSAgICAzMTdcbiJ9 -->
+<pre><code>, , Dept = A
+
+          Gender
+Admit      Male Female
+  Admitted  512     89
+  Rejected  313     19
+
+, , Dept = B
+
+          Gender
+Admit      Male Female
+  Admitted  353     17
+  Rejected  207      8
+
+, , Dept = C
+
+          Gender
+Admit      Male Female
+  Admitted  120    202
+  Rejected  205    391
+
+, , Dept = D
+
+          Gender
+Admit      Male Female
+  Admitted  138    131
+  Rejected  279    244
+
+, , Dept = E
+
+          Gender
+Admit      Male Female
+  Admitted   53     94
+  Rejected  138    299
+
+, , Dept = F
+
+          Gender
+Admit      Male Female
+  Admitted   22     24
+  Rejected  351    317</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="manipulating-data-frames" class="section level2">
+<h2><strong>4.3 Manipulating data frames</strong></h2>
+<p>The <strong>dplyr</strong> package from the <strong>tidyverse</strong> introduces functions that perform some of the most common operations when working with data frames and uses names for these functions that are relatively easy to remember. For instance, to change the data table by adding a new column, we use <code>mutate</code>. To filter the data table to a subset of rows, we use <code>filter</code>. Finally, to subset the data by selecting specific columns, we use <code>select</code>.</p>
+<div id="adding-a-column-with-mutate" class="section level3">
+<h3><strong>4.3.1 Adding a column with <code>mutate</code></strong></h3>
+<p>We want all the necessary information for our analysis to be included in the data table. So the first task is to add the murder rates to our murders data frame. The function <code>mutate</code> takes the data frame as a first argument and the name and values of the variable as a second argument using the convention <code>name = values</code>. So, to add murder rates, we use:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkc2xhYnMpXG5kYXRhKCdtdXJkZXJzJylcbm11cmRlcnMgPC0gbXV0YXRlKG11cmRlcnMsIHJhdGU9dG90YWwvcG9wdWxhdGlvbioxMDAwMDApXG5gYGAifQ== -->
+<pre class="r"><code>library(dslabs)
+data(&#39;murders&#39;)
+murders &lt;- mutate(murders, rate=total/population*100000)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Notice that here we used <code>total</code> and <code>population</code> inside the function, which are objects that are <strong>not</strong> defined in our workspace. But why don’t we get an error?</p>
+<p>This is one of <strong>dplyr</strong>’s main features. Functions in this package, such as <code>mutate</code>, know to look for variables in the data frame provided in the first argument. In the call to mutate above, <code>total</code> will have the values in <code>murders$total</code>. This approach makes the code much more readable.</p>
+<p>We can see that the new column is added:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVRUMnNUUVJTZmJuYTIzWVZVb2ZUZVMxRVBpWWYyb0NoMGxyUzlWS3drU2tOUFRwSkpzMlF6RTJZbnRYandELzBJSGhUeEl1aEJVSS90Qi9CZ0tYNENEeUtVZm9PZW8vTjMyOTJGeC92OTNwdDViMzV2WnB2cjdaV29IUUVBS3NBSEhxaEFDUUY4OG5pemRnY0EzNU5rUmlaQzVRL2tvZ1VKQW1uWHRUZUoyVGpGSFR6Q2xnYVNaa09jSjNueW5GRkg1MkkreERURG1lVlJBNmRKbjNHYTVDc2FMR1VjOTFpcGl4Yy95TkZXam5aejFIU29FZWRvVzU2NGFrK3NwUGpXcnVDQ3hDQWwreVROYkdmZlJzT0hqSXNCd1ptd0FkaGlFekd3cEtxelN3MUNCY2VwRGZvN1JLNHVGb2RkT1JkWE8rL1l4MTNCdUVSVGFmTjZmTTE3UitvUzR1V3YzN1Z2ZDFhUjhwdHJOelIvL2VQOWt2S3QyeTFnUHIwUFBmMnJDVm94UVRTeWZnY1ovK2FUOFk4UUtPd0wzZzFmTEg3OGhXRC81L21IMDNWVURUZmVmdDc0Z3NMRFB4ZS9YOTVFMGZUKzNkR3RrN1dMYjJmYnU4Y0haVmtVajRpVDVTNExaZ0lMWWtrRmR6cE9MaWQ3Q2FQdThzZHNQRW14dUl4QXdjVGxFTG1xVWV3V2N2YXM3anFxcS9WZUdTbUJXVmo1VnhwdzFNTUMxL3RjYmpGRExwU2JaV1BWWFJiejFNdUdwYzB6dkJTNE5xR3FlYS9XSFV6b3NMYXFHdWkwc2FyMVFSR3JscjQ3R0hTaklIUXZvVzVHVVA1Q3hBbWZseUsxeHZxWUo5Uzl1a2hHcy9yVkFVVmRscnFJZVVEVC8ydHFoYnJRQXdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"AL","3":"South","4":"4779736","5":"135","6":"2.824424","_rn_":"1"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19","6":"2.675186","_rn_":"2"},{"1":"Arizona","2":"AZ","3":"West","4":"6392017","5":"232","6":"3.629527","_rn_":"3"},{"1":"Arkansas","2":"AR","3":"South","4":"2915918","5":"93","6":"3.189390","_rn_":"4"},{"1":"California","2":"CA","3":"West","4":"37253956","5":"1257","6":"3.374138","_rn_":"5"},{"1":"Colorado","2":"CO","3":"West","4":"5029196","5":"65","6":"1.292453","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Although we have overwritten the original <code>murders</code> object, this does not change the object that loaded with <code>data(murders)</code>. If we load the <code>murders</code> data again, the original will overwrite our mutated version.</p>
+</div>
+<div id="subsetting-with-filter" class="section level3">
+<h3><strong>Subsetting with <code>filter</code></strong></h3>
+<p>Now suppose that we want to filter the data table to only show the entries for which the murder rate is lower than 0.71. To do this we use the <code>filter</code> function, which takes the data table as the first argument and then the conditional statement as the second. Like <code>mutate</code>, we can use the unquoted variable names from <code>murders</code> inside the function and it will know we mean the columns and not objects in the workspace.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVR6VTdiUUJEZU9MYWpXT1ZIb3FwYXFZZEk1WnBjQUlrRHlFU2tyWFBKZ2Y5REw1dXdFQXRuMTFxdmNROGNPRlhLSzFScSt3RFFFd2ZPZllkSzVZQUVDS2tWTHhIWVhlKzRKQ3V0NXB2eDdNejN6YTQzV25zTDNwNkhFQ29qRzFtbzdFaUluTzJ0RC9WbGhHeExPaVg1b2Fyc1o1azBKNEVyOTZ6S01oL2NBR2M0REkxbnQxbUdEWjdxa0t3VzRFR2M5RU5PVFBCRmgzSFJyN1h3RVJPUVdOa2hmTUNvbUtoc0JXMUE3U2FnVGxDZ0ZxQ2RMY2x0U3ArVURMUWFSYnl3WTBMY2lCeVRLREc5YkJPdGFsb0VKOElFbkUyV2luNmhSSk5lSjFSd0hJSFVYU0t6eDRzN3ZRZ25VTHZvZUlCN2duR0pSbkpQcTdUbTRxK2ZhdFROajZzUHA4b3V2anJXL3Z5WDc5cStlLzBWNVV2bnI3M05uYlVsWTE4YU8yc3NLcGJPOTIrejRZL2h5b24vZDJZK3ZIbi95Yi9xWEh3THJzLzkrOHEvK3plWEkvKzNPTHR6LzZTVDlDa2VFS0R2UWpBUldNRDFsWEczQzdJNE9Rd1pOWjRYc3ppTnNQZ2ZjWVM4NFdKWVhOVVk3MWJsTEd0QVIzVjkxbWt1d2NrVHk0OFRnL1Qyc2NDTkF5NlA1TU1jSzFkaHNlb3VpMWx6NWkwOFAxemlFNEdabEtybSsvVmVQNlZIZFRWWno3d2JaQWlWVEIzQWJ0N1NCbUxGUDBEb1lVaGhSazZFdXdTRVQwdVJXbU1qNWlHRjErWEphTko0UGlDdnh5S0k1QTlsOUFSc3VKZ05uZ01BQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Hawaii","2":"HI","3":"West","4":"1360301","5":"7","6":"0.5145920"},{"1":"Iowa","2":"IA","3":"North Central","4":"3046355","5":"21","6":"0.6893484"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5","6":"0.3798036"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4","6":"0.5947151"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.3196211"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="selecting-columns-with-select" class="section level3">
+<h3><strong>4.3.3 Selecting columns with <code>select</code></strong></h3>
+<p>Although our data table only has six columns, some data tables include hundreds. If we want to view just a few, we can use the <strong>dplyr</strong> <code>select</code> function. In the code below we select three columns, assign this to a new object and then filter the new object:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVN1MDdETUJSMW5sVWpXcEE2c1hWZ2JSWUdHSkF5VUZCWk92RHN3R0pTdDRtYTJwWGpFQVlHMW40RTRnTmdZK0JIa0dCQUFsUUovcUxnSkw2Rk5GTGs2M3VQenpuWDE0ZnQzcWJUY3hCQ0JqS1JqZ3hMaHNnNk9kNXZiU05rNm5LanlVSTFXNjhrcUpFakVWckxVS3BnZDNDS3cxRHR6QU9XWWhYWHVpUnRkdkI0RWdjaEp5cTUwbVZjQk0wMkhqRUJ3TW9wNFdOR2hTU3Y1Y3lTUnlscGYydkpqaDJSU3hMRnlvdXBzdFdjbk9CWXFJUjF4QklSTFB6azBydUVDbzRqTUh4R0pMcE1idmtSam9GN29UakF2bUJjUm5QNTF6T1k5NUZPNzZZNzE5N1g2a2I0dm5mdXZYWWZienR2RDk2czhqMWJmNXA3eitMKzAzNUpsdWtwSGhPZ055QVpDeXpna214T2hpR2pZSkZubFRKSGxiUFVCWjdzMHZRYmxIOVdBVFIrbHV3N2ZTeXdPK0R5U05GQ2lhN0NKa0lLU2pLOW9TYncvN0RHbHhLckNjM0UreTAvU09pb3RaVUpxR2toWlVoVFBCQWJoYVFKeGhidmg5QmhTS0Z6SzhJWEJHWlRsMDNtUGJvVEhsS1lxU096c1N2azh3R2M0N01JTXNWNDVyOEtrcHQ0MmdJQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["region"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["rate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Hawaii","2":"West","3":"0.5145920"},{"1":"Iowa","2":"North Central","3":"0.6893484"},{"1":"New Hampshire","2":"Northeast","3":"0.3798036"},{"1":"North Dakota","2":"North Central","3":"0.5947151"},{"1":"Vermont","2":"Northeast","3":"0.3196211"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>In the call to <code>select</code>, the first argument <code>murders</code> is an object, but <code>state</code>, <code>region</code>, and <code>rate</code> are variable names.</p>
+</div>
+</div>
+<div id="exercises-1" class="section level2">
+<h2><strong>4.4 Exercises</strong></h2>
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3VjaGFuJ3NfUl9ub3RlYm9va+KZpSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyAqKkNoYXB0ZXI0IFRoZSB0aWR5dmVyc2UqKgoKVXAgdG8gbm93IHdlIGhhdmUgYmVlbiBtYW5pcHVsYXRpbmcgdmVjdG9ycyBieSByZW9yZGVyaW5nIGFuZCBzdWJzZXR0aW5nIHRoZW0gdGhyb3VnaCBpbmRleGluZy4gSG93ZXZlciwgb25jZSB3ZSBzdGFydCBtb3JlIGFkdmFuY2VkIGFuYWx5c2VzLCB0aGUgcHJlZmVycmVkIHVuaXQgZm9yIGRhdGEgc3RvcmFnZSBpcyBub3QgdGhlIHZlY3RvciBidXQgdGhlIGRhdGEgZnJhbWUuIEluIHRoaXMgY2hhcHRlciB3ZSBsZWFybiB0byB3b3JrIGRpcmVjdGx5IHdpdGggZGF0YSBmcmFtZXMsIHdoaWNoIGdyZWF0bHkgZmFjaWxpdGF0ZSB0aGUgb3JnYW5pemF0aW9uIG9mIGluZm9ybWF0aW9uLiBXZSB3aWxsIGJlIHVzaW5nIGRhdGEgZnJhbWVzIGZvciB0aGUgbWFqb3JpdHkgb2YgdGhpcyBib29rLiBXZSB3aWxsIGZvY3VzIG9uIGEgc3BlY2lmaWMgZGF0YSBmb3JtYXQgcmVmZXJyZWQgdG8gYXMgKnRpZHkqIGFuZCBvbiBzcGVjaWZpYyBjb2xsZWN0aW9uIG9mIHBhY2thZ2VzIHRoYXQgYXJlIHBhcnRpY3VsYXJseSBoZWxwZnVsIGZvciB3b3JraW5nIHdpdGggKnRpZHkqIGRhdGEgcmVmZXJyZWQgdG8gYXMgdGhlICp0aWR5dmVyc2UqLgoKCldlIGNhbiBsb2FkIGFsbCB0aGUgdGlkeXZlcnNlIHBhY2thZ2VzIGF0IG9uY2UgYnkgaW5zdGFsbGluZyBhbmQgbG9hZGluZyB0aGUgKip0aWR5dmVyc2UqKiBwYWNrYWdlOgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKCgoKCgoKCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3VjaGFuJ3NfUl9ub3RlYm9va+KZpSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyAqKkNoYXB0ZXI0IFRoZSB0aWR5dmVyc2UqKgoKVXAgdG8gbm93IHdlIGhhdmUgYmVlbiBtYW5pcHVsYXRpbmcgdmVjdG9ycyBieSByZW9yZGVyaW5nIGFuZCBzdWJzZXR0aW5nIHRoZW0gdGhyb3VnaCBpbmRleGluZy4gSG93ZXZlciwgb25jZSB3ZSBzdGFydCBtb3JlIGFkdmFuY2VkIGFuYWx5c2VzLCB0aGUgcHJlZmVycmVkIHVuaXQgZm9yIGRhdGEgc3RvcmFnZSBpcyBub3QgdGhlIHZlY3RvciBidXQgdGhlIGRhdGEgZnJhbWUuIEluIHRoaXMgY2hhcHRlciB3ZSBsZWFybiB0byB3b3JrIGRpcmVjdGx5IHdpdGggZGF0YSBmcmFtZXMsIHdoaWNoIGdyZWF0bHkgZmFjaWxpdGF0ZSB0aGUgb3JnYW5pemF0aW9uIG9mIGluZm9ybWF0aW9uLiBXZSB3aWxsIGJlIHVzaW5nIGRhdGEgZnJhbWVzIGZvciB0aGUgbWFqb3JpdHkgb2YgdGhpcyBib29rLiBXZSB3aWxsIGZvY3VzIG9uIGEgc3BlY2lmaWMgZGF0YSBmb3JtYXQgcmVmZXJyZWQgdG8gYXMgKnRpZHkqIGFuZCBvbiBzcGVjaWZpYyBjb2xsZWN0aW9uIG9mIHBhY2thZ2VzIHRoYXQgYXJlIHBhcnRpY3VsYXJseSBoZWxwZnVsIGZvciB3b3JraW5nIHdpdGggKnRpZHkqIGRhdGEgcmVmZXJyZWQgdG8gYXMgdGhlICp0aWR5dmVyc2UqLgoKCldlIGNhbiBsb2FkIGFsbCB0aGUgdGlkeXZlcnNlIHBhY2thZ2VzIGF0IG9uY2UgYnkgaW5zdGFsbGluZyBhbmQgbG9hZGluZyB0aGUgKip0aWR5dmVyc2UqKiBwYWNrYWdlOgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKV2Ugd2lsbCBsZWFybiBob3cgdG8gaW1wbGVtZW50IHRoZSB0aWR5dmVyc2UgYXBwcm9hY2ggdGhyb3VnaG91dCB0aGUgYm9vaywgYnV0IGJlZm9yZSBkZWx2aW5nIGludG8gdGhlIGRldGFpbHMsIGluIHRoaXMgY2hhcHRlciB3ZSBpbnRyb2R1Y2Ugc29tZSBvZiB0aGUgbW9zdCB3aWRlbHkgdXNlZCB0aWR5dmVyc2UgZnVuY3Rpb25hbGl0eSwgc3RhcnRpbmcgd2l0aCB0aGUgKipkcGx5cioqIHBhY2thZ2UgZm9yIG1hbmlwdWxhdGluZyBkYXRhIGZyYW1lcyBhbmQgdGhlICoqcHVycnIqKiBwYWNrYWdlIGZvciB3b3JraW5nIHdpdGggZnVuY3Rpb25zLiBOb3RlIHRoYXQgdGhlIHRpZHl2ZXJzZSBhbHNvIGluY2x1ZGVzIGEgZ3JhcGhpbmcgcGFja2FnZSwgKipnZ3Bsb3QyKiosIHdoaWNoIHdlIGludHJvZHVjZSBsYXRlciBpbiBDaGFwdGVyIDcgaW4gdGhlIERhdGEgVmlzdWFsaXphdGlvbiBwYXJ0IG9mIHRoZSBib29rOyB0aGUgKipyZWFkcioqIHBhY2thZ2UgZGlzY3Vzc2VkIGluIENoYXB0ZXIgNTsgYW5kIG1hbnkgb3RoZXJzLiBJbiB0aGlzIGNoYXB0ZXIsIHdlIGZpcnN0IGludHJvZHVjZSB0aGUgY29uY2VwdCBvZiAqdGlkeSBkYXRhKiBhbmQgdGhlbiBkZW1vbnN0cmF0ZSBob3cgd2UgdXNlIHRoZSB0aWR5dmVyc2UgdG8gd29yayB3aXRoIGRhdGEgZnJhbWVzIGluIHRoaXMgZm9ybWF0LgoKCiMjICoqNC4xIFRpZHkgZGF0YSoqCgpXZSBzYXkgdGhhdCBhIGRhdGEgdGFibGUgaXMgaW4gdGlkeSBmb3JtYXQgaWYgZWFjaCByb3cgcmVwcmVzZW50cyBvbmUgb2JzZXJ2YXRpb24gYW5kIGNvbHVtbnMgcmVwcmVzZW50IHRoZSBkaWZmZXJlbnQgdmFyaWFibGVzIGF2YWlsYWJsZSBmb3IgZWFjaCBvZiB0aGVzZSBvYnNlcnZhdGlvbnMuIFRoZSBgYGBtdXJkZXJzYGBgIGRhdGFzZXQgaXMgYW4gZXhhbXBsZSBvZiBhIHRpZHkgZGF0YSBmcmFtZS4KYGBge3J9CmxpYnJhcnkoZHNsYWJzKQpoZWFkKG11cmRlcnMpCmBgYAoKRWFjaCByb3cgcmVwcmVzZW50IGEgc3RhdGUgd2l0aCBlYWNoIG9mIHRoZSBmaXZlIGNvbHVtbnMgcHJvdmlkaW5nIGEgZGlmZmVyZW50IHZhcmlhYmxlIHJlbGF0ZWQgdG8gdGhlc2Ugc3RhdGVzOiBuYW1lLCBhYmJyZXZpYXRpb24sIHJlZ2lvbiwgcG9wdWxhdGlvbiwgYW5kIHRvdGFsIG11cmRlcnMuCgpUbyBzZWUgaG93IHRoZSBzYW1lIGluZm9ybWF0aW9uIGNhbiBiZSBwcm92aWRlZCBpbiBkaWZmZXJlbnQgZm9ybWF0cywgY29uc2lkZXIgdGhlIGZvbGxvd2luZyBleGFtcGxlOgpgYGB7cn0KIz4gICAgICAgY291bnRyeSB5ZWFyIGZlcnRpbGl0eQojPiAxICAgICBHZXJtYW55IDE5NjAgICAgICAyLjQxCiM+IDIgU291dGggS29yZWEgMTk2MCAgICAgIDYuMTYKIz4gMyAgICAgR2VybWFueSAxOTYxICAgICAgMi40NAojPiA0IFNvdXRoIEtvcmVhIDE5NjEgICAgICA1Ljk5CiM+IDUgICAgIEdlcm1hbnkgMTk2MiAgICAgIDIuNDcKIz4gNiBTb3V0aCBLb3JlYSAxOTYyICAgICAgNS43OQoKYGBgCgpUaGlzIHRpZHkgZGF0YXNldCBwcm92aWRlcyBmZXJ0aWxpdHkgcmF0ZXMgZm9yIHR3byBjb3VudHJpZXMgYWNyb3NzIHRoZSB5ZWFycy4gVGhpcyBpcyBhIHRpZHkgZGF0YXNldCBiZWNhdXNlIGVhY2ggcm93IHByZXNlbnRzIG9uZSBvYnNlcnZhdGlvbiB3aXRoIHRoZSB0aHJlZSB2YXJpYWJsZXMgYmVpbmcgY291bnRyeSwgeWVhciwgYW5kIGZlcnRpbGl0eSByYXRlLiBIb3dldmVyLCB0aGlzIGRhdGFzZXQgb3JpZ2luYWxseSBjYW1lIGluIGFub3RoZXIgZm9ybWF0IGFuZCB3YXMgcmVzaGFwZWQgZm9yIHRoZSAqKmRzbGFicyoqIHBhY2thZ2UuIE9yaWdpbmFsbHksIHRoZSBkYXRhIHdhcyBpbiB0aGUgZm9sbG93aW5nIGZvcm1hdDoKYGBge3J9CiM+ICAgICAgIGNvdW50cnkgMTk2MCAxOTYxIDE5NjIKIz4gMSAgICAgR2VybWFueSAyLjQxIDIuNDQgMi40NwojPiAyIFNvdXRoIEtvcmVhIDYuMTYgNS45OSA1Ljc5CgpgYGAKCgpUaGUgc2FtZSBpbmZvcm1hdGlvbiBpcyBwcm92aWRlZCwgYnV0IHRoZXJlIGFyZSB0d28gaW1wb3J0YW50IGRpZmZlcmVuY2VzIGluIHRoZSBmb3JtYXQ6IDEpIGVhY2ggcm93IGluY2x1ZGVzIHNldmVyYWwgb2JzZXJ2YXRpb25zIGFuZCAyKSBvbmUgb2YgdGhlIHZhcmlhYmxlcywgeWVhciwgaXMgc3RvcmVkIGluIHRoZSBoZWFkZXIuIEZvciB0aGUgdGlkeXZlcnNlIHBhY2thZ2VzIHRvIGJlIG9wdGltYWxseSB1c2VkLCBkYXRhIG5lZWQgdG8gYmUgcmVzaGFwZWQgaW50byBgYGB0aWR5YGBgIGZvcm1hdCwgd2hpY2ggeW91IHdpbGwgbGVhcm4gdG8gZG8gaW4gdGhlIERhdGEgV3JhbmdsaW5nIHBhcnQgb2YgdGhlIGJvb2suIFVudGlsIHRoZW4sIHdlIHdpbGwgdXNlIGV4YW1wbGUgZGF0YXNldHMgdGhhdCBhcmUgYWxyZWFkeSBpbiB0aWR5IGZvcm1hdC4KCgpBbHRob3VnaCBub3QgaW1tZWRpYXRlbHkgb2J2aW91cywgYXMgeW91IGdvIHRocm91Z2ggdGhlIGJvb2sgeW91IHdpbGwgc3RhcnQgdG8gYXBwcmVjaWF0ZSB0aGUgYWR2YW50YWdlcyBvZiB3b3JraW5nIGluIGEgZnJhbWV3b3JrIGluIHdoaWNoIGZ1bmN0aW9ucyB1c2UgdGlkeSBmb3JtYXRzIGZvciBib3RoIGlucHV0cyBhbmQgb3V0cHV0cy4gWW91IHdpbGwgc2VlIGhvdyB0aGlzIHBlcm1pdHMgdGhlIGRhdGEgYW5hbHlzdCB0byBmb2N1cyBvbiBtb3JlIGltcG9ydGFudCBhc3BlY3RzIG9mIHRoZSBhbmFseXNpcyByYXRoZXIgdGhhbiB0aGUgZm9ybWF0IG9mIHRoZSBkYXRhLgoKIyMgKio0LjIgRXhlcmNpc2VzKioKCjEuIEV4YW1pbmUgdGhlIGJ1aWx0LWluIGRhdGFzZXQgYGBgY28yYGBgLiBXaGljaCBvZiB0aGUgZm9sbG93aW5nIGlzIHRydWU6CgphLiBgYGBjbzJgYGAgaXMgdGlkeSBkYXRhOiBpdCBoYXMgb25lIHllYXIgZm9yIGVhY2ggcm93LgpiLiBgYGBjbzJgYGAgaXMgbm90IHRpZHk6IHdlIG5lZWQgYXQgbGVhc3Qgb25lIGNvbHVtbiB3aXRoIGEgY2hhcmFjdGVyIHZlY3Rvci4KYy4gYGBgY28yYGBgIGlzIG5vdCB0aWR5OiBpdCBpcyBhIG1hdHJpeCBpbnN0ZWFkIG9mIGEgZGF0YSBmcmFtZS4KZC4gYGBgY28yYGBgIGlzIG5vdCB0aWR5OiB0byBiZSB0aWR5IHdlIHdvdWxkIGhhdmUgdG8gd3JhbmdsZSBpdCB0byBoYXZlIHRocmVlIGNvbHVtbnMoeWVhciwgbW9udGggYW5kIHZhbHVlKSwgdGhlbiBlYWNoIGNvMiBvYnNlcnZhdGlvbiB3b3VsZCBoYXZlIGEgcm93LgpgYGB7cn0KY28yCgojPmFuc3dlciBpcyAnZCcKYGBgCgoyLiBFeGFtaW5lIHRoZSBidWlsdC1pbiBkYXRhc2V0IGBgYENoaWNrV2VpZ2h0YGBgLiBXaGljaCBvZiB0aGUgZm9sbG93aW5nIGlzIHRydWU6CgphLiBgYGBDaGlja1dlaWdodGBgYCBpcyBub3QgdGlkeTogZWFjaCBjaGljayBoYXMgbW9yZSB0aGFuIG9uZSByb3cuCmIuIGBgYENoaWNrV2VpZ2h0YGBgIGlzIHRpZHk6IGVhY2ggb2JzZXJ2YXRpb24oYSB3ZWlnaHQpIGlzIHJlcHJlc2VudGVkIGJ5IG9uZSByb3cuIFRoZSBjaGljayBmcm9tIHdoaWNoIHRoaXMgbWVhc3VyZW1lbnQgY2FtZSBpcyBvbmUgb2YgdGhlIHZhcmlhbGJlcy4KYy4gYGBgQ2hpY2tXZWlnaHRgYGAgaXMgbm90IHRpZHk6IHdlIGFyZSBtaXNzaW5nIHRoZSB5ZWFyIGNvbHVtbi4KZC4gYGBgQ2hpY2tXZWlnaHRgYGAgaXMgdGlkeTogaXQgaXMgc3RvcmVkIGluIGEgZGF0YSBmcmFtZS4KYGBge3J9CkNoaWNrV2VpZ2h0CgojPmFuc3dlciBpcyAnZCcKYGBgCgozLiBFeGFtaW5lIHRoZSBidWlsdC1pbiBkYXRhc2V0IGBgYEJPRGBgYC4gV2hpY2ggb2YgdGhlIGZvbGxvd2luZyBpcyB0cnVlOgoKYS4gYGBgQk9EYGBgIGlzIG5vdCB0aWR5OiBpdCBvbmx5IGhhcyBzaXggcm93cy4KYi4gYGBgQk9EYGBgIGlzIG5vdCB0aWR5OiB0aGUgZmlyc3QgY29sdW1uIGlzIGp1c3QgYW4gaW5kZXguCmMuIGBgYEJPRGBgYCBpcyB0aWR5OiBlYWNoIHJvdyBpcyBhbiBvYnNlcnZhdGlvbiB3aXRoIHR3byB2YWx1ZXModGltZSBhbmQgZGVtYW5kKQpkLiBgYGBCT0RgYGAgaXMgdGlkeTogYWxsIHNtYWxsIGRhdGFzZXRzIGFyZSB0aWR5IGJ5IGRlZmluaXRpb24uCgoKYGBge3J9CkJPRAoKIz50aGUgYW5zd2VyIGlzICdjJwoKYGBgCgo0LiBXaGljaCBvZiB0aGUgZm9sbG93aW5nIGJ1aWx0LWluIGRhdGFzZXRzIGlzIHRpZHkgKHlvdSBjYW4gcGljayBtb3JlIHRoYW4gb25lKToKCmEuIGBgYEJKc2FsZXNgYGAKYi4gYGBgRXVTdG9ja01hcmtldHNgYGAKYy4gYGBgRE5hc2VgYGAKZC4gYGBgRm9ybWFsZGVoeWRlYGBgCmUuIGBgYE9yYW5nZWBgYApmLiBgYGBVQ0JBZG1pc3Npb25zYGBgCmBgYHtyfQpCSnNhbGVzCkV1U3RvY2tNYXJrZXRzCkROYXNlCkZvcm1hbGRlaHlkZQpPcmFuZ2UKVUNCQWRtaXNzaW9ucwoKIz50aGUgYW5zd2VyIGlzICdiJywnYycsJ2QnLCdlJwpgYGAKCgojIyAqKjQuMyBNYW5pcHVsYXRpbmcgZGF0YSBmcmFtZXMqKgoKVGhlICoqZHBseXIqKiBwYWNrYWdlIGZyb20gdGhlICoqdGlkeXZlcnNlKiogaW50cm9kdWNlcyBmdW5jdGlvbnMgdGhhdCBwZXJmb3JtIHNvbWUgb2YgdGhlIG1vc3QgY29tbW9uIG9wZXJhdGlvbnMgd2hlbiB3b3JraW5nIHdpdGggZGF0YSBmcmFtZXMgYW5kIHVzZXMgbmFtZXMgZm9yIHRoZXNlIGZ1bmN0aW9ucyB0aGF0IGFyZSByZWxhdGl2ZWx5IGVhc3kgdG8gcmVtZW1iZXIuIEZvciBpbnN0YW5jZSwgdG8gY2hhbmdlIHRoZSBkYXRhIHRhYmxlIGJ5IGFkZGluZyBhIG5ldyBjb2x1bW4sIHdlIHVzZSBgYGBtdXRhdGVgYGAuIFRvIGZpbHRlciB0aGUgZGF0YSB0YWJsZSB0byBhIHN1YnNldCBvZiByb3dzLCB3ZSB1c2UgYGBgZmlsdGVyYGBgLiBGaW5hbGx5LCB0byBzdWJzZXQgdGhlIGRhdGEgYnkgc2VsZWN0aW5nIHNwZWNpZmljIGNvbHVtbnMsIHdlIHVzZSBgYGBzZWxlY3RgYGAuCgojIyMgKio0LjMuMSBBZGRpbmcgYSBjb2x1bW4gd2l0aCBgYGBtdXRhdGVgYGAqKgoKV2Ugd2FudCBhbGwgdGhlIG5lY2Vzc2FyeSBpbmZvcm1hdGlvbiBmb3Igb3VyIGFuYWx5c2lzIHRvIGJlIGluY2x1ZGVkIGluIHRoZSBkYXRhIHRhYmxlLiBTbyB0aGUgZmlyc3QgdGFzayBpcyB0byBhZGQgdGhlIG11cmRlciByYXRlcyB0byBvdXIgbXVyZGVycyBkYXRhIGZyYW1lLiBUaGUgZnVuY3Rpb24gYGBgbXV0YXRlYGBgIHRha2VzIHRoZSBkYXRhIGZyYW1lIGFzIGEgZmlyc3QgYXJndW1lbnQgYW5kIHRoZSBuYW1lIGFuZCB2YWx1ZXMgb2YgdGhlIHZhcmlhYmxlIGFzIGEgc2Vjb25kIGFyZ3VtZW50IHVzaW5nIHRoZSBjb252ZW50aW9uIGBgYG5hbWUgPSB2YWx1ZXNgYGAuIFNvLCB0byBhZGQgbXVyZGVyIHJhdGVzLCB3ZSB1c2U6CmBgYHtyfQpsaWJyYXJ5KGRzbGFicykKZGF0YSgnbXVyZGVycycpCm11cmRlcnMgPC0gbXV0YXRlKG11cmRlcnMsIHJhdGU9dG90YWwvcG9wdWxhdGlvbioxMDAwMDApCmBgYAoKTm90aWNlIHRoYXQgaGVyZSB3ZSB1c2VkIGBgYHRvdGFsYGBgIGFuZCBgYGBwb3B1bGF0aW9uYGBgIGluc2lkZSB0aGUgZnVuY3Rpb24sIHdoaWNoIGFyZSBvYmplY3RzIHRoYXQgYXJlICoqbm90KiogZGVmaW5lZCBpbiBvdXIgd29ya3NwYWNlLiBCdXQgd2h5IGRvbuKAmXQgd2UgZ2V0IGFuIGVycm9yPwoKVGhpcyBpcyBvbmUgb2YgKipkcGx5cioq4oCZcyBtYWluIGZlYXR1cmVzLiBGdW5jdGlvbnMgaW4gdGhpcyBwYWNrYWdlLCBzdWNoIGFzIGBgYG11dGF0ZWBgYCwga25vdyB0byBsb29rIGZvciB2YXJpYWJsZXMgaW4gdGhlIGRhdGEgZnJhbWUgcHJvdmlkZWQgaW4gdGhlIGZpcnN0IGFyZ3VtZW50LiBJbiB0aGUgY2FsbCB0byBtdXRhdGUgYWJvdmUsIGBgYHRvdGFsYGBgIHdpbGwgaGF2ZSB0aGUgdmFsdWVzIGluIGBgYG11cmRlcnMkdG90YWxgYGAuIFRoaXMgYXBwcm9hY2ggbWFrZXMgdGhlIGNvZGUgbXVjaCBtb3JlIHJlYWRhYmxlLgoKV2UgY2FuIHNlZSB0aGF0IHRoZSBuZXcgY29sdW1uIGlzIGFkZGVkOgpgYGB7cn0KaGVhZChtdXJkZXJzKQpgYGAKCkFsdGhvdWdoIHdlIGhhdmUgb3ZlcndyaXR0ZW4gdGhlIG9yaWdpbmFsIGBgYG11cmRlcnNgYGAgb2JqZWN0LCB0aGlzIGRvZXMgbm90IGNoYW5nZSB0aGUgb2JqZWN0IHRoYXQgbG9hZGVkIHdpdGggYGBgZGF0YShtdXJkZXJzKWBgYC4gSWYgd2UgbG9hZCB0aGUgYGBgbXVyZGVyc2BgYCBkYXRhIGFnYWluLCB0aGUgb3JpZ2luYWwgd2lsbCBvdmVyd3JpdGUgb3VyIG11dGF0ZWQgdmVyc2lvbi4KCgojIyMgKipTdWJzZXR0aW5nIHdpdGggYGBgZmlsdGVyYGBgKioKCk5vdyBzdXBwb3NlIHRoYXQgd2Ugd2FudCB0byBmaWx0ZXIgdGhlIGRhdGEgdGFibGUgdG8gb25seSBzaG93IHRoZSBlbnRyaWVzIGZvciB3aGljaCB0aGUgbXVyZGVyIHJhdGUgaXMgbG93ZXIgdGhhbiAwLjcxLiBUbyBkbyB0aGlzIHdlIHVzZSB0aGUgYGBgZmlsdGVyYGBgIGZ1bmN0aW9uLCB3aGljaCB0YWtlcyB0aGUgZGF0YSB0YWJsZSBhcyB0aGUgZmlyc3QgYXJndW1lbnQgYW5kIHRoZW4gdGhlIGNvbmRpdGlvbmFsIHN0YXRlbWVudCBhcyB0aGUgc2Vjb25kLiBMaWtlIGBgYG11dGF0ZWBgYCwgd2UgY2FuIHVzZSB0aGUgdW5xdW90ZWQgdmFyaWFibGUgbmFtZXMgZnJvbSBgYGBtdXJkZXJzYGBgIGluc2lkZSB0aGUgZnVuY3Rpb24gYW5kIGl0IHdpbGwga25vdyB3ZSBtZWFuIHRoZSBjb2x1bW5zIGFuZCBub3Qgb2JqZWN0cyBpbiB0aGUgd29ya3NwYWNlLgpgYGB7cn0KZmlsdGVyKG11cmRlcnMsIHJhdGU8PTAuNzEpCmBgYAoKIyMjICoqNC4zLjMgU2VsZWN0aW5nIGNvbHVtbnMgd2l0aCBgYGBzZWxlY3RgYGAqKgoKQWx0aG91Z2ggb3VyIGRhdGEgdGFibGUgb25seSBoYXMgc2l4IGNvbHVtbnMsIHNvbWUgZGF0YSB0YWJsZXMgaW5jbHVkZSBodW5kcmVkcy4gSWYgd2Ugd2FudCB0byB2aWV3IGp1c3QgYSBmZXcsIHdlIGNhbiB1c2UgdGhlICoqZHBseXIqKiBgYGBzZWxlY3RgYGAgZnVuY3Rpb24uIEluIHRoZSBjb2RlIGJlbG93IHdlIHNlbGVjdCB0aHJlZSBjb2x1bW5zLCBhc3NpZ24gdGhpcyB0byBhIG5ldyBvYmplY3QgYW5kIHRoZW4gZmlsdGVyIHRoZSBuZXcgb2JqZWN0OgpgYGB7cn0KbmV3X3RhYmxlIDwtIHNlbGVjdChtdXJkZXJzLHN0YXRlLHJlZ2lvbixyYXRlKQpmaWx0ZXIobmV3X3RhYmxlLHJhdGU8PTAuNzEpCmBgYAoKCkluIHRoZSBjYWxsIHRvIGBgYHNlbGVjdGBgYCwgdGhlIGZpcnN0IGFyZ3VtZW50IGBgYG11cmRlcnNgYGAgaXMgYW4gb2JqZWN0LCBidXQgYGBgc3RhdGVgYGAsIGBgYHJlZ2lvbmBgYCwgYW5kIGBgYHJhdGVgYGAgYXJlIHZhcmlhYmxlIG5hbWVzLgoKCiMjICoqNC40IEV4ZXJjaXNlcyoqCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgo=</div>
 
 
 
