@@ -1757,24 +1757,9 @@ summary {
 <p>The <code>summarize</code> function in <strong>dplyr</strong> provides a way to compute summary statistics with intuitive and readable code. We start with a simple example based on heights. The <code>heights</code> dataset includes heights and sex reported by students in an in-class survey.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
-<pre class="r"><code>library(dplyr)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLFxuICAgIHVuaW9uXG4ifQ== -->
-<pre><code>
-Attaching package: ‘dplyr’
-
-The following objects are masked from ‘package:stats’:
-
-    filter, lag
-
-The following objects are masked from ‘package:base’:
-
-    intersect, setdiff, setequal,
-    union</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkc2xhYnMpXG5kYXRhKGhlaWdodHMpXG5gYGAifQ== -->
-<pre class="r"><code>library(dslabs)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmxpYnJhcnkoZHNsYWJzKVxuZGF0YShoZWlnaHRzKVxuYGBgIn0= -->
+<pre class="r"><code>library(dplyr)
+library(dslabs)
 data(heights)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1786,7 +1771,7 @@ data(heights)</code></pre>
 <pre class="r"><code>s &lt;- heights %&gt;% filter(sex==&quot;Female&quot;) %&gt;% summarize(average=mean(height),standard_deviation=sd(height))
 s</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVFNVTRETVJEY09ERlJUdUpBUktuemdydUdBZ29LQ2tTTkVFanAwT2JzSkNjT08vSTVCeS9nYVJTSWloZFE4STdBMnJFanhZWGxuVm5Qem83dmIyYm4yU3dEZ0Q0TWdFR2ZVd244OGVHMnVBUVlNQUk5YW96Yy9VYVB4bFE0TW5mRTlkM1Y5UDFYZnV4eFB2bisrZnpxRWlGWCtDSmJLazY5ZUVjT3NaTUdsekxBczlhaUVtakVrNUJkamJiV0twa3lNdnExakpPT2ZjT2ZRNnVxd1RaYVJUSVRhTEZjR05JUzJpYVNvVjQ3TnhJeEY0NG40cDVKaUpPTmNsdUlvbHB0MUhOeDRRekNObkM0MmI1bU8wdjJGMGJ4TU9wSXFtV3Q0aGZ3QnVleUNTQ250RDVzdVRhMXNqRUpzVzFwdGNYNExxdDBFeG1mRGJiL3NNNEdBZE1CQUFBPSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoWUdKZ1pnVXlHVmhEUTl4MExSZ1lXSmlBSEVhZ0JDZUlyZ0FxRWdZeVFJSjhJQUdIQUJ2NXRpZXB4K0I4UHRGTEQwNmRLVVBUeUpxWG1KdGFER1FJZ0RWREJOa1R5MUtMRXROVG9WeWg0cExFdkpURW9wVDRsTlN5ek1TU3pQdzhORk00aS9MTDlXQW04WUlsd0JqVnF1U2N4R0tZVlRCQnJwVEVra1M5dENLZ1hpRHZINW9XOXZ3Q2tHMUFUVXdnejdHaWFXWXNRaE1RS00wRHVTSkZOem1qTkM5YjE5Z0FaQVBVT1F5b1RvT3ptU0IyTXYySG1zVUtOWXN0TlM4OU13OFdCcXc1aVVtcE9WQU9IOUM3WU4vcUZSUmw1cFhBdkFJVUxkWXJ5UzlKaEtualNzN1BnWW1BUGNmd0R3QzdwNHcvMUFFQUFBPT0ifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["average"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["standard_deviation"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"64.93942","2":"3.760656"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
@@ -1819,7 +1804,7 @@ s</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVpZ2h0cyAlPiUgZmlsdGVyKHNleD09XCJGZW1hbGVcIikgJT4lIHN1bW1hcml6ZShtZWRpYW49bWVkaWFuKGhlaWdodCksbWluaW11bT1taW4oaGVpZ2h0KSxtYXhpbXVtPW1heChoZWlnaHQpKVxuYGBgIn0= -->
 <pre class="r"><code>heights %&gt;% filter(sex==&quot;Female&quot;) %&gt;% summarize(median=median(height),minimum=min(height),maximum=max(height))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVF5MnJETUJEYzJGRkRERTBML1E3N2trdDdLVG1FUW0rbFRTQlh4VllTVVdzVmJKbUdudnBqaFg1Ry82SG5YTk9zRk1sZ0M0UjJaaCt6bzlmNWFwcXNFZ0NJWVFnUnhJeENZTXZGVTNvUE1Jd0lEQ2d4dHUrQml1NWNKY0RFRXJPWHgrL1A0OTl2aTUrL3dKOExmdnZ4c0RPSUlWZWlwdURXeTFyeVNvbENjdlJvcENSSzFhZ1c4b09EM1VIalNuOWtZZGkxUzdqYlZjdExYZ2UxUUNZRk56emJWTlJMNk5SckdlbTlrUnFwS2JKK1dhOTVVUFdJbXdidEZrV2E3eHA4VHgrc2dOOEd1cHUxY1h5UmpQNzlLQmErUWVCV29naTdsM3d0U2c4bTVOYVp6ZmFWUkJPY0VGdG5SaHNlNnBKY2w0RngzdUIwQnJUcFg3cm1BUUFBIn0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVF5MnJETUJEYzJGRkREQTJCZm9kOWFDNDVoUjVLb2JmUUIrU3Eya29pWXEyQ0xkT1FVMzhza00vb1AvVGNhOXFWSWhsc2dkRE83R04yOVBLNG1pV3JCQUJpR0VJRU1hTVEyUHZiVXpvSEdFWUVCcFFZMi9kQVJYZXVFbUJpaVlmbDRuVDgvZmx1OGZNWCtIUEZyMmNQTzRNWWNpVnFDcVplMXBJM1NoU1NvMGNqSlZHcVJyV1FIeHpzRGhwWCtqTUx3MjVkd3QydVdsN3lPcWdGTWltNDRkbTZvbDVDbDE3TFNPK04xRWhOa2ZYTGVzMkRxa2RNRzdSYkZHbStiWENYenU2dGdsOEh1cXUxY1h6VmpQNzhMQmIrUWVCR29nakxsL3hEbEI1TXlLNXptKzByaVNaWUliYk9qRFk4MUNXNUxnUGp6TUhsSHdjbEZGTG5BUUFBIn0= -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["median"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["minimum"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["maximum"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"64.98031","2":"51","3":"79"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
@@ -1834,7 +1819,7 @@ s</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVpZ2h0cyAlPiUgZmlsdGVyKHNleD09XCJGZW1hbGVcIikgJT4lIHN1bW1hcml6ZShyYW5nZT1xdWFudGlsZShoZWlnaHQsYygwLDAuNSwxKSkpXG5gYGAifQ== -->
 <pre class="r"><code>heights %&gt;% filter(sex==&quot;Female&quot;) %&gt;% summarize(range=quantile(height,c(0,0.5,1)))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoWUdKZ1pnVXlHVmhEUTl4MExSZ1lXSmlBSEVhZ0JDZUlyZ0FxRWdZTE1ERHhnWFE0ZURhQVZETTRCTmp0cmZyNitvWkQ4QUVHQ0VEUnlKcVhtSnRhREdRSVFLMEJDVElacUVKWnpLWndKb3VoQVpETndQQVBZZ0xUZjZnbXVFbEZpWG5wcVdqR2N4YmxsK3ZCck9BRkdRMXhGZEFxTkhjazV5UVdGNk1aeVpXU1dKS29sMVlFMUkrd0dDN0xubDlRa3BtZkI5VEVCUEk1SzVwbXhpSTBBWUhTUEpCTFVuU1RNMHJ6c25VTkRVRTJRSUlNREhpaGJHWWtOaU9hWjFtaFpyR2w1cVZuNXFYQ0hKK1RtSlNhQStYd0FiME05ckZlUVZGbVhnbk1LMERSWXIyUy9KSkVtRHF1NVB3Y21Balljd3ovQUQrcVhGYnhBUUFBIn0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoWUdKZ1pnVXlHVmhEUTl4MExSZ1lXSmlBSEVhZ0JDZUlyZ0FxRWdZTE1ERHhnWFE0ZURhQVZETTRCTmp0cmZyNitvWkQ4QUVHQ0VEUnlKcVhtSnRhREdRSVFLMEJDVElacUVKWnpLWndKb3VoQVpETndQQVBZZ0xUZjZnbXVFbEZpWG5wcVdqR2N4YmxsK3ZCck9BRkdRMXhGZEFxTkhjazV5UVdGNk1aeVpXU1dKS29sMVlFMUkrd0dDN0xubDlRa3BtZkI5VEVCUEk1SzVwbXhpSTBBWUhTUEpCTFVuU1RNMHJ6c25XTmpVRTJRSUlNREhpaGJHWWtOaU9hWjFtaFpyR2w1cVZuNXFYQ0hKK1RtSlNhQStYd0FiME05ckZlUVZGbVhnbk1LMERSWXIyUy9KSkVtRHF1NVB3Y21Balljd3ovQUxiWGwrSHhBUUFBIn0= -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["range"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"51.00000","_row":"0%"},{"1":"64.98031","_row":"50%"},{"1":"79.00000","_row":"100%"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
@@ -1847,12 +1832,18 @@ s</code></pre>
 <p>For another example of how we can use the <code>summarize</code> function, let’s compute the average murder rate for the United States. Remember our data table includes total murders and population size for each state and we have already used <strong>dplyr</strong> to add a murder rate column:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyA8LSBtdXJkZXJzICU+JSBtdXRhdGUocmF0ZT10b3RhbC9wb3B1bGF0aW9uKjEwMDAwMClcbmBgYCJ9 -->
+<pre class="r"><code>murders &lt;- murders %&gt;% mutate(rate=total/population*100000)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Remember that the US murder rate is <code>not</code> the average of the state murder rates:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyVlBRUXJDTUJEYzFrYXhvQWcrd0tzZVdoQXZnaGNQNGdORW9kZFlveFpySW1tS3ZzZURQL0h1aTZxYmtvREcwKzVPWmlZenEwVXlDWk1RQUJvUWdBOE5naXVRelhvWlRRRUNIdzhQSDlwNjNwRFVyd0dBcnA3ejV1d3hlRDN2RHBGd2VtWUZMcjB2TUR3enlvZVNLalp5NkcwcHJyR1ZkSXkvNTNxbU9TMytQSGRVMFhndlVZdFg1VWhhNHFJeXdWSGs2OVRFRVh2U0FYb2wxeWwyVVhvcytTa2FUL1FQSmc3OFJuTmorbS9qUll4WGsvRkR4cGtObjlNdHk4M1J4YnAxMi9naU02NXNGVVNMV0FsRkxTOU1SVzZSdWh4VUh5NmFBck90QVFBQSJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyaXplKG11cmRlcnMsbWVhbihyYXRlKSlcbmBgYCJ9 -->
+<pre class="r"><code>summarize(murders,mean(rate))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyVlBRUXJDTUJEY1ZxTllzQlI4Z0ZjOXRCY1JCQzhleEFlSVFxK3hSaTNXUk5LSXZzZURQL0h1aTZxYmtvREcwKzVPWmlZenkzazZDdElBQUJyUUJCOGFCRmNnNjlVaW5nQTBmVHc4Zk9qb2VVTlNyd1lBUWoxbnJlbWovM3JlSFNMaDlNUktYS0l2TURneHlnZVNLalowNkIwcHJvbVZkSTIvNTNwbUJTMy9QTGRVMFdRblVZdFg1VWphNHF4eXdWSGs2OVRFRVh2U0FhSUwxeW0yY1hhNDhHTThHdXNmVEJ6NGplYkc5Ti9HaXhpdkZ1UDduRE1idnFBYlZwZ2p4THAxMitRc2M2NXNGVVRMUkFsRkxTL0lSR0dSdWh4VUgyNXB3Rkt0QVFBQSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["mean(rate)"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"2.779125"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
@@ -1864,7 +1855,11 @@ s</code></pre>
 <p>This is because in the computation above the small states are given the same weight as the large ones. The US murder rate is the total number of murders in the US divided by the total US population. So the correct computation is:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVBXd3JDTUJEYzFzWkh3Vkx3RmtJTElvTCsrU0U5Z0NqNEc5dW94WnBJR3RGN2VRVlA0a0dxbTVLQTVtdDNKek9UbWZWcU53MTNJUUIwSUFBZk9nUlhJTnRObHN3QkFoOFBEeDhHZWo2UU5Hb0JnRWpQWlQ5N1BSZnZzVU1rbkY1WWpVdjhBd2FTS3VZUUIxTGNVMHNlR21mUGRjc3JXcnR1WVVFVlRROFN0WGcxanFRbnJxb1VIRVcremtzY3NTY2RJTDV4bmFKSTh0T05uNVBKVFA5ZzRzQi9ORGVtL3pGZXhIaDFHVCtXbk5ud0ZkMnp5aHdSMW0zYnBsZFpjbVdySUZxblNpaHFlV0V1S291MDVhRDVBdWU3cTl1bkFRQUEifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXNfbXVyZGVyX3JhdGUgPC0gbXVyZGVycyAlPiUgc3VtbWFyaXplKHJhdGU9c3VtKHRvdGFsKS9zdW0ocG9wdWxhdGlvbikqMTAwMDAwKVxudXNfbXVyZGVyX3JhdGVcbmBgYCJ9 -->
+<pre class="r"><code>us_murder_rate &lt;- murders %&gt;% summarize(rate=sum(total)/sum(population)*100000)
+us_murder_rate</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVBTd3JDTUJSOC9VUnR3Vkx3RmtLN0VVUjNMc1FEaUlMYldLTVdhMUxTRkwyWFYvQWtIa1I5S1Fsb1Z1Kzl5Y3hrWnIzY1RlSmREQUFCaE9CRFFIQUZzdDJzc2hsQTZPUGg0VU9rNXgxSm93NEFTUFJjREZiUHgvdzFkb2lFMHl0cmNFbC93RkJTeFJ4aUpNVXR0K1NoY2ZaY3Q2S2lqZXNXSDZpaStWR2lGcSszSSttTFdwV0NvOGpYZVlrajlxUURwQzNYS1E1WmNXNzVKWnRNOVE4bUR2eEhjMlA2SCtORmpGZVA4VlBKbVExZjBUMnJ6SkZnM2E1dFhzdVNLMXNGMFNaWFFsSExpd3RSV2FRckIrOHZUT1ErRDZjQkFBQT0ifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["rate"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"3.034555"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
@@ -1877,11 +1872,891 @@ s</code></pre>
 </div>
 <div id="pull" class="section level3">
 <h3><strong>4.7.2 <code>pull</code></strong></h3>
+<p>The <code>us_murder_rate</code> object defined above represents just one number. Yet we are storing it in a data frame:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3ModXNfbXVyZGVyX3JhdGUpXG5gYGAifQ== -->
+<pre class="r"><code>class(us_murder_rate)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZGF0YS5mcmFtZVwiXG4ifQ== -->
+<pre><code>[1] &quot;data.frame&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>since, as most <strong>dplyr</strong> functions, <code>summarize</code> always returns a data frame.</p>
+<p>This might be problematic if we want to use this result with functions that require a numeric value. Here we show a useful trick for accessing values stored in data when using pipes: when a data object is piped that object and its columns can be accessed using the <code>pull</code> function. To understand what we mean take a look at this line of code:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXNfbXVyZGVyX3JhdGUgJT4lIHB1bGwocmF0ZSlcbmBgYCJ9 -->
+<pre class="r"><code>us_murder_rate %&gt;% pull(rate)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMuMDM0NTU1XG4ifQ== -->
+<pre><code>[1] 3.034555</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This returns the value in the <code>rate</code> column of <code>us_murder_rate</code> making it equivalent to <code>us_murder_rate$rate</code>.</p>
+<p>To get a number from the original data table with one line of code we can type:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXNfbXVyZGVyX3JhdGUgPC0gbXVyZGVycyAlPiUgc3VtbWFyaXplKHJhdGU9c3VtKHRvdGFsKS9zdW0ocG9wdWxhdGlvbikqMTAwMDAwKSAlPiUgcHVsbChyYXRlKVxudXNfbXVyZGVyX3JhdGVcbmBgYCJ9 -->
+<pre class="r"><code>us_murder_rate &lt;- murders %&gt;% summarize(rate=sum(total)/sum(population)*100000) %&gt;% pull(rate)
+us_murder_rate</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMuMDM0NTU1XG4ifQ== -->
+<pre><code>[1] 3.034555</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>which is now a numeric:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3ModXNfbXVyZGVyX3JhdGUpXG5gYGAifQ== -->
+<pre class="r"><code>class(us_murder_rate)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibnVtZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="group-then-summarize-with-group_by" class="section level3">
+<h3><strong>4.7.3 Group then summarize with <code>group_by</code></strong></h3>
+<p>A common operation in data exploration is to first split data into groups and then compute summaries for each group. For example, we may want to compute the average and standard deviation for men’s and women’s heights separately. The <code>group_by</code> function helps us do this.</p>
+<p>If we type this:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KVxuYGBgIn0= -->
+<pre class="r"><code>heights %&gt;% group_by(sex)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImdyb3VwZWRfZGYiLCJ0YmxfZGYiLCJ0YmwiLCJkYXRhLmZyYW1lIl0sIm5yb3ciOjEwNTAsIm5jb2wiOjJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBOFZhYTRoVlZSUSs4M0p5U2pNenFRZ2J3aDhXT1QzTTBNbzRrRmxOemN5NVp5ejhJZFZ0SEI4NTNwR1owY3dpcnBHWlJVaUVoRDJ0aUlvMEM2bkpKTHBrSUZGUkltRVIwV2hZbVZyMFE2S1hkczZjOWEzVC92WTljOCs5ampWdzJYZnZ2UjdmV252dHRkZmVkL3laYzZZMHpHbHdIS2ZHcVhXcW5acTY0S3RUZC9Qc1daT25PVTV0ZGRDcENpWkdodTJLZ09qMDRFc3dXRE1xK1B3WWZiYytWZlFwUmxPTXZoUmRkUkc2WW5xcWl0Q21sWCtpNkJsTE1mcGk0MnhMTVZ1VGJCK0tweHc3azNTeS9HSllrMnhKc24rb05VeUtyeVE4YWVLckZJNmg3RXVLOWJTK1RtTmpxVFVxWjU5VnV2YWw1cEwyZTdsN3FOSlBxUmlweEJlbCttbmlKMDFzcFoycnhLZHBZM3U0MXFBY0g1VkxjNkx6ZDdueGNieCtIMDQvbExQL1Q1U1BqbWQ5aG9ySlVtZEdKWGpMM2V2bDJsaHVUcTUwdlk1bnY1V2krNi9pZlRoMS9wK2Y0OFV6bkhsNHFMbEs2cXBpODBQMTA4Z2NTbGJhbWlQdGVDbmFVdkdieGc5cE1LVFp2NlgwbHJQT2xkWW1hWEp1cGZxSEk5YlR4dmh3NnZ5dlB1WEVTZ3IvR0JmNEVWMmR5enU3ZW9Odll3Wm5aWFJXNTVKc1Y2ZjBhbHZDN3laZlhVZFh0aGRzS214K3RxT3Z1eWY0ZGpUNGpBNmZBMXkvNElSL2JpWXZyUk8xdnZSYnBmVmNhYVhmNXBoOVQrVDRqdGxtWEZNdSt1Q0Rmay9tV3lHM1lOSmhIamg5TjBFUGpZTlBjY0ZleUdjOW1DZmMzaHVtbkxaOGNUcU13dzdGbVRkYjZNc1FuYlVPR044b2ZETldIam00WjR2aUJ6M2o1ajdqVUQ3Z2dwMnUyYksvZVowejFJSlA1d3NKNHl6Zk1WdU5MNkxqK0FBZDlPaTZnTzdrTTk3cS9XbHJIRDlDbDJrMCtkdTMzUHJleWlPSExEeEtqM2IrNEorTkswLzY4d2s0WWFmd2V4dE5mL2pnSHhCY1R2RjVuL2g0bjdTVGZxVURIc2dCYnRJRE9lcFgxOFN2Y2d1RVMvb2UweE5PWFcvUWtSekZSM0xhMGQ5bzBnRzN0dE9PZkxCdTd2bnFYKy9rc2Jrbkh2V1VYdkU0cHB3a2VVb25yZTVUYVZ0WTdxRlBncjlQWXp0QkwrT1ovdGZIcmR4N3ZlMFAxbDhvcmc5NE12VU5NNWErdUNmMk04MXJmbk5OUFNwbjRzcTkxNzArenIyQjdVZExjaFNQUy9TRVUvR3hITEl2Q1IvajVIT0M4eWZrNmI0aVhJby9iL2IxZkhPb0pUeks1NXI2MkQrSUE3VGdSOXlpMzdKbTlEblRsdTZML2NQNklCL3J5K3NNTzlrKzRwL3QwTGkweUtPY1Z6Vy9odG9hWnNSK25ONnovK01ubXR6TTRqMUJwcndubGdlL1VLdjdsL1RxK3RaTUNmL2lmZDlveXJQaWdQUWwyYWQ0Z1Vmb01xc2J4azN5bm8vamlPUTBvMThvamdQblJYeXVqTDl3enBzZDJtOVpNK3FCbHFvclhlL2RjRHZkWStIM0lSOStUTEFIOFFoNmprT09lOUJiOWtLKzJLMTZDaVNmNmdrZGQweDZYVi9YNUFPOTFsWDl1VysyTC84NXJvZGcvMVpaYitBN2EwUHc5NlMxLzYxODB4N3hlUy9NWER0MjRnMVd2R3RkQTNxeUUzWlkrUVQ5QWVwUDc3bnUybW0veERndzdoSS80V2o5NGJQbnJyNzNqemovQ0Y0OWI4QlhNK0tVTXkvT3V0N1A0OExFYStlVEF0RUR2L2dMZEpwWGRrVCthZnR1NTdvSlY5MGRyN2VzZzdjaDRyUHlHUHprcjVzNzZjZ08xOXUrL1BEWC9kMHgzclduL2g1NFF1c0k5Uy9GRThjRjExZHNuNzkxL3FkUFhiNmtaTjdnOWJQeVFwQTk5KzVZRThlSjZPUDhwL0VnODgzN3hGN3NVOWZrUy9UVGdObUhmdDJYQlpQZjYvNzIvZnYrL3N2YS81d1h2TU5mbi9mNS90dVQ2MlMwc05OTjhCUEdDUS9pNEViSHBFT0xjMG5wNjZNOEJqM1dQaWIvcVA0WnEwWk0vT1lpcSs3UU9JVDlpSCtKTjE1L0t5NFM5QVorQ3lWclhGcm5SU1BKTFppdEYrek82eDg3ejdvbld2Y3B3c1gzUC9VNyttS1g4a25lQTE0K3A5cWIxeC9ZKzhiRDhUN3hYMnBlZjhITnJqY2dkTkl5bjA5NC9La1Qzc2tjWEcydkozQ0JYK1lSOXhvdm02UXVaZjU2cVZPQXI5RmRWVjE3a3VMVTg2eEFldGgvR1AvMTRPb0o3L2oyZVhwWTZvMk5NaTc2MmttdTNxdlJKMzlZNXhSd1RESFBIK1MxcER3RWVYb3VranhySHp3WTNRdXRlNVJyMm1uVkJkTHlPYUY2Ym9yV0JmWURsNzhndWo4b0Rqb2ZXa21PNGdGZWgvQk5sL01ZNjFBdytibXVWWHl5bjNYOU9jNjNDYTVHRXovdXRWcUh1cVkvRkMvd0EzZWoyYmZtd1VkMjZianMrMkNmM3ZibDVrM0twL2ZLdCtWK2ozMHM4ZTBsNExMeWVjSTQ5aWYwY2Y2MjZNK1pGRjVncmYzVFFueXRyMFQzWEt2T2RrMjZEUFc5N2NFMnpCeHlXNFQrUnNpVmx2ZVJWY2VTWEswL3lKNms4MWozRStwSW5LZXRVaGM1UkM5eTlWNGg5d2ZMN29MWjEvd0ZlOWFlOXZUQXN0L2lkNGI3L3Y3enQxOEdyUHVSZGI1SlhGdjVmWFcwcnQ0blp2NjA3blZZVCswWHo3ZiswVkRjdWZhOWxmcDgzblA5cm5vd0wzbGI4Y3M0OW9HK2Y4QWY4SE1ZL1hPMzJldEl1TFJPbDdvbjA5LzF5RFhyVjhWNHBkN2xmY3Q1dWcxNVd2cTRKeWV0czNVdmtuRitOMFBMZFVkOG5rVjFJZXZ4V0Q3aDk3K1A4Z1hmSTlTZmpBUDlBMUtYdzM5eTcvQWhIM2daRDQxemZyZnVUeUszVGM2UnBEeXA1ODl1V2NkVElucDl6eWE3TmYvUVBONHB2SWZrL1UzOFlyM3I0LzdEY3RGSDIwaCtJenV0OWU3UE5iMzU0UlJicnJSNHgrVHpEZnViY1hLOGNmM3N5Ynl1czlTN1NiOHphTjBDZXVnamZwVWpldnl2NUJ3RFhkNzBCOGViOHBFZVhTL29KWDZPSng5NlNLK2VMeXlQNkszN2ZjSGswL05sNnAzako3UXR0OTg1U1krT3l6dXF0YjlnRC93QVB0YUxlWkp2M1VjY1V4N2ZTemkrdEs1MGFUN0JIczJYb0NPNVdxODQ1cno2RzNiY1JPL04wQ055Y1A0d1htM2x2VnhiM1BNUDdINjU5WmtyWW50Q05EUFhXdjdoOWRGeHFZdUQ5ZjNpdFZzMjIvVlMzbXhWai9UYnQ4d05nZHQrTEJDZnRJZ2pmbjlYdVc1eFBqM2Y0Uy93TWIvVWt6Z25kWjlqSHUrbWpkS0huYTZwai9OcHk4SG9YVlh2ZTVvSDVOMFg5eXpoYXp2N3NvVzdYcHlsOVEzV0JYa1E3MC8vOHN1Zy94RlBpaGZ2YXNBSGUzRXVvbDgvK3NLeG0rKzM3TTA4ZTlXS1g3L2JhYThmNkNTZXRLNkQzYTdwWitzOGwzTzZXZnBvMnlFM1QvUllQOFVyNTFEQjlKZnFrWFkyN0VBYitQbnpWM2NGNStXR1MrZDk5TGo2VTkrdDhQdGZ4Qi85N0Y1enpERi9hVytZbCszTE5zM3Z5UzdoSCtaSDluVGYxWlFMeG51RHpxamdVeDBhY3V6WVgyZnlML2dnQ3VYaWgvK2EzczRWK0RGL1llZWlCUXY3bk1FZjh3M08rdTZsZll1NmN3RnY5ZW1oSU1KVzFVTURZNWJsUWwzekpuY3NYSlpiUFBteVMwSURuT2gvRWh4QkdYeXZQVHYranY5VHFJUGhkVURWbVZ1d0tJZi9US2pyeXQ3UjJTV2QwWUhsZ3pZMUxlMVpsT3VEcDRMUjNxYSs3cjRzNkJvNnVyc3dFdjJud3RGL0FHRUNDc2J5TUFBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["height"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Male","2":"75.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"61.00000"},{"1":"Female","2":"65.00000"},{"1":"Female","2":"66.00000"},{"1":"Female","2":"62.00000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"75.00000"},{"1":"Female","2":"64.00000"},{"1":"Female","2":"60.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"64.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"67.00000"},{"1":"Female","2":"66.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"66.75000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"60.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"70.50000"},{"1":"Female","2":"64.96063"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"65.00000"},{"1":"Female","2":"72.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"62.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"60.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"64.17320"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"68.50000"},{"1":"Female","2":"62.00000"},{"1":"Female","2":"78.74016"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"71.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"69.60000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"61.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"73.00000"},{"1":"Female","2":"66.50000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"71.50000"},{"1":"Male","2":"76.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"74.50000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"66.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"78.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"69.00000"},{"1":"Female","2":"67.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"74.00000"},{"1":"Female","2":"62.00000"},{"1":"Female","2":"69.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"62.50000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"75.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"65.00000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"74.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"77.00000"},{"1":"Male","2":"70.50000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.89000"},{"1":"Male","2":"66.50000"},{"1":"Female","2":"64.17300"},{"1":"Female","2":"63.00000"},{"1":"Female","2":"65.00000"},{"1":"Female","2":"64.00000"},{"1":"Female","2":"63.00000"},{"1":"Female","2":"63.00000"},{"1":"Female","2":"69.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"64.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"59.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"67.70000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"71.70000"},{"1":"Male","2":"70.87000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"70.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"64.00000"},{"1":"Male","2":"68.11000"},{"1":"Female","2":"68.00000"},{"1":"Female","2":"66.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"64.57000"},{"1":"Female","2":"51.00000"},{"1":"Female","2":"63.00000"},{"1":"Female","2":"70.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"66.00000"},{"1":"Female","2":"69.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"75.00000"},{"1":"Female","2":"64.00000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"69.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"61.00000"},{"1":"Female","2":"64.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"59.00000"},{"1":"Male","2":"59.00000"},{"1":"Female","2":"72.00000"},{"1":"Male","2":"77.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"59.05512"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.11000"},{"1":"Male","2":"68.11000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"65.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"80.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"60.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"60.00000"},{"1":"Female","2":"60.00000"},{"1":"Female","2":"64.96000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"68.89764"},{"1":"Male","2":"69.68504"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"63.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.05000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"72.50000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"80.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"70.07874"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"53.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.50000"},{"1":"Female","2":"68.00000"},{"1":"Female","2":"64.17323"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"59.05510"},{"1":"Male","2":"66.92000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"68.89764"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"61.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"61.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"70.07874"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"74.00000"},{"1":"Female","2":"64.96063"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"64.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"65.00000"},{"1":"Female","2":"64.96063"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"70.86614"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"74.80000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.40000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"69.30000"},{"1":"Male","2":"66.53543"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"71.50000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.89760"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"64.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"75.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"61.81102"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"66.53543"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"72.04724"},{"1":"Male","2":"67.72000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.40000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"79.05000"},{"1":"Male","2":"63.77953"},{"1":"Male","2":"70.07874"},{"1":"Male","2":"70.86614"},{"1":"Male","2":"66.40000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"69.29000"},{"1":"Male","2":"66.92913"},{"1":"Female","2":"63.00000"},{"1":"Female","2":"66.14160"},{"1":"Male","2":"78.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"70.07874"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"68.50000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"74.80315"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"66.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"64.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.44094"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"68.50000"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"68.50000"},{"1":"Male","2":"53.77000"},{"1":"Male","2":"66.92000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"71.50000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"72.44094"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"65.74803"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"67.71650"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"65.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"70.86614"},{"1":"Male","2":"54.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"77.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"68.11020"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"64.96100"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"70.86614"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"72.04724"},{"1":"Male","2":"66.92913"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"67.71654"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.50000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"66.14173"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"64.00000"},{"1":"Female","2":"70.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"63.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"63.00000"},{"1":"Male","2":"66.92913"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"70.80000"},{"1":"Male","2":"67.71654"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"77.16540"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"69.29134"},{"1":"Male","2":"67.50000"},{"1":"Male","2":"67.50000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.83000"},{"1":"Male","2":"77.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"64.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"73.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"66.70000"},{"1":"Female","2":"69.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"68.11024"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.50394"},{"1":"Male","2":"69.29134"},{"1":"Male","2":"68.89764"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"64.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"67.78000"},{"1":"Male","2":"68.50000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"67.71000"},{"1":"Male","2":"66.50000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"79.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"60.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"61.00000"},{"1":"Male","2":"74.00000"},{"1":"Female","2":"66.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"68.80000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"78.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"70.10000"},{"1":"Male","2":"62.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"65.00000"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"73.20000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"73.62000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"68.40000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"61.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"68.90000"},{"1":"Male","2":"67.71000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"59.00000"},{"1":"Female","2":"59.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"72.04724"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"67.71654"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"66.90000"},{"1":"Male","2":"68.50000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"76.00000"},{"1":"Male","2":"60.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"68.50000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"68.90000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"66.14173"},{"1":"Female","2":"66.92910"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"77.00000"},{"1":"Male","2":"70.85000"},{"1":"Male","2":"66.92913"},{"1":"Male","2":"68.89764"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.83000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.44000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"59.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"61.32000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"66.93000"},{"1":"Male","2":"58.00000"},{"1":"Female","2":"55.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"74.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"63.77953"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"64.96063"},{"1":"Male","2":"72.44094"},{"1":"Male","2":"73.22000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"63.00000"},{"1":"Male","2":"72.05000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"68.11024"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"66.14170"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"62.99213"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"67.71654"},{"1":"Male","2":"66.92913"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"70.08000"},{"1":"Male","2":"67.20000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"72.44000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"72.45000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"75.98000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"62.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.50394"},{"1":"Male","2":"66.92913"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"66.92910"},{"1":"Male","2":"63.00000"},{"1":"Female","2":"62.99213"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"75.59055"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"69.30000"},{"1":"Male","2":"65.74803"},{"1":"Male","2":"70.86600"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"67.72000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"62.40000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"59.05512"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"76.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"66.92913"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"68.50394"},{"1":"Male","2":"69.29000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"75.60000"},{"1":"Male","2":"71.50000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"63.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"71.65000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"68.89760"},{"1":"Male","2":"74.00000"},{"1":"Female","2":"65.00000"},{"1":"Female","2":"64.00000"},{"1":"Female","2":"68.00000"},{"1":"Female","2":"65.00000"},{"1":"Female","2":"64.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"67.00000"},{"1":"Female","2":"68.89760"},{"1":"Female","2":"62.60000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"69.00000"},{"1":"Female","2":"65.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"67.30000"},{"1":"Female","2":"64.20000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"61.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"61.00000"},{"1":"Female","2":"61.00000"},{"1":"Female","2":"68.11000"},{"1":"Female","2":"66.14000"},{"1":"Female","2":"67.50000"},{"1":"Female","2":"60.00000"},{"1":"Female","2":"67.00000"},{"1":"Female","2":"67.72000"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"70.00000"},{"1":"Female","2":"66.00000"},{"1":"Female","2":"64.50000"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"76.00000"},{"1":"Male","2":"70.86610"},{"1":"Male","2":"66.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"62.50000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"67.71654"},{"1":"Female","2":"60.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"65.00000"},{"1":"Female","2":"64.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"70.86614"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"60.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"70.86614"},{"1":"Male","2":"70.86614"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"75.40000"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"63.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"68.00000"},{"1":"Female","2":"61.00000"},{"1":"Female","2":"60.00000"},{"1":"Male","2":"65.00000"},{"1":"Female","2":"63.00000"},{"1":"Male","2":"67.00000"},{"1":"Female","2":"69.00000"},{"1":"Male","2":"74.00000"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"60.00000"},{"1":"Female","2":"66.00000"},{"1":"Female","2":"68.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"70.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"72.83460"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"67.70000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"62.00000"},{"1":"Male","2":"74.00000"},{"1":"Male","2":"71.00000"},{"1":"Female","2":"70.00000"},{"1":"Male","2":"64.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"62.00000"},{"1":"Female","2":"66.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"78.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"70.00000"},{"1":"Female","2":"65.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"65.74803"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"66.14173"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"68.00000"},{"1":"Female","2":"60.00000"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"73.20000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"73.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"72.44000"},{"1":"Female","2":"67.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"71.00000"},{"1":"Male","2":"68.89000"},{"1":"Male","2":"68.89000"},{"1":"Male","2":"70.07874"},{"1":"Male","2":"71.65354"},{"1":"Female","2":"69.00000"},{"1":"Female","2":"64.56693"},{"1":"Female","2":"66.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"70.10000"},{"1":"Female","2":"72.83465"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"78.74000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.83460"},{"1":"Male","2":"67.70000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"69.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"67.71654"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"72.00000"},{"1":"Female","2":"68.00000"},{"1":"Female","2":"69.00000"},{"1":"Male","2":"64.90000"},{"1":"Male","2":"62.99213"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"69.00000"},{"1":"Female","2":"64.96000"},{"1":"Male","2":"64.50000"},{"1":"Male","2":"64.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"61.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"59.84252"},{"1":"Male","2":"67.50000"},{"1":"Male","2":"70.86614"},{"1":"Male","2":"70.86000"},{"1":"Male","2":"68.89764"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"62.20472"},{"1":"Male","2":"68.11024"},{"1":"Male","2":"64.56693"},{"1":"Male","2":"76.00000"},{"1":"Male","2":"66.53543"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.83465"},{"1":"Male","2":"66.14173"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"66.53543"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"68.50394"},{"1":"Male","2":"68.00000"},{"1":"Male","2":"68.11024"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"70.47244"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"68.89000"},{"1":"Male","2":"73.22000"},{"1":"Male","2":"66.00000"},{"1":"Male","2":"65.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"66.92913"},{"1":"Female","2":"52.00000"},{"1":"Female","2":"52.00000"},{"1":"Female","2":"79.00000"},{"1":"Male","2":"70.00000"},{"1":"Male","2":"72.00000"},{"1":"Male","2":"67.71654"},{"1":"Female","2":"64.00000"},{"1":"Male","2":"68.11000"},{"1":"Male","2":"67.00000"},{"1":"Male","2":"62.20472"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"75.00000"},{"1":"Male","2":"81.00000"},{"1":"Male","2":"69.00000"},{"1":"Male","2":"68.89764"},{"1":"Male","2":"62.59843"},{"1":"Male","2":"76.00000"},{"1":"Female","2":"74.80315"},{"1":"Male","2":"69.60000"},{"1":"Male","2":"67.00000"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[1050]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The result does not look very different from <code>heights</code>, except we see <code>Groups: sex [2]</code> when we print the object. Although not immediately obvious from its appearance, this is now a special data frame called a <em>grouped data frame</em>, and <strong>dplyr</strong> functions, in particular <code>summarize</code>, will behave differently when acting on this object. Conceptually, you can think of this table as many tables, with the same columns but not necessarily the same number of rows, stacked together in one object. When we summarize the data after grouping, this is what happens:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KSAlPiUgc3VtbWFyaXplKGF2ZXJhZ2U9bWVhbihoZWlnaHQpLHN0YW5kYXJkX2RldmlhdGlvbj1zZChoZWlnaHQpKVxuYGBgIn0= -->
+<pre class="r"><code>heights %&gt;% group_by(sex) %&gt;% summarize(average=mean(height),standard_deviation=sd(height))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MiwibmNvbCI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVJzVTdETUJCMTY0U3FFVVFWQ0ZZVzFtUUFoZzRNSFZBM0pFQkY2Z1FjaVZzaVhLZHkzTkNSaVU5alFFeDhBUklNVENCK29PR2MySkdhSWJsMzcrN2UzZmt1VDhkSDN0Z2poRkRpa0RhaExrTGlYbzJHUVo4UXA0MU9Dd05kYlplWXRGTm1FcnFGdGdxV2RpMXhnN09jOFF4UnI0d2Fkc2htd0pueG5ET04xK3ZjaUVObXkycXhDVVFxbFloVytQbGFjSEIrc3YvOHhWNEdGNk9EdisrZnZacjNkOTgvWHQveXdlYm5MVnozZjV2eUFtYk15bE5EMG93dERleEF6aVJNN1lUYm1RSVJnNHh2WXBZbm9KSlVOQVM3TW4wTXJXajVJRS80SzRwaVZTWFNvckdMRjRPQ2NDS3hwTnBuVGE2VHpuVVRGR3ZyVjNZYnhTM1pJSG9Mb1p2SFFYUy9FQS9COGFIdVlFNUN6RVRtUERXbVZVL0hUdWJhVjJaaW1naTd1c3Zoam5IaitMaGx1V1E0bDRsUWRoVmtzMUNsQ215ZUY2WGNNdFd4VnY4VW9YNERYUUlBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["average"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["standard_deviation"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Female","2":"64.93942","3":"3.760656"},{"1":"Male","2":"69.31475","3":"3.611024"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The <code>summarize</code> function applies the summarization to each group separately.</p>
+<p>For another example, let’s compute the median murder rate in the four regions of the country:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgZ3JvdXBfYnkocmVnaW9uKSAlPiUgc3VtbWFyaXplKG1lZGlhbl9yYXRlPW1lZGlhbihyYXRlKSlcbmBgYCJ9 -->
+<pre class="r"><code>murders %&gt;% group_by(region) %&gt;% summarize(median_rate=median(rate))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NCwibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVJ1VTdEUUJCZFh5QTdTaFNKSDZDbHNDbENRWVdSUUpRZ2NZaUlCaTMySnJad2RxUDFHbEpRVUVXaTV4Y29LU09PNzRDS2tsOUlSeFF6dG5jajJZVzlNMjltM2h6djlMRGZjL29PUXNoQUp0S1JZWUdKckl2ekkzY1hJVk1IUjRPQVhid1RTTm9BQTBDakRhOVpCa3NmcWt1L1ZyQ1drRHVTcEdCMXkyaUYyc2VNaTRqZ1ZFakFPbU9aaUtUVExxT2JCNFFLamhNSm1wY0VzdXZrVnBEZ1ZIR3ZPZzV3SUJnSGF3bGZweWoxRjk4Zm4xOFB6L3V0N2IzWjMremR6NTllcGxzL2MzLysrbnR5OVRacDBsSThJb3BXVjdTY0RHTkdwZGNha1RERzlKcGpRUnJWTm1mM25tSW9UcVEvd2kvUDgwV1ZhT1NOZ1owUUMrd05PSlJVUTlmbzF0bFlRRjhnMDR1N1c0MWlqVGVBYmthTDVxRWJSQm05ZFhkNlJRY3BFcElUYVZJNFpldFZUMU5OWnFtZENSM0dsS2l6SlBpR0tEazZzR1c1cERmbU1WVXlPb0Ntbm1CaUpac1RzRVFobFNMTGYvVEcrdXR2QWdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["median_rate"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Northeast","2":"1.802179"},{"1":"South","2":"3.398069"},{"1":"North Central","2":"1.971105"},{"1":"West","2":"1.292453"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="sorting-data-frames" class="section level2">
+<h2><strong>Sorting data frames</strong></h2>
+<p>When examining a dataset, it is often convenient to sort the table by the different columns. We know about the <code>order</code> and <code>sort</code> function, but for ordering entire tables, the <strong>dplyr</strong> function <code>arrange</code> is useful. For example, here we order the states by population size:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgYXJyYW5nZShwb3B1bGF0aW9uKSAlPiUgaGVhZCgpXG5gYGAifQ== -->
+<pre class="r"><code>murders %&gt;% arrange(population) %&gt;% head()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVR2NHNUUVJTZS9URWJzdHdkQWE4NHUvZ0xiQktFWENFMjJaREZScmpDeEVzRW04bmVKTGRrTXhOblovVUVDeXYvQ0JIQld0SFMxazZ4RnJ4V0Rqa1F3VVpzeE9qOHpDVWJXTDd2ZS9QbXZmbmVURzdIdzFZNERBRUFIdkNCQ3p3b0tJQjMramNiMXdId1hTRWNzVkNWZUNTU3pna1NpSyttVUM5VUJvL29MQ1VUSTdmak5PY3NUWGlkanV0ZG1oV3pVWXBzNmo1bU0wcTRrUnQ3bFBIRGVveW1sTnVVb0pPaGZHclZSbzhXWnhucmZkM0JYY3Zpcm1YN2ZjdjJZc3M2dHl6cnhjTERwdkhneTRneUtOMXI3WlZNQnhsK2dMUGNkUFpOdEtyT2pWRnVqVUIxVENNMnRhc3VKcHloekFUOUFSYlo2OFZoSXF6YTJzdU9ZNVJ3eWdSYmlHOUxUZVJDcXkrdnBYUHgzbStGbDNhZUtiejg5SVhDSzYvZktMeDYvQkhvbjlvWGJXc1JEZDlyTkl0UnpXRExZQjJBMVgzdEg4bU5QNzIvVG5RdFAzMTUvUDFYK3pOLzlUWDRVclJQS3FjbjU5OHRJamorOE8zNXA3ajk4MzRQdGQ0K0x0c2lhSWF0TFh0Wk1PZUlZeU04TkJwWnV3eFBVa3FNQ3VkMFhtU0luMFVnRnhlL0hDS1ROZGE3VlJsOTJMUWQ1ZFc2VDdTVlFDZDYvMG9ERGc4UVI4MHhFMXYwa05mS1ZlaGNkaGZGWFBuV1lXbXp3MHFCV2tGazg0TkdjbGlRYVdOM1YzWXdqOG94SjNMTWcxdmhzcWR2VHdidExEQ1pwTVFPQ1dab2hLM3pMZUZTbVd6T1dicjgvNFFpbWpkWEp4UW1OTE1SL1lJVy93RnlLQitRNHdNQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Wyoming","2":"WY","3":"West","4":"563626","5":"5","6":"0.8871131","_rn_":"1"},{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99","6":"16.4527532","_rn_":"2"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.3196211","_rn_":"3"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4","6":"0.5947151","_rn_":"4"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19","6":"2.6751860","_rn_":"5"},{"1":"South Dakota","2":"SD","3":"North Central","4":"814180","5":"8","6":"0.9825837","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>With <code>arrange</code> we get to decide which column to sort by. To see the states by murder rate, from lowest to highest, we arrange by <code>rate</code> instead:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgYXJyYW5nZShyYXRlKSAlPiUgaGVhZCgpXG5gYGAifQ== -->
+<pre class="r"><code>murders %&gt;% arrange(rate) %&gt;% head()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVRUV3ZVUUJpZXpXYXliSERiQlVVcWVDallnNWZkaXhVTEt1bmlWck9YUFdpdFBZZ3d1enR0UXJPWk1KazBQUlRzcWRDL1VGQi9nUGJrd1p2Z2Z4RDBJTml5NEFmK2g5V1paTjY0bThEd1BPOHpNKzg3enp1VHg5M3RXL2EyalJDcUloTVpxSW9sUmZqcDVzUFdHa0ttSVlPS25LZ3JQSkNMTGt0aXlkSE1NSitvYlZFK1pxSFFZYU5QMDJXWGpLUFk4em5Wb3VXU2xQaStqaTcxR1JmZWNwZnNNVUcwWnZaWUNoejNSc1JqcFRMRzFpYXd2Z3ZNN1JWYUYxaXZVN0N1UEhKREg3bWloNW1aellkWjhtZ0ZkSjhHc2E1c2FyV2VIWmVTR0N6aUp5d1JYdUUzTS9PQWhvS1RBTnc4bzNMMWZISThERWdNdVl1S08yUW9HSmRzS3NlQ1VqbzNsazdWTFhSV3IrN24rT2tzdzVYajF4ayt1di83U09HZFB5OVEvbVg3MW5Xd2ZrWGpkWTFOamJjMTNrUm9kcC96V2J5OXNMNGt6dGYrKzFmdXQzZk9lWHJ5NXVUZW9UT3AvWnhjK3pCMWZpeXUrTjgzbmp1L1hpN2VQWnQ4TE5zS3laaUNMYmdzSEFzaTRQS3JaREFBdTV6dStpelVrUjJ4S0FtSStLOWdJVjlFMFVTdWNzeFhxM09XdHFHaXVscmpLTGRpNVF1cmYwc050a2RFa1BZT2wxdnlKcytscTdGSVZaZkpEUFcwY1dsemhaZUVaaEtxNHFQVzBFdkN2ZGFxYXFrOTg3Z2FHcTE1cm1xYWNESU12YURocmg5Q2szQkFCaFNjTDBpWG1jbDJ4UDNpejdLbEdyZG5PMlFQV1FCSy9vS20vd0JxeFB2azBnTUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.3196211","_rn_":"1"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5","6":"0.3798036","_rn_":"2"},{"1":"Hawaii","2":"HI","3":"West","4":"1360301","5":"7","6":"0.5145920","_rn_":"3"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4","6":"0.5947151","_rn_":"4"},{"1":"Iowa","2":"IA","3":"North Central","4":"3046355","5":"21","6":"0.6893484","_rn_":"5"},{"1":"Idaho","2":"ID","3":"West","4":"1567582","5":"12","6":"0.7655102","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Note that the default behavior is to order in ascending order. In <strong>dplyr</strong>, the function <code>desc</code> transforms a vector so that it is in descending order. To sort the table in descending order, we can type:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgYXJyYW5nZShkZXNjKHJhdGUpKVxuYGBgIn0= -->
+<pre class="r"><code>murders %&gt;% arrange(desc(rate))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NTEsIm5jb2wiOjZ9LCJyZGYiOiJINHNJQUFBQUFBQUFBM1ZYQ1d3VVZSaWU3Vjd0UWt1NWpCcVA1ZElpdGtBS2lCU2R0M1JidW0xM3QzYmJibEdwZmJzNzNSMTJkNmJNelBZd3hOWWdJb2tnUmdJR09UU0lFUUdOR0M0eFJwRWdLQjZKcUNnR0VPUVV4VVE4cThVM2I5NTdld1Ezblh6LzkvL3ZQOTR4Lzd3MnVsdkxIYTBPanVQTW5JWEw0OHhXSkhMVzVxYnEwcGtjWjhsRHhJUU1CVHIyb0VFamtXQkRUekY2eW9saGxGdFVOVVVNYTA2NXcxa3BKMUxKa0FpSnJhQmVUb21xQ0NXcXlQZUtxaXFuRkpGeHFQUW1vQlFodkNnZ3A3U1lzeElxY2tKTWU3bUZCT3lHaXBDT0VvNkpVU2dSUGtTUHF2OTFkdExBOXJtQ3JFUlpJWGFYSWo0cXM0QkRHd1JKVW5zVFhWQksxOXFFZElLcUNqU0x2VG9oSzJLRTJoMlZNQ0YyeUVyYXcrRVR1cDFlb1VjTXkwUmpiUko2b0VxcmRDbHhLS2xwM2lLaWl0THVOcC9RQlZuNElwK3NYR2ZtL25nQ3h1UWs0NTRFc3NxaXl1YVZnQ0dZektxb1ZsQlVvWmN1VGFXTVpoWFd4SEJLSXlxTFB5YlNnbTNJWDQyejZIV0NwS1hDY2VxY3I0ZWJKeXR4T3JvdWN6NTJqeFRKMk5wQ0wxUlZHSTZsVkVIVDFIU0VrSktSb1NBb3FtRlpVa1c2ZFVNYlkzSkVjSHJVakVOUUdCUlV6Wm16V280Z1ZHT2lGTlZrNnBxUERwdXN3QWlkaTkwclMxcTZuZ0t2cU8rbnJMRk5OODZXRzhiVE9wdGZFYUlzb2ozWUt5ZFJEcnFiWGloSzlEUlltalVZb3daUEJHMEtOWGprYnBiQzJNVHNGRFhvNklyMFhCYnFTMW9EazUxb011dzgyMXNFSlltS3ozbXo4dHlWVktwM1VjbnJaNUtiU2dFMnpsM0ZyQjRtQmFnMGwwVnhQVWlsQnFacjhsR3B1cDVLbGN6cTg3SnhyU3hLSTVWYTB1TmFtTVNxOHRkUnljTWl1NWprcTJYWm1waEhEUnZIZk92bU1ROG0xYkc1ZVZqMTNuUXRiRFdDYkRVYW1SUmtsUWFaUjJWNmRWa3RYaFk1d0ZiY3oyWWVaTFY0V2JabTV1dGhIcDUwVlV4WHcycnhzZm0yTktFK1c0aFBBV0xrTVdmSXVkeUNtM1EydCtTTXQxekgxMFFlYzRhZGN2TjE1TXpZbGd3YjVhYi9zWkU4V1I4VFcwTG9FaElxT2U4VytzYml0MGVBS3UxVVZ2ekdzamZIYUpDb1JTa3dRVjgrdlZYa0JMZUdVVStqc1ZuR0RoaldaQVZKZytncDB0ZlhOZmJoM3hGeXJnZnFic2ZZY3V5Wjl6RGFaaHY2bDMvRE9DbDZDOGJRTjljd1ZtL3E3OGY4eC9jd2J3MU5BenJHWmpXM1l6NjlEWFBsNElvR0hSLy9ZSzFUUno2K0ZZL3ZIaWhjaWVQd2QyTGV0cVFmbzN2dFlpUHU1R3M0VHYyRzQ1akhlb3c2R2l0MllXdy9jQW5YV2VkK0ZkczdUTU93ZnNLMjF6RTJMTitDN2NxakF6aE8xWUUrbzg1OVgrSHhyWDlQd3ZWVm5KaUE5YzF2N3NENktjUFdZRDY3ZWc3R2VhOWN3UmlZSE1CWU52VlRqRTBWNjdGL3liRkRtSHRuUFl0eFRIa1R4bW51aXhpcmJwaUI0OTd6WXh2bWMrKzdpUG40SnpjWTQ5N2ZidUFOWFJqSDNiaVdNMzU0ZjBBclhsNE9wSDR4VUNzMlVHa3dVRHhsWUtYaEJIby9ON0NOOE81K0E1T0VMMXBwWUx6ZHdDY3VHUGpjeXdZMmtIekxTZ3dNQWdObGdzMGt6a0tTOXlFeXZvdGdPOUZMaExjU1A1WGtLeWYrOHduMmt6eCtVaWNrZnZNSkIxeDJuQ21FVjNEWjlUVVFMQ0g2V3VMdkpId093VkVFN3lBNGc4djJtMDZ3bU9BdE9YNGMreG43TTBVOS85S3hTMWZCYlg5R1N6YnV0WVBSblVzWGZxNmVCcVBxdHp6OXdJUkh3UEJ6KzZhTzJ6VUdGUC9VZjN3L1dBNktkMTM0WlArZU4wRng2ZmpIeDdZL0Jvb2FWMjJlV0JzQWhRVlZhelpYYlFGREQwMzlyRmM4Q1lhODhNUWRCMGMwZ2lHVDc5ODVzSE1QY0F6T3ZqYzU4UkJ3MkY5Y1VIclhGVkN3TG5SdzJ2aXBvR0R4aWF2ZjlwV0EvR3RsL2c4M0x3VDVwMTN4TDlaRWdIMXcvWUtPMHRQQXZ2WHM2aEdMTndIYmpodjc5NCtjQ1d6UHh4OGIvZElSWUF1MXJVaVlBYkR1dW1mRS9IWGZBMnZmckp2L0xqNE1yQjBmbmwzM2tSdFlRN3ZMb2h1V0FtdHdJTFE2LzFaZ2VtMzZTVmZKWldCYVVtWHAzZWpnLy9seTc5dEhGNjNpLzhsLzM5emVlNVFmcUcyNVR3bTE4WDgyZW4xSG5sck4vOUhnNlRrY2Y0Zi8zZm51Q203R0ZQN3E5alArQjNmMzhMOUdENzMxU2QvWC9KVy9maGwrL01BSi9zckNBQ3gvWXhILzgvQWY5aTlkY1RkL09UeHJJUEN2aWIvVXQyUDM2Rk5iK1lzOTJ5Y2YzL1F4ZjZGdldNWDJNKy95NTRhTkYwOVdQY3lmc1o4L2M5UHVRZjVVOTdLTnkyWXY0by81M2xwZjg5MDIvcWkyOVh2YjE2bmNkaWpCcEVEYm9ZMHFWUTFxOVBwaGhxRVFiWlBvT2lTeSs1Q2pVKzVNSmFDVzFsZzFkTEZoelZmUlkyUm5LMURrN2pLYVVmK001Um1IVWYrYzZRUE4xN2pzeHV5SVFBMldkU2pJaGNQTk9TdWNYZTdVczZOZ2Vmci9IdFljWjVPU295aE9TWHJ5U0NtNmgwcngwbW42RVhkd3hrZUlJeFdaakdxWWJETnlXbWhsVnJvV2doUk4zLytzNktJdDBKa1hvVm5pU1paMUtxSkVQMWNPcEZYTE1sZklFWllUVkdOOGVRYi9BeEViajBOekRRQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99","6":"16.4527532"},{"1":"Louisiana","2":"LA","3":"South","4":"4533372","5":"351","6":"7.7425810"},{"1":"Missouri","2":"MO","3":"North Central","4":"5988927","5":"321","6":"5.3598917"},{"1":"Maryland","2":"MD","3":"South","4":"5773552","5":"293","6":"5.0748655"},{"1":"South Carolina","2":"SC","3":"South","4":"4625364","5":"207","6":"4.4753235"},{"1":"Delaware","2":"DE","3":"South","4":"897934","5":"38","6":"4.2319369"},{"1":"Michigan","2":"MI","3":"North Central","4":"9883640","5":"413","6":"4.1786225"},{"1":"Mississippi","2":"MS","3":"South","4":"2967297","5":"120","6":"4.0440846"},{"1":"Georgia","2":"GA","3":"South","4":"9920000","5":"376","6":"3.7903226"},{"1":"Arizona","2":"AZ","3":"West","4":"6392017","5":"232","6":"3.6295273"},{"1":"Pennsylvania","2":"PA","3":"Northeast","4":"12702379","5":"457","6":"3.5977513"},{"1":"Tennessee","2":"TN","3":"South","4":"6346105","5":"219","6":"3.4509357"},{"1":"Florida","2":"FL","3":"South","4":"19687653","5":"669","6":"3.3980688"},{"1":"California","2":"CA","3":"West","4":"37253956","5":"1257","6":"3.3741383"},{"1":"New Mexico","2":"NM","3":"West","4":"2059179","5":"67","6":"3.2537239"},{"1":"Texas","2":"TX","3":"South","4":"25145561","5":"805","6":"3.2013603"},{"1":"Arkansas","2":"AR","3":"South","4":"2915918","5":"93","6":"3.1893901"},{"1":"Virginia","2":"VA","3":"South","4":"8001024","5":"250","6":"3.1246001"},{"1":"Nevada","2":"NV","3":"West","4":"2700551","5":"84","6":"3.1104763"},{"1":"North Carolina","2":"NC","3":"South","4":"9535483","5":"286","6":"2.9993237"},{"1":"Oklahoma","2":"OK","3":"South","4":"3751351","5":"111","6":"2.9589340"},{"1":"Illinois","2":"IL","3":"North Central","4":"12830632","5":"364","6":"2.8369608"},{"1":"Alabama","2":"AL","3":"South","4":"4779736","5":"135","6":"2.8244238"},{"1":"New Jersey","2":"NJ","3":"Northeast","4":"8791894","5":"246","6":"2.7980319"},{"1":"Connecticut","2":"CT","3":"Northeast","4":"3574097","5":"97","6":"2.7139722"},{"1":"Ohio","2":"OH","3":"North Central","4":"11536504","5":"310","6":"2.6871225"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19","6":"2.6751860"},{"1":"Kentucky","2":"KY","3":"South","4":"4339367","5":"116","6":"2.6732010"},{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517","6":"2.6679599"},{"1":"Kansas","2":"KS","3":"North Central","4":"2853118","5":"63","6":"2.2081106"},{"1":"Indiana","2":"IN","3":"North Central","4":"6483802","5":"142","6":"2.1900730"},{"1":"Massachusetts","2":"MA","3":"Northeast","4":"6547629","5":"118","6":"1.8021791"},{"1":"Nebraska","2":"NE","3":"North Central","4":"1826341","5":"32","6":"1.7521372"},{"1":"Wisconsin","2":"WI","3":"North Central","4":"5686986","5":"97","6":"1.7056487"},{"1":"Rhode Island","2":"RI","3":"Northeast","4":"1052567","5":"16","6":"1.5200933"},{"1":"West Virginia","2":"WV","3":"South","4":"1852994","5":"27","6":"1.4571013"},{"1":"Washington","2":"WA","3":"West","4":"6724540","5":"93","6":"1.3829942"},{"1":"Colorado","2":"CO","3":"West","4":"5029196","5":"65","6":"1.2924531"},{"1":"Montana","2":"MT","3":"West","4":"989415","5":"12","6":"1.2128379"},{"1":"Minnesota","2":"MN","3":"North Central","4":"5303925","5":"53","6":"0.9992600"},{"1":"South Dakota","2":"SD","3":"North Central","4":"814180","5":"8","6":"0.9825837"},{"1":"Oregon","2":"OR","3":"West","4":"3831074","5":"36","6":"0.9396843"},{"1":"Wyoming","2":"WY","3":"West","4":"563626","5":"5","6":"0.8871131"},{"1":"Maine","2":"ME","3":"Northeast","4":"1328361","5":"11","6":"0.8280881"},{"1":"Utah","2":"UT","3":"West","4":"2763885","5":"22","6":"0.7959810"},{"1":"Idaho","2":"ID","3":"West","4":"1567582","5":"12","6":"0.7655102"},{"1":"Iowa","2":"IA","3":"North Central","4":"3046355","5":"21","6":"0.6893484"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4","6":"0.5947151"},{"1":"Hawaii","2":"HI","3":"West","4":"1360301","5":"7","6":"0.5145920"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5","6":"0.3798036"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.3196211"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[51]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="nested-sorting" class="section level3">
+<h3><strong>4.8.1 Nested sorting</strong></h3>
+<p>If we are ordering by a column with ties, we can use a second column to break the tie. Similarly, a third column can be used to break ties between first and second and so on. Here we order by <code>region</code>, then within region we order by murder rate:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgYXJyYW5nZShyZWdpb24scmF0ZSkgJT4lIGhlYWQoKVxuYGBgIn0= -->
+<pre class="r"><code>murders %&gt;% arrange(region,rate) %&gt;% head()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVRUV3NUUVJpZWJIYlNaakcxb0JVdlFrQVFRUklLRnZTMkNkYVNIcktIdExicFFlZ2ttWFpETnpQTHpHd3JwZEFlL1FHbGd1QXZxQ2M5U1BzYmVxem93WU1lOVJlSWxkcVozWmxOZDNGaGVONTU1djJZNTMxbk8vUGR4MDdYQVFBVWdRMHNVSVRTQlBERjhrTHRLUUMySlRjRmVWQlcrRW82M1pKR1NhN3BHSk9EaVJYTVJwUUl2YTE0ZUtmYVFxT1ErME9HTlFuYmFFak01a2JIcHdOY1hlUUJJZ01UMVVhY283NGZjU3dFMStTa1NyVkcyVmF1b3JXeWJDeXZaYXoyYzJOMUZsT3VtZnF0eWR0WDlPMEwvMThadWFVQWIrT0E2OHEyWnNzZVpjTEhpQnUxY0lsR3drK2xxOVBxTTB3RVE0RW03VlVzdmJQSllUK1Fjblh1dE9JRzZndktwSFVwMTVSaW12ZnZ2bFVEYWM3ZDJVNXcvbWVNc3pmZnhOajk4Nmloa08xZXJJUDRpK01haVEwYXR6VSswRGlyOGVWQmdnY1B0V2NTNTU2TDR4K2xMNUg3MWZ2NHJ2WHR2ZnRyLzhPbm1lL0g3dTlPMnp0N2ZlVCsvWHh5ZXI1MzJJQ3JGNzJqeVh0NVdRU05zSkZsaGdXNVFNS012b2g2UFNPWDRjMGhKWHJuaERTTUFpVEdEQlJVakp2SVZJNXN0VEtqTzNWVFVZM1dTa1NwRVN2SDRyOWNnNTBCRXFpK3dXUkkwdVJNdWdrYXF1b3ltYVZlT2N3RkYxaU9tSTZJS2o2b3lVZEx0bXB6VDFTRmF3K3FvckdVdFZWTjI5d01tbDVnc2puK1AyQ0FldGdvbjVJcVk1SDFrQTNUbjh5UkxLOWY3NURUcDRGaGtoZDBlUVhmWkRaaDNRTUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.3196211","_rn_":"1"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5","6":"0.3798036","_rn_":"2"},{"1":"Maine","2":"ME","3":"Northeast","4":"1328361","5":"11","6":"0.8280881","_rn_":"3"},{"1":"Rhode Island","2":"RI","3":"Northeast","4":"1052567","5":"16","6":"1.5200933","_rn_":"4"},{"1":"Massachusetts","2":"MA","3":"Northeast","4":"6547629","5":"118","6":"1.8021791","_rn_":"5"},{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517","6":"2.6679599","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="the-top-n" class="section level3">
+<h3><strong>4.8.2 The top <span class="math inline">\(n\)</span></strong></h3>
+<p>In the code above, we have used the function <code>head</code> to avoid having the page fill up with the entire dataset. If we want to see a larger proportion, we can use the <code>top_n</code> function. This function takes a data frame as it’s first argument, the number of rows to show in the second, and the variable to filter by in the third. Here is an example of how to see the top 5 rows:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgdG9wX24oNSxyYXRlKVxuYGBgIn0= -->
+<pre class="r"><code>murders %&gt;% top_n(5,rate)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVNPMjhUUVJEZTNDdjRKRWRHQ1MwWUVCS05MUkFVS1NqT09vc0dCd2poNFFJSnJjOXJlNVhON3JHN2wwQkhSNFBFVDBCSU5Qd0JKRVNUbjBDWkVsR0FSRVVCaUNxd1Q4Zm5rMWJ6elRlejg4M003YjMrOEZvNlRBRUFJWWhBQU1KWVFSQS91SCt6c3dsQUZDaG5SUVVhMmo1VFNlc0tKT3EwZEpZTGJQU3hrQndYc3MwbTdaeVJhbStFb1lzMUJxekNBa1BxaVZOYmtEOG5rSTduUGhhQ1ZSdzdmMjJIVlhMV3ppRm5CS3RiZGFtZ24zczA2SG0wMVorak94N3Q1S3JacHJtcHZJVVRXbHViTENGb0h4SGh0Q0xmK20zRzVReEJJUjBSbTlhYzB6VFJkbzZvNUpBNE1ucUVWSGE5ZUZ3UUtIenR1ZUlFRnBKeGhZNzF6RHF0ZCtIeEg3MzczdmF0YzhZK1RHNVllL1Q2MFBEdmZnUDdtZnhzZUdpY3JQcHBMYjlycld4Wmk3K0FXdjRWOGYzdDBZOWYyZG0vMDh0dlBxNW1HNFAzcjdZdlBjbk9sQytmZmhaZnM5UGZQbDI5K09IOGN2c1U3aUhmZnVKSklhRkV6Z25oYU9USDRtaUtHWFZlV3JLeUlsQ2VNTEZrOG1SWlhOZW9xelU0TytoNlJmMzdnaGQyaE5nbWh2K1dGcG1Pb1lUZENWZFg3REpyNVZaWnFkVlZzV0RkdllYRnl5dDhpV2hWVkl1UE84V3NvcnVkNjV0YXdjVHQxM1E0WHNDSjFZeDhaLzZwSm9oT01mVkxpZ2tjSVQvNW1wclNETmt0T2FiK2VhV0tGZDNGRGFVRkk1NnhMK1g0UDJ5aFNQV3dBd0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99","6":"16.452753"},{"1":"Louisiana","2":"LA","3":"South","4":"4533372","5":"351","6":"7.742581"},{"1":"Maryland","2":"MD","3":"South","4":"5773552","5":"293","6":"5.074866"},{"1":"Missouri","2":"MO","3":"North Central","4":"5988927","5":"321","6":"5.359892"},{"1":"South Carolina","2":"SC","3":"South","4":"4625364","5":"207","6":"4.475323"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Note that rows are not sorted by <code>rate</code>, only filtered. If we want to sort, we need to use <code>arrange</code>. Note that if the third argument is left blank, <code>top_n</code> filters by the last column.</p>
+</div>
+</div>
+<div id="exercises" class="section level2">
+<h2><strong>4.9 Exercises</strong></h2>
+<p>For these exercises, we will be using the data from the survey collected by the United States National Center for Health Statistics (NCHS). This center has conducted a series of health and nutrition surveys since the 1960’s. Starting in 1999, about 5,000 individuals of all ages have been interviewed every year and they complete the health examination component of the survey. Part of the data is made available via the <strong>NHANES</strong> package. Once you install the <strong>NHANES</strong> package, you can load the data like this:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbC5wYWNrYWdlcygnTkhBTkVTJylcbmBgYCJ9 -->
+<pre class="r"><code>install.packages(&#39;NHANES&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gaW5zdGFsbC5wYWNrYWdlcyA6IFVwZGF0aW5nIGxvYWRlZCBwYWNrYWdlc1xuIn0= -->
+<pre><code>Error in install.packages : Updating loaded packages</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShOSEFORVMpXG5kYXRhKFwiTkhBTkVTXCIpXG5gYGAifQ== -->
+<pre class="r"><code>library(NHANES)
+data(&quot;NHANES&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The <strong>NHANES</strong> data has many missing values. The <code>mean</code> and <code>sd</code> functions in R will return NA if any of the entries of the input vector is an <code>NA</code>. Here is an example:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkc2xhYnMpXG5kYXRhKFwibmFfZXhhbXBsZVwiKVxubWVhbihuYV9leGFtcGxlKVxuYGBgIn0= -->
+<pre class="r"><code>library(dslabs)
+data(&quot;na_example&quot;)
+mean(na_example)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIE5BXG4ifQ== -->
+<pre><code>[1] NA</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2QobmFfZXhhbXBsZSlcbmBgYCJ9 -->
+<pre class="r"><code>sd(na_example)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIE5BXG4ifQ== -->
+<pre><code>[1] NA</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To ignore the <code>NA</code>s we can use the <code>na.rm</code> argument:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVhbihuYV9leGFtcGxlLG5hLnJtPVRSVUUpXG5gYGAifQ== -->
+<pre class="r"><code>mean(na_example,na.rm=TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIuMzAxNzU0XG4ifQ== -->
+<pre><code>[1] 2.301754</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2QobmFfZXhhbXBsZSxuYS5ybT1UUlVFKVxuYGBgIn0= -->
+<pre class="r"><code>sd(na_example,na.rm=TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEuMjIzMzhcbiJ9 -->
+<pre><code>[1] 1.22338</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Let’s now explore the NHANES data.</p>
+<ol style="list-style-type: decimal">
+<li>We will provide some basic facts about blood pressure. First let’s select a group to set the standard. We will use 20-to-29-year-old females. <code>AgeDecade</code> is a categorical variable with these ages. Note that the category is coded like &quot; 20-29&quot;, with a space in front! What is the average and standard deviation of systolic blood pressure as saved in the BPSysAve variable? Save it to a variable called <code>ref</code>.</li>
+</ol>
+<p>Hint: Use <code>filter</code> and <code>summarize</code> and use the <code>na.rm = TRUE</code> argument when computing the average and standard deviation. You can also filter the NA values using <code>filter</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVmIDwtIE5IQU5FUyAlPiUgZmlsdGVyKEFnZURlY2FkZT09JyAyMC0yOScpICU+JSBzdW1tYXJpemUoYXZlcmFnZT1tZWFuKEJQU3lzQXZlLG5hLnJtPVRSVUUpLHN0YW5kYXJkX2RldmlkYXRpb249c2QoQlBTeXNBdmUsbmEucm0gPSBUUlVFKSlcbmBgYCJ9 -->
+<pre class="r"><code>ref &lt;- NHANES %&gt;% filter(AgeDecade==&#39; 20-29&#39;) %&gt;% summarize(average=mean(BPSysAve,na.rm=TRUE),standard_devidation=sd(BPSysAve,na.rm = TRUE))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="2" style="list-style-type: decimal">
+<li>Using a pipe, assign the average to a numeric variable <code>ref_avg</code>. Hint: Use the code similar to above and then <code>pull</code>.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVmX2F2ZyA8LSByZWYgJT4lIHB1bGwoYXZlcmFnZSlcbmBgYCJ9 -->
+<pre class="r"><code>ref_avg &lt;- ref %&gt;% pull(average)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="3" style="list-style-type: decimal">
+<li>Now report the min and max values for the same group.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkhBTkVTICU+JSBmaWx0ZXIoQWdlRGVjYWRlPT0nIDIwLTI5JykgJT4lIHNlbGVjdChCUFN5c0F2ZSkgJT4lIG1pbihuYS5ybT1UUlVFKVxuYGBgIn0= -->
+<pre class="r"><code>NHANES %&gt;% filter(AgeDecade==&#39; 20-29&#39;) %&gt;% select(BPSysAve) %&gt;% min(na.rm=TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDg0XG4ifQ== -->
+<pre><code>[1] 84</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkhBTkVTICU+JSBmaWx0ZXIoQWdlRGVjYWRlPT0nIDIwLTI5JykgJT4lIHNlbGVjdChCUFN5c0F2ZSkgJT4lIG1heChuYS5ybT1UUlVFKVxuYGBgIn0= -->
+<pre class="r"><code>NHANES %&gt;% filter(AgeDecade==&#39; 20-29&#39;) %&gt;% select(BPSysAve) %&gt;% max(na.rm=TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE3OVxuIn0= -->
+<pre><code>[1] 179</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="4" style="list-style-type: decimal">
+<li>Compute the average and standard deviation for females, but for each age group separately rather than a selected decade as in question 1. Note that the age groups are defined by <code>AgeDecade</code>. Hint: rather than filtering by age and gender, filter by <code>Gender</code> and then use <code>group_by</code>.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkhBTkVTICU+JSBmaWx0ZXIoR2VuZGVyPT0nZmVtYWxlJykgJT4lIGdyb3VwX2J5KEFnZURlY2FkZSkgJT4lIHN1bW1hcml6ZShhdmVyYWdlPW1lYW4oQlBTeXNBdmUsbmEucm09VFJVRSksc3RhbmRhcmRfZGV2aWF0aW9uPXNkKEJQU3lzQXZlLG5hLnJtPVRSVUUpKSBcbmBgYCJ9 -->
+<pre class="r"><code>NHANES %&gt;% filter(Gender==&#39;female&#39;) %&gt;% group_by(AgeDecade) %&gt;% summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE)) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6OSwibmNvbCI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoWUdKZ1pnVXlHVmhEUTl4MExSZ1lXSmlBSEVhZ0JDZUlyZ0FxRWdhclpHRG1CZEpnUVNCbWdvZ0JsUUYxQWpFYkVMTURNVWNEeUN4VVE5aHlVc3RTYzRxQkxBR1FDcWdvaTRLQnJpVk1oWUtoZ2E0aGdtZGtvR3VFNEJrYjZCb2plQ1lHdWlZSW5xbUJyaW1DWjJhZ2EyWUpOOS9jUUJ2TkphekpPWW5GTUlmQW5aZVdtRnlTWHdSay9RTmlQcEFuSFNMK1hKNzQrOGhoaHlqQktZeTlwMUljb3FVNXVkTnpWQnlpTHdUZmVzbHE1eEJ6ZjdiT004YkpEbkdscjQ1ZVMrVjJpRCtkNUpYWjFPQ1FzS0hkZDZrbmgwUGl4cDVraVdOR2NQT1VWQTd0Y0ZrUzVxRDB4bUhGaGtJTEJ4VnZ5ZTF2SDg1ejBGaW9vN1h0dnJPRExuK3lnZlk5RVFjRDNSZEhmMjRyZERCVTBOdjBweW5Pd2ZoNjNVZUZEVzhjekY1TXVlWDdkRDY2ZC9JU2MxTmgzbUdHQ25JNnBxZTZwQ1lucHFSQ0JkZ1R5MUtMRXROaFhLSGlrc1M4bE1TaWxQaVUxTExNeEpMTS9EdzBZem1MOHN2MVlFYURJcDBKRktuLy8vLy9EbEhJL0I4dEJMbFNFa3NTOWRLS2dGb2dvWWhpSEh0K0FjZ1NvR0ZNd3REVWdxeVpzUWhOUUtBMEQyUjVpbTV5Um1sZXRxNnBLY2dHYUxKamdMcUlFWm9VWVd4bWlKMHNNSmV4d3VJMk5TODlNdy9tZGRhY3hLVFVIQ2lIRCtoTHNDZjFDb295ODBwZ1hnR0tGdXVWNUpja3d0UnhKZWZud0VRZ1NlUWZBRUNiTHM1QkF3QUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["AgeDecade"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["average"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["standard_deviation"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"0-9","2":"99.95041","3":"9.071798"},{"1":"10-19","2":"104.27466","3":"9.461431"},{"1":"20-29","2":"108.42243","3":"10.146681"},{"1":"30-39","2":"111.25512","3":"12.314790"},{"1":"40-49","2":"115.49385","3":"14.530054"},{"1":"50-59","2":"121.84245","3":"16.179333"},{"1":"60-69","2":"127.17787","3":"17.125713"},{"1":"70+","2":"133.51652","3":"19.841781"},{"1":"NA","2":"141.54839","3":"22.908521"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[9]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="5" style="list-style-type: decimal">
+<li>Repeat exercise 4 for males.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkhBTkVTICU+JSBmaWx0ZXIoR2VuZGVyPT0nbWFsZScpICU+JSBncm91cF9ieShBZ2VEZWNhZGUpICU+JSBzdW1tYXJpemUoYXZlcmFnZT1tZWFuKEJQU3lzQXZlLG5hLnJtPVRSVUUpLHN0YW5kYXJkX2RldmlhdGlvbj1zZChCUFN5c0F2ZSxuYS5ybT1UUlVFKSkgXG5gYGAifQ== -->
+<pre class="r"><code>NHANES %&gt;% filter(Gender==&#39;male&#39;) %&gt;% group_by(AgeDecade) %&gt;% summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE)) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6OSwibmNvbCI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoWUdKZ1pnVXlHVmhEUTl4MExSZ1lXSmlBSEVhZ0JDZUlyZ0FxRWdhclpHRG1CZEpnUVNCbWdvZ0JsUUYxQWpFYkVMTURNVWNEeUN4VVE5aHlVc3RTYzRxQkxBR1FDcWdvaTRLQnJpVk1oWUtoZ2E0aGdtZGtvR3VFNEJrYjZCb2plQ1lHdWlZSW5xbUJyaW1DWjJhZ2EyWUpOOS9jUUJ2TkphekpPWW5GTUlmQW5aZVdtRnlTWHdSay9RTmlQcEFuSFNLaUxnSEJaWWZvTk9kYmYxNWxPc1NXbGNqT1pVOTNpTDI1K1AxTm00a09jVWJheWFmZkxYV0lMd0I3MXlGK3g0WkYvdDlLSEJMY1NzcFdHaTl4U09RNUF3Um40ZVlwTEtwOUg3VWt5a0d0Wko3bXlSTjFEbW85RzMvazJXWTdhTXhsL0hXblM5bEIrLzBwUHZ0ZWZ3ZkRRNXRxVDZ0RU9CaFdwVDVyOFRWek1Gb1I0SmtibnVGZzN2RkV3K1NWRTdwMzhoSnpVMkhlWVlZS2NqcW1wN3FrSmllbXBFSUYyQlBMVW9zUzAyRmNvZUtTeEx5VXhLS1UrSlRVc3N6RWtzejhQRFJqT1l2eXkvVmdSb01pblFrVXFmLy8vLzhPVWNqOEh5MEV1VklTU3hMMTBvcUFXaUNoaUdJY2UzNEJ5QktnWVV6QzBOU0NySm14Q0UxQW9EUVBaSG1LYm5KR2FWNjJycWtaeUFab3NtT0F1b2dSbWhSaGJHYUluU3d3bDdIQzRqWTFMejB6RCtaMTFwekVwTlFjS0ljUDZFdXdKL1VLaWpMelNtQmVBWW9XNjVYa2x5VEMxSEVsNStmQVJDQko1QjhBR2sxbitVRURBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["AgeDecade"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["average"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["standard_deviation"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"0-9","2":"97.41912","3":"8.317367"},{"1":"10-19","2":"109.59789","3":"11.227769"},{"1":"20-29","2":"117.85084","3":"11.274795"},{"1":"30-39","2":"119.40063","3":"12.306656"},{"1":"40-49","2":"120.78390","3":"13.968338"},{"1":"50-59","2":"125.75000","3":"17.760536"},{"1":"60-69","2":"126.88578","3":"17.478117"},{"1":"70+","2":"130.20172","3":"18.657475"},{"1":"NA","2":"136.40000","3":"23.534731"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[9]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="6" style="list-style-type: decimal">
+<li>We can actually combine both summaries for exercises 4 and 5 into one line of code. This is because <code>group_by</code> permits us to group by more than one variable. Obtain one big summary table using <code>group_by(AgeDecade, Gender)</code>.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkhBTkVTICU+JSBncm91cF9ieShBZ2VEZWNhZGUsR2VuZGVyKSAlPiUgc3VtbWFyaXplKGF2ZXJhZ2U9bWVhbihCUFN5c0F2ZSxuYS5ybT1UUlVFKSxzdGFuZGFyZF9kZXZpYXRpb249c2QoQlBTeXNBdmUsbmEucm09VFJVRSkpXG5gYGAifQ== -->
+<pre class="r"><code>NHANES %&gt;% group_by(AgeDecade,Gender) %&gt;% summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCByZWdyb3VwaW5nIG91dHB1dCBieSAnQWdlRGVjYWRlJyAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` regrouping output by &#39;AgeDecade&#39; (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImdyb3VwZWRfZGYiLCJ0YmxfZGYiLCJ0YmwiLCJkYXRhLmZyYW1lIl0sIm5yb3ciOjE4LCJuY29sIjo0fSwicmRmIjoiSDRzSUFBQUFBQUFBQXd0eWlURG1pdUJpWUdCZ1ptQmhZR0pnWmdVeUdWaERROXgwTFJnWVdKaUFIRWFnQkNlSXJnQXFFZ1l5V0lBMEw1QVdBa3RDTUJNVU0wTXhDeFN6UWpFYkZMTkRNUWNJTndBSkVFYXppQzBudFN3MXB4aklFZ0NyaElpeUtCam9Xc0pVS0JnYTZCb2llRVlHdWtZSW5yR0JyakdDWjJLZ2E0TGdtUnJvbWlKNFpnYTZacFp3ODgwTnRORmN3cHFjazFnTWN3amNlV21KeVNYNVJVRFdQN1NBWUtLY0JsblA5QjlxSXhQY3h0VGN4SnhVbUVQQmJMQks1di80M01iQUIzS2JROFNmeXhOL0h6bnNFQkYxQ1FndU8wUUpUbUhzUFpYaUVKM21mT3ZQcTB5SGFHbE83dlFjRllmWXNoTFp1ZXpwRHRFWGdtKzlaTFZ6aUwyNStQMU5tNGtPTWZkbjZ6eGpuT3dRWjZTZGZQcmRVb2U0MGxkSHI2VnlPOFFYZ0tQT0lmNTBrbGRtVTRORC9JNE5pL3kvbFRna2JHajNYZXJKNFpEZ1ZsSzIwbmlKUStMR25tU0pZMFlPaVR4bmdPQXMzRjFLS29kMnVDd0pjMUJZVlBzK2FrbVVnOUliaHhVYkNpMGMxRXJtYVo0OFVlZWc0aTI1L2UzRGVRNXFQUnQvNU5sbU8yZ3MxTkhhZHQvWlFXTXU0Njg3WGNvT3V2ekpCdHIzUkJ5MDM1L2lzKy8xZHpEUWZYSDA1N1pDQjhORG0ycFBxMFE0R0Nyb2JmclRGT2RnV0pYNnJNWFh6TUg0ZXQxSGhRMXZISXhXQkhqbWhtYzRtTDJZY3N2MzZYd0g4NDRuR2lhdm5IQ0VLRmRLWWttaVhscFJZbTRxV3VMZ0xNb3YxOHNEaW9NU0NDZ1pNSUhTOHYvLy85K2hweUtZSWdGd3BvRHFka3hQZFVsTlRreUJSU3ViZTJwZVNtb1JsTWVlV0paYWxKZ09reFFxTGtuTVMwa3NTb2xQU1MzTFRDekp6TStEeERHS1JlejVCU0Fab0ZWTXd0QjhoK3dWeGlJMEFZSFNQSkRUVW5TVE0wcnpzblZOelVIK2hhWkZCcWluR0tIcEc4Wm1nZGpKQ2dzblZwanpVL1BTTS9OZzdtWE5TVXhLellGeStJQUJCUTRDdllLaXpMd1NXTUFDUll2MVN2SkxFbUhxdUpMemMyQWlrQVQ4RHdEM09CcU5ud1FBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["AgeDecade"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["Gender"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["average"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["standard_deviation"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0-9","2":"female","3":"99.95041","4":"9.071798"},{"1":"0-9","2":"male","3":"97.41912","4":"8.317367"},{"1":"10-19","2":"female","3":"104.27466","4":"9.461431"},{"1":"10-19","2":"male","3":"109.59789","4":"11.227769"},{"1":"20-29","2":"female","3":"108.42243","4":"10.146681"},{"1":"20-29","2":"male","3":"117.85084","4":"11.274795"},{"1":"30-39","2":"female","3":"111.25512","4":"12.314790"},{"1":"30-39","2":"male","3":"119.40063","4":"12.306656"},{"1":"40-49","2":"female","3":"115.49385","4":"14.530054"},{"1":"40-49","2":"male","3":"120.78390","4":"13.968338"},{"1":"50-59","2":"female","3":"121.84245","4":"16.179333"},{"1":"50-59","2":"male","3":"125.75000","4":"17.760536"},{"1":"60-69","2":"female","3":"127.17787","4":"17.125713"},{"1":"60-69","2":"male","3":"126.88578","4":"17.478117"},{"1":"70+","2":"female","3":"133.51652","4":"19.841781"},{"1":"70+","2":"male","3":"130.20172","4":"18.657475"},{"1":"NA","2":"female","3":"141.54839","4":"22.908521"},{"1":"NA","2":"male","3":"136.40000","4":"23.534731"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[18]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="7" style="list-style-type: decimal">
+<li>For males between the ages of 40-49, compare systolic blood pressure across race as reported in the <code>Race1</code> variable. Order the resulting table from lowest to highest average systolic blood pressure.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkhBTkVTICU+JSBmaWx0ZXIoR2VuZGVyPT0nbWFsZScsQWdlRGVjYWRlPT0nIDQwLTQ5JykgJT4lIGdyb3VwX2J5KFJhY2UxKSAlPiUgc3VtbWFyaXplKGF2ZXJhZ2U9bWVhbihCUFN5c0F2ZSxuYS5ybT1UUlVFKSxzdGFuZGFyZF9kZXZpYXRpb249c2QoQlBTeXNBdmUsbmEucm09VFJVRSkpICU+JSBhcnJhbmdlKGF2ZXJhZ2UpXG5gYGAifQ== -->
+<pre class="r"><code>NHANES %&gt;% filter(Gender==&#39;male&#39;,AgeDecade==&#39; 40-49&#39;) %&gt;% group_by(Race1) %&gt;% summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE)) %&gt;% arrange(average)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoWUdKZ1pnVXlHVmhEUTl4MExSZ1lXSmlBSEVhZ0JDZUlyZ0FxRWdhclpHRG1CYWtDWWhZb3pRUVJCeXBHMWNTV2sxcVdtbE1NWkFtQVZVSkVXWjF5RXBPem9Sd09qOHppZ3NTOHpHUW9uOTAzdFNJek9URVBwalk4STdNa0ZjYnhMOGxJTFVLemd6VTVKN0VZWmdYYzRyVEU1Sko4b0ZLR2YwRE1CMUxtRVB2ckRCQ2NkWWlUbkFrRXN4emkwdG5zQ3BLZk84U1ZwWUdBUTN6cDJ1eW9hOXZnNnJWdTNGN1NlL2E1ZzRIeHhlQzN0WE1kMUpSV1N0Uk1EWEhRZnNDUnRlVGVOZ2REUWUwejNkL2wwWjJUbDVpYkNuTU9NMHd3S0RFNTFSRG13OFN5MUtMRWRKaW5oSXBMRXZOU0VvdFM0bE5TeXpJVFN6THo4OUNNNUN6S0w5ZURHUXNLZXFZR0lQSC8vLy9mRUlYTS85Rjh6NVdTV0pLb2wxWUUxQUlKQVJUajJQTUxRSllBRFdNU2hzWWZzbWJHSWpRQmdkSThrT1VwdXNrWnBYblp1cVlXSUJzZ2tRMEd2RkEyS3hLYkdXSW5DOHhsc0toblM4MUx6OHlEeDJkT1lsSnFEcFREQi9RbDJKTjZCVVdaZVNVd3J3QkZpL1ZLOGtzU1llcTRrdk56WUNLUTZQMEhBREZySVB2SEFnQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Race1"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["average"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["standard_deviation"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"White","2":"119.9188","3":"13.42355"},{"1":"Other","2":"120.4000","3":"16.20241"},{"1":"Hispanic","2":"121.6098","3":"11.06770"},{"1":"Mexican","2":"121.8500","3":"13.93756"},{"1":"Black","2":"125.8387","3":"17.06707"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="tibbles" class="section level2">
+<h2><strong>4.10 Tibbles</strong></h2>
+<p>Tidy data must be stored in data frames. We introduced the data frame in Section 2.4.1 and have been using the <code>murders</code> data frame throughout the book. In Section 4.7.3 we introduced the <code>group_by</code> function, which permits stratifying data before computing summary statistics. But where is the group information stored in the data frame?</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgZ3JvdXBfYnkocmVnaW9uKVxuYGBgIn0= -->
+<pre class="r"><code>murders %&gt;% group_by(region)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImdyb3VwZWRfZGYiLCJ0YmxfZGYiLCJ0YmwiLCJkYXRhLmZyYW1lIl0sIm5yb3ciOjUxLCJuY29sIjo2fSwicmRmIjoiSDRzSUFBQUFBQUFBQTIxWENYQVRWUmhPMm02U0JscktPZWlnUmptc1J3dE1PWlNpKzJMVDByVGRwRFJ0VXhSclg1SnRzaWJkTGJ1YnRtRVlXZ2NSbVZIRWtRRUhPV1FBUjBSMGdBRzh4bEZrQUJYVUdWRlJIRTRQRGhWbXhMUGErdmJ0ZXk5cHhrNjMzLy85NzcvMzdkdHRnNmVsek5uaXRGZ3N1Wlk4UzQ0bGwwT2loV3RxckNxNXgyTEp5MEhFaWhieURleEJScU9SWUVOWEVickt5SUxkbllBaDJBRUp0U0dxeFNGYlZLWEZpa3lwdzYzR29heEJqWEJuQlV4STdZb3FTOHlpUWtrb0tvd29oQStyVUdSWkRPdFNPS2xURTQrWWdOMVFGUWtmNDVFMFhaWEN1a3RwZHlIM1pFZUloYk5Yb1doU2hORjVvcUpHMmFxdEdzV1JKTUk0YndUR2FGNkhONUdRWkVXaWxkcTlja1NDckpFOHI5TE5vdFJtdHVTb0ZXVTlHWTZuQ00rdlU1S1NsdUhLQ1ZDU2FlME9BYXFwQkpRamhCY0lVTk5nT0piVVJGMW5JUVVwSEpPaVVLWWhCUW5OUkZOMEduS1lJR21hOGR2WkthVjlORTFKcXBUYkJVWFcwMFU0ZkdKSXpiaFBOcC9ZQmRtWUNueGl0NnNhZG5ScU1ZbU4yV2tvYTBSVkUxT1pHa0hza2NKS09teTNhNEdpeGdrdjlDbXFIbk5WUUZWQjA2VGhoNXRhRDR5blc4anp4eVFXeFI5UG9EdVIzbEorVll3cXRQdmg5YUlzYTZsRUYwenZtdUVOTVNVaXVyeGF4aWdMQTByeWYzS2IyaUc1OHh0Rlk1NmFTRnZsR3NVZWRrUHptblFZbzFOc0Z0VU9ORWhhYUxPRWRsTzZER2NRb29uSlVaMFZXeEFVTmQyVlpaWWZsTFN3SW1zU3RiSUhVMG9IOHN0NnNuTGNkVXlxWmRLRFRHcWdVb1diU1g0bU5WTEpVOG1rQ2lwVnNjanptRysxbDBwZUQ1T1luZGZISk9aUkcyRFNBaXJWc1ZXQjVSVllQQ0c5eXJJSkxMTEE0Z21zRDRIMTRXUHhmTTFNcW1aU0RaTUVKckdxZkt4ekg2dkZ6M3o5YkxwK050TjZWbWtEcXpUQW9nUllsRVpXZldNTGxacFl6YzFwaWNVTHBpWFdSNURsQ0M1QTUyd0IzZ1dJR2Z1UFhKbXlsZkRNaTY3bFpsMTAzWnFCbVd1NUdYNDB0alVyVDZaOXBrMU9WbzVNbjd5aDhZZThUR3dKc1V0TWFHUy81OUhuQXA4TEl0VG84OFhoaDVVZFN1WlpnbzVYRlNib3cyazhYMW5CdVRCNkE5SFlMR003RE91S2lxUUJkQlVhODNVM2xPOUhhSEZQZnZVMWpDMmhHY0RBS3Y1MnpCLzdZTDNMd01EVUFPYTFucGY3REx3ck9nSHoyeGIramxFOXZLcmV3TkNWOXpDZjhmNHVqTE92dEdLTTlmeG14bi83Uyt3Lzc3NUxHQ3NQOVdKOS9kTTdERWYzL05wYlRIL1BKWXpOdHJtbTM5OTM0YnBDWHc5aTNsaSswYXh6YXgrTzAzenlHZXhmT3YwVHZGNStlakpHei9wbGVIM0d1QzdNMnc1ZHhuWjhmS2RaOStMK05oeDM2aURHU1U5c3d2cDI2d2lNZFp0T1lYOWh6ck5tSDNPYXNOMjBFZXN3bjcvTjdLdjQ1Rkd6enBtdHVLN3Uvb0xWdUw5eHM3RC94UEhyOFhycjhqNk1DMTY2aW5GdTFRTVltM2J2d1hhM2xqVmF6Qjk4ZjBEYldVeEFtYWtFSFFTRHdNVG50cGxZVDNnTHdRcGkxL0tlaVk5Zk5MRzd6OFFKWkwyWVlCZXhnd1JuRXIyZjJEOU1lUEthaVZNSVYrdkpPckZMZldaaURlR3R4RTR2R3BvUEVHd2lPSWFnVFBMWEUrd3pIY0Npc3lZV0VUdXR6Y1NIaU4wRFJMOWt0WW5UQ0plSW40dndPUEZiU2VMT0lub0xRY1dVMkh6TGlaN09sZFJwb2ZmSDlueDg2ZGd0eHdEWGZ1VDdEUjk1UUVGKzVicnRsVHRBL3JMVDE3L3BMUWJPZ2JuM2R0eHhsTCsrNjRML3dRTTlnTnMvZTlUREc4NkJvcC83VGgwRVQ0TnAybzliVGw2K0RvWk52WDlmLzc0M1FHSERtdTEzMUFUNHM5MHJONitjdTRTLzJEdWlmTmVGZDRGdHovaStnNlB2QWRibGxYbXB6VTcraHhHVHBET1ZDNEgxbFpsbjNNVS9BUzUwb0RTNmFRVzQrYzlvOGVZMzdmemwzajBIeHA3ZENjYlU3WGhxL3VSSCtIKytlUE90RTB2V2dLTDlGNDhmZkdNM2YvV3ZheU5QSFRvTmlrb21QWFpiMjFJd3RuUEZvcyswOC95djBhTjdqL2QreGYvamVEKzNMWFVDT002NzQ1K3ZpL0FuZlhzM1ZuLzdLckNGV2xjbGNnRncybDk4dE9UT3E0QUw5b2ZXT200QzlvR05qN2FYbk9jdjJIKzhjTU9CQWNEMXpybng3NklQZ1gzbjkydEhMZHZLL3pMeXU0TXJWdDBOaGgrZC9tbEtPc1AvMlNENGpqMjVGb3o4NGUzcEUvZmZ5bDlkRklCbHJ5OEJ3MTU0Zk1yaFVRMGdmMFBvOEl4SjAvbExQYnVtbnRyNk1YOUMzM25POWxVU09BWkwvVWUyTCtKL2Q3Mjd5akpyR3Y5SHZiZm53L2c3Zkg5TjgzMXFxSlgvS1R5blAvQ3YxVHdPYzQyend0Z3g5QVIwUnFBT1M5dFYyQ0ZtSFpqNXF0SmRLaU85Y1dnYXI1NmNQdlJuY0hEd2VQYkpTbzJNdURhcTFIU28weStuWEJnSzBSTVhmYlJKN0VQSTJhbDBKaE5RVDJzNEhYMkJzWE5jTldMZ3czbElScnZTYWJpZ25EbkcveDVjVms5V05VdFJsSlNOR2lNbDZCTmFqcGZNdk5kSWJURmZTaGJTblNHWFpjZzJNeWRIQjhiUkJrUTVtdjVTNTlCL09TSXR0eEJORE0raXRGT1YyT2VnRTJtMTBzeTJuR0VsUVRYbW0yZmdQKzVHTEF0ekRRQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"AL","3":"South","4":"4779736","5":"135","6":"2.8244238"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19","6":"2.6751860"},{"1":"Arizona","2":"AZ","3":"West","4":"6392017","5":"232","6":"3.6295273"},{"1":"Arkansas","2":"AR","3":"South","4":"2915918","5":"93","6":"3.1893901"},{"1":"California","2":"CA","3":"West","4":"37253956","5":"1257","6":"3.3741383"},{"1":"Colorado","2":"CO","3":"West","4":"5029196","5":"65","6":"1.2924531"},{"1":"Connecticut","2":"CT","3":"Northeast","4":"3574097","5":"97","6":"2.7139722"},{"1":"Delaware","2":"DE","3":"South","4":"897934","5":"38","6":"4.2319369"},{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99","6":"16.4527532"},{"1":"Florida","2":"FL","3":"South","4":"19687653","5":"669","6":"3.3980688"},{"1":"Georgia","2":"GA","3":"South","4":"9920000","5":"376","6":"3.7903226"},{"1":"Hawaii","2":"HI","3":"West","4":"1360301","5":"7","6":"0.5145920"},{"1":"Idaho","2":"ID","3":"West","4":"1567582","5":"12","6":"0.7655102"},{"1":"Illinois","2":"IL","3":"North Central","4":"12830632","5":"364","6":"2.8369608"},{"1":"Indiana","2":"IN","3":"North Central","4":"6483802","5":"142","6":"2.1900730"},{"1":"Iowa","2":"IA","3":"North Central","4":"3046355","5":"21","6":"0.6893484"},{"1":"Kansas","2":"KS","3":"North Central","4":"2853118","5":"63","6":"2.2081106"},{"1":"Kentucky","2":"KY","3":"South","4":"4339367","5":"116","6":"2.6732010"},{"1":"Louisiana","2":"LA","3":"South","4":"4533372","5":"351","6":"7.7425810"},{"1":"Maine","2":"ME","3":"Northeast","4":"1328361","5":"11","6":"0.8280881"},{"1":"Maryland","2":"MD","3":"South","4":"5773552","5":"293","6":"5.0748655"},{"1":"Massachusetts","2":"MA","3":"Northeast","4":"6547629","5":"118","6":"1.8021791"},{"1":"Michigan","2":"MI","3":"North Central","4":"9883640","5":"413","6":"4.1786225"},{"1":"Minnesota","2":"MN","3":"North Central","4":"5303925","5":"53","6":"0.9992600"},{"1":"Mississippi","2":"MS","3":"South","4":"2967297","5":"120","6":"4.0440846"},{"1":"Missouri","2":"MO","3":"North Central","4":"5988927","5":"321","6":"5.3598917"},{"1":"Montana","2":"MT","3":"West","4":"989415","5":"12","6":"1.2128379"},{"1":"Nebraska","2":"NE","3":"North Central","4":"1826341","5":"32","6":"1.7521372"},{"1":"Nevada","2":"NV","3":"West","4":"2700551","5":"84","6":"3.1104763"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5","6":"0.3798036"},{"1":"New Jersey","2":"NJ","3":"Northeast","4":"8791894","5":"246","6":"2.7980319"},{"1":"New Mexico","2":"NM","3":"West","4":"2059179","5":"67","6":"3.2537239"},{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517","6":"2.6679599"},{"1":"North Carolina","2":"NC","3":"South","4":"9535483","5":"286","6":"2.9993237"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4","6":"0.5947151"},{"1":"Ohio","2":"OH","3":"North Central","4":"11536504","5":"310","6":"2.6871225"},{"1":"Oklahoma","2":"OK","3":"South","4":"3751351","5":"111","6":"2.9589340"},{"1":"Oregon","2":"OR","3":"West","4":"3831074","5":"36","6":"0.9396843"},{"1":"Pennsylvania","2":"PA","3":"Northeast","4":"12702379","5":"457","6":"3.5977513"},{"1":"Rhode Island","2":"RI","3":"Northeast","4":"1052567","5":"16","6":"1.5200933"},{"1":"South Carolina","2":"SC","3":"South","4":"4625364","5":"207","6":"4.4753235"},{"1":"South Dakota","2":"SD","3":"North Central","4":"814180","5":"8","6":"0.9825837"},{"1":"Tennessee","2":"TN","3":"South","4":"6346105","5":"219","6":"3.4509357"},{"1":"Texas","2":"TX","3":"South","4":"25145561","5":"805","6":"3.2013603"},{"1":"Utah","2":"UT","3":"West","4":"2763885","5":"22","6":"0.7959810"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.3196211"},{"1":"Virginia","2":"VA","3":"South","4":"8001024","5":"250","6":"3.1246001"},{"1":"Washington","2":"WA","3":"West","4":"6724540","5":"93","6":"1.3829942"},{"1":"West Virginia","2":"WV","3":"South","4":"1852994","5":"27","6":"1.4571013"},{"1":"Wisconsin","2":"WI","3":"North Central","4":"5686986","5":"97","6":"1.7056487"},{"1":"Wyoming","2":"WY","3":"West","4":"563626","5":"5","6":"0.8871131"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[51]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Notice that there are no columns with this information. But, if you look closely at the output above, you see the line <code>A tibble</code> followd by dimensions. We can learn the class of the returned object using:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgZ3JvdXBfYnkocmVnaW9uKSAlPiUgY2xhc3MoKVxuYGBgIn0= -->
+<pre class="r"><code>murders %&gt;% group_by(region) %&gt;% class()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZ3JvdXBlZF9kZlwiIFwidGJsX2RmXCIgICAgXG5bM10gXCJ0YmxcIiAgICAgICAgXCJkYXRhLmZyYW1lXCJcbiJ9 -->
+<pre><code>[1] &quot;grouped_df&quot; &quot;tbl_df&quot;    
+[3] &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The <code>tbl</code>, pronounced tibble, is a special kind of data frame. The functions <code>group_by</code> and <code>summarize</code> always return this type of data frame. The <code>group_by</code> function returns a special kind of <code>tbl</code>, the <code>grouped_df</code>. We will say more about these later. For consistency, the <strong>dplyr</strong> manipulation verbs (<code>select</code>, <code>filter</code>, <code>mutate</code>, and <code>arrange</code>) preserve the class of the input: if they receive a regular data frame they return a regular data frame, while if they receive a tibble they return a tibble. But tibbles are the preferred format in the tidyverse and as a result tidyverse functions that produce a data frame from scratch return a tibble. For example, in Chapter 5 we will see that tidyverse functions used to import data create tibbles.</p>
+<p>Tibbles are very similar to data frames. In fact, you can think of them as a modern version of data frames. Nonetheless there are three important differences which we describe next.</p>
+<div id="tibbles-display-better" class="section level3">
+<h3><strong>4.10.1 Tibbles display better</strong></h3>
+<p>The print method for tibbles is more readable than that of a data frame. To see this, compare the outputs of typing murders and the output of murders if we convert it to a tibble. We can do this using <code>as_tibble(murders)</code>. If using RStudio, output for a tibble adjusts to your window size. To see this, change the width of your R console and notice how more/less columns are shown.</p>
+</div>
+<div id="subsets-of-tibbles-are-tibbles" class="section level3">
+<h3><strong>4.10.2 Subsets of tibbles are tibbles</strong></h3>
+<p>If you subset the columns of a data frame, you may get back an object that is not a data frame, such as a vector or scalar. For example:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MobXVyZGVyc1ssNF0pXG5gYGAifQ== -->
+<pre class="r"><code>class(murders[,4])</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibnVtZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>is not a data frame. With tibbles this does not happen:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MoYXNfdGliYmxlKG11cmRlcnMpWyw0XSlcbmBgYCJ9 -->
+<pre class="r"><code>class(as_tibble(murders)[,4])</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidGJsX2RmXCIgICAgIFwidGJsXCIgICAgICAgXG5bM10gXCJkYXRhLmZyYW1lXCJcbiJ9 -->
+<pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;       
+[3] &quot;data.frame&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This is useful in the tidyverse since functions require data frames as input.</p>
+<p>With tibbles, if you want to access the vector that defines a column, and not get back a data frame, you need to use the accessor <code>$</code>:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MoYXNfdGliYmxlKG11cmRlcnMpJHBvcHVsYXRpb24pXG5gYGAifQ== -->
+<pre class="r"><code>class(as_tibble(murders)$population)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibnVtZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>A related feature is that tibbles will give you a warning if you try to access a column that does not exist. If we accidentally write <code>Population</code> instead of <code>population</code> this:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyRQb3B1bGF0aW9uXG5gYGAifQ== -->
+<pre class="r"><code>murders$Population</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
+<pre><code>NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>returns a <code>NULL</code> with no warning, which can make it harder to debug. In contrast, if we try this with a tibble we get an informative warning:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXNfdGliYmxlKG11cmRlcnMpJFBvcHVsYXRpb25cbmBgYCJ9 -->
+<pre class="r"><code>as_tibble(murders)$Population</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVW5rbm93biBvciB1bmluaXRpYWxpc2VkIGNvbHVtbjogYFBvcHVsYXRpb25gLlxuIn0= -->
+<pre><code>Unknown or uninitialised column: `Population`.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
+<pre><code>NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="tibbles-can-have-complex-entries" class="section level3">
+<h3><strong>4.10.3 Tibbles can have complex entries</strong></h3>
+<p>While data frame columns need to be vectors of numbers, strings, or logical values, tibbles can have more complex objects, such as lists or functions. Also, we can create tibbles with functions:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGliYmxlKGlkPWMoMSwyLDMpLGZ1bmM9YyhtZWFuLG1lZGlhbixzZCkpXG5gYGAifQ== -->
+<pre class="r"><code>tibble(id=c(1,2,3),func=c(mean,median,sd))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUE2MVczMnNUUVJDZSs1a21hVUtnRmNFaW9nWDFKWXRhS2I3cGd3ZysrQ0lXaWo1dGN4dDdtTnlsdDVlYVFoLzhrNFg0b21MTzNidVpkck1tTVJFUGh0dWIvZmFibWU5bTkrN3R5K09EeG5FREFEend3UVV2VUVNSWp0Njk2ajREOEYzMTRLaUp1cjVQRkdoSERiU3pyVmM4L3dybDlRTHd2Z1YwN1pTTTRDdURIeFdSVTZqeFQ0dlVZNHhWYnBncHUxRk9BYlNVK2NxMmxUMUVTZ2REaDRnRmc2WitKTVVia1orbUVZSUkwREZBL2xEd0JQMnpLb2hYQnZvQzlqV1hZOUFiY0NrdHNvNllqREloWlp3bThuVVNpVWxGV2hiOEhWbGNJcEE1enlVOVBHV1AySk1Wa2dRSlo5bFFEUnBZTk9iakZ2OHVsRmVzMENVY2lpamVSQm0vV0YrTW9QaXoxTENZcis2cW9ocFcxTWFLYmlMbU5wVGRWTjUxdFhlMFRNcnVZMVdQamNwcnNMaEZmSG1XNVlZSzMzQitFZFk3NTVrRmRaWkEzYmh2SVpmMXFIdDVhU0c5SmNoNkxObTU2T1dwbVFTZ2hxU1hTZVN2SU9yenZ4RFpoRFJ2QmdpV0JlQ1NSZW40WkNEV0N4Q2lQMXcwcnlUZTB2NHArblJINkc3WWg2b2I5akRHTGxaOFY5azlUTzRCSnZpKzRpblg2dTdSM2FDN1JpZXJ1MFdmVUI4UTQyR2NQWU5UKzI5QjFaMW1ITTNmaE9zOU44WHhGSE5TNHlibDdsWFBEdTJTamlHWXg1T0xlUzJiMXRaMFZtMVZYRzRvdGsxUmZVTXhPaEYyRVV2VlVsYUV0L2U1YzIyYjdIT05ieEZ2WVBEdUk2KzNoaG14eTdlMHlHamV2SHpEbXF0dG81clcwREkwdS9VL2FsbnlFbDhiK2R3MXpaUm1rN1BhK2dRTkJYM3gzS3VUTHFLanREOU9ldGFTZXBaK1pyUk01KzNxdkl1aStMVWtqMGJFYzg3Nm1WcXlJSU5hT3NwMWhvcEgvMG9FMW1JbnM2c2FKenA0MU8yZGpwTlAzY05EbVAvQ3RJdzNSMk8zaXRtbXpBTDZIb3JrWTV3STBtTEFUOFFBSDlxcXlySklOc3JpSktkU2xGZXlQTTA1NFJxOWRFQ2U2clhPZmdNbmJwR25hZ2tBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["func"],"name":[2],"type":["list"],"align":["right"]}],"data":[{"1":"1","2":"<fun>"},{"1":"2","2":"<fun>"},{"1":"3","2":"<fun>"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="tibbles-can-be-grouped" class="section level3">
+<h3><strong>4.10.4 Tibbles can be grouped</strong></h3>
+<p>The function <code>group_by</code> returns a special kind of tibble: a grouped tibble. This class stores information that lets you know which rows are in which groups. The tidyverse functions, in particular the <code>summarize</code> function, are aware of the group information.</p>
+</div>
+<div id="create-a-tibble-using-tibble-instead-of-data.frame" class="section level3">
+<h3><strong>4.10.5 Create a tibble using <code>tibble</code> instead of <code>data.frame</code></strong></h3>
+<p>It is sometimes useful for us to create our own data frames. To create a data frame in the tibble format, you can do this by using the <code>tibble</code> function.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JhZGVzIDwtIHRpYmJsZShuYW1lcz1jKFwiSm9oblwiLFwiSnVhblwiLFwiSmVhblwiLFwiWWFvXCIpLGV4YW1fMT1jKDk1LDgwLDkwLDg1KSxleGFtXzI9Yyg5MCw4NSw4NSw5MCkpXG5gYGAifQ== -->
+<pre class="r"><code>grades &lt;- tibble(names=c(&quot;John&quot;,&quot;Juan&quot;,&quot;Jean&quot;,&quot;Yao&quot;),exam_1=c(95,80,90,85),exam_2=c(90,85,85,90))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Note that base R (without packages loaded) has a function with a very similar name, <code>data.frame</code>, that can be used to create a regular data frame rather than a tibble. One other important difference is that by default <code>data.frame</code> coerces characters into factors without providing a warning or message:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JhZGVzIDwtIHRpYmJsZShuYW1lcz1jKFwiSm9oblwiLFwiSnVhblwiLFwiSmVhblwiLFwiWWFvXCIpLGV4YW1fMT1jKDk1LDgwLDkwLDg1KSxleGFtXzI9Yyg5MCw4NSw4NSw5MCkpXG5jbGFzcyhncmFkZXMkbmFtZXMpXG5gYGAifQ== -->
+<pre class="r"><code>grades &lt;- tibble(names=c(&quot;John&quot;,&quot;Juan&quot;,&quot;Jean&quot;,&quot;Yao&quot;),exam_1=c(95,80,90,85),exam_2=c(90,85,85,90))
+class(grades$names)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiY2hhcmFjdGVyXCJcbiJ9 -->
+<pre><code>[1] &quot;character&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To avoid this, we use the rather cumbersome argument <code>stringsAsFactors</code>:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ3JhZGVzIDwtIHRpYmJsZShuYW1lcz1jKFwiSm9oblwiLFwiSnVhblwiLFwiSmVhblwiLFwiWWFvXCIpLGV4YW1fMT1jKDk1LDgwLDkwLDg1KSxleGFtXzI9Yyg5MCw4NSw4NSw5MCksc3RyaW5nQXNGYWN0b3JzPUZBTFNFKVxuY2xhc3MoZ3JhZGVzJG5hbWVzKVxuYGBgIn0= -->
+<pre class="r"><code>grades &lt;- tibble(names=c(&quot;John&quot;,&quot;Juan&quot;,&quot;Jean&quot;,&quot;Yao&quot;),exam_1=c(95,80,90,85),exam_2=c(90,85,85,90),stringAsFactors=FALSE)
+class(grades$names)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiY2hhcmFjdGVyXCJcbiJ9 -->
+<pre><code>[1] &quot;character&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>To convert a regular data frame to a tibble, you can use the <code>as_tibble</code> function.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXNfdGliYmxlKGdyYWRlcykgJT4lIGNsYXNzKClcbmBgYCJ9 -->
+<pre class="r"><code>as_tibble(grades) %&gt;% class()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidGJsX2RmXCIgICAgIFwidGJsXCIgICAgICAgXG5bM10gXCJkYXRhLmZyYW1lXCJcbiJ9 -->
+<pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;       
+[3] &quot;data.frame&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="the-dot-operator" class="section level2">
+<h2><strong>4.11 The dot operator</strong></h2>
+<p>One of the advantages of using the pipe <code>%&gt;%</code> is that we do not have to keep naming new objects as we manipulate the data frame. As a quick reminder, if we want to compute the median murder rate for states in the southern states, instead of typing:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFiXzEgPC0gZmlsdGVyKG11cmRlcnMsIHJlZ2lvbj09J1NvdXRoJylcbnRhYl8yIDwtIG11dGF0ZSh0YWJfMSwgcmF0ZT10b3RhbC9wb3B1bGF0aW9uKjEwXjUpXG5yYXRlcyA8LSB0YWJfMiRyYXRlXG5tZWRpYW4ocmF0ZXMpXG5gYGAifQ== -->
+<pre class="r"><code>tab_1 &lt;- filter(murders, region==&#39;South&#39;)
+tab_2 &lt;- mutate(tab_1, rate=total/population*10^5)
+rates &lt;- tab_2$rate
+median(rates)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMuMzk4MDY5XG4ifQ== -->
+<pre><code>[1] 3.398069</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can avoid defining any new intermediate objects by instead typing:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmlsdGVyKG11cmRlcnMscmVnaW9uPT0nU291dGgnKSAlPiUgbXV0YXRlKHJhdGU9dG90YWwvcG9wdWxhdGlvbioxMF41KSAlPiUgc3VtbWFyaXplKG1lZGlhbj1tZWRpYW4ocmF0ZSkpICU+JSBwdWxsKG1lZGlhbilcbmBgYCJ9 -->
+<pre class="r"><code>filter(murders,region==&#39;South&#39;) %&gt;% mutate(rate=total/population*10^5) %&gt;% summarize(median=median(rate)) %&gt;% pull(median)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMuMzk4MDY5XG4ifQ== -->
+<pre><code>[1] 3.398069</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can do this because each of these functions takes a data frame as the first argument. But what if we want to access a component of the data frame. For example, what if the <code>pull</code> function was not available and we wanted to access <code>tab_2$rate</code>? What data frame name would we use? The answer is the dot operator.</p>
+<p>For example to access the rate vector without the <code>pull</code> function we could use</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmF0ZXMgPC0gZmlsdGVyKG11cmRlcnMsIHJlZ2lvbj09J1NvdXRoJykgJT4lIG11dGF0ZShyYXRlPXRvdGFsL3BvcHVsYXRpb24qMTBeNSkgJT4lIC4kcmF0ZVxubWVkaWFuKHJhdGVzKVxuYGBgIn0= -->
+<pre class="r"><code>rates &lt;- filter(murders, region==&#39;South&#39;) %&gt;% mutate(rate=total/population*10^5) %&gt;% .$rate
+median(rates)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDMuMzk4MDY5XG4ifQ== -->
+<pre><code>[1] 3.398069</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>In the next section, we will see other instances in which using the <code>.</code> is useful.</p>
+</div>
+<div id="do" class="section level2">
+<h2><strong>4.12 <code>do</code></strong></h2>
+<p>The tidyverse functions know how to interpret grouped tibbles. Furthermore, to facilitate stringing commands through the pipe <code>%&gt;%</code>, tidyverse functions consistently return data frames, since this assures that the output of a function is accepted as the input of another. But most R functions do not recognize grouped tibbles nor do they return data frames. The <code>quantile</code> function is an example we described in Section 4.7.1. The <code>do</code> function serves as a bridge between R functions such as <code>quantile</code> and the tidyverse. The <code>do</code> function understands grouped tibbles and always returns a data frame.</p>
+<p>In Section 4.7.1, we noted that if we attempt to use <code>quantile</code> to obtain the min, median and max in one call, we will receive an error: <code>Error: expecting result of length one, got : 2</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YShoZWlnaHRzKVxuaGVpZ2h0cyAlPiUgZmlsdGVyKHNleD09J0ZlbWFsZScpICU+JSBzdW1tYXJpemUocmFuZ2U9cXVhbnRpbGUoaGVpZ2h0LGMoMCwwLjUsMSkpKVxuYGBgIn0= -->
+<pre class="r"><code>data(heights)
+heights %&gt;% filter(sex==&#39;Female&#39;) %&gt;% summarize(range=quantile(height,c(0,0.5,1)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoWUdKZ1pnVXlHVmhEUTl4MExSZ1lXSmlBSEVhZ0JDZUlyZ0FxRWdZTE1ERHhnWFE0ZURhQVZETTRCTmp0cmZyNitvWkQ4QUVHQ0VEUnlKcVhtSnRhREdRSVFLMEJDVElacUVKWnpLWndKb3VoQVpETndQQVBZZ0xUZjZnbXVFbEZpWG5wcVdqR2N4YmxsK3ZCck9BRkdRMXhGZEFxTkhjazV5UVdGNk1aeVpXU1dKS29sMVlFMUkrd0dDN0xubDlRa3BtZkI5VEVCUEk1SzVwbXhpSTBBWUhTUEpCTFVuU1RNMHJ6c25YTlRVQTJRSUlNREhpaGJHWWtOaU9hWjFtaFpyR2w1cVZuNXFYQ0hKK1RtSlNhQStYd0FiME05ckZlUVZGbVhnbk1LMERSWXIyUy9KSkVtRHF1NVB3Y21Balljd3ovQUlOTWt2RHhBUUFBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["range"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"51.00000","_row":"0%"},{"1":"64.98031","_row":"50%"},{"1":"79.00000","_row":"100%"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can use the <code>do</code> function to fix this.</p>
+<p>First we have to write a function that fits into the tidyverse approach: that is, it receives a data frame and returns a data frame.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlfc3VtbWFyeSA8LSBmdW5jdGlvbihkYXQpe1xuICB4IDwtIHF1YW50aWxlKGRhdCRoZWlnaHQsYygwLDAuNSwxKSlcbiAgdGliYmxlKG1pbj14WzFdLG1lZGlhbj14WzJdLG1heD14WzNdKVxufVxuYGBgIn0= -->
+<pre class="r"><code>my_summary &lt;- function(dat){
+  x &lt;- quantile(dat$height,c(0,0.5,1))
+  tibble(min=x[1],median=x[2],max=x[3])
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We can now apply the function to the heights dataset to obtain the summaries:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KSAlPiUgbXlfc3VtbWFyeVxuYGBgIn0= -->
+<pre class="r"><code>heights %&gt;% group_by(sex) %&gt;% my_summary</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUEzVlFzVTdETUJSOHNXT3FSbXBWaVI5Z1lVeFVWTFV3TWlBa1JsQkJGWnRKRExXYTJGWGlpbzc4RDJMazk5bytoemhOTGZFRyszenZubjNucDd2RkpGcEVBRUFoQkFLVUlRVDJQTCtQYndCQ2dvY0FHMzI3YjFGMFhpdUJEQzF4K3dCTm5RaVo0b1dvRUl3NkpCbGY0cnByUng4dk9xTms3Nm5wMUpQUHYxOStYbjlYLzhqRHE3SFRuL1NwdTY2UXFvRm5oY2drVjIyRGJ6MzMvVkovSmk3QndEci93bVdQNWNkTWMxNzVNYU9NRzU2OGx6aC85Tk4yZTNwdHBGWTRST3hITW04NEtEMWl0RkhXU1Jhbnk0MWF4ZGN6KzBMZC82dEJnNE1PcHQ0Zk1CZGNxQStwaERPZjh6ZVJONGNoUnE0VEordFNLdU9pSUZzbFJodnVkRkdxYzhmVTRXQjNBRHhKdjdWQUFnQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["min"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"50","2":"68.5","3":"82.67717","_row":"0%"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>But this is not what we want. We want a summary for each sex and the code returned just one summary. This is because <code>my_summary</code> is not part of the tidyverse and does not know how to handled grouped tibbles. <code>do</code> makes this connection:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KSAlPiUgZG8obXlfc3VtbWFyeSguKSlcbmBgYCJ9 -->
+<pre class="r"><code>heights %&gt;% group_by(sex) %&gt;% do(my_summary(.))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImdyb3VwZWRfZGYiLCJ0YmxfZGYiLCJ0YmwiLCJkYXRhLmZyYW1lIl0sIm5yb3ciOjIsIm5jb2wiOjR9LCJyZGYiOiJINHNJQUFBQUFBQUFBM1ZTelVyRFFCQ2VKaHVsQVV2QlovQ1lVQkdwSjhsQkNqMEkvbFFwM3RaMHE2R2JUVWxTTFo1OEgrblJvK0JqK0E2ZXZUYk9ibmRqdXVCZTV0djUrZWFiMmIwNkd4LzVZeDhBWENEZ2dPc2hCTzltTkFoT0FJaURseFlHMnRJdU1Xa2ZBVUc3aDNZVFZIWXJjWWV6SjhZTFJGMFYxZDRCU3lsbitrYk9KZDZ1ODJKT0MxTldrMDFwWEdZNW9qVnlkU1JoTkh5VklpRWFnajdiTklLbXpPN3U5QTRhcUVsMmNmcng4dlA5RlYxR0RUSlNXZlh1Y1UyZ1lKUGgrbk1qWi9SMnU3cDduLzNEUUE1N05jVUdLdzZaNjVwY000SS9vU1VOcHprT1lnM1h6clBuMEF5b0hrSHVvcXFxdGRXV0dMVUZXeHFZSnNKc05XV1RoSW82UUpkL2F1cGV1OW04VERLQm5SejU3SjRsc3BWYmp1NUNTR1dUSUg1Y2lGblE3OHRKOUI4QkxWZi9seG9UUzdabkJETHhrQWp6V3p4Tzd4blhsdzZ1UUcwZ25PZUpLTTNLMEZ1RVpWWlNrK2ZIR1RjZU5SeXNmd0dJTCtiSDdnSUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["min"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Female","2":"51","3":"64.98031","4":"79.00000"},{"1":"Male","2":"50","3":"69.00000","4":"82.67717"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Note that here we need to use the dot operator. The tibble created by <code>group_by</code> is piped to <code>do</code>. Within the call to <code>do</code>, the name of this tibble is <code>.</code> and we want to send it to <code>my_summary</code>. If you do not use the dot, then <code>my_summary</code> has <em>no argument</em> and returns an error telling us that <code>argument &quot;dat&quot;</code> is missing. You can see the error by typing:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KSAlPiUgZG8obXlfc3VtbWFyeSgpKSJ9 -->
+<pre class="r"><code>heights %&gt;% group_by(sex) %&gt;% do(my_summary())</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>If you do not use the parenthesis, then the function is not executed and instead <code>do</code> tries to return the function. This gives an error because <code>do</code> must always return a data frame. You can see the error by typing:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KSAlPiUgZG8obXlfc3VtbWFyeSkifQ== -->
+<pre class="r"><code>heights %&gt;% group_by(sex) %&gt;% do(my_summary)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="the-purrr-package" class="section level2">
+<h2><strong>4.13 The purrr package</strong></h2>
+<p>In Section 3.5 we learned about the <code>sapply</code> function, which permitted us to apply the same function to each element of a vector. We constructed a function and used <code>sapply</code> to compute the sum of the first <code>n</code> integers for several values of <code>n</code> like this:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29tcHV0ZV9zX24gPC0gZnVuY3Rpb24obil7XG4gIHggPC0gMTpuXG4gIHN1bSh4KVxufVxubiA8LSAxOjI1XG5zX24gPC0gc2FwcGx5KG4sY29tcHV0ZV9zX24pXG5gYGAifQ== -->
+<pre class="r"><code>compute_s_n &lt;- function(n){
+  x &lt;- 1:n
+  sum(x)
+}
+n &lt;- 1:25
+s_n &lt;- sapply(n,compute_s_n)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This type of operation, applying the same function or procedure to elements of an object, is quite common in data analysis. The <strong>purrr</strong> package includes functions similar to <code>sapply</code> but that better interact with other tidyverse functions. The main advantage is that we can better control the output type of functions. In contrast, <code>sapply</code> can return several different object types; for example, we might expect a numeric result from a line of code, but <code>sapply</code> might convert our result to character under some circumstances. <strong>purrr</strong> functions will never do this: they will return objects of a specified type or return an error if this is not possible.</p>
+<p>The first <strong>purrr</strong> function we will learn is <code>map</code>, which works very similar to <code>sapply</code> but always, without exception, returns a list:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShwdXJycilcbnNfbiA8LSBtYXAobiwgY29tcHV0ZV9zX24pXG5jbGFzcyhzX24pXG5gYGAifQ== -->
+<pre class="r"><code>library(purrr)
+s_n &lt;- map(n, compute_s_n)
+class(s_n)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibGlzdFwiXG4ifQ== -->
+<pre><code>[1] &quot;list&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>If we want a numeric vector, we can instead use <code>map_dbl</code> which always returns a vector of numeric values.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc19uIDwtIG1hcF9kYmwobixjb21wdXRlX3NfbilcbmNsYXNzKHNfbilcbmBgYCJ9 -->
+<pre class="r"><code>s_n &lt;- map_dbl(n,compute_s_n)
+class(s_n)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibnVtZXJpY1wiXG4ifQ== -->
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This produces the same results as the <code>sapply</code> call shown above.</p>
+<p>A particularly useful <strong>purrr</strong> function for interacting with the rest of the tidyverse is <code>map_df</code>, which always returns a tibble data frame. However, the function being called needs to return a vector or a list with names. For this reason, the following code would result in a <code>Argument 1 must have names</code> error:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoic19uIDwtIG1hcF9kZihuLGNvbXB1dGVfc19uKSJ9 -->
+<pre class="r"><code>s_n &lt;- map_df(n,compute_s_n)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>We need to change the function to make this work:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29tcHV0ZV9zX24gPC0gZnVuY3Rpb24obil7XG4gIHggPC0gMTpuXG4gIHRpYmJsZShzdW09c3VtKHgpKVxufVxuc19uIDwtIG1hcF9kZihuLGNvbXB1dGVfc19uKVxuYGBgIn0= -->
+<pre class="r"><code>compute_s_n &lt;- function(n){
+  x &lt;- 1:n
+  tibble(sum=sum(x))
+}
+s_n &lt;- map_df(n,compute_s_n)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The <strong>purrr</strong> package provides much more functionality not covered here. For more details you can consult this online resource.</p>
+</div>
+<div id="tidyverse-conditionals" class="section level2">
+<h2><strong>4.14 Tidyverse conditionals</strong></h2>
+<p>A typical data analysis will often involve one or more conditional operations. In Section 3.1 we described the <code>ifelse</code> function, which we will use extensively in this book. In this section we present two <strong>dplyr</strong> functions that provide further functionality for performing conditional operations.</p>
+<div id="case_when" class="section level3">
+<h3><strong>4.14.1 <code>case_when</code></strong></h3>
+<p>The <code>case_when</code> function is useful for vectorizing conditional statements. It is similar to <code>ifelse</code> but can output any number of values, as opposed to just <code>TRUE</code> or <code>FALSE</code>. Here is an example splitting numbers into negative, positive, and 0:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBjKC0yLC0xLDAsMSwyKVxuY2FzZV93aGVuKHggPDAgfiBcIk5lZ2F0aXZlXCIsXG4gICAgICAgICAgeCA+IDAgfiBcIlBvc2l0aXZlXCIsXG4gICAgICAgICAgVFJVRSB+IFwiWmVyb1wiKVxuYGBgIn0= -->
+<pre class="r"><code>x &lt;- c(-2,-1,0,1,2)
+case_when(x &lt;0 ~ &quot;Negative&quot;,
+          x &gt; 0 ~ &quot;Positive&quot;,
+          TRUE ~ &quot;Zero&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTmVnYXRpdmVcIiBcIk5lZ2F0aXZlXCIgXCJaZXJvXCIgICAgXG5bNF0gXCJQb3NpdGl2ZVwiIFwiUG9zaXRpdmVcIlxuIn0= -->
+<pre><code>[1] &quot;Negative&quot; &quot;Negative&quot; &quot;Zero&quot;    
+[4] &quot;Positive&quot; &quot;Positive&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>A common use for this function is to define categorical variables based on existing variables. For example, suppose we want to compare the murder rates in four groups of states: <em>New England, West Coast, South, and other</em>. For each state, we need to ask if it is in New England, if it is not we ask if it is in the West Coast, if not we ask if it is in the South, and if not we assign <em>other</em>. Here is how we use <code>case_when</code> to do this:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgbXV0YXRlKGdyb3VwPWNhc2Vfd2hlbihcbiAgYWJiICVpbiUgYyhcIk1FXCIsIFwiTkhcIiwgXCJWVFwiLCBcIk1BXCIsIFwiUklcIiwgXCJDVFwiKSB+IFwiTmV3IEVuZ2xhbmRcIixcbiAgYWJiICVpbiUgYyhcIldBXCIsIFwiT1JcIiwgXCJDQVwiKSB+IFwiV2VzdCBDb2FzdFwiLFxuICAgIHJlZ2lvbiA9PSBcIlNvdXRoXCIgfiBcIlNvdXRoXCIsXG4gICAgVFJVRSB+IFwiT3RoZXJcIikpICU+JVxuICBncm91cF9ieShncm91cCkgJT4lIFxuICBzdW1tYXJpemUocmF0ZT1zdW0odG90YWwpL3N1bShwb3B1bGF0aW9uKSoxMF41KVxuYGBgIn0= -->
+<pre class="r"><code>murders %&gt;% mutate(group=case_when(
+  abb %in% c(&quot;ME&quot;, &quot;NH&quot;, &quot;VT&quot;, &quot;MA&quot;, &quot;RI&quot;, &quot;CT&quot;) ~ &quot;New England&quot;,
+  abb %in% c(&quot;WA&quot;, &quot;OR&quot;, &quot;CA&quot;) ~ &quot;West Coast&quot;,
+    region == &quot;South&quot; ~ &quot;South&quot;,
+    TRUE ~ &quot;Other&quot;)) %&gt;%
+  group_by(group) %&gt;% 
+  summarize(rate=sum(total)/sum(population)*10^5)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NCwibmNvbCI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUF3dHlpVERtaXVCaVlHQmdabUJoWUdKZ1pnVXlHVmhEUTl4MExSZ1lXSmlBSEVhZ0JDZUlyZ0FxRWdZeVFJSUNRTXdDbGVEMlN5MVhjTTFMejBuTVM0RUtzZnFYWktRV3dUakIrYVVsR1ZBT1YzaHFjWW1DYzM1aWNRbVF4d2N5eHY3M2xOWENEL20yTzdDdWNwOXhPUGE5QXkrendSSlZid2NIZGtQMURvOG1HVFIzc09ZbDVxWVdROTNBQkJOTUw4b3ZMWUJ5V0lvU1MxTFJkSEVXNVpmcndYVHlnblEyQUluLy8vLy9RVGMrT1NleEdHWThUSkFySmJFa1VTK3RDS2dmeVB1SHBvVTl2NkFrTXo4UHFJa0pGRDZzYUpvWmk5QUVCRXJ6UUM1SjBVM09LTTNMMXJVd0J0a0Fsb2NBWGlpYkJZbk5CTEdUNlQvVUxGYW9XV3lwZWVtWmVha3d4K2NrSnFYbVFEbDhRQytEZmF4WFVKU1pWd0x6Q2xDMFdLOGt2eVFScG80ck9UOEhKZ0wySE1NL0FDN0RWQ0VYQWdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rate"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"New England","2":"1.723796"},{"1":"Other","2":"2.708144"},{"1":"South","2":"3.626558"},{"1":"West Coast","2":"2.899001"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="between" class="section level3">
+<h3><strong>4.14.2 <code>between</code></strong></h3>
+<p>A common operation in data analysis is to determine if a value falls inside an interval. We can check this using conditionals. For example, to check if the elements of a vector <code>x</code> are between <code>a</code> and <code>b</code> we can type</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoieCA+PSBhICYgeCA8PSBiIn0= -->
+<pre class="r"><code>x &gt;= a &amp; x &lt;= b</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>However, this can become cumbersome, especially within the tidyverse approach. The <code>between</code> function performs the same operation.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYmV0d2Vlbih4LGEsYikifQ== -->
+<pre class="r"><code>between(x,a,b)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="exercises-1" class="section level2">
+<h2><strong>4.15 Exercises</strong></h2>
+<ol style="list-style-type: decimal">
+<li>Load the <code>murders</code> dataset. Which of the following is true?</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><code>murders</code> is in tidy format and is stored in a tibble.</li>
+<li><code>murders</code> is in tidy format and is stored in a data frame.</li>
+<li><code>murders</code> is not in tidy format and is stored in a tibble.</li>
+<li><code>murders</code> is not in tidy format and is stored in a data frame.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YShtdXJkZXJzKVxubXVyZGVyc1xuYGBgIn0= -->
+<pre class="r"><code>data(murders)
+murders</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NTEsIm5jb2wiOjV9LCJyZGYiOiJINHNJQUFBQUFBQUFBMjFXUzJ3YlJSaGVPN2FUdUVrYWlhcmlVQW56S0ZTcWtoWWxMVlZUVkx0Mmt6akoybTc4REk4b1kzc1NqN3plTVR2ck9LNlFDT0loY1FDS09DQlZvaGVxQ3NSRGdnTVhMa1ZVaUJQaWhJcVFVSStVSHVBQ0J5bzF6TTdqOThiQzh1cjd2Lzg5Lys3TTdtcXFNaE90UkEzREdESkNSdEFZQ25QUkNCY0w4MU5uRENNVTVDVEFEYU1lN25Dbmh6d3J2eWI1TmFNTXd3a0xWVkVMS1JyaGxEVVJHQjF5bWRxYWppU2NKcklaWW9wSGs4Z2ltOVN4Q1hna3FVVWRWS2VLSDBoUzI4WTFsOVE2cm5aSllRdDFrWU1WUDVRaXpIVkl6WTNSelJnUDc3U3FrRzU0bm1jamRhQUxtRHBiWUkwczhqeUVLQlpPMTFGRDF4MUpXeGF4S2RHZERxZnRPa0d3a0ZDYWRpSExzbjlKSTh2WWRqdTFaay94MFJYYUljd1hHallSc1hYdkl5WnllaGF5NjRxUG00Z3hWR3QwR0haZFNHbVNXb05zSVZ1bk5BbWZDYU91VG5uQUpJeDUvM2FiOUdNWW94MUg4MkdUMm02L2laRU1yanErK3hUSjRHMEVZeHJQNEc1c0ViWGFyRUZnekZGUHVZUWRobnQrallsM1NJMzIwM1pqYTlScEtqNlJvWTdiaUNXUlEvazBkZm94cVUyaFpuOEpvV3lEUUpaczArSjNvdjlJWlIyOFJmWHF4M0xZdGxuUDJrYjlwMlpzdFVIck9KWm12bEZPNUdubmYycEw3Yjdhb3dYc3paTmh2ZFJ3QWUvQURRMFZYZFRRVXl4aHA4VUhxUnN0RWY0MDlkdUlsaEdmbUwzbFFyUGpaY3pjMklEYmFKbXdHclVaMFY3RDVSNXQ4YmlCblJWTXJJQzBETkp6SUsxcUtaa0FLUXRTUVV1cGl5QWx0VFFQbVJjZ2RqR3RwWFFLSlBCTFowQ0NpT1U4U0d0YVdnR3JDWFZOeUdmMnJWRE5oTXdtNUROaEhTYXNJd1A1TWlXUUZrRmFBc2tFQ2JyS3dNb3owRXNXWXJNdzNTek1OQWVkcmtLbmVjaVNoeXdGNkw1UTBWSVJlaTcxSmNoWDdrdXdqakxVS0sveGMzWmNQQVdjZWMrZnV2eHlRSEgvcFcxREE1ZTJCM3pvdHczNTRuVHV3RUFkdjcvZkp6aFF3eDhUMnA5LzM4c2tZdUZ0YkRIMXZJZjB2aERuQWtaTTc2K3cyS3h3S01temhCK3ZEckwwNXZUMjEwRHljSTIvZ1hSdXFMaUphaTUxdVBTQVh4UGVmQk9yYzE5ek5CSkhQL3RDWUtVNkcvZHcvdnhUZ3IvNjNkV1loL2tUZWNHWFV4L3Zlbmg4NjRqZ2o3M3dqMERuKzNkeUhsYnYzUlI4OXR2UEJUNXpiMTFnWStkdm1mK2JuMFg4d3JOM0JWNjg5WXJRNTk3K3hBdE1YRnArUk1hbjdnb3NSYzdKdUgrUGk3NnF2K3dKWHBqN1VQYjUwYTdJVTdyOXJvaWZmdnBIWVovNzdhakExTlhYaEgzMjhMYmdHN2YrRUg3bm01L0t2aS9mM3hCNVQrd0pmT0xOYTBLL0dUZ29jT1hhcnlMZVBQdWVYTWZab3ZBN2VmQUR3UzlkbCtzNmR2c0gyZWVwZGRGWDkvNzRGYkcrdzZkRi9PTVBYeFgyOVRkMkJhN2QrRlBndWZrTEFvdGZmaVg4SHAwcEdQSW43azk4NDQ0ZzhSbXBqTGNVbHVNUzM3OHVNYWQ0UldGUytWVnVTbno5ZDRuZFhZbEhsUDJZd20zbGh4U2VVdnFzOG45UjhjNWZFcDlVM01rcHUvTHIvU1J4U2ZGMTVlZE83cThYVjFoVWVFaWhyZXJuRk83S2dQaExkeVJPS2orMklmRjU1WGRCNlYrK0l2R2s0a1RGeFJSdnFyaTNWTjdUU204b3BGS0MrYzRwdlo2cjZuTnd1OW1vaGZWMkMyc2xjNUdyWDZkRHFGclYyNUMveVFtOEhhTnQydTVZeU8xcndpNS9MVnNERlVZZDJwM1dWYnlqTWJncis1aVJqa043eHY3TkhxMGpGMDF2T2p6RUVCdCtYN3BoMnZZcThtUkIvL2NzZk9nNkE0ckpqdTBWcjAveHp6SzdPWFZtMXF0Z3lJUE9VQjBGWkRjZ2gyWE5rTzVNenlXQzdhMysxMStZZnpsamZaUk44RldLUlU2M0hRS2ZHRkd1WmROeUtrcFRvNWJXeU5Qc3dYL21ic1BMeHdzQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"AL","3":"South","4":"4779736","5":"135"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19"},{"1":"Arizona","2":"AZ","3":"West","4":"6392017","5":"232"},{"1":"Arkansas","2":"AR","3":"South","4":"2915918","5":"93"},{"1":"California","2":"CA","3":"West","4":"37253956","5":"1257"},{"1":"Colorado","2":"CO","3":"West","4":"5029196","5":"65"},{"1":"Connecticut","2":"CT","3":"Northeast","4":"3574097","5":"97"},{"1":"Delaware","2":"DE","3":"South","4":"897934","5":"38"},{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99"},{"1":"Florida","2":"FL","3":"South","4":"19687653","5":"669"},{"1":"Georgia","2":"GA","3":"South","4":"9920000","5":"376"},{"1":"Hawaii","2":"HI","3":"West","4":"1360301","5":"7"},{"1":"Idaho","2":"ID","3":"West","4":"1567582","5":"12"},{"1":"Illinois","2":"IL","3":"North Central","4":"12830632","5":"364"},{"1":"Indiana","2":"IN","3":"North Central","4":"6483802","5":"142"},{"1":"Iowa","2":"IA","3":"North Central","4":"3046355","5":"21"},{"1":"Kansas","2":"KS","3":"North Central","4":"2853118","5":"63"},{"1":"Kentucky","2":"KY","3":"South","4":"4339367","5":"116"},{"1":"Louisiana","2":"LA","3":"South","4":"4533372","5":"351"},{"1":"Maine","2":"ME","3":"Northeast","4":"1328361","5":"11"},{"1":"Maryland","2":"MD","3":"South","4":"5773552","5":"293"},{"1":"Massachusetts","2":"MA","3":"Northeast","4":"6547629","5":"118"},{"1":"Michigan","2":"MI","3":"North Central","4":"9883640","5":"413"},{"1":"Minnesota","2":"MN","3":"North Central","4":"5303925","5":"53"},{"1":"Mississippi","2":"MS","3":"South","4":"2967297","5":"120"},{"1":"Missouri","2":"MO","3":"North Central","4":"5988927","5":"321"},{"1":"Montana","2":"MT","3":"West","4":"989415","5":"12"},{"1":"Nebraska","2":"NE","3":"North Central","4":"1826341","5":"32"},{"1":"Nevada","2":"NV","3":"West","4":"2700551","5":"84"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5"},{"1":"New Jersey","2":"NJ","3":"Northeast","4":"8791894","5":"246"},{"1":"New Mexico","2":"NM","3":"West","4":"2059179","5":"67"},{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517"},{"1":"North Carolina","2":"NC","3":"South","4":"9535483","5":"286"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4"},{"1":"Ohio","2":"OH","3":"North Central","4":"11536504","5":"310"},{"1":"Oklahoma","2":"OK","3":"South","4":"3751351","5":"111"},{"1":"Oregon","2":"OR","3":"West","4":"3831074","5":"36"},{"1":"Pennsylvania","2":"PA","3":"Northeast","4":"12702379","5":"457"},{"1":"Rhode Island","2":"RI","3":"Northeast","4":"1052567","5":"16"},{"1":"South Carolina","2":"SC","3":"South","4":"4625364","5":"207"},{"1":"South Dakota","2":"SD","3":"North Central","4":"814180","5":"8"},{"1":"Tennessee","2":"TN","3":"South","4":"6346105","5":"219"},{"1":"Texas","2":"TX","3":"South","4":"25145561","5":"805"},{"1":"Utah","2":"UT","3":"West","4":"2763885","5":"22"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2"},{"1":"Virginia","2":"VA","3":"South","4":"8001024","5":"250"},{"1":"Washington","2":"WA","3":"West","4":"6724540","5":"93"},{"1":"West Virginia","2":"WV","3":"South","4":"1852994","5":"27"},{"1":"Wisconsin","2":"WI","3":"North Central","4":"5686986","5":"97"},{"1":"Wyoming","2":"WY","3":"West","4":"563626","5":"5"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[51]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aGUgYW5zd2VyIGlzICdiJ1xuYGBgIn0= -->
+<pre class="r"><code># the answer is &#39;b&#39;</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="2" style="list-style-type: decimal">
+<li>Use <code>as_tibble</code> to convert the <code>murders</code> data table into a tibble and save it in an object called <code>murders_tibble</code>.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVyc190aWJibGUgPC0gYXNfdGliYmxlKG11cmRlcnMpXG5gYGAifQ== -->
+<pre class="r"><code>murders_tibble &lt;- as_tibble(murders)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="3" style="list-style-type: decimal">
+<li>Use the <code>group_by</code> function to convert <code>murders</code> into a tibble that is grouped by region.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgZ3JvdXBfYnkocmVnaW9uKVxuYGBgIn0= -->
+<pre class="r"><code>murders %&gt;% group_by(region)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImdyb3VwZWRfZGYiLCJ0YmxfZGYiLCJ0YmwiLCJkYXRhLmZyYW1lIl0sIm5yb3ciOjUxLCJuY29sIjo1fSwicmRmIjoiSDRzSUFBQUFBQUFBQTIxV1Myd2JSUmplK0JFbmJwSkdvcW80Vk1JOENwV3FwRVZKUzlVVTFhN2RKSTZ6dGh1L0VoNVJ4dmJFSG5tOVkzYldjVkloRWNSRDRnQVVjVUNxUkM5VUNNUkRnZ01YTGtWVWlBdUlFeXBDUWoxU2VvQUxIS2pVTUR1UDN4dUxLS3Z2Ly83WC9QL3ZtZGxkU2EzT1JGZWpobUVFalpBUk1JSmhMaHJoVW5GKzZveGhoQUtjREhIRHFJZmIzT2tCejhxZlNmN01LRU1rWWFFcWFpTkZoemxsTFFSR2gxeW10cVlqQ2FlRmJJYVk0dEVrc3NnbWRXd0NIa2xxVVFmVnFlSUhrdFMyY2MwbHRhNnJYVkxZUWoza1lNVVBwUWh6SFZKelkzUXp4c083N1Nxa2k4enpiS1FPZEFGVHB3SFc0VVdlaHhERnd1azZhdXAxUjlLV1JXeEtkS1dSdEYwbkNCb0pwV2tQc21UOExZMWtzTzEyYTYwZHhVZVhhWmN3WDJqWVJNVFd0WStZeU5teGtGMVhmTnhFaktGYXM4dXc2MEpLazlTYXBJRnNuZElrZkNhTXVqcmxBWk13NXYxM09xUWZ3eGp0T3BwSFRHcTcvU0pHc3JqcStINm40U3plUWpDbThTenV4UlpSdThPYUJNWWM5WlJMMkdGNHg2OHg4VGFwMFg3YVhteU5PaTNGSjdMVWNadXhKSElvbjZaT1B5YTFLZFRxdHhES05RbGt5YlVzL2t2MHQxVE93UTJxdXgvTFk5dG1POVlXNnUrYXNaVW1yZU5ZbXZsR09WR2czZjlaVzJyM3JUMWF4TjQ4R2RhdGhvdDRHMzdRVU1sRlRUM0ZNbmJhZkpDNjBETGh1NmxmUnJTQytNVHNoZ3ZGamxjd2MyTURicU1Wd21yVVprUjdSU283dE0zakJrNVdJTEVNVWdha1owQmEwVkl5QVZJT3BLS1dVaGRCU21wcEhqSXZRT3hpV2t2cEZFamdsODZDQkJHWkFraHJXbG9HcXducm1wRFA3RnRoTlJNeW01RFBoRDVNNkNNTCtiSmxrQlpCV2dMSkJBbXF5a0xuV2FnbEI3RTVtRzRPWnBxSFNsZWcwZ0prS1VDV0lsUmZYTlZTQ1dvdTl5WElWK2xMMEVjRjFxaXM4WHQyWE93Q3pyejlweDYvUEtTNC85RzI0TUNqN1VNKzlOdUN2amlkZTJoZ0hiKy8zeWN3c0lZL0pyUS8vNzZYeWJDRnQ3REYxSDRQNlhNaDdnV01tRDVmWVhGWTRWS1Nkd20vWGgxazZjUHBuYStCNU9FYWZ3UHAzTERpSnFxNTFPSFNmZjVNZVBOTnJNeDl4ZEZJSFAzMGM0R3IxZG00aC9Qbm54RDg1Vyt2eGp3c25DZ0lua2w5dE92aDhjWVJ3Ujk1N2grQnpuZHY1VDJzM3IwaCtPdzNud2w4NnU2NndPYjIzekwvMXorTCtJV243d2k4ZVBNbG9jKy8rYkVYbUxpVWVVakdwKzRJTEErZmszSC9IaGQxVlgvWkU3dzQ5NzZzODROZGthZDg2MjBSUC8za2o4SSs5OXRSZ2FtcnJ3ajc3T0V0d1RkdS9pSDh6cmMra1hWZnZyY2g4cDdZRS9qWTY5ZUVmblBvb01EbGE3K0tlUFBzTzdLUHN5WGhkL0xnZTRKZnVpNzdPbmJyZTFubnFYVlJWKy9lK0JYUjMrSFRJdjdSQjY4SysvcHJ1d0xYUHZ4VDRMbjVDd0pMWDN3cC9CNmVLUnJ5VC93KzhZM2Jnc1JucERMZVZsaUpTM3ozdXNTODRxc0trOHB2OVliRVYzK1gyTnVWZUVUWmp5bmNVbjVJNFNtbHp5bi81eFh2L2lYeGNjV2R2TElydjUyZkpDNHB2cTc4M01uOTY4VVZsaFFlVW1pcjlmTUtkMlZBL0lYYkVpZVZIOXVRK0t6eXU2RDBMMTZSZUZKeG91SmlpcmRVM0JzcTcybWxOeFJTS2NGODU1UmV6MVhWS1k5YjBOdUxYa1g2aEVYcnlFWFRtdzVxNDRFRE9lclEzclROOWQ2aDlLNjJnRGVndmIyOUh3WlBybmJ5OG9hMWtybkkxVy9tSUtwVzlZbm1Id1VFWHJUUkR1MTBMZVQyTldHWHYrRXRReHo0ZmF0RWFNZHo0K3NFL04rejhLSHJEQ2dtdTdaWFYzMktmNWJacmFrejN0aWlocnpvRE5XUko4LzQ1TEJjTTd3MzBNd3d0aHY5cjc4dy8zTEcraXFiNEZNUy9VOTNIQUtmR0ZHdVpkT3lGYVdwVVV0cjVHMTIvejhpSTgyc3h3c0FBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"AL","3":"South","4":"4779736","5":"135"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19"},{"1":"Arizona","2":"AZ","3":"West","4":"6392017","5":"232"},{"1":"Arkansas","2":"AR","3":"South","4":"2915918","5":"93"},{"1":"California","2":"CA","3":"West","4":"37253956","5":"1257"},{"1":"Colorado","2":"CO","3":"West","4":"5029196","5":"65"},{"1":"Connecticut","2":"CT","3":"Northeast","4":"3574097","5":"97"},{"1":"Delaware","2":"DE","3":"South","4":"897934","5":"38"},{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99"},{"1":"Florida","2":"FL","3":"South","4":"19687653","5":"669"},{"1":"Georgia","2":"GA","3":"South","4":"9920000","5":"376"},{"1":"Hawaii","2":"HI","3":"West","4":"1360301","5":"7"},{"1":"Idaho","2":"ID","3":"West","4":"1567582","5":"12"},{"1":"Illinois","2":"IL","3":"North Central","4":"12830632","5":"364"},{"1":"Indiana","2":"IN","3":"North Central","4":"6483802","5":"142"},{"1":"Iowa","2":"IA","3":"North Central","4":"3046355","5":"21"},{"1":"Kansas","2":"KS","3":"North Central","4":"2853118","5":"63"},{"1":"Kentucky","2":"KY","3":"South","4":"4339367","5":"116"},{"1":"Louisiana","2":"LA","3":"South","4":"4533372","5":"351"},{"1":"Maine","2":"ME","3":"Northeast","4":"1328361","5":"11"},{"1":"Maryland","2":"MD","3":"South","4":"5773552","5":"293"},{"1":"Massachusetts","2":"MA","3":"Northeast","4":"6547629","5":"118"},{"1":"Michigan","2":"MI","3":"North Central","4":"9883640","5":"413"},{"1":"Minnesota","2":"MN","3":"North Central","4":"5303925","5":"53"},{"1":"Mississippi","2":"MS","3":"South","4":"2967297","5":"120"},{"1":"Missouri","2":"MO","3":"North Central","4":"5988927","5":"321"},{"1":"Montana","2":"MT","3":"West","4":"989415","5":"12"},{"1":"Nebraska","2":"NE","3":"North Central","4":"1826341","5":"32"},{"1":"Nevada","2":"NV","3":"West","4":"2700551","5":"84"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5"},{"1":"New Jersey","2":"NJ","3":"Northeast","4":"8791894","5":"246"},{"1":"New Mexico","2":"NM","3":"West","4":"2059179","5":"67"},{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517"},{"1":"North Carolina","2":"NC","3":"South","4":"9535483","5":"286"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4"},{"1":"Ohio","2":"OH","3":"North Central","4":"11536504","5":"310"},{"1":"Oklahoma","2":"OK","3":"South","4":"3751351","5":"111"},{"1":"Oregon","2":"OR","3":"West","4":"3831074","5":"36"},{"1":"Pennsylvania","2":"PA","3":"Northeast","4":"12702379","5":"457"},{"1":"Rhode Island","2":"RI","3":"Northeast","4":"1052567","5":"16"},{"1":"South Carolina","2":"SC","3":"South","4":"4625364","5":"207"},{"1":"South Dakota","2":"SD","3":"North Central","4":"814180","5":"8"},{"1":"Tennessee","2":"TN","3":"South","4":"6346105","5":"219"},{"1":"Texas","2":"TX","3":"South","4":"25145561","5":"805"},{"1":"Utah","2":"UT","3":"West","4":"2763885","5":"22"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2"},{"1":"Virginia","2":"VA","3":"South","4":"8001024","5":"250"},{"1":"Washington","2":"WA","3":"West","4":"6724540","5":"93"},{"1":"West Virginia","2":"WV","3":"South","4":"1852994","5":"27"},{"1":"Wisconsin","2":"WI","3":"North Central","4":"5686986","5":"97"},{"1":"Wyoming","2":"WY","3":"West","4":"563626","5":"5"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[51]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="4" style="list-style-type: decimal">
+<li>Write tidyverse code that is equivalent to this code:</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiZXhwKG1lYW4obG9nKG11cmRlcnMkcG9wdWxhdGlvbikpKSJ9 -->
+<pre class="r"><code>exp(mean(log(murders$population)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Write it using the pipe so that each function is called without arguments. Use the dot operator to access the population. Hint: The code should start with <code>murders %&gt;%</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVyZGVycyAlPiUgLiRwb3B1bGF0aW9uICU+JSBsb2coKSAlPiUgbWVhbigpICU+JSBleHAoKVxuYGBgIn0= -->
+<pre class="r"><code>murders %&gt;% .$population %&gt;% log() %&gt;% mean() %&gt;% exp()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM2NzUyMDlcbiJ9 -->
+<pre><code>[1] 3675209</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="5" style="list-style-type: decimal">
+<li>Use the <code>map_df</code> to create a data frame with three columns named <code>n</code>, <code>s_n</code>, and <code>s_n_2</code>. The first column should contain the numbers 1 through 100. The second and third columns should each contain the sum of 1 through <span class="math inline">\(n\)</span> with <span class="math inline">\(n\)</span> the row number.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29tcHV0ZV9zX24gPC0gZnVuY3Rpb24obil7XG4gIHggPC0gMTpuXG4gIHRpYmJsZShuID0gbiwgc19uID0gc3VtKHgpLCBzX25fMiA9IHN1bSh4KSlcbn1cbm4gPC0gMToxMDBcbm1hcF9kZihuLCBjb21wdXRlX3NfbilcbmBgYCJ9 -->
+<pre class="r"><code>compute_s_n &lt;- function(n){
+  x &lt;- 1:n
+  tibble(n = n, s_n = sum(x), s_n_2 = sum(x))
+}
+n &lt;- 1:100
+map_df(n, compute_s_n)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MTAwLCJuY29sIjozfSwicmRmIjoiSDRzSUFBQUFBQUFBQSszVXpXOE1jUnpIOGQvTTdPekRkTHZkdHVyNW9haG51MmpSOWZ6UXF1ZWlXdGJqbXU0dTNWZ3p0UStJa3hzWEJ4ZFBRU0lpa1RoSUNBY1N6ZzRTWE56RUJZbVQ0Q0xvZXMvNlRWTHpGemc0dk5xWjJmbjk1dmY3ZmovNTlYUW0yNHlrSVlUUWhFK29RdE81RkhwZmIxY3NJWVJQNVViaGg1RHoveFF2TlZiZkZLSVdtZXFQUXFqeW1jOFpDVDhDQ01JWjZNeGVnN0FjRjBFZG9xaEhBNXg1UjZBSkl6RUtvekVHWXpFTzR6RUJFekVKelppTUtaaUtGa3pEZE16QVRNekNiTXpCWE1RUXh6ek14d0swb2cwTHNRaUwwUTRLSUpaZ0taWmhPVlpnSlZaaE5kWmdMVHJRaVhYb3ducHN3RVpzd21ac3dWWjBZeHUyWXdkNnNCTzk2TU11N0VZU2U3QVgrN0FmQjNBUUtSeUNpWDZrWlQrRzkwV1R2VEJrdlp0a0RWdGtIZHJsMnJ2bC9EblFZM0VPVjNBWFQvRWFIL0dMYWVtUlFoMFY5cW13QnVVMEx1SUJYdUV6Y2FDdktuVlYyWk42QWxmeERPOVpFaG5RcUxQR1ByU3p1SSszUklkOCtLaTFid0NYOFJ3L2lCTzkwdG1mZmdrdjJBNFo4OU1IZnhuMzhJbW8wZThBK3cvY3hEdGlSeTZDMUNWNEN4K0lJUDBQMlhpSW41U0RQaG5uOFlaWWtwMGFDMCtJSjFrTlUvUHdIWHlubFBTczlnYStFRm42R2JtT2I1U1NQdGJkUm9VSTA1dm9JMkpNZnV1UDR5VnhKbGNORi9DVldOUEx4c2YvKy9Ldjl1V3ZBMDYzekdQWm92aHpNR251cVdmSkM2MlljaTkxTGxPdG50R2hnbjB5N3M3Z3RGczl3NTlLcFhMTis1bDAzaXk2bjNFZkdobXpaTVlQRnhqUDNaQm5TTUFlTE9Wc2kwR3FjMURxbnNGS3dmTWdXcmFjbFdSaTZZR3lkVFNXU01pME9la1Rjbm5Lc0JORHB0TDVwbHFSYytseUxuL1dPcEt6c3U3aTgyWi9OaTl2SW15NXV1UDRZQ0ZubGR5dDhMUVlMOWtsMDMzUFNOdDU5MGwxYzJMb056UDV5NUo0QmdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["n"],"name":[1],"type":["int"],"align":["right"]},{"label":["s_n"],"name":[2],"type":["int"],"align":["right"]},{"label":["s_n_2"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"1","3":"1"},{"1":"2","2":"3","3":"3"},{"1":"3","2":"6","3":"6"},{"1":"4","2":"10","3":"10"},{"1":"5","2":"15","3":"15"},{"1":"6","2":"21","3":"21"},{"1":"7","2":"28","3":"28"},{"1":"8","2":"36","3":"36"},{"1":"9","2":"45","3":"45"},{"1":"10","2":"55","3":"55"},{"1":"11","2":"66","3":"66"},{"1":"12","2":"78","3":"78"},{"1":"13","2":"91","3":"91"},{"1":"14","2":"105","3":"105"},{"1":"15","2":"120","3":"120"},{"1":"16","2":"136","3":"136"},{"1":"17","2":"153","3":"153"},{"1":"18","2":"171","3":"171"},{"1":"19","2":"190","3":"190"},{"1":"20","2":"210","3":"210"},{"1":"21","2":"231","3":"231"},{"1":"22","2":"253","3":"253"},{"1":"23","2":"276","3":"276"},{"1":"24","2":"300","3":"300"},{"1":"25","2":"325","3":"325"},{"1":"26","2":"351","3":"351"},{"1":"27","2":"378","3":"378"},{"1":"28","2":"406","3":"406"},{"1":"29","2":"435","3":"435"},{"1":"30","2":"465","3":"465"},{"1":"31","2":"496","3":"496"},{"1":"32","2":"528","3":"528"},{"1":"33","2":"561","3":"561"},{"1":"34","2":"595","3":"595"},{"1":"35","2":"630","3":"630"},{"1":"36","2":"666","3":"666"},{"1":"37","2":"703","3":"703"},{"1":"38","2":"741","3":"741"},{"1":"39","2":"780","3":"780"},{"1":"40","2":"820","3":"820"},{"1":"41","2":"861","3":"861"},{"1":"42","2":"903","3":"903"},{"1":"43","2":"946","3":"946"},{"1":"44","2":"990","3":"990"},{"1":"45","2":"1035","3":"1035"},{"1":"46","2":"1081","3":"1081"},{"1":"47","2":"1128","3":"1128"},{"1":"48","2":"1176","3":"1176"},{"1":"49","2":"1225","3":"1225"},{"1":"50","2":"1275","3":"1275"},{"1":"51","2":"1326","3":"1326"},{"1":"52","2":"1378","3":"1378"},{"1":"53","2":"1431","3":"1431"},{"1":"54","2":"1485","3":"1485"},{"1":"55","2":"1540","3":"1540"},{"1":"56","2":"1596","3":"1596"},{"1":"57","2":"1653","3":"1653"},{"1":"58","2":"1711","3":"1711"},{"1":"59","2":"1770","3":"1770"},{"1":"60","2":"1830","3":"1830"},{"1":"61","2":"1891","3":"1891"},{"1":"62","2":"1953","3":"1953"},{"1":"63","2":"2016","3":"2016"},{"1":"64","2":"2080","3":"2080"},{"1":"65","2":"2145","3":"2145"},{"1":"66","2":"2211","3":"2211"},{"1":"67","2":"2278","3":"2278"},{"1":"68","2":"2346","3":"2346"},{"1":"69","2":"2415","3":"2415"},{"1":"70","2":"2485","3":"2485"},{"1":"71","2":"2556","3":"2556"},{"1":"72","2":"2628","3":"2628"},{"1":"73","2":"2701","3":"2701"},{"1":"74","2":"2775","3":"2775"},{"1":"75","2":"2850","3":"2850"},{"1":"76","2":"2926","3":"2926"},{"1":"77","2":"3003","3":"3003"},{"1":"78","2":"3081","3":"3081"},{"1":"79","2":"3160","3":"3160"},{"1":"80","2":"3240","3":"3240"},{"1":"81","2":"3321","3":"3321"},{"1":"82","2":"3403","3":"3403"},{"1":"83","2":"3486","3":"3486"},{"1":"84","2":"3570","3":"3570"},{"1":"85","2":"3655","3":"3655"},{"1":"86","2":"3741","3":"3741"},{"1":"87","2":"3828","3":"3828"},{"1":"88","2":"3916","3":"3916"},{"1":"89","2":"4005","3":"4005"},{"1":"90","2":"4095","3":"4095"},{"1":"91","2":"4186","3":"4186"},{"1":"92","2":"4278","3":"4278"},{"1":"93","2":"4371","3":"4371"},{"1":"94","2":"4465","3":"4465"},{"1":"95","2":"4560","3":"4560"},{"1":"96","2":"4656","3":"4656"},{"1":"97","2":"4753","3":"4753"},{"1":"98","2":"4851","3":"4851"},{"1":"99","2":"4950","3":"4950"},{"1":"100","2":"5050","3":"5050"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[100]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
-</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3VjaGFuJ3NfbG92ZWx5X1Jfbm90ZWJvb2siCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMjICoqNC43IFN1bW1hcml6aW5nIGRhdGEqKgoKQW4gaW1wb3J0YW50IHBhcnQgb2YgZXhwbG9yYXRvcnkgZGF0YSBhbmFseXNpcyBpcyBzdW1tYXJpemluZyBkYXRhLiBUaGUgYXZlcmFnZSBhbmQgc3RhbmRhcmQgZGV2aWF0aW9uIGFyZSB0d28gZXhhbXBsZXMgb2Ygd2lkZWx5IHVzZWQgc3VtbWFyeSBzdGF0aXN0aWNzLiBNb3JlIGluZm9ybWF0aXZlIHN1bW1hcmllcyBjYW4gb2Z0ZW4gYmUgYWNoaWV2ZWQgYnkgZmlyc3Qgc3BsaXR0aW5nIGRhdGEgaW50byBncm91cHMuIEluIHRoaXMgc2VjdGlvbiwgd2UgY292ZXIgdHdvIG5ldyAqKmRwbHlyKiogdmVyYnMgdGhhdCBtYWtlIHRoZXNlIGNvbXB1dGF0aW9ucyBlYXNpZXI6IGBgYHN1bW1hcml6ZWBgYCBhbmQgYGBgZ3JvdXBfYnlgYGAuIFdlIGxlYXJuIHRvIGFjY2VzcyByZXN1bHRpbmcgdmFsdWVzIHVzaW5nIHRoZSBgYGBwdWxsYGBgIGZ1bmN0aW9uLgoKIyMjICoqNC43LjEgYGBgc3VtbWFyaXplYGBgKioKClRoZSBgYGBzdW1tYXJpemVgYGAgZnVuY3Rpb24gaW4gKipkcGx5cioqIHByb3ZpZGVzIGEgd2F5IHRvIGNvbXB1dGUgc3VtbWFyeSBzdGF0aXN0aWNzIHdpdGggaW50dWl0aXZlIGFuZCByZWFkYWJsZSBjb2RlLiBXZSBzdGFydCB3aXRoIGEgc2ltcGxlIGV4YW1wbGUgYmFzZWQgb24gaGVpZ2h0cy4gVGhlIGBgYGhlaWdodHNgYGAgZGF0YXNldCBpbmNsdWRlcyBoZWlnaHRzIGFuZCBzZXggcmVwb3J0ZWQgYnkgc3R1ZGVudHMgaW4gYW4gaW4tY2xhc3Mgc3VydmV5LgoKCgpgYGB7cn0KbGlicmFyeShkcGx5cikKbGlicmFyeShkc2xhYnMpCmRhdGEoaGVpZ2h0cykKYGBgCgpUaGUgZm9sbG93aW5nIGNvZGUgY29tcHV0ZXMgdGhlIGF2ZXJhZ2UgYW5kIHN0YW5kYXJkIGRldmlhdGlvbiBmb3IgZmVtYWxlczoKCmBgYHtyfQpzIDwtIGhlaWdodHMgJT4lIGZpbHRlcihzZXg9PSJGZW1hbGUiKSAlPiUgc3VtbWFyaXplKGF2ZXJhZ2U9bWVhbihoZWlnaHQpLHN0YW5kYXJkX2RldmlhdGlvbj1zZChoZWlnaHQpKQpzCmBgYAoKVGhpcyB0YWtlcyBvdXIgb3JpZ2luYWwgZGF0YSB0YWJsZSBhcyBpbnB1dCwgZmlsdGVycyBpdCB0byBrZWVwIG9ubHkgZmVtYWxlcywgYW5kIHRoZW4gcHJvZHVjZXMgYSBuZXcgc3VtbWFyaXplZCB0YWJsZSB3aXRoIGp1c3QgdGhlIGF2ZXJhZ2UgYW5kIHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgaGVpZ2h0cy4gV2UgZ2V0IHRvIGNob29zZSB0aGUgbmFtZXMgb2YgdGhlIGNvbHVtbnMgb2YgdGhlIHJlc3VsdGluZyB0YWJsZS4gRm9yIGV4YW1wbGUsIGFib3ZlIHdlIGRlY2lkZWQgdG8gdXNlIGBgYGF2ZXJhZ2VgYGAgYW5kIGBgYHN0YW5kYXJkX2RldmlhdGlvbmBgYCwgYnV0IHdlIGNvdWxkIGhhdmUgdXNlZCBvdGhlciBuYW1lcyBqdXN0IHRoZSBzYW1lLgoKQmVjYXVzZSB0aGUgcmVzdWx0aW5nIHRhYmxlIHN0b3JlZCBpbiBgYGBzYGBgIGlzIGEgZGF0YSBmcmFtZSwgd2UgY2FuIGFjY2VzcyB0aGUgY29tcG9uZW50cyB3aXRoIHRoZSBhY2Nlc3NvciBgYGAkYGBgOgpgYGB7cn0KcyRhdmVyYWdlCnMkc3RhbmRhcmRfZGV2aWF0aW9uCmBgYAoKQXMgd2l0aCBtb3N0IG90aGVyICoqZHBseXIqKiBmdW5jdGlvbnMsIGBgYHN1bW1hcml6ZWBgYCBpcyBhd2FyZSBvZiB0aGUgdmFyaWFibGUgbmFtZXMgYW5kIHdlIGNhbiB1c2UgdGhlbSBkaXJlY3RseS4gU28gd2hlbiBpbnNpZGUgdGhlIGNhbGwgdG8gdGhlIGBgYHN1bW1hcml6ZWBgYCBmdW5jdGlvbiB3ZSB3cml0ZSBgYGBtZWFuKGhlaWdodClgYGAsIHRoZSBmdW5jdGlvbiBpcyBhY2Nlc3NpbmcgdGhlIGNvbHVtbiB3aXRoIHRoZSBuYW1lIOKAnGhlaWdodOKAnSBhbmQgdGhlbiBjb21wdXRpbmcgdGhlIGF2ZXJhZ2Ugb2YgdGhlIHJlc3VsdGluZyBudW1lcmljIHZlY3Rvci4gV2UgY2FuIGNvbXB1dGUgYW55IG90aGVyIHN1bW1hcnkgdGhhdCBvcGVyYXRlcyBvbiB2ZWN0b3JzIGFuZCByZXR1cm5zIGEgc2luZ2xlIHZhbHVlLiBGb3IgZXhhbXBsZSwgd2UgY2FuIGFkZCB0aGUgbWVkaWFuLCBtaW5pbXVtLCBhbmQgbWF4aW11bSBoZWlnaHRzIGxpa2UgdGhpczoKYGBge3J9CmhlaWdodHMgJT4lIGZpbHRlcihzZXg9PSJGZW1hbGUiKSAlPiUgc3VtbWFyaXplKG1lZGlhbj1tZWRpYW4oaGVpZ2h0KSxtaW5pbXVtPW1pbihoZWlnaHQpLG1heGltdW09bWF4KGhlaWdodCkpCmBgYAoKV2UgY2FuIG9idGFpbiB0aGVzZSB0aHJlZSB2YWx1ZXMgd2l0aCBqdXN0IG9uZSBsaW5lIHVzaW5nIHRoZSBgYGBxdWFudGlsZWBgYCBmdW5jdGlvbjogZm9yIGV4YW1wbGUsIGBgYHF1YW50aWxlKHgsIGMoMCwwLjUsMSkpYGBgIHJldHVybnMgdGhlIG1pbiAoMHRoIHBlcmNlbnRpbGUpLCBtZWRpYW4gKDUwdGggcGVyY2VudGlsZSksIGFuZCBtYXggKDEwMHRoIHBlcmNlbnRpbGUpIG9mIHRoZSB2ZWN0b3IgeC4gSG93ZXZlciwgaWYgd2UgYXR0ZW1wdCB0byB1c2UgYSBmdW5jdGlvbiBsaWtlIHRoaXMgdGhhdCByZXR1cm5zIHR3byBvciBtb3JlIHZhbHVlcyBpbnNpZGUgYGBgc3VtbWFyaXplYGBgOgpgYGB7cn0KaGVpZ2h0cyAlPiUgZmlsdGVyKHNleD09IkZlbWFsZSIpICU+JSBzdW1tYXJpemUocmFuZ2U9cXVhbnRpbGUoaGVpZ2h0LGMoMCwwLjUsMSkpKQpgYGAKCgp3ZSB3aWxsIHJlY2VpdmUgYW4gZXJyb3I6IGBgYEVycm9yOiBleHBlY3RpbmcgcmVzdWx0IG9mIGxlbmd0aCBvbmUsIGdvdCA6IDJgYGAuIFdpdGggdGhlIGZ1bmN0aW9uIGBgYHN1bW1hcml6ZWBgYCwgd2UgY2FuIG9ubHkgY2FsbCBmdW5jdGlvbnMgdGhhdCByZXR1cm4gYSBzaW5nbGUgdmFsdWUuIEluIFNlY3Rpb24gNC4xMiwgd2Ugd2lsbCBsZWFybiBob3cgdG8gZGVhbCB3aXRoIGZ1bmN0aW9ucyB0aGF0IHJldHVybiBtb3JlIHRoYW4gb25lIHZhbHVlLgoKCkZvciBhbm90aGVyIGV4YW1wbGUgb2YgaG93IHdlIGNhbiB1c2UgdGhlIGBgYHN1bW1hcml6ZWBgYCBmdW5jdGlvbiwgbGV04oCZcyBjb21wdXRlIHRoZSBhdmVyYWdlIG11cmRlciByYXRlIGZvciB0aGUgVW5pdGVkIFN0YXRlcy4gUmVtZW1iZXIgb3VyIGRhdGEgdGFibGUgaW5jbHVkZXMgdG90YWwgbXVyZGVycyBhbmQgcG9wdWxhdGlvbiBzaXplIGZvciBlYWNoIHN0YXRlIGFuZCB3ZSBoYXZlIGFscmVhZHkgdXNlZCAqKmRwbHlyKiogdG8gYWRkIGEgbXVyZGVyIHJhdGUgY29sdW1uOgpgYGB7cn0KbXVyZGVycyA8LSBtdXJkZXJzICU+JSBtdXRhdGUocmF0ZT10b3RhbC9wb3B1bGF0aW9uKjEwMDAwMCkKYGBgCgpSZW1lbWJlciB0aGF0IHRoZSBVUyBtdXJkZXIgcmF0ZSBpcyBgYGBub3RgYGAgdGhlIGF2ZXJhZ2Ugb2YgdGhlIHN0YXRlIG11cmRlciByYXRlczoKCmBgYHtyfQpzdW1tYXJpemUobXVyZGVycyxtZWFuKHJhdGUpKQpgYGAKCgpUaGlzIGlzIGJlY2F1c2UgaW4gdGhlIGNvbXB1dGF0aW9uIGFib3ZlIHRoZSBzbWFsbCBzdGF0ZXMgYXJlIGdpdmVuIHRoZSBzYW1lIHdlaWdodCBhcyB0aGUgbGFyZ2Ugb25lcy4gVGhlIFVTIG11cmRlciByYXRlIGlzIHRoZSB0b3RhbCBudW1iZXIgb2YgbXVyZGVycyBpbiB0aGUgVVMgZGl2aWRlZCBieSB0aGUgdG90YWwgVVMgcG9wdWxhdGlvbi4gU28gdGhlIGNvcnJlY3QgY29tcHV0YXRpb24gaXM6CmBgYHtyfQp1c19tdXJkZXJfcmF0ZSA8LSBtdXJkZXJzICU+JSBzdW1tYXJpemUocmF0ZT1zdW0odG90YWwpL3N1bShwb3B1bGF0aW9uKSoxMDAwMDApCnVzX211cmRlcl9yYXRlCmBgYAoKClRoaXMgY29tcHV0YXRpb24gY291bnRzIGxhcmdlciBzdGF0ZXMgcHJvcG9ydGlvbmFsbHkgdG8gdGhlaXIgc2l6ZSB3aGljaCByZXN1bHRzIGluIGEgbGFyZ2VyIHZhbHVlLgoKCiMjIyAqKjQuNy4yIGBgYHB1bGxgYGAqKgoKCgoKCgoKCgoKCgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3VjaGFuJ3NfbG92ZWx5X1Jfbm90ZWJvb2siCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMjICoqNC43IFN1bW1hcml6aW5nIGRhdGEqKgoKQW4gaW1wb3J0YW50IHBhcnQgb2YgZXhwbG9yYXRvcnkgZGF0YSBhbmFseXNpcyBpcyBzdW1tYXJpemluZyBkYXRhLiBUaGUgYXZlcmFnZSBhbmQgc3RhbmRhcmQgZGV2aWF0aW9uIGFyZSB0d28gZXhhbXBsZXMgb2Ygd2lkZWx5IHVzZWQgc3VtbWFyeSBzdGF0aXN0aWNzLiBNb3JlIGluZm9ybWF0aXZlIHN1bW1hcmllcyBjYW4gb2Z0ZW4gYmUgYWNoaWV2ZWQgYnkgZmlyc3Qgc3BsaXR0aW5nIGRhdGEgaW50byBncm91cHMuIEluIHRoaXMgc2VjdGlvbiwgd2UgY292ZXIgdHdvIG5ldyAqKmRwbHlyKiogdmVyYnMgdGhhdCBtYWtlIHRoZXNlIGNvbXB1dGF0aW9ucyBlYXNpZXI6IGBgYHN1bW1hcml6ZWBgYCBhbmQgYGBgZ3JvdXBfYnlgYGAuIFdlIGxlYXJuIHRvIGFjY2VzcyByZXN1bHRpbmcgdmFsdWVzIHVzaW5nIHRoZSBgYGBwdWxsYGBgIGZ1bmN0aW9uLgoKIyMjICoqNC43LjEgYGBgc3VtbWFyaXplYGBgKioKClRoZSBgYGBzdW1tYXJpemVgYGAgZnVuY3Rpb24gaW4gKipkcGx5cioqIHByb3ZpZGVzIGEgd2F5IHRvIGNvbXB1dGUgc3VtbWFyeSBzdGF0aXN0aWNzIHdpdGggaW50dWl0aXZlIGFuZCByZWFkYWJsZSBjb2RlLiBXZSBzdGFydCB3aXRoIGEgc2ltcGxlIGV4YW1wbGUgYmFzZWQgb24gaGVpZ2h0cy4gVGhlIGBgYGhlaWdodHNgYGAgZGF0YXNldCBpbmNsdWRlcyBoZWlnaHRzIGFuZCBzZXggcmVwb3J0ZWQgYnkgc3R1ZGVudHMgaW4gYW4gaW4tY2xhc3Mgc3VydmV5LgoKCgpgYGB7cn0KbGlicmFyeShkcGx5cikKbGlicmFyeShkc2xhYnMpCmRhdGEoaGVpZ2h0cykKYGBgCgpUaGUgZm9sbG93aW5nIGNvZGUgY29tcHV0ZXMgdGhlIGF2ZXJhZ2UgYW5kIHN0YW5kYXJkIGRldmlhdGlvbiBmb3IgZmVtYWxlczoKCmBgYHtyfQpzIDwtIGhlaWdodHMgJT4lIGZpbHRlcihzZXg9PSJGZW1hbGUiKSAlPiUgc3VtbWFyaXplKGF2ZXJhZ2U9bWVhbihoZWlnaHQpLHN0YW5kYXJkX2RldmlhdGlvbj1zZChoZWlnaHQpKQpzCmBgYAoKVGhpcyB0YWtlcyBvdXIgb3JpZ2luYWwgZGF0YSB0YWJsZSBhcyBpbnB1dCwgZmlsdGVycyBpdCB0byBrZWVwIG9ubHkgZmVtYWxlcywgYW5kIHRoZW4gcHJvZHVjZXMgYSBuZXcgc3VtbWFyaXplZCB0YWJsZSB3aXRoIGp1c3QgdGhlIGF2ZXJhZ2UgYW5kIHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgaGVpZ2h0cy4gV2UgZ2V0IHRvIGNob29zZSB0aGUgbmFtZXMgb2YgdGhlIGNvbHVtbnMgb2YgdGhlIHJlc3VsdGluZyB0YWJsZS4gRm9yIGV4YW1wbGUsIGFib3ZlIHdlIGRlY2lkZWQgdG8gdXNlIGBgYGF2ZXJhZ2VgYGAgYW5kIGBgYHN0YW5kYXJkX2RldmlhdGlvbmBgYCwgYnV0IHdlIGNvdWxkIGhhdmUgdXNlZCBvdGhlciBuYW1lcyBqdXN0IHRoZSBzYW1lLgoKQmVjYXVzZSB0aGUgcmVzdWx0aW5nIHRhYmxlIHN0b3JlZCBpbiBgYGBzYGBgIGlzIGEgZGF0YSBmcmFtZSwgd2UgY2FuIGFjY2VzcyB0aGUgY29tcG9uZW50cyB3aXRoIHRoZSBhY2Nlc3NvciBgYGAkYGBgOgpgYGB7cn0KcyRhdmVyYWdlCnMkc3RhbmRhcmRfZGV2aWF0aW9uCmBgYAoKQXMgd2l0aCBtb3N0IG90aGVyICoqZHBseXIqKiBmdW5jdGlvbnMsIGBgYHN1bW1hcml6ZWBgYCBpcyBhd2FyZSBvZiB0aGUgdmFyaWFibGUgbmFtZXMgYW5kIHdlIGNhbiB1c2UgdGhlbSBkaXJlY3RseS4gU28gd2hlbiBpbnNpZGUgdGhlIGNhbGwgdG8gdGhlIGBgYHN1bW1hcml6ZWBgYCBmdW5jdGlvbiB3ZSB3cml0ZSBgYGBtZWFuKGhlaWdodClgYGAsIHRoZSBmdW5jdGlvbiBpcyBhY2Nlc3NpbmcgdGhlIGNvbHVtbiB3aXRoIHRoZSBuYW1lIOKAnGhlaWdodOKAnSBhbmQgdGhlbiBjb21wdXRpbmcgdGhlIGF2ZXJhZ2Ugb2YgdGhlIHJlc3VsdGluZyBudW1lcmljIHZlY3Rvci4gV2UgY2FuIGNvbXB1dGUgYW55IG90aGVyIHN1bW1hcnkgdGhhdCBvcGVyYXRlcyBvbiB2ZWN0b3JzIGFuZCByZXR1cm5zIGEgc2luZ2xlIHZhbHVlLiBGb3IgZXhhbXBsZSwgd2UgY2FuIGFkZCB0aGUgbWVkaWFuLCBtaW5pbXVtLCBhbmQgbWF4aW11bSBoZWlnaHRzIGxpa2UgdGhpczoKYGBge3J9CmhlaWdodHMgJT4lIGZpbHRlcihzZXg9PSJGZW1hbGUiKSAlPiUgc3VtbWFyaXplKG1lZGlhbj1tZWRpYW4oaGVpZ2h0KSxtaW5pbXVtPW1pbihoZWlnaHQpLG1heGltdW09bWF4KGhlaWdodCkpCmBgYAoKV2UgY2FuIG9idGFpbiB0aGVzZSB0aHJlZSB2YWx1ZXMgd2l0aCBqdXN0IG9uZSBsaW5lIHVzaW5nIHRoZSBgYGBxdWFudGlsZWBgYCBmdW5jdGlvbjogZm9yIGV4YW1wbGUsIGBgYHF1YW50aWxlKHgsIGMoMCwwLjUsMSkpYGBgIHJldHVybnMgdGhlIG1pbiAoMHRoIHBlcmNlbnRpbGUpLCBtZWRpYW4gKDUwdGggcGVyY2VudGlsZSksIGFuZCBtYXggKDEwMHRoIHBlcmNlbnRpbGUpIG9mIHRoZSB2ZWN0b3IgeC4gSG93ZXZlciwgaWYgd2UgYXR0ZW1wdCB0byB1c2UgYSBmdW5jdGlvbiBsaWtlIHRoaXMgdGhhdCByZXR1cm5zIHR3byBvciBtb3JlIHZhbHVlcyBpbnNpZGUgYGBgc3VtbWFyaXplYGBgOgpgYGB7cn0KaGVpZ2h0cyAlPiUgZmlsdGVyKHNleD09IkZlbWFsZSIpICU+JSBzdW1tYXJpemUocmFuZ2U9cXVhbnRpbGUoaGVpZ2h0LGMoMCwwLjUsMSkpKQpgYGAKCgp3ZSB3aWxsIHJlY2VpdmUgYW4gZXJyb3I6IGBgYEVycm9yOiBleHBlY3RpbmcgcmVzdWx0IG9mIGxlbmd0aCBvbmUsIGdvdCA6IDJgYGAuIFdpdGggdGhlIGZ1bmN0aW9uIGBgYHN1bW1hcml6ZWBgYCwgd2UgY2FuIG9ubHkgY2FsbCBmdW5jdGlvbnMgdGhhdCByZXR1cm4gYSBzaW5nbGUgdmFsdWUuIEluIFNlY3Rpb24gNC4xMiwgd2Ugd2lsbCBsZWFybiBob3cgdG8gZGVhbCB3aXRoIGZ1bmN0aW9ucyB0aGF0IHJldHVybiBtb3JlIHRoYW4gb25lIHZhbHVlLgoKCkZvciBhbm90aGVyIGV4YW1wbGUgb2YgaG93IHdlIGNhbiB1c2UgdGhlIGBgYHN1bW1hcml6ZWBgYCBmdW5jdGlvbiwgbGV04oCZcyBjb21wdXRlIHRoZSBhdmVyYWdlIG11cmRlciByYXRlIGZvciB0aGUgVW5pdGVkIFN0YXRlcy4gUmVtZW1iZXIgb3VyIGRhdGEgdGFibGUgaW5jbHVkZXMgdG90YWwgbXVyZGVycyBhbmQgcG9wdWxhdGlvbiBzaXplIGZvciBlYWNoIHN0YXRlIGFuZCB3ZSBoYXZlIGFscmVhZHkgdXNlZCAqKmRwbHlyKiogdG8gYWRkIGEgbXVyZGVyIHJhdGUgY29sdW1uOgpgYGB7cn0KbXVyZGVycyA8LSBtdXJkZXJzICU+JSBtdXRhdGUocmF0ZT10b3RhbC9wb3B1bGF0aW9uKjEwMDAwMCkKYGBgCgpSZW1lbWJlciB0aGF0IHRoZSBVUyBtdXJkZXIgcmF0ZSBpcyBgYGBub3RgYGAgdGhlIGF2ZXJhZ2Ugb2YgdGhlIHN0YXRlIG11cmRlciByYXRlczoKCmBgYHtyfQpzdW1tYXJpemUobXVyZGVycyxtZWFuKHJhdGUpKQpgYGAKCgpUaGlzIGlzIGJlY2F1c2UgaW4gdGhlIGNvbXB1dGF0aW9uIGFib3ZlIHRoZSBzbWFsbCBzdGF0ZXMgYXJlIGdpdmVuIHRoZSBzYW1lIHdlaWdodCBhcyB0aGUgbGFyZ2Ugb25lcy4gVGhlIFVTIG11cmRlciByYXRlIGlzIHRoZSB0b3RhbCBudW1iZXIgb2YgbXVyZGVycyBpbiB0aGUgVVMgZGl2aWRlZCBieSB0aGUgdG90YWwgVVMgcG9wdWxhdGlvbi4gU28gdGhlIGNvcnJlY3QgY29tcHV0YXRpb24gaXM6CmBgYHtyfQp1c19tdXJkZXJfcmF0ZSA8LSBtdXJkZXJzICU+JSBzdW1tYXJpemUocmF0ZT1zdW0odG90YWwpL3N1bShwb3B1bGF0aW9uKSoxMDAwMDApCnVzX211cmRlcl9yYXRlCmBgYAoKClRoaXMgY29tcHV0YXRpb24gY291bnRzIGxhcmdlciBzdGF0ZXMgcHJvcG9ydGlvbmFsbHkgdG8gdGhlaXIgc2l6ZSB3aGljaCByZXN1bHRzIGluIGEgbGFyZ2VyIHZhbHVlLgoKCiMjIyAqKjQuNy4yIGBgYHB1bGxgYGAqKgoKVGhlIGBgYHVzX211cmRlcl9yYXRlYGBgIG9iamVjdCBkZWZpbmVkIGFib3ZlIHJlcHJlc2VudHMganVzdCBvbmUgbnVtYmVyLiBZZXQgd2UgYXJlIHN0b3JpbmcgaXQgaW4gYSBkYXRhIGZyYW1lOgpgYGB7cn0KY2xhc3ModXNfbXVyZGVyX3JhdGUpCmBgYAoKc2luY2UsIGFzIG1vc3QgKipkcGx5cioqIGZ1bmN0aW9ucywgYGBgc3VtbWFyaXplYGBgIGFsd2F5cyByZXR1cm5zIGEgZGF0YSBmcmFtZS4KClRoaXMgbWlnaHQgYmUgcHJvYmxlbWF0aWMgaWYgd2Ugd2FudCB0byB1c2UgdGhpcyByZXN1bHQgd2l0aCBmdW5jdGlvbnMgdGhhdCByZXF1aXJlIGEgbnVtZXJpYyB2YWx1ZS4gSGVyZSB3ZSBzaG93IGEgdXNlZnVsIHRyaWNrIGZvciBhY2Nlc3NpbmcgdmFsdWVzIHN0b3JlZCBpbiBkYXRhIHdoZW4gdXNpbmcgcGlwZXM6IHdoZW4gYSBkYXRhIG9iamVjdCBpcyBwaXBlZCB0aGF0IG9iamVjdCBhbmQgaXRzIGNvbHVtbnMgY2FuIGJlIGFjY2Vzc2VkIHVzaW5nIHRoZSBgYGBwdWxsYGBgIGZ1bmN0aW9uLiBUbyB1bmRlcnN0YW5kIHdoYXQgd2UgbWVhbiB0YWtlIGEgbG9vayBhdCB0aGlzIGxpbmUgb2YgY29kZToKYGBge3J9CnVzX211cmRlcl9yYXRlICU+JSBwdWxsKHJhdGUpCmBgYAoKVGhpcyByZXR1cm5zIHRoZSB2YWx1ZSBpbiB0aGUgYGBgcmF0ZWBgYCBjb2x1bW4gb2YgYGBgdXNfbXVyZGVyX3JhdGVgYGAgbWFraW5nIGl0IGVxdWl2YWxlbnQgdG8gYGBgdXNfbXVyZGVyX3JhdGUkcmF0ZWBgYC4KClRvIGdldCBhIG51bWJlciBmcm9tIHRoZSBvcmlnaW5hbCBkYXRhIHRhYmxlIHdpdGggb25lIGxpbmUgb2YgY29kZSB3ZSBjYW4gdHlwZToKCgpgYGB7cn0KdXNfbXVyZGVyX3JhdGUgPC0gbXVyZGVycyAlPiUgc3VtbWFyaXplKHJhdGU9c3VtKHRvdGFsKS9zdW0ocG9wdWxhdGlvbikqMTAwMDAwKSAlPiUgcHVsbChyYXRlKQp1c19tdXJkZXJfcmF0ZQpgYGAKCndoaWNoIGlzIG5vdyBhIG51bWVyaWM6CmBgYHtyfQpjbGFzcyh1c19tdXJkZXJfcmF0ZSkKYGBgCgoKIyMjICoqNC43LjMgR3JvdXAgdGhlbiBzdW1tYXJpemUgd2l0aCBgYGBncm91cF9ieWBgYCoqCgpBIGNvbW1vbiBvcGVyYXRpb24gaW4gZGF0YSBleHBsb3JhdGlvbiBpcyB0byBmaXJzdCBzcGxpdCBkYXRhIGludG8gZ3JvdXBzIGFuZCB0aGVuIGNvbXB1dGUgc3VtbWFyaWVzIGZvciBlYWNoIGdyb3VwLiBGb3IgZXhhbXBsZSwgd2UgbWF5IHdhbnQgdG8gY29tcHV0ZSB0aGUgYXZlcmFnZSBhbmQgc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBtZW7igJlzIGFuZCB3b21lbuKAmXMgaGVpZ2h0cyBzZXBhcmF0ZWx5LiBUaGUgYGBgZ3JvdXBfYnlgYGAgZnVuY3Rpb24gaGVscHMgdXMgZG8gdGhpcy4KCklmIHdlIHR5cGUgdGhpczoKYGBge3J9CmhlaWdodHMgJT4lIGdyb3VwX2J5KHNleCkKYGBgCgpUaGUgcmVzdWx0IGRvZXMgbm90IGxvb2sgdmVyeSBkaWZmZXJlbnQgZnJvbSBgYGBoZWlnaHRzYGBgLCBleGNlcHQgd2Ugc2VlIGBgYEdyb3Vwczogc2V4IFsyXWBgYCB3aGVuIHdlIHByaW50IHRoZSBvYmplY3QuIEFsdGhvdWdoIG5vdCBpbW1lZGlhdGVseSBvYnZpb3VzIGZyb20gaXRzIGFwcGVhcmFuY2UsIHRoaXMgaXMgbm93IGEgc3BlY2lhbCBkYXRhIGZyYW1lIGNhbGxlZCBhICpncm91cGVkIGRhdGEgZnJhbWUqLCBhbmQgKipkcGx5cioqIGZ1bmN0aW9ucywgaW4gcGFydGljdWxhciBgYGBzdW1tYXJpemVgYGAsIHdpbGwgYmVoYXZlIGRpZmZlcmVudGx5IHdoZW4gYWN0aW5nIG9uIHRoaXMgb2JqZWN0LiBDb25jZXB0dWFsbHksIHlvdSBjYW4gdGhpbmsgb2YgdGhpcyB0YWJsZSBhcyBtYW55IHRhYmxlcywgd2l0aCB0aGUgc2FtZSBjb2x1bW5zIGJ1dCBub3QgbmVjZXNzYXJpbHkgdGhlIHNhbWUgbnVtYmVyIG9mIHJvd3MsIHN0YWNrZWQgdG9nZXRoZXIgaW4gb25lIG9iamVjdC4gV2hlbiB3ZSBzdW1tYXJpemUgdGhlIGRhdGEgYWZ0ZXIgZ3JvdXBpbmcsIHRoaXMgaXMgd2hhdCBoYXBwZW5zOgoKYGBge3J9CmhlaWdodHMgJT4lIGdyb3VwX2J5KHNleCkgJT4lIHN1bW1hcml6ZShhdmVyYWdlPW1lYW4oaGVpZ2h0KSxzdGFuZGFyZF9kZXZpYXRpb249c2QoaGVpZ2h0KSkKYGBgCgpUaGUgYGBgc3VtbWFyaXplYGBgIGZ1bmN0aW9uIGFwcGxpZXMgdGhlIHN1bW1hcml6YXRpb24gdG8gZWFjaCBncm91cCBzZXBhcmF0ZWx5LgoKRm9yIGFub3RoZXIgZXhhbXBsZSwgbGV04oCZcyBjb21wdXRlIHRoZSBtZWRpYW4gbXVyZGVyIHJhdGUgaW4gdGhlIGZvdXIgcmVnaW9ucyBvZiB0aGUgY291bnRyeToKYGBge3J9Cm11cmRlcnMgJT4lIGdyb3VwX2J5KHJlZ2lvbikgJT4lIHN1bW1hcml6ZShtZWRpYW5fcmF0ZT1tZWRpYW4ocmF0ZSkpCmBgYAoKCiMjICoqU29ydGluZyBkYXRhIGZyYW1lcyoqCgpXaGVuIGV4YW1pbmluZyBhIGRhdGFzZXQsIGl0IGlzIG9mdGVuIGNvbnZlbmllbnQgdG8gc29ydCB0aGUgdGFibGUgYnkgdGhlIGRpZmZlcmVudCBjb2x1bW5zLiBXZSBrbm93IGFib3V0IHRoZSBgYGBvcmRlcmBgYCBhbmQgYGBgc29ydGBgYCBmdW5jdGlvbiwgYnV0IGZvciBvcmRlcmluZyBlbnRpcmUgdGFibGVzLCB0aGUgKipkcGx5cioqIGZ1bmN0aW9uIGBgYGFycmFuZ2VgYGAgaXMgdXNlZnVsLiBGb3IgZXhhbXBsZSwgaGVyZSB3ZSBvcmRlciB0aGUgc3RhdGVzIGJ5IHBvcHVsYXRpb24gc2l6ZToKYGBge3J9Cm11cmRlcnMgJT4lIGFycmFuZ2UocG9wdWxhdGlvbikgJT4lIGhlYWQoKQpgYGAKV2l0aCBgYGBhcnJhbmdlYGBgIHdlIGdldCB0byBkZWNpZGUgd2hpY2ggY29sdW1uIHRvIHNvcnQgYnkuIFRvIHNlZSB0aGUgc3RhdGVzIGJ5IG11cmRlciByYXRlLCBmcm9tIGxvd2VzdCB0byBoaWdoZXN0LCB3ZSBhcnJhbmdlIGJ5IGBgYHJhdGVgYGAgaW5zdGVhZDoKYGBge3J9Cm11cmRlcnMgJT4lIGFycmFuZ2UocmF0ZSkgJT4lIGhlYWQoKQpgYGAKCk5vdGUgdGhhdCB0aGUgZGVmYXVsdCBiZWhhdmlvciBpcyB0byBvcmRlciBpbiBhc2NlbmRpbmcgb3JkZXIuIEluICoqZHBseXIqKiwgdGhlIGZ1bmN0aW9uIGBgYGRlc2NgYGAgdHJhbnNmb3JtcyBhIHZlY3RvciBzbyB0aGF0IGl0IGlzIGluIGRlc2NlbmRpbmcgb3JkZXIuIFRvIHNvcnQgdGhlIHRhYmxlIGluIGRlc2NlbmRpbmcgb3JkZXIsIHdlIGNhbiB0eXBlOgoKYGBge3J9Cm11cmRlcnMgJT4lIGFycmFuZ2UoZGVzYyhyYXRlKSkKYGBgCgojIyMgKio0LjguMSBOZXN0ZWQgc29ydGluZyoqCgpJZiB3ZSBhcmUgb3JkZXJpbmcgYnkgYSBjb2x1bW4gd2l0aCB0aWVzLCB3ZSBjYW4gdXNlIGEgc2Vjb25kIGNvbHVtbiB0byBicmVhayB0aGUgdGllLiBTaW1pbGFybHksIGEgdGhpcmQgY29sdW1uIGNhbiBiZSB1c2VkIHRvIGJyZWFrIHRpZXMgYmV0d2VlbiBmaXJzdCBhbmQgc2Vjb25kIGFuZCBzbyBvbi4gSGVyZSB3ZSBvcmRlciBieSBgYGByZWdpb25gYGAsIHRoZW4gd2l0aGluIHJlZ2lvbiB3ZSBvcmRlciBieSBtdXJkZXIgcmF0ZToKCmBgYHtyfQptdXJkZXJzICU+JSBhcnJhbmdlKHJlZ2lvbixyYXRlKSAlPiUgaGVhZCgpCmBgYAoKIyMjICoqNC44LjIgVGhlIHRvcCAkbiQqKgoKSW4gdGhlIGNvZGUgYWJvdmUsIHdlIGhhdmUgdXNlZCB0aGUgZnVuY3Rpb24gYGBgaGVhZGBgYCB0byBhdm9pZCBoYXZpbmcgdGhlIHBhZ2UgZmlsbCB1cCB3aXRoIHRoZSBlbnRpcmUgZGF0YXNldC4gSWYgd2Ugd2FudCB0byBzZWUgYSBsYXJnZXIgcHJvcG9ydGlvbiwgd2UgY2FuIHVzZSB0aGUgYGBgdG9wX25gYGAgZnVuY3Rpb24uIFRoaXMgZnVuY3Rpb24gdGFrZXMgYSBkYXRhIGZyYW1lIGFzIGl04oCZcyBmaXJzdCBhcmd1bWVudCwgdGhlIG51bWJlciBvZiByb3dzIHRvIHNob3cgaW4gdGhlIHNlY29uZCwgYW5kIHRoZSB2YXJpYWJsZSB0byBmaWx0ZXIgYnkgaW4gdGhlIHRoaXJkLiBIZXJlIGlzIGFuIGV4YW1wbGUgb2YgaG93IHRvIHNlZSB0aGUgdG9wIDUgcm93czoKYGBge3J9Cm11cmRlcnMgJT4lIHRvcF9uKDUscmF0ZSkKYGBgCk5vdGUgdGhhdCByb3dzIGFyZSBub3Qgc29ydGVkIGJ5IGBgYHJhdGVgYGAsIG9ubHkgZmlsdGVyZWQuIElmIHdlIHdhbnQgdG8gc29ydCwgd2UgbmVlZCB0byB1c2UgYGBgYXJyYW5nZWBgYC4gTm90ZSB0aGF0IGlmIHRoZSB0aGlyZCBhcmd1bWVudCBpcyBsZWZ0IGJsYW5rLCBgYGB0b3BfbmBgYCBmaWx0ZXJzIGJ5IHRoZSBsYXN0IGNvbHVtbi4KCiMjICoqNC45IEV4ZXJjaXNlcyoqCgpGb3IgdGhlc2UgZXhlcmNpc2VzLCB3ZSB3aWxsIGJlIHVzaW5nIHRoZSBkYXRhIGZyb20gdGhlIHN1cnZleSBjb2xsZWN0ZWQgYnkgdGhlIFVuaXRlZCBTdGF0ZXMgTmF0aW9uYWwgQ2VudGVyIGZvciBIZWFsdGggU3RhdGlzdGljcyAoTkNIUykuIFRoaXMgY2VudGVyIGhhcyBjb25kdWN0ZWQgYSBzZXJpZXMgb2YgaGVhbHRoIGFuZCBudXRyaXRpb24gc3VydmV5cyBzaW5jZSB0aGUgMTk2MOKAmXMuIFN0YXJ0aW5nIGluIDE5OTksIGFib3V0IDUsMDAwIGluZGl2aWR1YWxzIG9mIGFsbCBhZ2VzIGhhdmUgYmVlbiBpbnRlcnZpZXdlZCBldmVyeSB5ZWFyIGFuZCB0aGV5IGNvbXBsZXRlIHRoZSBoZWFsdGggZXhhbWluYXRpb24gY29tcG9uZW50IG9mIHRoZSBzdXJ2ZXkuIFBhcnQgb2YgdGhlIGRhdGEgaXMgbWFkZSBhdmFpbGFibGUgdmlhIHRoZSAqKk5IQU5FUyoqIHBhY2thZ2UuIE9uY2UgeW91IGluc3RhbGwgdGhlICoqTkhBTkVTKiogcGFja2FnZSwgeW91IGNhbiBsb2FkIHRoZSBkYXRhIGxpa2UgdGhpczoKYGBge3J9Cmluc3RhbGwucGFja2FnZXMoJ05IQU5FUycpCmxpYnJhcnkoTkhBTkVTKQpkYXRhKCJOSEFORVMiKQpgYGAKClRoZSAqKk5IQU5FUyoqIGRhdGEgaGFzIG1hbnkgbWlzc2luZyB2YWx1ZXMuIFRoZSBgYGBtZWFuYGBgIGFuZCBgYGBzZGBgYCBmdW5jdGlvbnMgaW4gUiB3aWxsIHJldHVybiBOQSBpZiBhbnkgb2YgdGhlIGVudHJpZXMgb2YgdGhlIGlucHV0IHZlY3RvciBpcyBhbiBgYGBOQWBgYC4gSGVyZSBpcyBhbiBleGFtcGxlOgpgYGB7cn0KbGlicmFyeShkc2xhYnMpCmRhdGEoIm5hX2V4YW1wbGUiKQptZWFuKG5hX2V4YW1wbGUpCnNkKG5hX2V4YW1wbGUpCmBgYAoKVG8gaWdub3JlIHRoZSBgYGBOQWBgYHMgd2UgY2FuIHVzZSB0aGUgYGBgbmEucm1gYGAgYXJndW1lbnQ6CmBgYHtyfQptZWFuKG5hX2V4YW1wbGUsbmEucm09VFJVRSkKc2QobmFfZXhhbXBsZSxuYS5ybT1UUlVFKQpgYGAKCkxldOKAmXMgbm93IGV4cGxvcmUgdGhlIE5IQU5FUyBkYXRhLgoKMS4gV2Ugd2lsbCBwcm92aWRlIHNvbWUgYmFzaWMgZmFjdHMgYWJvdXQgYmxvb2QgcHJlc3N1cmUuIEZpcnN0IGxldOKAmXMgc2VsZWN0IGEgZ3JvdXAgdG8gc2V0IHRoZSBzdGFuZGFyZC4gV2Ugd2lsbCB1c2UgMjAtdG8tMjkteWVhci1vbGQgZmVtYWxlcy4gYGBgQWdlRGVjYWRlYGBgIGlzIGEgY2F0ZWdvcmljYWwgdmFyaWFibGUgd2l0aCB0aGVzZSBhZ2VzLiBOb3RlIHRoYXQgdGhlIGNhdGVnb3J5IGlzIGNvZGVkIGxpa2UgIiAyMC0yOSIsIHdpdGggYSBzcGFjZSBpbiBmcm9udCEgV2hhdCBpcyB0aGUgYXZlcmFnZSBhbmQgc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHN5c3RvbGljIGJsb29kIHByZXNzdXJlIGFzIHNhdmVkIGluIHRoZSBCUFN5c0F2ZSB2YXJpYWJsZT8gU2F2ZSBpdCB0byBhIHZhcmlhYmxlIGNhbGxlZCBgYGByZWZgYGAuCgpIaW50OiBVc2UgYGBgZmlsdGVyYGBgIGFuZCBgYGBzdW1tYXJpemVgYGAgYW5kIHVzZSB0aGUgYGBgbmEucm0gPSBUUlVFYGBgIGFyZ3VtZW50IHdoZW4gY29tcHV0aW5nIHRoZSBhdmVyYWdlIGFuZCBzdGFuZGFyZCBkZXZpYXRpb24uIFlvdSBjYW4gYWxzbyBmaWx0ZXIgdGhlIE5BIHZhbHVlcyB1c2luZyBgYGBmaWx0ZXJgYGAuCmBgYHtyfQpyZWYgPC0gTkhBTkVTICU+JSBmaWx0ZXIoQWdlRGVjYWRlPT0nIDIwLTI5JykgJT4lIHN1bW1hcml6ZShhdmVyYWdlPW1lYW4oQlBTeXNBdmUsbmEucm09VFJVRSksc3RhbmRhcmRfZGV2aWRhdGlvbj1zZChCUFN5c0F2ZSxuYS5ybSA9IFRSVUUpKQpgYGAKCjIuIFVzaW5nIGEgcGlwZSwgYXNzaWduIHRoZSBhdmVyYWdlIHRvIGEgbnVtZXJpYyB2YXJpYWJsZSBgYGByZWZfYXZnYGBgLiBIaW50OiBVc2UgdGhlIGNvZGUgc2ltaWxhciB0byBhYm92ZSBhbmQgdGhlbiBgYGBwdWxsYGBgLgpgYGB7cn0KcmVmX2F2ZyA8LSByZWYgJT4lIHB1bGwoYXZlcmFnZSkKYGBgCjMuIE5vdyByZXBvcnQgdGhlIG1pbiBhbmQgbWF4IHZhbHVlcyBmb3IgdGhlIHNhbWUgZ3JvdXAuCgpgYGB7cn0KTkhBTkVTICU+JSBmaWx0ZXIoQWdlRGVjYWRlPT0nIDIwLTI5JykgJT4lIHNlbGVjdChCUFN5c0F2ZSkgJT4lIG1pbihuYS5ybT1UUlVFKQpOSEFORVMgJT4lIGZpbHRlcihBZ2VEZWNhZGU9PScgMjAtMjknKSAlPiUgc2VsZWN0KEJQU3lzQXZlKSAlPiUgbWF4KG5hLnJtPVRSVUUpCmBgYAoKNC4gQ29tcHV0ZSB0aGUgYXZlcmFnZSBhbmQgc3RhbmRhcmQgZGV2aWF0aW9uIGZvciBmZW1hbGVzLCBidXQgZm9yIGVhY2ggYWdlIGdyb3VwIHNlcGFyYXRlbHkgcmF0aGVyIHRoYW4gYSBzZWxlY3RlZCBkZWNhZGUgYXMgaW4gcXVlc3Rpb24gMS4gTm90ZSB0aGF0IHRoZSBhZ2UgZ3JvdXBzIGFyZSBkZWZpbmVkIGJ5IGBgYEFnZURlY2FkZWBgYC4gSGludDogcmF0aGVyIHRoYW4gZmlsdGVyaW5nIGJ5IGFnZSBhbmQgZ2VuZGVyLCBmaWx0ZXIgYnkgYGBgR2VuZGVyYGBgIGFuZCB0aGVuIHVzZSBgYGBncm91cF9ieWBgYC4KYGBge3J9Ck5IQU5FUyAlPiUgZmlsdGVyKEdlbmRlcj09J2ZlbWFsZScpICU+JSBncm91cF9ieShBZ2VEZWNhZGUpICU+JSBzdW1tYXJpemUoYXZlcmFnZT1tZWFuKEJQU3lzQXZlLG5hLnJtPVRSVUUpLHN0YW5kYXJkX2RldmlhdGlvbj1zZChCUFN5c0F2ZSxuYS5ybT1UUlVFKSkgCmBgYAoKCjUuIFJlcGVhdCBleGVyY2lzZSA0IGZvciBtYWxlcy4KYGBge3J9Ck5IQU5FUyAlPiUgZmlsdGVyKEdlbmRlcj09J21hbGUnKSAlPiUgZ3JvdXBfYnkoQWdlRGVjYWRlKSAlPiUgc3VtbWFyaXplKGF2ZXJhZ2U9bWVhbihCUFN5c0F2ZSxuYS5ybT1UUlVFKSxzdGFuZGFyZF9kZXZpYXRpb249c2QoQlBTeXNBdmUsbmEucm09VFJVRSkpIAoKYGBgCgo2LiBXZSBjYW4gYWN0dWFsbHkgY29tYmluZSBib3RoIHN1bW1hcmllcyBmb3IgZXhlcmNpc2VzIDQgYW5kIDUgaW50byBvbmUgbGluZSBvZiBjb2RlLiBUaGlzIGlzIGJlY2F1c2UgYGBgZ3JvdXBfYnlgYGAgcGVybWl0cyB1cyB0byBncm91cCBieSBtb3JlIHRoYW4gb25lIHZhcmlhYmxlLiBPYnRhaW4gb25lIGJpZyBzdW1tYXJ5IHRhYmxlIHVzaW5nIGBgYGdyb3VwX2J5KEFnZURlY2FkZSwgR2VuZGVyKWBgYC4KYGBge3J9Ck5IQU5FUyAlPiUgZ3JvdXBfYnkoQWdlRGVjYWRlLEdlbmRlcikgJT4lIHN1bW1hcml6ZShhdmVyYWdlPW1lYW4oQlBTeXNBdmUsbmEucm09VFJVRSksc3RhbmRhcmRfZGV2aWF0aW9uPXNkKEJQU3lzQXZlLG5hLnJtPVRSVUUpKQpgYGAKCjcuIEZvciBtYWxlcyBiZXR3ZWVuIHRoZSBhZ2VzIG9mIDQwLTQ5LCBjb21wYXJlIHN5c3RvbGljIGJsb29kIHByZXNzdXJlIGFjcm9zcyByYWNlIGFzIHJlcG9ydGVkIGluIHRoZSBgYGBSYWNlMWBgYCB2YXJpYWJsZS4gT3JkZXIgdGhlIHJlc3VsdGluZyB0YWJsZSBmcm9tIGxvd2VzdCB0byBoaWdoZXN0IGF2ZXJhZ2Ugc3lzdG9saWMgYmxvb2QgcHJlc3N1cmUuCmBgYHtyfQpOSEFORVMgJT4lIGZpbHRlcihHZW5kZXI9PSdtYWxlJyxBZ2VEZWNhZGU9PScgNDAtNDknKSAlPiUgZ3JvdXBfYnkoUmFjZTEpICU+JSBzdW1tYXJpemUoYXZlcmFnZT1tZWFuKEJQU3lzQXZlLG5hLnJtPVRSVUUpLHN0YW5kYXJkX2RldmlhdGlvbj1zZChCUFN5c0F2ZSxuYS5ybT1UUlVFKSkgJT4lIGFycmFuZ2UoYXZlcmFnZSkKYGBgCgojIyAqKjQuMTAgVGliYmxlcyoqCgpUaWR5IGRhdGEgbXVzdCBiZSBzdG9yZWQgaW4gZGF0YSBmcmFtZXMuIFdlIGludHJvZHVjZWQgdGhlIGRhdGEgZnJhbWUgaW4gU2VjdGlvbiAyLjQuMSBhbmQgaGF2ZSBiZWVuIHVzaW5nIHRoZSBgYGBtdXJkZXJzYGBgIGRhdGEgZnJhbWUgdGhyb3VnaG91dCB0aGUgYm9vay4gSW4gU2VjdGlvbiA0LjcuMyB3ZSBpbnRyb2R1Y2VkIHRoZSBgYGBncm91cF9ieWBgYCBmdW5jdGlvbiwgd2hpY2ggcGVybWl0cyBzdHJhdGlmeWluZyBkYXRhIGJlZm9yZSBjb21wdXRpbmcgc3VtbWFyeSBzdGF0aXN0aWNzLiBCdXQgd2hlcmUgaXMgdGhlIGdyb3VwIGluZm9ybWF0aW9uIHN0b3JlZCBpbiB0aGUgZGF0YSBmcmFtZT8KYGBge3J9Cm11cmRlcnMgJT4lIGdyb3VwX2J5KHJlZ2lvbikKYGBgCk5vdGljZSB0aGF0IHRoZXJlIGFyZSBubyBjb2x1bW5zIHdpdGggdGhpcyBpbmZvcm1hdGlvbi4gQnV0LCBpZiB5b3UgbG9vayBjbG9zZWx5IGF0IHRoZSBvdXRwdXQgYWJvdmUsIHlvdSBzZWUgdGhlIGxpbmUgYGBgQSB0aWJibGVgYGAgZm9sbG93ZCBieSBkaW1lbnNpb25zLiBXZSBjYW4gbGVhcm4gdGhlIGNsYXNzIG9mIHRoZSByZXR1cm5lZCBvYmplY3QgdXNpbmc6CmBgYHtyfQptdXJkZXJzICU+JSBncm91cF9ieShyZWdpb24pICU+JSBjbGFzcygpCmBgYAoKVGhlIGBgYHRibGBgYCwgcHJvbm91bmNlZCB0aWJibGUsIGlzIGEgc3BlY2lhbCBraW5kIG9mIGRhdGEgZnJhbWUuIFRoZSBmdW5jdGlvbnMgYGBgZ3JvdXBfYnlgYGAgYW5kIGBgYHN1bW1hcml6ZWBgYCBhbHdheXMgcmV0dXJuIHRoaXMgdHlwZSBvZiBkYXRhIGZyYW1lLiBUaGUgYGBgZ3JvdXBfYnlgYGAgZnVuY3Rpb24gcmV0dXJucyBhIHNwZWNpYWwga2luZCBvZiBgYGB0YmxgYGAsIHRoZSBgYGBncm91cGVkX2RmYGBgLiBXZSB3aWxsIHNheSBtb3JlIGFib3V0IHRoZXNlIGxhdGVyLiBGb3IgY29uc2lzdGVuY3ksIHRoZSAqKmRwbHlyKiogbWFuaXB1bGF0aW9uIHZlcmJzIChgYGBzZWxlY3RgYGAsIGBgYGZpbHRlcmBgYCwgYGBgbXV0YXRlYGBgLCBhbmQgYGBgYXJyYW5nZWBgYCkgcHJlc2VydmUgdGhlIGNsYXNzIG9mIHRoZSBpbnB1dDogaWYgdGhleSByZWNlaXZlIGEgcmVndWxhciBkYXRhIGZyYW1lIHRoZXkgcmV0dXJuIGEgcmVndWxhciBkYXRhIGZyYW1lLCB3aGlsZSBpZiB0aGV5IHJlY2VpdmUgYSB0aWJibGUgdGhleSByZXR1cm4gYSB0aWJibGUuIEJ1dCB0aWJibGVzIGFyZSB0aGUgcHJlZmVycmVkIGZvcm1hdCBpbiB0aGUgdGlkeXZlcnNlIGFuZCBhcyBhIHJlc3VsdCB0aWR5dmVyc2UgZnVuY3Rpb25zIHRoYXQgcHJvZHVjZSBhIGRhdGEgZnJhbWUgZnJvbSBzY3JhdGNoIHJldHVybiBhIHRpYmJsZS4gRm9yIGV4YW1wbGUsIGluIENoYXB0ZXIgNSB3ZSB3aWxsIHNlZSB0aGF0IHRpZHl2ZXJzZSBmdW5jdGlvbnMgdXNlZCB0byBpbXBvcnQgZGF0YSBjcmVhdGUgdGliYmxlcy4KClRpYmJsZXMgYXJlIHZlcnkgc2ltaWxhciB0byBkYXRhIGZyYW1lcy4gSW4gZmFjdCwgeW91IGNhbiB0aGluayBvZiB0aGVtIGFzIGEgbW9kZXJuIHZlcnNpb24gb2YgZGF0YSBmcmFtZXMuIE5vbmV0aGVsZXNzIHRoZXJlIGFyZSB0aHJlZSBpbXBvcnRhbnQgZGlmZmVyZW5jZXMgd2hpY2ggd2UgZGVzY3JpYmUgbmV4dC4KCiMjIyAqKjQuMTAuMSBUaWJibGVzIGRpc3BsYXkgYmV0dGVyKioKClRoZSBwcmludCBtZXRob2QgZm9yIHRpYmJsZXMgaXMgbW9yZSByZWFkYWJsZSB0aGFuIHRoYXQgb2YgYSBkYXRhIGZyYW1lLiBUbyBzZWUgdGhpcywgY29tcGFyZSB0aGUgb3V0cHV0cyBvZiB0eXBpbmcgbXVyZGVycyBhbmQgdGhlIG91dHB1dCBvZiBtdXJkZXJzIGlmIHdlIGNvbnZlcnQgaXQgdG8gYSB0aWJibGUuIFdlIGNhbiBkbyB0aGlzIHVzaW5nIGBgYGFzX3RpYmJsZShtdXJkZXJzKWBgYC4gSWYgdXNpbmcgUlN0dWRpbywgb3V0cHV0IGZvciBhIHRpYmJsZSBhZGp1c3RzIHRvIHlvdXIgd2luZG93IHNpemUuIFRvIHNlZSB0aGlzLCBjaGFuZ2UgdGhlIHdpZHRoIG9mIHlvdXIgUiBjb25zb2xlIGFuZCBub3RpY2UgaG93IG1vcmUvbGVzcyBjb2x1bW5zIGFyZSBzaG93bi4KCiMjIyAqKjQuMTAuMiBTdWJzZXRzIG9mIHRpYmJsZXMgYXJlIHRpYmJsZXMqKgoKSWYgeW91IHN1YnNldCB0aGUgY29sdW1ucyBvZiBhIGRhdGEgZnJhbWUsIHlvdSBtYXkgZ2V0IGJhY2sgYW4gb2JqZWN0IHRoYXQgaXMgbm90IGEgZGF0YSBmcmFtZSwgc3VjaCBhcyBhIHZlY3RvciBvciBzY2FsYXIuIEZvciBleGFtcGxlOgpgYGB7cn0KY2xhc3MobXVyZGVyc1ssNF0pCmBgYAoKaXMgbm90IGEgZGF0YSBmcmFtZS4gV2l0aCB0aWJibGVzIHRoaXMgZG9lcyBub3QgaGFwcGVuOgpgYGB7cn0KY2xhc3MoYXNfdGliYmxlKG11cmRlcnMpWyw0XSkKYGBgClRoaXMgaXMgdXNlZnVsIGluIHRoZSB0aWR5dmVyc2Ugc2luY2UgZnVuY3Rpb25zIHJlcXVpcmUgZGF0YSBmcmFtZXMgYXMgaW5wdXQuCgpXaXRoIHRpYmJsZXMsIGlmIHlvdSB3YW50IHRvIGFjY2VzcyB0aGUgdmVjdG9yIHRoYXQgZGVmaW5lcyBhIGNvbHVtbiwgYW5kIG5vdCBnZXQgYmFjayBhIGRhdGEgZnJhbWUsIHlvdSBuZWVkIHRvIHVzZSB0aGUgYWNjZXNzb3IgYGBgJGBgYDoKYGBge3J9CmNsYXNzKGFzX3RpYmJsZShtdXJkZXJzKSRwb3B1bGF0aW9uKQpgYGAKCkEgcmVsYXRlZCBmZWF0dXJlIGlzIHRoYXQgdGliYmxlcyB3aWxsIGdpdmUgeW91IGEgd2FybmluZyBpZiB5b3UgdHJ5IHRvIGFjY2VzcyBhIGNvbHVtbiB0aGF0IGRvZXMgbm90IGV4aXN0LiBJZiB3ZSBhY2NpZGVudGFsbHkgd3JpdGUgYGBgUG9wdWxhdGlvbmBgYCBpbnN0ZWFkIG9mIGBgYHBvcHVsYXRpb25gYGAgdGhpczoKYGBge3J9Cm11cmRlcnMkUG9wdWxhdGlvbgpgYGAKCnJldHVybnMgYSBgYGBOVUxMYGBgIHdpdGggbm8gd2FybmluZywgd2hpY2ggY2FuIG1ha2UgaXQgaGFyZGVyIHRvIGRlYnVnLiBJbiBjb250cmFzdCwgaWYgd2UgdHJ5IHRoaXMgd2l0aCBhIHRpYmJsZSB3ZSBnZXQgYW4gaW5mb3JtYXRpdmUgd2FybmluZzoKYGBge3J9CmFzX3RpYmJsZShtdXJkZXJzKSRQb3B1bGF0aW9uCmBgYAoKIyMjICoqNC4xMC4zIFRpYmJsZXMgY2FuIGhhdmUgY29tcGxleCBlbnRyaWVzKioKCldoaWxlIGRhdGEgZnJhbWUgY29sdW1ucyBuZWVkIHRvIGJlIHZlY3RvcnMgb2YgbnVtYmVycywgc3RyaW5ncywgb3IgbG9naWNhbCB2YWx1ZXMsIHRpYmJsZXMgY2FuIGhhdmUgbW9yZSBjb21wbGV4IG9iamVjdHMsIHN1Y2ggYXMgbGlzdHMgb3IgZnVuY3Rpb25zLiBBbHNvLCB3ZSBjYW4gY3JlYXRlIHRpYmJsZXMgd2l0aCBmdW5jdGlvbnM6CmBgYHtyfQp0aWJibGUoaWQ9YygxLDIsMyksZnVuYz1jKG1lYW4sbWVkaWFuLHNkKSkKYGBgCgojIyMgKio0LjEwLjQgVGliYmxlcyBjYW4gYmUgZ3JvdXBlZCoqCgpUaGUgZnVuY3Rpb24gYGBgZ3JvdXBfYnlgYGAgcmV0dXJucyBhIHNwZWNpYWwga2luZCBvZiB0aWJibGU6IGEgZ3JvdXBlZCB0aWJibGUuIFRoaXMgY2xhc3Mgc3RvcmVzIGluZm9ybWF0aW9uIHRoYXQgbGV0cyB5b3Uga25vdyB3aGljaCByb3dzIGFyZSBpbiB3aGljaCBncm91cHMuIFRoZSB0aWR5dmVyc2UgZnVuY3Rpb25zLCBpbiBwYXJ0aWN1bGFyIHRoZSBgYGBzdW1tYXJpemVgYGAgZnVuY3Rpb24sIGFyZSBhd2FyZSBvZiB0aGUgZ3JvdXAgaW5mb3JtYXRpb24uCgojIyMgKio0LjEwLjUgQ3JlYXRlIGEgdGliYmxlIHVzaW5nIGBgYHRpYmJsZWBgYCBpbnN0ZWFkIG9mIGBgYGRhdGEuZnJhbWVgYGAqKgoKSXQgaXMgc29tZXRpbWVzIHVzZWZ1bCBmb3IgdXMgdG8gY3JlYXRlIG91ciBvd24gZGF0YSBmcmFtZXMuIFRvIGNyZWF0ZSBhIGRhdGEgZnJhbWUgaW4gdGhlIHRpYmJsZSBmb3JtYXQsIHlvdSBjYW4gZG8gdGhpcyBieSB1c2luZyB0aGUgYGBgdGliYmxlYGBgIGZ1bmN0aW9uLgpgYGB7cn0KZ3JhZGVzIDwtIHRpYmJsZShuYW1lcz1jKCJKb2huIiwiSnVhbiIsIkplYW4iLCJZYW8iKSxleGFtXzE9Yyg5NSw4MCw5MCw4NSksZXhhbV8yPWMoOTAsODUsODUsOTApKQpgYGAKCk5vdGUgdGhhdCBiYXNlIFIgKHdpdGhvdXQgcGFja2FnZXMgbG9hZGVkKSBoYXMgYSBmdW5jdGlvbiB3aXRoIGEgdmVyeSBzaW1pbGFyIG5hbWUsIGBgYGRhdGEuZnJhbWVgYGAsIHRoYXQgY2FuIGJlIHVzZWQgdG8gY3JlYXRlIGEgcmVndWxhciBkYXRhIGZyYW1lIHJhdGhlciB0aGFuIGEgdGliYmxlLiBPbmUgb3RoZXIgaW1wb3J0YW50IGRpZmZlcmVuY2UgaXMgdGhhdCBieSBkZWZhdWx0IGBgYGRhdGEuZnJhbWVgYGAgY29lcmNlcyBjaGFyYWN0ZXJzIGludG8gZmFjdG9ycyB3aXRob3V0IHByb3ZpZGluZyBhIHdhcm5pbmcgb3IgbWVzc2FnZToKYGBge3J9CmdyYWRlcyA8LSB0aWJibGUobmFtZXM9YygiSm9obiIsIkp1YW4iLCJKZWFuIiwiWWFvIiksZXhhbV8xPWMoOTUsODAsOTAsODUpLGV4YW1fMj1jKDkwLDg1LDg1LDkwKSkKY2xhc3MoZ3JhZGVzJG5hbWVzKQpgYGAKClRvIGF2b2lkIHRoaXMsIHdlIHVzZSB0aGUgcmF0aGVyIGN1bWJlcnNvbWUgYXJndW1lbnQgYGBgc3RyaW5nc0FzRmFjdG9yc2BgYDoKYGBge3J9CmdyYWRlcyA8LSB0aWJibGUobmFtZXM9YygiSm9obiIsIkp1YW4iLCJKZWFuIiwiWWFvIiksZXhhbV8xPWMoOTUsODAsOTAsODUpLGV4YW1fMj1jKDkwLDg1LDg1LDkwKSxzdHJpbmdBc0ZhY3RvcnM9RkFMU0UpCmNsYXNzKGdyYWRlcyRuYW1lcykKYGBgClRvIGNvbnZlcnQgYSByZWd1bGFyIGRhdGEgZnJhbWUgdG8gYSB0aWJibGUsIHlvdSBjYW4gdXNlIHRoZSBgYGBhc190aWJibGVgYGAgZnVuY3Rpb24uCmBgYHtyfQphc190aWJibGUoZ3JhZGVzKSAlPiUgY2xhc3MoKQpgYGAKCgojIyAqKjQuMTEgVGhlIGRvdCBvcGVyYXRvcioqCgpPbmUgb2YgdGhlIGFkdmFudGFnZXMgb2YgdXNpbmcgdGhlIHBpcGUgYGBgJT4lYGBgIGlzIHRoYXQgd2UgZG8gbm90IGhhdmUgdG8ga2VlcCBuYW1pbmcgbmV3IG9iamVjdHMgYXMgd2UgbWFuaXB1bGF0ZSB0aGUgZGF0YSBmcmFtZS4gQXMgYSBxdWljayByZW1pbmRlciwgaWYgd2Ugd2FudCB0byBjb21wdXRlIHRoZSBtZWRpYW4gbXVyZGVyIHJhdGUgZm9yIHN0YXRlcyBpbiB0aGUgc291dGhlcm4gc3RhdGVzLCBpbnN0ZWFkIG9mIHR5cGluZzoKYGBge3J9CnRhYl8xIDwtIGZpbHRlcihtdXJkZXJzLCByZWdpb249PSdTb3V0aCcpCnRhYl8yIDwtIG11dGF0ZSh0YWJfMSwgcmF0ZT10b3RhbC9wb3B1bGF0aW9uKjEwXjUpCnJhdGVzIDwtIHRhYl8yJHJhdGUKbWVkaWFuKHJhdGVzKQpgYGAKCldlIGNhbiBhdm9pZCBkZWZpbmluZyBhbnkgbmV3IGludGVybWVkaWF0ZSBvYmplY3RzIGJ5IGluc3RlYWQgdHlwaW5nOgpgYGB7cn0KZmlsdGVyKG11cmRlcnMscmVnaW9uPT0nU291dGgnKSAlPiUgbXV0YXRlKHJhdGU9dG90YWwvcG9wdWxhdGlvbioxMF41KSAlPiUgc3VtbWFyaXplKG1lZGlhbj1tZWRpYW4ocmF0ZSkpICU+JSBwdWxsKG1lZGlhbikKYGBgCgpXZSBjYW4gZG8gdGhpcyBiZWNhdXNlIGVhY2ggb2YgdGhlc2UgZnVuY3Rpb25zIHRha2VzIGEgZGF0YSBmcmFtZSBhcyB0aGUgZmlyc3QgYXJndW1lbnQuIEJ1dCB3aGF0IGlmIHdlIHdhbnQgdG8gYWNjZXNzIGEgY29tcG9uZW50IG9mIHRoZSBkYXRhIGZyYW1lLiBGb3IgZXhhbXBsZSwgd2hhdCBpZiB0aGUgYGBgcHVsbGBgYCBmdW5jdGlvbiB3YXMgbm90IGF2YWlsYWJsZSBhbmQgd2Ugd2FudGVkIHRvIGFjY2VzcyBgYGB0YWJfMiRyYXRlYGBgPyBXaGF0IGRhdGEgZnJhbWUgbmFtZSB3b3VsZCB3ZSB1c2U/IFRoZSBhbnN3ZXIgaXMgdGhlIGRvdCBvcGVyYXRvci4KCkZvciBleGFtcGxlIHRvIGFjY2VzcyB0aGUgcmF0ZSB2ZWN0b3Igd2l0aG91dCB0aGUgYGBgcHVsbGBgYCBmdW5jdGlvbiB3ZSBjb3VsZCB1c2UKYGBge3J9CnJhdGVzIDwtIGZpbHRlcihtdXJkZXJzLCByZWdpb249PSdTb3V0aCcpICU+JSBtdXRhdGUocmF0ZT10b3RhbC9wb3B1bGF0aW9uKjEwXjUpICU+JSAuJHJhdGUKbWVkaWFuKHJhdGVzKQpgYGAKSW4gdGhlIG5leHQgc2VjdGlvbiwgd2Ugd2lsbCBzZWUgb3RoZXIgaW5zdGFuY2VzIGluIHdoaWNoIHVzaW5nIHRoZSBgYGAuYGBgIGlzIHVzZWZ1bC4KCgojIyAqKjQuMTIgYGBgZG9gYGAqKgoKVGhlIHRpZHl2ZXJzZSBmdW5jdGlvbnMga25vdyBob3cgdG8gaW50ZXJwcmV0IGdyb3VwZWQgdGliYmxlcy4gRnVydGhlcm1vcmUsIHRvIGZhY2lsaXRhdGUgc3RyaW5naW5nIGNvbW1hbmRzIHRocm91Z2ggdGhlIHBpcGUgYGBgJT4lYGBgLCB0aWR5dmVyc2UgZnVuY3Rpb25zIGNvbnNpc3RlbnRseSByZXR1cm4gZGF0YSBmcmFtZXMsIHNpbmNlIHRoaXMgYXNzdXJlcyB0aGF0IHRoZSBvdXRwdXQgb2YgYSBmdW5jdGlvbiBpcyBhY2NlcHRlZCBhcyB0aGUgaW5wdXQgb2YgYW5vdGhlci4gQnV0IG1vc3QgUiBmdW5jdGlvbnMgZG8gbm90IHJlY29nbml6ZSBncm91cGVkIHRpYmJsZXMgbm9yIGRvIHRoZXkgcmV0dXJuIGRhdGEgZnJhbWVzLiBUaGUgYGBgcXVhbnRpbGVgYGAgZnVuY3Rpb24gaXMgYW4gZXhhbXBsZSB3ZSBkZXNjcmliZWQgaW4gU2VjdGlvbiA0LjcuMS4gVGhlIGBgYGRvYGBgIGZ1bmN0aW9uIHNlcnZlcyBhcyBhIGJyaWRnZSBiZXR3ZWVuIFIgZnVuY3Rpb25zIHN1Y2ggYXMgYGBgcXVhbnRpbGVgYGAgYW5kIHRoZSB0aWR5dmVyc2UuIFRoZSBgYGBkb2BgYCBmdW5jdGlvbiB1bmRlcnN0YW5kcyBncm91cGVkIHRpYmJsZXMgYW5kIGFsd2F5cyByZXR1cm5zIGEgZGF0YSBmcmFtZS4KCkluIFNlY3Rpb24gNC43LjEsIHdlIG5vdGVkIHRoYXQgaWYgd2UgYXR0ZW1wdCB0byB1c2UgYGBgcXVhbnRpbGVgYGAgdG8gb2J0YWluIHRoZSBtaW4sIG1lZGlhbiBhbmQgbWF4IGluIG9uZSBjYWxsLCB3ZSB3aWxsIHJlY2VpdmUgYW4gZXJyb3I6IGBgYEVycm9yOiBleHBlY3RpbmcgcmVzdWx0IG9mIGxlbmd0aCBvbmUsIGdvdCA6IDJgYGAuCgpgYGB7cn0KZGF0YShoZWlnaHRzKQpoZWlnaHRzICU+JSBmaWx0ZXIoc2V4PT0nRmVtYWxlJykgJT4lIHN1bW1hcml6ZShyYW5nZT1xdWFudGlsZShoZWlnaHQsYygwLDAuNSwxKSkpCmBgYAoKV2UgY2FuIHVzZSB0aGUgYGBgZG9gYGAgZnVuY3Rpb24gdG8gZml4IHRoaXMuCgpGaXJzdCB3ZSBoYXZlIHRvIHdyaXRlIGEgZnVuY3Rpb24gdGhhdCBmaXRzIGludG8gdGhlIHRpZHl2ZXJzZSBhcHByb2FjaDogdGhhdCBpcywgaXQgcmVjZWl2ZXMgYSBkYXRhIGZyYW1lIGFuZCByZXR1cm5zIGEgZGF0YSBmcmFtZS4KYGBge3J9Cm15X3N1bW1hcnkgPC0gZnVuY3Rpb24oZGF0KXsKICB4IDwtIHF1YW50aWxlKGRhdCRoZWlnaHQsYygwLDAuNSwxKSkKICB0aWJibGUobWluPXhbMV0sbWVkaWFuPXhbMl0sbWF4PXhbM10pCn0KYGBgCgpXZSBjYW4gbm93IGFwcGx5IHRoZSBmdW5jdGlvbiB0byB0aGUgaGVpZ2h0cyBkYXRhc2V0IHRvIG9idGFpbiB0aGUgc3VtbWFyaWVzOgpgYGB7cn0KaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KSAlPiUgbXlfc3VtbWFyeQpgYGAKQnV0IHRoaXMgaXMgbm90IHdoYXQgd2Ugd2FudC4gV2Ugd2FudCBhIHN1bW1hcnkgZm9yIGVhY2ggc2V4IGFuZCB0aGUgY29kZSByZXR1cm5lZCBqdXN0IG9uZSBzdW1tYXJ5LiBUaGlzIGlzIGJlY2F1c2UgYGBgbXlfc3VtbWFyeWBgYCBpcyBub3QgcGFydCBvZiB0aGUgdGlkeXZlcnNlIGFuZCBkb2VzIG5vdCBrbm93IGhvdyB0byBoYW5kbGVkIGdyb3VwZWQgdGliYmxlcy4gYGBgZG9gYGAgbWFrZXMgdGhpcyBjb25uZWN0aW9uOgpgYGB7cn0KaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KSAlPiUgZG8obXlfc3VtbWFyeSguKSkKYGBgCk5vdGUgdGhhdCBoZXJlIHdlIG5lZWQgdG8gdXNlIHRoZSBkb3Qgb3BlcmF0b3IuIFRoZSB0aWJibGUgY3JlYXRlZCBieSBgYGBncm91cF9ieWBgYCBpcyBwaXBlZCB0byBgYGBkb2BgYC4gV2l0aGluIHRoZSBjYWxsIHRvIGBgYGRvYGBgLCB0aGUgbmFtZSBvZiB0aGlzIHRpYmJsZSBpcyBgYGAuYGBgIGFuZCB3ZSB3YW50IHRvIHNlbmQgaXQgdG8gYGBgbXlfc3VtbWFyeWBgYC4gSWYgeW91IGRvIG5vdCB1c2UgdGhlIGRvdCwgdGhlbiBgYGBteV9zdW1tYXJ5YGBgIGhhcyAqbm8gYXJndW1lbnQqIGFuZCByZXR1cm5zIGFuIGVycm9yIHRlbGxpbmcgdXMgdGhhdCBgYGBhcmd1bWVudCAiZGF0ImBgYCBpcyBtaXNzaW5nLiBZb3UgY2FuIHNlZSB0aGUgZXJyb3IgYnkgdHlwaW5nOgpgYGB7ciwgZXZhbD1GQUxTRX0KaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KSAlPiUgZG8obXlfc3VtbWFyeSgpKQpgYGAKCklmIHlvdSBkbyBub3QgdXNlIHRoZSBwYXJlbnRoZXNpcywgdGhlbiB0aGUgZnVuY3Rpb24gaXMgbm90IGV4ZWN1dGVkIGFuZCBpbnN0ZWFkIGBgYGRvYGBgIHRyaWVzIHRvIHJldHVybiB0aGUgZnVuY3Rpb24uIFRoaXMgZ2l2ZXMgYW4gZXJyb3IgYmVjYXVzZSBgYGBkb2BgYCBtdXN0IGFsd2F5cyByZXR1cm4gYSBkYXRhIGZyYW1lLiBZb3UgY2FuIHNlZSB0aGUgZXJyb3IgYnkgdHlwaW5nOgpgYGB7ciwgZXZhbD1GQUxTRX0KaGVpZ2h0cyAlPiUgZ3JvdXBfYnkoc2V4KSAlPiUgZG8obXlfc3VtbWFyeSkKYGBgCgoKIyMgKio0LjEzIFRoZSBwdXJyciBwYWNrYWdlKioKCkluIFNlY3Rpb24gMy41IHdlIGxlYXJuZWQgYWJvdXQgdGhlIGBgYHNhcHBseWBgYCBmdW5jdGlvbiwgd2hpY2ggcGVybWl0dGVkIHVzIHRvIGFwcGx5IHRoZSBzYW1lIGZ1bmN0aW9uIHRvIGVhY2ggZWxlbWVudCBvZiBhIHZlY3Rvci4gV2UgY29uc3RydWN0ZWQgYSBmdW5jdGlvbiBhbmQgdXNlZCBgYGBzYXBwbHlgYGAgdG8gY29tcHV0ZSB0aGUgc3VtIG9mIHRoZSBmaXJzdCBgYGBuYGBgIGludGVnZXJzIGZvciBzZXZlcmFsIHZhbHVlcyBvZiBgYGBuYGBgIGxpa2UgdGhpczoKYGBge3J9CmNvbXB1dGVfc19uIDwtIGZ1bmN0aW9uKG4pewogIHggPC0gMTpuCiAgc3VtKHgpCn0KbiA8LSAxOjI1CnNfbiA8LSBzYXBwbHkobixjb21wdXRlX3NfbikKYGBgCgpUaGlzIHR5cGUgb2Ygb3BlcmF0aW9uLCBhcHBseWluZyB0aGUgc2FtZSBmdW5jdGlvbiBvciBwcm9jZWR1cmUgdG8gZWxlbWVudHMgb2YgYW4gb2JqZWN0LCBpcyBxdWl0ZSBjb21tb24gaW4gZGF0YSBhbmFseXNpcy4gVGhlICoqcHVycnIqKiBwYWNrYWdlIGluY2x1ZGVzIGZ1bmN0aW9ucyBzaW1pbGFyIHRvIGBgYHNhcHBseWBgYCBidXQgdGhhdCBiZXR0ZXIgaW50ZXJhY3Qgd2l0aCBvdGhlciB0aWR5dmVyc2UgZnVuY3Rpb25zLiBUaGUgbWFpbiBhZHZhbnRhZ2UgaXMgdGhhdCB3ZSBjYW4gYmV0dGVyIGNvbnRyb2wgdGhlIG91dHB1dCB0eXBlIG9mIGZ1bmN0aW9ucy4gSW4gY29udHJhc3QsIGBgYHNhcHBseWBgYCBjYW4gcmV0dXJuIHNldmVyYWwgZGlmZmVyZW50IG9iamVjdCB0eXBlczsgZm9yIGV4YW1wbGUsIHdlIG1pZ2h0IGV4cGVjdCBhIG51bWVyaWMgcmVzdWx0IGZyb20gYSBsaW5lIG9mIGNvZGUsIGJ1dCBgYGBzYXBwbHlgYGAgbWlnaHQgY29udmVydCBvdXIgcmVzdWx0IHRvIGNoYXJhY3RlciB1bmRlciBzb21lIGNpcmN1bXN0YW5jZXMuICoqcHVycnIqKiBmdW5jdGlvbnMgd2lsbCBuZXZlciBkbyB0aGlzOiB0aGV5IHdpbGwgcmV0dXJuIG9iamVjdHMgb2YgYSBzcGVjaWZpZWQgdHlwZSBvciByZXR1cm4gYW4gZXJyb3IgaWYgdGhpcyBpcyBub3QgcG9zc2libGUuCgpUaGUgZmlyc3QgKipwdXJycioqIGZ1bmN0aW9uIHdlIHdpbGwgbGVhcm4gaXMgYGBgbWFwYGBgLCB3aGljaCB3b3JrcyB2ZXJ5IHNpbWlsYXIgdG8gYGBgc2FwcGx5YGBgIGJ1dCBhbHdheXMsIHdpdGhvdXQgZXhjZXB0aW9uLCByZXR1cm5zIGEgbGlzdDoKYGBge3J9CmxpYnJhcnkocHVycnIpCnNfbiA8LSBtYXAobiwgY29tcHV0ZV9zX24pCmNsYXNzKHNfbikKYGBgCklmIHdlIHdhbnQgYSBudW1lcmljIHZlY3Rvciwgd2UgY2FuIGluc3RlYWQgdXNlIGBgYG1hcF9kYmxgYGAgd2hpY2ggYWx3YXlzIHJldHVybnMgYSB2ZWN0b3Igb2YgbnVtZXJpYyB2YWx1ZXMuCmBgYHtyfQpzX24gPC0gbWFwX2RibChuLGNvbXB1dGVfc19uKQpjbGFzcyhzX24pCmBgYAoKVGhpcyBwcm9kdWNlcyB0aGUgc2FtZSByZXN1bHRzIGFzIHRoZSBgYGBzYXBwbHlgYGAgY2FsbCBzaG93biBhYm92ZS4KCkEgcGFydGljdWxhcmx5IHVzZWZ1bCAqKnB1cnJyKiogZnVuY3Rpb24gZm9yIGludGVyYWN0aW5nIHdpdGggdGhlIHJlc3Qgb2YgdGhlIHRpZHl2ZXJzZSBpcyBgYGBtYXBfZGZgYGAsIHdoaWNoIGFsd2F5cyByZXR1cm5zIGEgdGliYmxlIGRhdGEgZnJhbWUuIEhvd2V2ZXIsIHRoZSBmdW5jdGlvbiBiZWluZyBjYWxsZWQgbmVlZHMgdG8gcmV0dXJuIGEgdmVjdG9yIG9yIGEgbGlzdCB3aXRoIG5hbWVzLiBGb3IgdGhpcyByZWFzb24sIHRoZSBmb2xsb3dpbmcgY29kZSB3b3VsZCByZXN1bHQgaW4gYSBgYGBBcmd1bWVudCAxIG11c3QgaGF2ZSBuYW1lc2BgYCBlcnJvcjoKYGBge3IsIGV2YWw9RkFMU0V9CnNfbiA8LSBtYXBfZGYobixjb21wdXRlX3NfbikKYGBgCgpXZSBuZWVkIHRvIGNoYW5nZSB0aGUgZnVuY3Rpb24gdG8gbWFrZSB0aGlzIHdvcms6CmBgYHtyfQpjb21wdXRlX3NfbiA8LSBmdW5jdGlvbihuKXsKICB4IDwtIDE6bgogIHRpYmJsZShzdW09c3VtKHgpKQp9CnNfbiA8LSBtYXBfZGYobixjb21wdXRlX3NfbikKYGBgCgpUaGUgKipwdXJycioqIHBhY2thZ2UgcHJvdmlkZXMgbXVjaCBtb3JlIGZ1bmN0aW9uYWxpdHkgbm90IGNvdmVyZWQgaGVyZS4gRm9yIG1vcmUgZGV0YWlscyB5b3UgY2FuIGNvbnN1bHQgdGhpcyBvbmxpbmUgcmVzb3VyY2UuCgoKIyMgKio0LjE0IFRpZHl2ZXJzZSBjb25kaXRpb25hbHMqKgoKQSB0eXBpY2FsIGRhdGEgYW5hbHlzaXMgd2lsbCBvZnRlbiBpbnZvbHZlIG9uZSBvciBtb3JlIGNvbmRpdGlvbmFsIG9wZXJhdGlvbnMuIEluIFNlY3Rpb24gMy4xIHdlIGRlc2NyaWJlZCB0aGUgYGBgaWZlbHNlYGBgIGZ1bmN0aW9uLCB3aGljaCB3ZSB3aWxsIHVzZSBleHRlbnNpdmVseSBpbiB0aGlzIGJvb2suIEluIHRoaXMgc2VjdGlvbiB3ZSBwcmVzZW50IHR3byAqKmRwbHlyKiogZnVuY3Rpb25zIHRoYXQgcHJvdmlkZSBmdXJ0aGVyIGZ1bmN0aW9uYWxpdHkgZm9yIHBlcmZvcm1pbmcgY29uZGl0aW9uYWwgb3BlcmF0aW9ucy4KCgojIyMgKio0LjE0LjEgYGBgY2FzZV93aGVuYGBgKioKClRoZSBgYGBjYXNlX3doZW5gYGAgZnVuY3Rpb24gaXMgdXNlZnVsIGZvciB2ZWN0b3JpemluZyBjb25kaXRpb25hbCBzdGF0ZW1lbnRzLiBJdCBpcyBzaW1pbGFyIHRvIGBgYGlmZWxzZWBgYCBidXQgY2FuIG91dHB1dCBhbnkgbnVtYmVyIG9mIHZhbHVlcywgYXMgb3Bwb3NlZCB0byBqdXN0IGBgYFRSVUVgYGAgb3IgYGBgRkFMU0VgYGAuIEhlcmUgaXMgYW4gZXhhbXBsZSBzcGxpdHRpbmcgbnVtYmVycyBpbnRvIG5lZ2F0aXZlLCBwb3NpdGl2ZSwgYW5kIDA6CmBgYHtyfQp4IDwtIGMoLTIsLTEsMCwxLDIpCmNhc2Vfd2hlbih4IDwwIH4gIk5lZ2F0aXZlIiwKICAgICAgICAgIHggPiAwIH4gIlBvc2l0aXZlIiwKICAgICAgICAgIFRSVUUgfiAiWmVybyIpCmBgYApBIGNvbW1vbiB1c2UgZm9yIHRoaXMgZnVuY3Rpb24gaXMgdG8gZGVmaW5lIGNhdGVnb3JpY2FsIHZhcmlhYmxlcyBiYXNlZCBvbiBleGlzdGluZyB2YXJpYWJsZXMuIEZvciBleGFtcGxlLCBzdXBwb3NlIHdlIHdhbnQgdG8gY29tcGFyZSB0aGUgbXVyZGVyIHJhdGVzIGluIGZvdXIgZ3JvdXBzIG9mIHN0YXRlczogKk5ldyBFbmdsYW5kLCBXZXN0IENvYXN0LCBTb3V0aCwgYW5kIG90aGVyKi4gRm9yIGVhY2ggc3RhdGUsIHdlIG5lZWQgdG8gYXNrIGlmIGl0IGlzIGluIE5ldyBFbmdsYW5kLCBpZiBpdCBpcyBub3Qgd2UgYXNrIGlmIGl0IGlzIGluIHRoZSBXZXN0IENvYXN0LCBpZiBub3Qgd2UgYXNrIGlmIGl0IGlzIGluIHRoZSBTb3V0aCwgYW5kIGlmIG5vdCB3ZSBhc3NpZ24gKm90aGVyKi4gSGVyZSBpcyBob3cgd2UgdXNlIGBgYGNhc2Vfd2hlbmBgYCB0byBkbyB0aGlzOgpgYGB7cn0KbXVyZGVycyAlPiUgbXV0YXRlKGdyb3VwPWNhc2Vfd2hlbigKICBhYmIgJWluJSBjKCJNRSIsICJOSCIsICJWVCIsICJNQSIsICJSSSIsICJDVCIpIH4gIk5ldyBFbmdsYW5kIiwKICBhYmIgJWluJSBjKCJXQSIsICJPUiIsICJDQSIpIH4gIldlc3QgQ29hc3QiLAogICAgcmVnaW9uID09ICJTb3V0aCIgfiAiU291dGgiLAogICAgVFJVRSB+ICJPdGhlciIpKSAlPiUKICBncm91cF9ieShncm91cCkgJT4lIAogIHN1bW1hcml6ZShyYXRlPXN1bSh0b3RhbCkvc3VtKHBvcHVsYXRpb24pKjEwXjUpCmBgYAoKIyMjICoqNC4xNC4yIGBgYGJldHdlZW5gYGAqKgoKQSBjb21tb24gb3BlcmF0aW9uIGluIGRhdGEgYW5hbHlzaXMgaXMgdG8gZGV0ZXJtaW5lIGlmIGEgdmFsdWUgZmFsbHMgaW5zaWRlIGFuIGludGVydmFsLiBXZSBjYW4gY2hlY2sgdGhpcyB1c2luZyBjb25kaXRpb25hbHMuIEZvciBleGFtcGxlLCB0byBjaGVjayBpZiB0aGUgZWxlbWVudHMgb2YgYSB2ZWN0b3IgYGBgeGBgYCBhcmUgYmV0d2VlbiBgYGBhYGBgIGFuZCBgYGBiYGBgIHdlIGNhbiB0eXBlCmBgYHtyLCBldmFsPUZBTFNFfQp4ID49IGEgJiB4IDw9IGIKYGBgCgpIb3dldmVyLCB0aGlzIGNhbiBiZWNvbWUgY3VtYmVyc29tZSwgZXNwZWNpYWxseSB3aXRoaW4gdGhlIHRpZHl2ZXJzZSBhcHByb2FjaC4gVGhlIGBgYGJldHdlZW5gYGAgZnVuY3Rpb24gcGVyZm9ybXMgdGhlIHNhbWUgb3BlcmF0aW9uLgpgYGB7ciwgZXZhbD1GQUxTRX0KYmV0d2Vlbih4LGEsYikKYGBgCgoKCiMjICoqNC4xNSBFeGVyY2lzZXMqKgoKMS4gTG9hZCB0aGUgYGBgbXVyZGVyc2BgYCBkYXRhc2V0LiBXaGljaCBvZiB0aGUgZm9sbG93aW5nIGlzIHRydWU/CgphLiBgYGBtdXJkZXJzYGBgIGlzIGluIHRpZHkgZm9ybWF0IGFuZCBpcyBzdG9yZWQgaW4gYSB0aWJibGUuCmIuIGBgYG11cmRlcnNgYGAgaXMgaW4gdGlkeSBmb3JtYXQgYW5kIGlzIHN0b3JlZCBpbiBhIGRhdGEgZnJhbWUuCmMuIGBgYG11cmRlcnNgYGAgaXMgbm90IGluIHRpZHkgZm9ybWF0IGFuZCBpcyBzdG9yZWQgaW4gYSB0aWJibGUuCmQuIGBgYG11cmRlcnNgYGAgaXMgbm90IGluIHRpZHkgZm9ybWF0IGFuZCBpcyBzdG9yZWQgaW4gYSBkYXRhIGZyYW1lLgpgYGB7cn0KZGF0YShtdXJkZXJzKQptdXJkZXJzCiMgdGhlIGFuc3dlciBpcyAnYicKYGBgCjIuIFVzZSBgYGBhc190aWJibGVgYGAgdG8gY29udmVydCB0aGUgYGBgbXVyZGVyc2BgYCBkYXRhIHRhYmxlIGludG8gYSB0aWJibGUgYW5kIHNhdmUgaXQgaW4gYW4gb2JqZWN0IGNhbGxlZCBgYGBtdXJkZXJzX3RpYmJsZWBgYC4KYGBge3J9Cm11cmRlcnNfdGliYmxlIDwtIGFzX3RpYmJsZShtdXJkZXJzKQpgYGAKCjMuIFVzZSB0aGUgYGBgZ3JvdXBfYnlgYGAgZnVuY3Rpb24gdG8gY29udmVydCBgYGBtdXJkZXJzYGBgIGludG8gYSB0aWJibGUgdGhhdCBpcyBncm91cGVkIGJ5IHJlZ2lvbi4KYGBge3J9Cm11cmRlcnMgJT4lIGdyb3VwX2J5KHJlZ2lvbikKYGBgCgo0LiBXcml0ZSB0aWR5dmVyc2UgY29kZSB0aGF0IGlzIGVxdWl2YWxlbnQgdG8gdGhpcyBjb2RlOgpgYGB7ciwgZXZhbD1GQUxTRX0KZXhwKG1lYW4obG9nKG11cmRlcnMkcG9wdWxhdGlvbikpKQpgYGAKCldyaXRlIGl0IHVzaW5nIHRoZSBwaXBlIHNvIHRoYXQgZWFjaCBmdW5jdGlvbiBpcyBjYWxsZWQgd2l0aG91dCBhcmd1bWVudHMuIFVzZSB0aGUgZG90IG9wZXJhdG9yIHRvIGFjY2VzcyB0aGUgcG9wdWxhdGlvbi4gSGludDogVGhlIGNvZGUgc2hvdWxkIHN0YXJ0IHdpdGggYGBgbXVyZGVycyAlPiVgYGAuCmBgYHtyfQptdXJkZXJzICU+JSAuJHBvcHVsYXRpb24gJT4lIGxvZygpICU+JSBtZWFuKCkgJT4lIGV4cCgpCmBgYAoKNS4gVXNlIHRoZSBgYGBtYXBfZGZgYGAgdG8gY3JlYXRlIGEgZGF0YSBmcmFtZSB3aXRoIHRocmVlIGNvbHVtbnMgbmFtZWQgYGBgbmBgYCwgYGBgc19uYGBgLCBhbmQgYGBgc19uXzJgYGAuIFRoZSBmaXJzdCBjb2x1bW4gc2hvdWxkIGNvbnRhaW4gdGhlIG51bWJlcnMgMSB0aHJvdWdoIDEwMC4gVGhlIHNlY29uZCBhbmQgdGhpcmQgY29sdW1ucyBzaG91bGQgZWFjaCBjb250YWluIHRoZSBzdW0gb2YgMSB0aHJvdWdoICRuJCB3aXRoICRuJCB0aGUgcm93IG51bWJlci4KYGBge3J9CmNvbXB1dGVfc19uIDwtIGZ1bmN0aW9uKG4pewogIHggPC0gMTpuCiAgdGliYmxlKG4gPSBuLCBzX24gPSBzdW0oeCksIHNfbl8yID0gc3VtKHgpKQp9Cm4gPC0gMToxMDAKbWFwX2RmKG4sIGNvbXB1dGVfc19uKQpgYGAKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoK</div>
 
 
 
