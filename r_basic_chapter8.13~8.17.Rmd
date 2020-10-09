@@ -1,0 +1,437 @@
+---
+title: "Suchan's_lovely_R_notebook"
+output: html_notebook
+---
+
+## **8.13 Stratification**
+
+In data analysis we often divide observations into groups based on the values of one or more variables associated with those observations. For example in the next section we divide the height values into groups based on a sex variable: females and males. We call this procedure *stratification* and refer to the resulting groups as *strata*.
+
+Stratification is common in data visualization because we are often interested in how the distribution of variables differs across different subgroups. We will see several examples throughout this part of the book. We will revisit the concept of stratification when we learn regression in Chapter 17 and in the Machine Learning part of the book.
+
+## **8.14 Case study: describing student heights(continued)**
+
+Using the histogram, density plots, and QQ-plots, we have become convinced that the male height data is well approximated with a normal distribution. In this case, we report back to ET a very succinct summary: male heights follow a normal distribution with an average of 69.3 inches and a SD of 3.6 inches. With this information, ET will have a good idea of what to expect when he meets our male students. However, to provide a complete picture we need to also provide a summary of the female heights.
+
+We learned that boxplots are useful when we want to quickly compare two or more distributions. Here are the heights for men and women:
+
+![](https://rafalab.github.io/dsbook/book_files/figure-html/female-male-boxplots-1.png)
+
+The plot immediately reveals that males are, on average, taller than females. The standard deviations appear to be similar. But does the normal approximation also work for the female height data collected by the survey? We expect that they will follow a normal distribution, just like males. However, exploratory plots reveal that the approximation is not as useful:
+
+![](https://rafalab.github.io/dsbook/book_files/figure-html/histogram-qqplot-female-heights-1.png)
+
+We see something we did not see for the males: the density plot has a second “bump”. Also, the QQ-plot shows that the highest points tend to be taller than expected by the normal distribution. Finally, we also see five points in the QQ-plot that suggest shorter than expected heights for a normal distribution. When reporting back to ET, we might need to provide a histogram rather than just the average and standard deviation for the female heights.
+
+However, go back and read Tukey’s quote. We have noticed what we didn’t expect to see. If we look at other female height distributions, we do find that they are well approximated with a normal distribution. So why are our female students different? Is our class a requirement for the female basketball team? Are small proportions of females claiming to be taller than they are? Another, perhaps more likely, explanation is that in the form students used to enter their heights, ```FEMALE``` was the default sex and some males entered their heights, but forgot to change the sex variable. In any case, data visualization has helped discover a potential flaw in our data.
+
+Regarding the five smallest values, note that these values are:
+
+```{r}
+heights %>% filter(sex=="Female") %>% top_n(5,desc(height)) %>% pull(height)
+```
+
+Because these are reported heights, a possibility is that the student meant to enter ```5'1"```, ```5'2"```, ```5'3"``` or ```5'5"```.
+
+## **8.15 Exercises**
+
+1.Define variables containing the heights of males and females like this:
+```{r}
+library(dslabs)
+data(heights)
+male <- heights$height[heights$sex=="Male"]
+female <- heights$height[heights$sex=="Female"]
+```
+
+How many measurements do we have for each?
+```{r}
+length(male)
+length(female)
+
+#The answer is '812' and '238'.
+```
+
+2.Suppose we can’t make a plot and want to compare the distributions side by side. We can’t just list all the numbers. Instead, we will look at the percentiles. Create a five row table showing ```female_percentiles``` and ```male_percentiles``` with the 10th, 30th, 50th, 70th, & 90th percentiles for each sex. Then create a data frame with these two as columns.
+```{r}
+p <- c(0.1,0.3,0.5,0.7,0.9)
+male_p <- qnorm(p,mean=mean(male),sd=sd(male))
+female_p <- qnorm(p,mean=mean(female),sd=sd(female))
+data.frame(percent=c('10th','30th','50th','70th','90th'),female_percentiles=female_p,male_percentiles=male_p)
+```
+
+3.Study the following boxplots showing population sizes by country:
+
+![](https://rafalab.github.io/dsbook/book_files/figure-html/boxplot-exercise-1.png)
+Which continent has the country with the biggest population size?
+
+```{r}
+#The answer is 'Asia'.
+```
+
+4.What continent has the largest median population size?
+```{r}
+#The answer is 'Africa'.
+```
+
+5.What is median population size for Africa to the nearest million?
+```{r}
+#The answer is '10milions'.
+```
+
+6.What proportion of countries in Europe have populations below 14 milion?
+a) 0.99
+a) 0.75
+a) 0.50
+a) 0.25
+
+```{r}
+#The answer is 'b'.
+```
+
+7.If we use a log transformation, which continent shown above has the largest interquartile range?
+```{r}
+#The answer is 'Americas'.
+```
+
+8.Load the height data set and create a vector x with just the male heights:
+```{r}
+library(dslabs)
+data(heights)
+x <- heights$height[heights$sex=="Male"]
+
+```
+What proportion of the data is between 69 and 72 inches (taller than 69, but shorter or equal to 72)? Hint: use a logical operator and ```mean```.
+```{r}
+mean(x<=72) - mean(x<69)
+```
+
+9.Suppose all you know about the data is the average and the standard deviation. Use the normal approximation to estimate the proportion you just calculated. Hint: start by computing the average and standard deviation. Then use the ```pnorm``` function to predict the proportions.
+```{r}
+pnorm(72,mean=mean(x),sd=sd(x))- pnorm(69,mean=mean(x),sd=sd(x)) 
+```
+
+10.Notice that the approximation calculated in question nine is very close to the exact calculation in the first question. Now perform the same task for more extreme values. Compare the exact calculation and the normal approximation for the interval (79,81]. How many times bigger is the actual proportion than the approximation?
+```{r}
+a <- mean(x<=81) - mean(x<79)
+b <- pnorm(81,mean=mean(x),sd=sd(x)) - pnorm(79,mean=mean(x),sd=sd(x))
+
+a/b
+```
+
+11.Approximate the distribution of adult men in the world as normally distributed with an average of 69 inches and a standard deviation of 3 inches. Using this approximation, estimate the proportion of adult men that are 7 feet tall or taller, referred to as *seven footers*. Hint: use the ```pnorm``` function.
+```{r}
+1 - pnorm(84,mean=69,sd=3)
+```
+
+12.There are about 1 billion men between the ages of 18 and 40 in the world. Use your answer to the previous question to estimate how many of these men (18-40 year olds) are seven feet tall or taller in the world?
+```{r}
+a <- 1 - pnorm(84,mean=69,sd=3)
+1000000000*a
+```
+
+13.There are about 10 National Basketball Association (NBA) players that are 7 feet tall or higher. Using the answer to the previous two questions, what proportion of the world’s 18-to-40-year-old *seven footers* are in the NBA?
+```{r}
+10/286.6516
+```
+
+14.Repeat the calculations performed in the previous question for Lebron James’ height: 6 feet 8 inches. There are about 150 players that are at least that tall.
+```{r}
+a <- 1 - pnorm(80,mean=69,sd=3)
+150/(1000000000*a)
+```
+
+15.In answering the previous questions, we found that it is not at all rare for a seven footer to become an NBA player. What would be a fair critique of our calculations:
+a) Practice and talent are what make a great basketball player, not height.
+a) The normal approcimation is not appropriate for heights.
+a) As seem in question 10, the normal approximation tends to underestimate the extreme values. It's possible that there are more seven footers than we predicted.
+a) As seen in question 10, the normal approximation tends to overestimate the extreme values. It's possible that there are fewer seven footers than we predicted.
+```{r}
+#The answer is 'a'.
+```
+
+
+
+## **8.16 ggplot2 geometries**
+
+In Chapter 7, we introduced the **ggplot2** package for data visualization. Here we demonstrate how to generate plots related to distributions, specifically the plots shown earlier in this chapter.
+
+### **8.16.1 Barplots**
+
+To generate a barplot we can use the ```geom_bar``` geometry. The default is to count the number of each category and draw a bar. Here is the plot for the regions of the US.
+```{r}
+murders %>% ggplot(aes(region)) +
+  geom_bar()
+```
+
+We often already have a table with a distribution that we want to present as a barplot. Here is an example of such a table:
+
+```{r}
+data(murders)
+tab <- murders %>%
+  count(region) %>%
+  mutate(proportion=n/sum(n))
+tab
+```
+We no longer want ```geom_bar``` to count, but rather just plot a bar to the height provided by the ```proportion``` variable. For this we need to provide ```x``` (the categories) and ```y``` (the values) and use the ```stat="identity"``` option.
+```{r}
+tab %>% ggplot(aes(region,proportion)) + geom_bar(stat='identity')
+```
+
+
+### **8.16.2 Histograms**
+
+To generate histograms we use ```geom_histogram```. By looking at the help file for this function, we learn that the only required argument is ```x```, the variable for which we will construct a histogram. We dropped the ```x``` because we know it is the first argument. The code looks like this:
+```{r}
+heights %>%
+  filter(sex=='Female') %>%
+  ggplot(aes(height)) +
+  geom_histogram()
+```
+If we run the code above, it gives us a message:
+```{r, eval=F}
+stat_bin() using bins = 30. Pick better value with binwidth.
+```
+We previously used a bin size of 1 inch, so the code looks like this:
+```{r}
+heights %>%
+  filter(sex == 'Female') %>%
+  ggplot(aes(height)) +
+  geom_histogram(binwidth = 1)
+```
+
+Finally, if for aesthetic reasons we want to add color, we use the arguments described in the help file. We also add labels and a title:
+
+```{r}
+heights %>%
+  filter(sex=='Female') %>%
+  ggplot(aes(height)) +
+  geom_histogram(binwidth=1,fill='blue',col='black') +
+  xlab('Male heights in inches') +
+  ggtitle("Histogram")
+```
+
+### **8.16.3 Density plots**
+
+To create a smooth density, we use the ```geom_density```. To make a smooth density plot with the data previously shown as a histogram we can use this code:
+```{r}
+heights %>% filter(sex=="Female") %>%
+  ggplot(aes(height)) +
+  geom_density()
+```
+
+To fill in with color, we can use the ```fill``` argument.
+```{r}
+heights %>%
+  filter(sex=="Female") %>%
+  ggplot(aes(height)) +
+  geom_density(fill="blue")
+```
+
+To change the smoothness of the density, we use the ```adjust``` argument to multiply the default value by that ```adjust```. For example, if we want the bandwidth to be twice as big we use:
+```{r}
+heights %>% 
+  filter(sex=="Female") %>%
+  ggplot(aes(height)) +
+  geom_density(fill="blue", adjust = 2)
+```
+
+### **8.16.4 Boxplots**
+
+The geometry for boxplot is ```geom_boxplot```. As discussed, boxplots are useful for comparing distributions. For example, below are the previously shown heights for women, but compared to men. For this geometry, we need arguments ```x``` as the categories, and ```y``` as the values.
+![](https://rafalab.github.io/dsbook/book_files/figure-html/female-male-boxplots-geom-1.png)
+
+### **8.16.5 QQ-plots**
+
+For qq-plots we use the ```geom_qq``` geometry. From the help file, we learn that we need to specify the ```sample``` (we will learn about samples in a later chapter). Here is the qqplot for men heights.
+```{r}
+heights %>% filter(sex=="Male") %>%
+  ggplot(aes(sample=height)) +
+  geom_qq()
+```
+
+By default, the sample variable is compared to a normal distribution with average 0 and standard deviation 1. To change this, we use the ```dparams``` arguments based on the help file. Adding an identity line is as simple as assigning another layer. For straight lines, we use the ```geom_abline``` function. The default line is the identity line (slope = 1, intercept = 0).
+```{r}
+params <- heights %>% filter(sex=="Male") %>%
+  summarize(mean=mean(height),sd=sd(height))
+heights %>% filter(sex=="Male") %>%
+  ggplot(aes(sample=height)) +
+  geom_qq(dparams=params) +
+  geom_abline()
+```
+
+Another option here is to scale the data first and then make a qqplot against the standard normal.
+
+```{r}
+heights %>%
+  filter(sex=="Male") %>%
+  ggplot(aes(sample=scale(height))) +
+  geom_qq() +
+  geom_abline()
+```
+
+### **8.16.6 Images**
+
+Images were not needed for the concepts described in this chapter, but we will use images in Section 10.14, so we introduce the two geometries used to create images: **geom_tile** and **geom_raster**. They behave similarly; to see how they differ, please consult the help file. To create an image in **ggplot2** we need a data frame with the x and y coordinates as well as the values associated with each of these. Here is a data frame.
+```{r}
+x <- expand.grid(x=1:12, y = 1:10) %>%
+  mutate(z=1:120)
+```
+Note that this is the tidy version of a matrix, ```matrix(1:120, 12, 10)```. To plot the image we use the following code:
+```{r}
+x %>% ggplot(aes(x,y,fill=z)) +
+  geom_raster()
+```
+
+With these images you will often want to change the color scale. This can be done through the ```scale_fill_gradientn``` layer.
+```{r}
+x %>% ggplot(aes(x,y,fill=z)) +
+  geom_raster() +
+  scale_fill_gradientn(colors = terrain.colors(10))
+```
+
+### **8.16.7 Quick plots**
+
+In Section 7.13 we introduced ```qplot``` as a useful function when we need to make a quick scatterplot. We can also use ```qplot``` to make histograms, density plots, boxplot, qqplots and more. Although it does not provide the level of control of ```ggplot```, ```qplot``` is definitely useful as it permits us to make a plot with a short snippet of code.
+
+Suppose we have the female heights in an object ```x``` :
+```{r}
+x <- heights %>%
+  filter(sex=="Male") %>%
+  pull(height)
+```
+
+To make a quick histogram we can use:
+```{r}
+qplot(x)
+```
+
+The function guesses that we want to make a histogram because we only supplied one variable. In Section 7.13 we saw that if we supply ```qplot``` two variables, it automatically makes a scatterplot.
+
+To make a quick qqplot you have to use the ```sample``` argument. Note that we can add layers just as we do with ```ggplot```.
+```{r}
+qplot(sample=scale(x)) + geom_abline()
+```
+
+If we supply a factor and a numeric vector, we obtain a plot like the one below. Note that in the code below we are using the ```data``` argument. Because the data frame is not the first argument in ```qplot```, we have to use the dot operator.
+```{r}
+heights %>% qplot(sex,height,data=.)
+```
+We can also select a specific geometry by using the ```geom``` argument. So to convert the plot above to a boxplot, we use the following code:
+```{r}
+heights %>% qplot(sex, height, data=., geom="boxplot")
+```
+
+We can also use the ```geom``` argument to generate a density plot instead of a histogram:
+```{r}
+qplot(x, geom="density")
+```
+
+
+Although not as much as with ```ggplot```, we do have some flexibility to improve the results of ```qplot```. Looking at the help file we see several ways in which we can improve the look of the histogram above. Here is an example:
+```{r}
+qplot(x, bins=15, color=I("black"),xlab="Population")
+```
+
+**Technical note**: The reason we use ```I("black")``` is because we want ```qplot``` to treat ```"black"``` as a character rather than convert it to a factor, which is the default behavior within ```aes```, which is internally called here. In general, the function ```I``` is used in R to say "keep it as it is".
+
+## **8.17 Exercises**
+
+1.Now we are going to use the ```geom_histogram``` function to make a histogram of the heights in the ```height``` data frame. When reading the documentation for this function we see that it requires just one mapping, the values to be used for the histogram. Make a histogram of all the plots.
+
+What is the variable containing the heights?
+
+a) ```sex```
+a) ```heights```
+a) ```height```
+a) ```heights$height```
+```{r}
+
+#The answer is 'c'.
+
+```
+
+2.Now create a ggplot object using the pipe to assign the heights data to a ggplot object. Assign ```height``` to the x values through the ```aes``` function.
+```{r}
+heights %>% ggplot(aes(height)) 
+```
+
+3.Now we are ready to add a layer to actually make the histogram. Use the object created in the previous exercise and the ```geom_histogram``` function to make the histogram.
+```{r}
+heights %>% ggplot(aes(height)) + geom_histogram()
+```
+
+4.Note that when we run the code in the previous exercise we get the warning: ```stat_bin()``` using ```bins = 30```. Pick better value with ```binwidth.```
+
+Use the ```binwidth``` argument to change the histogram made in the previous exercise to use bins of size 1 inch.
+
+```{r}
+heights %>% ggplot(aes(height)) +
+  geom_histogram(binwidth = 1)
+```
+
+5.Instead of a histogram, we are going to make a smooth density plot. In this case we will not make an object, but instead render the plot with one line of code. Change the geometry in the code previously used to make a smooth density instead of a histogram.
+
+```{r}
+heights %>% ggplot(aes(height)) + geom_density()
+```
+
+6. Now we are going to make a density plot for males and females separately. We can do this using the ```group``` argument. We assign groups via the aesthetic mapping as each point needs to a group before making the calculations needed to estimate a density.
+```{r}
+heights %>% ggplot(aes(height, group=sex)) + geom_density()
+```
+
+7. We can also assign groups through the ```color``` argument. This has the added benefit that it uses color to distinguish the groups. Change the code above to use color.
+```{r}
+heights %>% ggplot(aes(height,group=sex,color=sex)) + geom_density()
+```
+
+8. We can also assign groups through the ```fill``` argument. This has the added benefit that it uses colors to distinguish the groups, like this:
+```{r}
+heights %>% 
+  ggplot(aes(height, fill=sex)) +
+  geom_density()
+```
+
+However, here the second density is drawn over the other. We can make the curves more visible by using alpha blending to add transparency. Set the alpha parameter to 0.2 in the ```geom_density``` function to make this change.
+```{r}
+heights %>% ggplot(aes(height, fill=sex)) +
+  geom_density(alpha=0.2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
