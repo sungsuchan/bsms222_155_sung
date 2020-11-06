@@ -1,0 +1,318 @@
+---
+title: "Analysis Of Top 3 Genes That Affect ASD By Cell Type"
+output: html_notebook
+---
+
+## **0. Analysis For What?**
+이번 분석은 cell type별로 어떤 regulation이 일어난 gene이 ASD에 주된 영향을 끼치는지 알아보고자 한다.
+또한 cell type별로 top3 gene들을 선정하여, 각 gene들이 어떠한 특징을 가지고 있는지 그 양상을 살펴보고자 한다.
+
+## **1. Data Loding**
+
+분석을 위해 Data-S4를 불러오고자 한다.
+```{r}
+library(tidyverse)
+library(readxl)
+library(ggrepel)
+library(ggplot2)
+d4 <- read_xls("aav8130_Data-S4.xls")
+```
+
+## **2. Data Analysis & Transformation**
+
+먼저, 데이터를 바꾸기 전에 load된 data가 어떠한 형태를 띄고있는지 확인해보도록 하자.
+```{r}
+head(d4)
+```
+이 dataset에서 먼저 cell type별로 보기 위해서 neuronal cell인지 nonneuronal cell인지 구분할 수 있는 column을 만들고, DEG의 달라진 expression정도를 보기 위해 Fold change값에 절댓값을 씌운 column을 추가할 것이다. 또한 절댓값을 씌운 것 때문에 upregulate 혹은 downregulate된 gene들의 구분이 어려워질 수 있으므로 어떤 방향으로 regulate가 일어났는지 표시할 수 있는 column을 만들고 cell type에 specific하게 발현하는 gene들은 따로 표시하려고 한다.
+```{r}
+neuronal_cell <-  c("L2/3","L4","L5/6","L5/6-CC","IN-PV","IN-SST","IN-VIP","IN-SV2C","Neu-NRGN-I","Neu-NRGN-II","Neu-mat")
+m_d4 <- d4 %>% 
+  mutate(neuronal_or_nonneuronal = ifelse(d4$`Cell type` %in% neuronal_cell,'neuronal','non-neuronal'), 'abs Fold change'=abs(`Fold change`), regulating = ifelse(.$`Fold change`>0,'upregulate','downregulate')) %>%
+  mutate(regulating = ifelse(`cell type-specific expression` == "yes", paste(regulating,"cell_type_specific",sep ="_"),regulating))
+m_d4
+```
+
+## **3. Data Visualization & Analysis**
+
+변형한 dataset에서 `bar plot`을 통해 cell type 별로 어떠한 방향으로 regulate된 gene들의 발현량이 높은지, regulate 방향에 따라 절댓값이 씌워진 Fold change의 **대푯값**을 통해 확인하고자 한다.
+
+**대푯값**을 설정하기 전에 절댓값을 씌운 Fold change값의 범위, 평균을 통해 절댓값을 씌운 Fold change의 분산을 살펴보고자 한다.
+```{r}
+range(m_d4$`abs Fold change`)
+mean(m_d4$`abs Fold change`)
+```
+
+넓은 범위에 비해 낮은 평균값을 보임을 통해 절댓값을 씌운 Fold change값에 outlier가 있음을 예측할 수 있다. 따라서 대푯값은 **Median**으로 설정하는 것이 바람직하다.
+
+**Median**을 통해 plot을 그려보면 다음과 같다.
+```{r, fig.width=6, fig.height=6}
+rm_d4 <- m_d4 %>% group_by(`Cell type`,regulating,neuronal_or_nonneuronal) %>% 
+  summarize(mid = median(`abs Fold change`)) 
+
+rm_d4 %>%
+  ggplot(aes(`Cell type`,mid,fill = regulating)) +
+  geom_bar(stat = "identity") + 
+  geom_label_repel(aes(label=mid),position = "stack") + 
+  facet_grid(neuronal_or_nonneuronal~.,scale="free") + 
+  theme_light() + 
+  theme(legend.position = "top") +
+  xlab("") +
+  ylab("Sum Median of absolute Fold change") +
+  coord_flip() +
+  ggtitle("Median Of Absolute Fold Change")
+```
+
+우리는 이 plot에서 많은 문제점을 발견할 수 있다. 먼저 **Median**의 *소숫점*이 너무 길어서 파악에 어려움이 있다. 그리고 `bar plot`이 크기에 상관없이 뒤죽박죽 섞여 있기에 명확한 파악에 어려움을 준다. 또한 색에 가시성이 없어서 한눈에 들어오지 않는다. 마지막으로 cell type 전체적으로 `"upregulate","downregulate","upregulate_cell_type_specific","downregulate_cell_type_specific"`순서로 median 값이 커짐을 얼핏 확인할 수 있는데, 이것이 plot에 반영된다면 더욱 보기 좋은 plot이 될 것이다.
+
+따라서 **Median**의 소숫점은 3자리까지 설정하고 `bar plot`을 크기 순서로 나열한 후 색을 재설정하고 `factor` function을 통해 regulation에 따른 absoulte fold change의 크기를 반영하여 다시 보도록 하겠다.
+```{r, fig.width=6, fig.height=8}
+m_d4$regulating = factor(m_d4$regulating,levels = c("upregulate","downregulate","upregulate_cell_type_specific","downregulate_cell_type_specific"))
+
+rm_d4 <- m_d4 %>% group_by(`Cell type`,regulating,neuronal_or_nonneuronal) %>% 
+  summarize(mid = median(`abs Fold change`)) %>% 
+  group_by(`Cell type`) %>% 
+  mutate(mid_sum = sum(mid))
+
+rm_d4$mid <- round(rm_d4$mid,digits = 3)
+
+rm_d4 %>%
+  ggplot(aes(reorder(`Cell type`,mid_sum),mid,fill = regulating)) +
+  geom_bar(stat = "identity") + 
+  geom_label_repel(aes(label=mid),position = "stack") + 
+  facet_grid(neuronal_or_nonneuronal~.,scale="free") + scale_fill_manual(breaks = c("upregulate","downregulate","upregulate_cell_type_specific","downregulate_cell_type_specific"), values = c("#82E0AA","#85C1E9","#A569BD","#FF00FF")) + 
+  theme_light() + 
+  theme(legend.position = "top") +
+  xlab("") +
+  ylab("Sum Median Of Absolute Fold Change") +
+  coord_flip() +
+  ggtitle("Median Of Absolute Fold Change By Regulation")
+```
+이전보다 훨씬 깔끔하고 보기 좋은 plot이 완성되었다. 그렇다면, cell type과 regulating에 따른 gene들의 fold change는 어떠한 양상으로 나타나는지 `violin plot`과 `point plot`을 통해 살펴보자.(gene이 무수히 많기 때문에, cell type별로 가장 높은 fold change값을 보이는 gene 3개만 labeling하도록 하겠다.)
+
+```{r, fig.width=6, fig.height=6}
+t <- m_d4  %>% select(`Cell type`,`Gene name`,regulating,`abs Fold change`) %>% group_by(`Cell type`) %>% top_n(3) 
+top3 <- t %>% pull()
+
+m_d4 %>% 
+  ggplot(aes(`Cell type`,`abs Fold change`)) + 
+  geom_violin(alpha=0.3) + 
+  geom_label_repel(aes(label = ifelse(`abs Fold change` %in% top3,`Gene name`,""),color= regulating),nudge_x = 0.5, size = 2,force =0.1) + 
+  geom_point(aes(color=regulating),size=1) + 
+  facet_grid(neuronal_or_nonneuronal~.,scales="free" ) + 
+  xlab("") +
+  ylab("Absolute Fold Change") + 
+  scale_color_manual(breaks = c("upregulate","downregulate","upregulate_cell_type_specific","downregulate_cell_type_specific"), values = c("#82E0AA","#85C1E9","#A569BD","#FF00FF")) + 
+  theme_light() + 
+  theme(legend.position = "top", legend.text = element_text(size="8")) + 
+  coord_flip() +
+  ggtitle("Absolute Fold Change Of Genes By Regulation")
+```
+예상대로 `downregulate_cell_type_specific`과 `upregulate_cell_type_specific`에 해당하는 gene들이 cell type 전반에 걸쳐 높은 수치를 보인다. 그렇다면 `cowplot`을 통해 한눈에 plot을 봐보자.
+```{r, fig.width=15,fig.height=10}
+library(cowplot)
+plot_grid(rm_d4 %>%
+  ggplot(aes(reorder(`Cell type`,mid_sum),mid,fill = regulating)) +
+  geom_bar(stat = "identity") + 
+  geom_label_repel(aes(label=mid),position = "stack",size=6) + 
+  facet_grid(neuronal_or_nonneuronal~.,scale="free") + scale_fill_manual(breaks = c("upregulate","downregulate","upregulate_cell_type_specific","downregulate_cell_type_specific"), values = c("#82E0AA","#85C1E9","#A569BD","#FF00FF")) + 
+  theme_light() + 
+  theme(legend.position = "top", legend.text = element_text(size="13"), strip.text.y = element_text(size = 15),axis.text = element_text(size = 20)) +
+  xlab("") +
+  ylab("Sum Median Of Absolute Fold Change") +
+  coord_flip(),
+  m_d4 %>% 
+  ggplot(aes(`Cell type`,`abs Fold change`)) + 
+  geom_violin(alpha=0.3) + 
+  geom_label_repel(aes(label = ifelse(`abs Fold change` %in% top3,`Gene name`,""),color= regulating),nudge_x = 0.5, size = 6,force =0.1) + 
+  geom_point(aes(color=regulating),size=4) + 
+  facet_grid(neuronal_or_nonneuronal~.,scales="free") + 
+  xlab("") +
+  ylab("Absolute Fold Change") + 
+  scale_color_manual(breaks = c("upregulate","downregulate","upregulate_cell_type_specific","downregulate_cell_type_specific"), values = c("#82E0AA","#85C1E9","#A569BD","#FF00FF")) + 
+  theme_light() + 
+  theme(legend.position = "top", legend.text = element_text(size="13"), legend.title = element_blank(), strip.text.y = element_text(size = 15),axis.text = element_text(size = 20)) + 
+  coord_flip()) 
+```
+plot이 깔끔하게 그려졌지만, cell type의 순서가 서로 달라서 비교하며 plot을 볼 수 없다. 즉, 그저 `cowplot`통해 plot을 붙여놓은 것 뿐이다. 따라서 `factor`function을 통해 두 plot의 cell type 순서를 같게 조정하고, 제목을 붙여넣은 후 다시 봐보도록 하자.
+
+```{r, fig.width=15,fig.height=10}
+m_d4$`Cell type` = factor(m_d4$`Cell type`,levels = c("AST-FB","Oligodendrocytes","Microglia","OPC","Endothelial","AST-PP","L5/6-CC","L5/6","L4","L2/3","IN-PV","IN-SV2C","IN-SST","Neu-mat","IN-VIP","Neu-NRGN-II","Neu-NRGN-I"))
+
+plot <- plot_grid(rm_d4 %>%
+  ggplot(aes(reorder(`Cell type`,mid_sum),mid,fill = regulating)) +
+  geom_bar(stat = "identity") + 
+  geom_label_repel(aes(label=mid),position = "stack",size=6) + 
+  facet_grid(neuronal_or_nonneuronal~.,scale="free") + scale_fill_manual(breaks = c("upregulate","downregulate","upregulate_cell_type_specific","downregulate_cell_type_specific"), values = c("#82E0AA","#85C1E9","#A569BD","#FF00FF")) + 
+  theme_light() + 
+  theme(legend.position = "top", legend.text = element_text(size="13"), strip.text.y = element_text(size = 15),axis.text = element_text(size = 20)) +
+  xlab("") +
+  ylab("Sum Median Of Absolute Fold Change") +
+  coord_flip(),
+  m_d4 %>% 
+  ggplot(aes(`Cell type`,`abs Fold change`)) + 
+  geom_violin(alpha=0.3) + 
+  geom_label_repel(aes(label = ifelse(`abs Fold change` %in% top3,`Gene name`,""),color= regulating),nudge_x = 0.5, size = 6,force =0.1) + 
+  geom_point(aes(color=regulating),size=4) + 
+  facet_grid(neuronal_or_nonneuronal~.,scales="free") + 
+  xlab("") +
+  ylab("Absolute Fold Change") + 
+  scale_color_manual(breaks = c("upregulate","downregulate","upregulate_cell_type_specific","downregulate_cell_type_specific"), values = c("#82E0AA","#85C1E9","#A569BD","#FF00FF")) + 
+  theme_light() + 
+  theme(legend.position = "top", legend.text = element_text(size="13"), legend.title = element_blank(), strip.text.y = element_text(size = 15),axis.text = element_text(size = 20)) + 
+  coord_flip()) 
+
+title <- ggdraw() + 
+  draw_label("Absolute Fold Change By Cell Type And Regulation",hjust=0,x=0,vjust=1,fontface = "bold",size=20) + theme(plot.margin = margin(0,0,0,7))
+plot_grid(title,plot,ncol=1, rel_heights = c(0.05,1))
+
+```
+완성된 plot의 모습이다. 우리는 두 plot이 비슷한 양상을 보임을 알 수 있다. 즉, cell type에 따라 absolute fold change의 median값이 높은 regulation이 실제로도 높은 수치로 나타남을 확인할 수 있다.
+
+나는 `Top3 gene`들 중에서 높은 비중으로 관찰되었던 regulation인 `downregulate cell type specific`과 `upregulate cell type specific`에 해당하는 gene들이 어떤 gene인지 분석해보고자 한다.
+
+먼저 위의 조건을 충족시키는 gene들을 살펴보자.
+```{r}
+t %>% 
+  group_by(`Cell type`) %>%
+  filter(regulating %in% c("downregulate_cell_type_specific","upregulate_cell_type_specific"))
+```
+<font size="5">**Neuronal Cell**</font>
+
+**Neu-NRGN-I**
+
+>CFL1 : cofilin 1 [Source:HGNC Symbol;Acc:HGNC:1874], downregulate_cell_type_specific
+
+Sources [Search Human Gene, "CFL1"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000172757;r=11:65823022-65862026)
+
+>MAPK1 : mitogen-activated protein kinase 1 [Source:HGNC Symbol;Acc:HGNC:6871], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "MAPK1"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000100030;r=22:21759657-21867680)
+
+**Neu-NRGN-II**
+
+>BEX1 : brain expressed X-linked 1 [Source:HGNC Symbol;Acc:HGNC:1036], downregulate_cell_type_specific
+
+Sources [Search Human Gene, "BEX1"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000133169;r=X:103062651-103064171;t=ENST00000372728)
+
+>NGFRAP1 : brain expressed X-linked 3 [Source:HGNC Symbol;Acc:HGNC:13388], downregulate_cell_type_specific
+
+Sources [Search Human Gene, "NGFRAP1"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000166681;r=X:103376395-103378164)
+
+>PPP3CA : protein phosphatase 3 catalytic subunit alpha [Source:HGNC Symbol;Acc:HGNC:9314], 	upregulate_cell_type_specific
+
+Sources [Search Human Gene, "PPP3CA"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000138814;r=4:101023409-101348278)
+
+**IN-PV**
+
+>GRIA4 : glutamate ionotropic receptor AMPA type subunit 4 [Source:HGNC Symbol;Acc:HGNC:4574], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "GRIA4"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000152578;r=11:105609994-105982092)
+
+>CNTN5 : contactin 5 [Source:HGNC Symbol;Acc:HGNC:2175], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "CNTN5"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000149972;r=11:99020949-100358885)
+
+**IN-SST**
+
+>MGAT4C : MGAT4 family member C [Source:HGNC Symbol;Acc:HGNC:30871], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "MGAT4C"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000182050;r=12:85955666-86838904)
+
+>RALYL : RALY RNA binding protein like [Source:HGNC Symbol;Acc:HGNC:27036], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "RALYL"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000184672;r=8:84182787-84921844)
+
+<font size="5">**Non-Neuronal Cell**</font>
+
+**Microglia**
+
+>USP53 : ubiquitin specific peptidase 53 [Source:HGNC Symbol;Acc:HGNC:29255], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "USP53"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000145390;r=4:119212587-119295517)
+
+>FOXP2 : forkhead box P2 [Source:HGNC Symbol;Acc:HGNC:13875], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "FOXP2"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000128573;r=7:114086327-114693772)
+
+**AST-PP** 
+
+>PTGDS : prostaglandin D2 synthase [Source:HGNC Symbol;Acc:HGNC:9592], downregulate_cell_type_specific	
+
+Sources [Search Human Gene, "PTGDS"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000107317;r=9:136975092-136981742)
+
+>DLC1 : DLC1 Rho GTPase activating protein [Source:HGNC Symbol;Acc:HGNC:2897], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "DLC1"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000164741;r=8:13083361-13604610)
+
+>GABRB1 : gamma-aminobutyric acid type A receptor subunit beta1 [Source:HGNC Symbol;Acc:HGNC:4081], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "GABRB1"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000163288;r=4:46993723-47426447)
+
+**AST-FB**
+
+>GABRB1 : gamma-aminobutyric acid type A receptor subunit beta1 [Source:HGNC Symbol;Acc:HGNC:4081], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "GABRB1"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000163288;r=4:46993723-47426447)
+
+**Oligodendrocytes**
+
+>ABCA2 : ATP binding cassette subfamily A member 2 [Source:HGNC Symbol;Acc:HGNC:32], downregulate_cell_type_specific
+
+Sources [Search Human Gene, "ABCA2"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000107331;r=9:137007234-137028922)
+
+>PTGDS : prostaglandin D2 synthase [Source:HGNC Symbol;Acc:HGNC:9592], downregulate_cell_type_specific
+
+Sources [Search Human Gene, "PTGDS"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000107317;r=9:136975092-136981742)
+
+>PTMA : prothymosin alpha [Source:HGNC Symbol;Acc:HGNC:9623], downregulate_cell_type_specific
+
+Sources [Search Human Gene, "PTMA"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000187514;r=2:231706895-231713541)
+
+**OPC**
+
+>OLIG1 : oligodendrocyte transcription factor 1 [Source:HGNC Symbol;Acc:HGNC:16983], downregulate_cell_type_specific
+
+Sources [Search Human Gene, "OLIG1"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000184221;r=21:33070141-33072413)
+
+**Endothelial**
+
+>LAMA2 : laminin subunit alpha 2 [Source:HGNC Symbol;Acc:HGNC:6482], upregulate_cell_type_specific
+
+Sources [Search Human Gene, "LAMA2"](https://asia.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000196569;r=6:128883138-129516566)
+
+## **4. Conclusion & Expectation**
+
+먼저 neuronal cell에 해당하는 gene들을 살펴보면 흥미로운 부분이 많다. 
+
+대다수 Gene들이 ***뇌신경 발달장애와 연관이 있다는 점***이 그것이다. 
+
+downregulate된 `CFL1`은 cofilin을 만들어내는 gene이다. cofilin은 actin filament와 상호작용하여 neuron 축삭돌기의 성장속도와 방향조절을 한다. 또한, 이것의 [신속한 합성이 정확한 시냅스를 형성하도록 도우며, 뇌신경 발달장애를 막는데 도움을 준다.](https://www.embopress.org/doi/full/10.15252/embj.201695266)
+외에도, upregulate된 [`PPP3CA`](https://www.malacards.org/card/arthrogryposis_cleft_palate_craniosynostosis_and_impaired_intellectual_development),[`GRIA4`](https://www.malacards.org/card/neurodevelopmental_disorder_with_or_without_seizures_and_gait_abnormalities),[`CNTN5`](https://www.sciencedirect.com/science/article/abs/pii/S0306452215008581?via%3Dihub)은 모두 뇌신경 발달장애 질병과 관련이 있다.
+
+다음으로 non neuronal cell에 해당하는 gene들을 살펴보자.
+
+[`FOXP2`](https://www.frontiersin.org/articles/10.3389/fnbeh.2016.00197/full), [`PTGDS`](https://www.genecards.org/cgi-bin/carddisp.pl?gene=PTGDS)와 같이 뇌에서 중요한 역할을 수행하는 gene들도 있고, [`GABRB1`](https://www.researchgate.net/publication/235422872_The_effect_of_folic_acid_on_GABAA-B1_receptor_subunit)처럼 신경질환에 크게 관여하는 gene들도 있음을 알 수 있다.
+
+우리는 위와 같은 결과를 통해서 ASD에 관여하는 gene들은 대다수 *pleiotropic*함을 유추할 수 있다. 또한 `BEX1`이나 `NGFRAP1`와 같이 x염색체에 link된 유전자들의 높은 downregulation을 통해 ASD와 sex에 대한 상관관계성도 논의해볼 수 있을 것이라고 예측해볼 수 있다.
+
+## **5. Reference**
+
+1. Choi JH, Wang W, Park D, Kim SH, Kim KT, Min KT. IRES-mediated translation of cofilin regulates axonal growth cone extension and turning. EMBO J. 2018 Mar 1;37(5):e95266. doi: 10.15252/embj.201695266. Epub 2018 Feb 12. PMID: 29440227; PMCID: PMC5830920.
+
+2. Kleijer, Kristel & Zuko, Amila & Shimoda, Yasushi & Watanabe, Kazutada & Burbach, J. (2015). Contactin-5 expression during development and wiring of the thalamocortical system. Neuroscience. 310. 10.1016/j.neuroscience.2015.09.039. 
+
+3. Vasquez, Kizzy & Kuizon, Salomon & Junaid, Mohammed & El Idrissi, Abdeslem. (2013). The effect of folic acid on GABAA-B1 receptor subunit. Advances in experimental medicine and biology. 775. 101-9. 10.1007/978-1-4614-6130-2_8. 
+
+
+
+
+
+
+
+
+
+
+
+
+
