@@ -1,0 +1,270 @@
+---
+title: "Analysis Of Regulation That Affect ASD By Cell Type"
+output: html_notebook
+---
+
+## 0. Introduction
+이번 분석은 cell type에 specific하게 발현하는 유전자들이 어떠한 regulation의 영향을 더 지대하게 받는지 cell type별로 확인해보고자 한다. 먼저 cell type별로 regulation이 일어난 유전자의 갯수를 세어보고 그 중에서 cell type에 specific하게 발현하는 유전자의 갯수로 필터링 하여 특이 값을 보이는 cell type을 걸러내어 진행하였다. 그 후, 주어진 데이터의 표본의 수가 적기 때문에 ASD환자 모집단의 추정과 검정을 하기 위해서 t-test를 진행하여 그 결과를 확인하였다.
+
+
+## 1. Data Loding
+
+분석을 위해 Data-S4를 불러오고자 한다.
+```{r}
+library(tidyverse)
+library(readxl)
+library(ggrepel)
+library(ggplot2)
+library(cowplot)
+d4 <- read_xls("aav8130_Data-S4.xls")
+```
+
+## 2. Data Analysis & Transformation
+
+먼저, 데이터를 바꾸기 전에 load된 data가 어떠한 형태를 띄고있는지 확인해보도록 하자.
+```{r}
+head(d4)
+```
+이 dataset에서 먼저 cell type별로 보기 위해서 neuronal cell인지 nonneuronal cell인지 구분할 수 있는 column을 만들고, DEG의 달라진 expression정도를 보기 위해 Fold change값에 절댓값을 씌운 column을 추가할 것이다. 또한 절댓값을 씌운 것 때문에 upregulate 혹은 downregulate된 gene들의 구분이 어려워질 수 있으므로 어떤 방향으로 regulate가 일어났는지 표시할 수 있는 column을 만들고 cell type에 specific하게 발현하는 gene들은 따로 표시하려고 한다. 후에 있을 regulation숫자를 대입하고자 cell type별로 regulation 개수에 관한 행도 추가해주자.
+```{r}
+neuronal_cell <-  c("L2/3","L4","L5/6","L5/6-CC","IN-PV","IN-SST","IN-VIP","IN-SV2C","Neu-NRGN-I","Neu-NRGN-II","Neu-mat")
+k <- d4 %>% count(`Cell type`)
+c <- c()
+for (i in c(1:length(d4$`Cell type`))) {
+  for (j in c(1:length(k$`Cell type`))) {
+    if (d4$`Cell type`[i] != k$`Cell type`[j]) {
+      next}
+    else {
+      c <- append(c, k$`n`[j])
+    }
+  }
+}
+p <- d4 %>% filter(`cell type-specific expression` == 'yes') %>% group_by(`Cell type`) %>% count(`cell type-specific expression`)
+x <- c()
+for (i in c(1:length(d4$`Cell type`))) {
+  count <- 0
+  for (j in c(1:length(p$`Cell type`))) {
+    if (d4$`Cell type`[i] != p$`Cell type`[j]) {
+      count <- count + 1
+      if (count == length(p$`Cell type`)) {
+        x <- append(x, NA)}
+      next}
+    else {
+      x <- append(x, p$`n`[j])
+    }
+  }
+}
+m_d4 <- d4 %>% 
+  mutate(neuronal_or_nonneuronal = ifelse(d4$`Cell type` %in% neuronal_cell,'neuronal','non-neuronal'), 'abs Fold change'=abs(`Fold change`), regulating = ifelse(.$`Fold change`>0,'upregulate','downregulate')) %>%
+  mutate(regulating = ifelse(`cell type-specific expression` == "yes", paste(regulating,"cell_type_specific",sep ="_"),regulating)) %>% mutate(n=c) %>% mutate(ns=x)
+
+u <- c()
+for (i in c(1:length(k$`Cell type`))) {
+  count <- 0
+  for (j in c(1:length(p$`Cell type`))) {
+    if (k$`Cell type`[i] != p$`Cell type`[j]) {
+      count <- count + 1
+      if (count == length(p$`Cell type`)) {
+        u <- append(u, NA)}
+      next}
+    else {
+      u <- append(u, p$`n`[j])
+    }
+  }
+}
+kn <- k %>% mutate(ns = u, neuronal_or_nonneuronal = ifelse(k$`Cell type` %in% neuronal_cell,'neuronal','non-neuronal'))
+head(m_d4)
+head(kn)
+```
+
+## 3. Data Visualization & Analysis
+
+변형한 dataset에서 cell type별로 전체 regulation의 숫자를 count하고 cell type에 specific한 regulation의 숫자로 count하여 filtering을 한 결과로 특이점을 보이는 cell type을 보고자 한다.
+```{r, fig.width=6, fig.hight=10}
+plot_grid(ggdraw() + 
+            draw_label(
+              "Cell Type Specific Regulation For Each Cell Types", size = 10,
+              fontface ='bold', x = 0, hjust=0) + 
+            theme(plot.margin = margin(0,0,0,7)),
+          ggplot(kn, aes(x=n, y=ns, label = `Cell type`)) + 
+            geom_point(aes(color = `Cell type`), size =2) +
+            geom_smooth(method = lm, colour = 0.5) +
+            geom_text_repel(aes(color = `Cell type`), nudge_x = 5, nudge_y = -0.02) +
+            theme_classic() +
+            theme(legend.position = "none") +
+            coord_cartesian(xlim = c(0,120), ylim = c(0, 20)) +
+            labs(x = "", y = ""),
+          ggplot(kn %>% filter(neuronal_or_nonneuronal == 'neuronal'), 
+                 aes(x=n, y=ns, label = `Cell type`)) +
+            geom_point(aes(color = `Cell type`), size =2) +
+            geom_smooth(method = lm, colour = 0.5) +
+            geom_text_repel(aes(color = `Cell type`), nudge_x = 5, nudge_y = -0.05) +
+            theme_classic() +
+            theme(legend.position = "none", axis.title.y = element_text(size =9)) +
+            coord_cartesian(xlim = c(0,120), ylim = c(0,20)) +
+            labs(x = "", y = "The Number Of Cell-type Specific Gene"),
+          ggplot(kn %>% 
+                   filter(neuronal_or_nonneuronal == 'non-neuronal'), 
+                 aes(x=n, y=ns, label = `Cell type`)) +
+            geom_point(aes(color = `Cell type`)) +
+            geom_smooth(method = lm, colour =0.5) +
+            geom_text_repel(aes(color = `Cell type`), nudge_x = 5, nudge_y = -0.05) +
+            theme_classic() +
+            theme(legend.position = "none") +
+            coord_cartesian(xlim = c(0,120), ylim = c(0,20)) +
+            labs(x ="The Number Of Regulation In ASD", y=""),
+          ncol =1,
+          labels = c("","Total","Neuronal","Non-neuronal"),
+          label_x = c(0, 0.45, 0.42, 0.38), 
+          rel_heights = c(0.3,2,2,2,0.2),
+          scale =1)
+```
+
+`Microglia`, `Endothelial`, `Neu-NRGN-II`, `IN-SV2C`, `AST-PP` 5가지의 cell type에서 특이점을 보이는 것을 확인하였다.
+특이점이 있는 5가지의 cell type별로 어떤 regulation(up, down)이 더 지대한 영향을 미치는지 알아보고자 한다.
+주어진 표본의 수가 적으니 t분포를 통해 유의확률 5%에서 검정해보자.
+귀무가설을 세우기에 앞서서 각 cell type별로 어떤 regulation이 높게 나오는지 확인해보자.
+이를 위해, 변형한 dataset에서 cell type 별로 어떠한 방향으로 regulate된 gene들의 발현량이 높은지, regulate 방향에 따라 절댓값이 씌워진 Fold change의 **대푯값**을 통해 확인하고자 한다.
+
+**대푯값**을 설정하기 전에 절댓값을 씌운 Fold change값의 범위, 평균을 통해 절댓값을 씌운 Fold change의 분산을 살펴보고자 한다.
+```{r}
+range(m_d4$`abs Fold change`)
+mean(m_d4$`abs Fold change`)
+```
+
+넓은 범위에 비해 낮은 평균값을 보임을 통해 절댓값을 씌운 Fold change값에 outlier가 있음을 예측할 수 있다. 따라서 대푯값은 **Median**으로 설정하는 것이 바람직하다.
+
+귀무가설을 세우기 위해 **Median**값으로 regulation에 따른 발현량의 차이를 살펴보고, 각각의 cell type에서 cell type specific한 regulation의 숫자를 살펴보자.
+```{r}
+rm_d4 <- m_d4 %>% filter(regulating %in% c("upregulate_cell_type_specific","downregulate_cell_type_specific"), `Cell type` %in% c('Microglia', 'Endothelial', 'Neu-NRGN-II', 'IN-SV2C', 'AST-PP')) %>% group_by(`Cell type`,regulating,neuronal_or_nonneuronal) %>% 
+  summarize(mid = median(`abs Fold change`))
+rm_d4
+
+m_d4 %>% filter(regulating %in% c("upregulate_cell_type_specific","downregulate_cell_type_specific"), `Cell type` %in% c('Microglia', 'Endothelial', 'Neu-NRGN-II', 'IN-SV2C', 'AST-PP')) %>% group_by(`Cell type`) %>% count(regulating)
+
+```
+IN-SV2C는 upregulate밖에 없고 표본도 하나이기에 논지에서 제외한다.
+
+이를 통해 귀무가설과 대립가설을 세워보면 다음과 같다.
+
+*H0 : upregulate가 downregulate보다 영향을 많이 미친다.*(AST-PP, Microglia, Neu-NRGN-II)
+
+*H0 : downregulate가 upregulate보다 영향을 많이 미친다.*(Endothelial)
+
+
+*H1 : downregulate가 upregulate보다 영향을 많이 미친다.*(AST-PP, Microglia, Neu-NRGN-II)
+
+*H1 : upregulate가 downregulate보다 영향을 많이 미친다.*(Endothelial)
+
+이것을 바탕으로 4개의 cell type에 따라 t검정을 진행해보자.
+
+```{r, fig.width=8, fig.height=6}
+l_AST_u <- m_d4 %>% select(`Cell type`,`abs Fold change`,`cell type-specific expression`, regulating) %>% filter(`cell type-specific expression`=='yes', `Cell type` == 'AST-PP', regulating == 'upregulate_cell_type_specific') %>% pull(`abs Fold change`)
+l_AST_d <- m_d4 %>% select(`Cell type`,`abs Fold change`,`cell type-specific expression`, regulating) %>% filter(`cell type-specific expression`=='yes', `Cell type` == 'AST-PP', regulating == 'downregulate_cell_type_specific') %>% pull(`abs Fold change`)
+l_Mic_u <- m_d4 %>% select(`Cell type`,`abs Fold change`,`cell type-specific expression`,regulating) %>% filter(`cell type-specific expression`=='yes', `Cell type` == 'Microglia', regulating == 'upregulate_cell_type_specific') %>% pull(`abs Fold change`)
+l_Mic_d <- m_d4 %>% select(`Cell type`,`abs Fold change`,`cell type-specific expression`,regulating) %>% filter(`cell type-specific expression`=='yes', `Cell type` == 'Microglia', regulating == 'downregulate_cell_type_specific') %>% pull(`abs Fold change`)
+l_Neu_u <- m_d4 %>% select(`Cell type`,`abs Fold change`,`cell type-specific expression`,regulating) %>% filter(`cell type-specific expression`=='yes', `Cell type` == 'Neu-NRGN-II',regulating == 'upregulate_cell_type_specific') %>% pull(`abs Fold change`)
+l_Neu_d <- m_d4 %>% select(`Cell type`,`abs Fold change`,`cell type-specific expression`,regulating) %>% filter(`cell type-specific expression`=='yes', `Cell type` == 'Neu-NRGN-II',regulating == 'downregulate_cell_type_specific') %>% pull(`abs Fold change`)
+l_End_u <- m_d4 %>% select(`Cell type`,`abs Fold change`,`cell type-specific expression`,regulating) %>% filter(`cell type-specific expression`=='yes', `Cell type` == 'Endothelial',regulating == 'upregulate_cell_type_specific') %>% pull(`abs Fold change`)
+l_End_d <-  m_d4 %>% select(`Cell type`,`abs Fold change`,`cell type-specific expression`,regulating) %>% filter(`cell type-specific expression`=='yes', `Cell type` == 'Endothelial',regulating == 'downregulate_cell_type_specific') %>% pull(`abs Fold change`)
+
+mu_AST = 0
+xbar_AST = mean(l_AST_d) - mean(l_AST_u)
+sd_AST = sqrt(0 + sd(l_AST_u)/8)
+lu_AST = qt(0.95, df = 8)
+v_t_AST = (xbar_AST-mu_AST)/sd_AST
+
+mu_Mic = 0
+xbar_Mic = mean(l_Mic_d) - mean(l_Mic_u)
+sd_Mic = sqrt(0 + sd(l_Mic_u)/16)
+lu_Mic = qt(0.95, df=16)
+v_t_Mic = (xbar_Mic-mu_Mic)/sd_Mic
+
+mu_Neu = 0
+xbar_Neu = mean(l_Neu_d) - mean(l_Neu_u)
+sd_Neu = sqrt(sd(l_Neu_d)/5 + sd(l_Neu_u)/9)
+lu_Neu = qt(0.95, df=13)
+v_t_Neu = (xbar_Neu-mu_Neu)/sd(l_Neu)
+
+mu_End = 0
+xbar_End = mean(l_End_u) - mean(l_End_d)
+sd_End = sqrt(sd(l_Neu_u)/10 + sd(l_Neu_d)/2)
+lu_End = qt(0.95, df=11)
+v_t_End = (xbar_End-mu_End)/sd(l_End)
+
+
+df_AST <- data.frame(x=seq(-6, 6, 0.1), pdf=dt(x=seq(-6, 6, 0.1),df=8)) %>% mutate(p_val= ifelse(x>=lu_AST,"blue","white"))
+df_End <- data.frame(x=seq(-6, 6, 0.1), pdf=dt(x=seq(-6, 6, 0.1),df=11)) %>% mutate(p_val=ifelse(x>=lu_End,"blue","white"))
+df_Mic <- data.frame(x=seq(-6, 6, 0.1), pdf=dt(x=seq(-6, 6, 0.1),df=16)) %>% mutate(p_val=ifelse(x>=lu_Mic,"blue","white"))
+df_Neu <- data.frame(x=seq(-6, 6, 0.1), pdf=dt(x=seq(-6, 6, 0.1),df=13)) %>% mutate(p_val=ifelse(x>=lu_Neu,"blue","white"))
+
+plot_grid(ggdraw() + 
+            draw_label(
+              "T-test Of Null Hypothesis By Cell Type", size = 10,
+              fontface ='bold', x = 0, hjust=0, vjust=1) + 
+            theme(plot.margin = margin(0,0,0,7)),
+          ggdraw() + draw_label("", size = 10,
+              fontface ='bold', x = 0, hjust=0, vjust=1) + 
+            theme(plot.margin = margin(0,0,0,7)),
+ggplot(df_AST, aes(x=x, y=pdf)) +
+   geom_line() + theme_classic() +
+  geom_area(aes(fill=p_val)) +
+  scale_fill_manual(values=c("blue","white")) + 
+  geom_vline(xintercept=c(lu_AST,v_t_AST), linetype = c("dashed","solid"), color= c("red","skyblue")) + 
+  theme(legend.position = "none") + 
+  geom_text(data=data.frame(x= c(2,5), y = c(0.25,0.15)), mapping = aes(x,y,label=c("Critical Value","Test Statistic"), color = c("darkblue","red"))) +
+  labs(x="",y="")+ 
+  geom_text(data = data.frame(x=-3.5,y=0.35), mapping = aes(x,y,label = "T-distribution Of AST-PP")),
+ggplot(df_Mic, aes(x=x, y=pdf)) +
+   geom_line() + theme_classic() +
+  geom_area(aes(fill=p_val)) +
+  scale_fill_manual(values=c("blue","white")) + 
+  geom_vline(xintercept=c(lu_Mic,v_t_Mic), linetype = c("dashed","solid"), color= c("red","skyblue")) + 
+  theme(legend.position = "none") + 
+  geom_text(data=data.frame(x= c(2,0.1), y = c(0.25,0.15)), mapping = aes(x,y,label=c("Critical Value","Test Statistic"), color = c("darkblue","red"))) +
+  labs(x="",y="") + 
+  geom_text(data = data.frame(x=-3.5,y=0.35), mapping = aes(x,y,label = "T-distribution Of Microglia")),
+ggplot(df_Neu, aes(x=x, y=pdf)) +
+   geom_line() + theme_classic() +
+  geom_area(aes(fill=p_val)) +
+  scale_fill_manual(values=c("blue","white")) + 
+  geom_vline(xintercept=c(lu_Neu,v_t_Neu), linetype = c("dashed","solid"), color= c("red","skyblue")) + 
+  theme(legend.position = "none") + 
+  geom_text(data=data.frame(x= c(2,1), y = c(0.25,0.15)), mapping = aes(x,y,label=c("Critical Value","Test Statistic"), color = c("darkblue","red"))) +
+  labs(x="",y="") + 
+  geom_text(data = data.frame(x=-3.5,y=0.35), mapping = aes(x,y,label = "T-distribution Of Neu-NRGN-II")),
+ggplot(df_End, aes(x=x, y=pdf)) +
+   geom_line() + theme_classic() +
+  geom_area(aes(fill=p_val)) +
+  scale_fill_manual(values=c("blue","white")) + 
+  geom_vline(xintercept=c(lu_End,v_t_End), linetype = c("dashed","solid"), color= c("red","skyblue")) + 
+  theme(legend.position = "none") + 
+  geom_text(data=data.frame(x= c(2,1), y = c(0.25,0.15)), mapping = aes(x,y,label=c("Critical Value","Test Statistic"), color = c("darkblue","red"))) +
+  labs(x="",y="") + 
+  geom_text(data = data.frame(x=-3.5,y=0.35), mapping = aes(x,y,label = "T-distribution Of Endothelial")), ncol=2,rel_heights = c(0.05,1,1))
+```
+
+## 4. Conclusion 
+
+ t-test결과 분포를 살펴보면, 5% 유의확률에서 오직 AST-PP만 귀무가설을 기각하고 나머지 3가지의 cell type에서는 귀무가설을 기각하지 않는 것을 볼 수 있다.
+따라서 cell specific하게 유전자 발현이 일어나는 유전자들 중에 AST-PP와 Endothelial cell type에서는 downregulation의 양가 upregulation의 양보다 ASD환자에게 더 큰 영향을 미치고, Microglia와 Neu-NRGN-II cell type에서는 upregulation의 양이 downregulation의 양보다 ASD환자에게 더 큰 영향을 미친다는 결론을 지을 수 있다.
+
+
+
+## 5. Revision
+ 
+ 1. 먼저 저번에 잘 하지 못하였던 질문과 데이터 시각화 결과물과의 연관성을 높임과 동시에 순환논리를 벗어나고자 plot을 전부 변경하였고, 주제를 약간 다른 방식으로 잡아서 그 연계성을 높이고자 하였다.
+ 2. 이전 plot은 복잡하고 난해하여 plot이 한눈에 들어오기 어려웠으며 내용 이해도 쉽지 않았다. 이번에는 '이동찬'학우님의 저번 중간 포트폴리오에 영감을 받아서 한눈에 들어오기 쉬우며 더 의미있는 데이터 시각화를 하기 위해 노력하였다.
+ 3. 저번 과제물에서는 plot이 2개보다 많았었지만 이번에는 tidy하게 두개의 plot으로 만들었다. 또한 t분포 plot을 공부해보고 직접 시도해봄으로써 새로운 plot방식에 접근해보고자 노력하였다.
+ 4. 저번 plot에서는 채도가 약한 색을 사용하여 가시성이 떨어진다는 피드백을 받고 이번에는 강렬한 원색도 사용해보았다.
+ 5. 어떤 것을 구분지을 때는 특정한 표시를 해서(빗금 등) 표현하면 더 좋겠다고 피드백을 받아서, 이번 t분포 geom_line의 유의확률 부분에 색을 넣고 vertical line을 설정하여 각각이 어떤 것을 의미하는지 더욱 쉽게 보이게끔 하였다.
+
+
+
+
+
+
+
+
+
+
