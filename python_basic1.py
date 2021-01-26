@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
-
-This is a temporary script file.
+practice python in spyder.
 
 """
 
@@ -30,4 +28,79 @@ print('this is the first line \nthis is the second line')
 print('this is the first line \t this is the second line')
 #%%
 print(R'new \n not line lol')
+#%%
+i=5
+print(i)
+i = i+1
+print(i)
+
+s= '''This is a multi-line string.
+This is the second line.'''
+print(s)
+#%%
+i=5
+print(i)
+
+i=5; print(i)
+#%%
+s='this is a string. \
+this continues the string.'
+print(s)
+#%%
+i = \
+5
+print(i)
+#%%
+'la' * 3
+13 % 3 #returns the remainder of the devision.
+#%%
+a =2 
+a *= 3
+#%%
+length = 5
+breadth = 2
+
+area = length * breadth
+print('Area is', area)
+print('Perimeter is', 2*(length + breadth))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
