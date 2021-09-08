@@ -184,13 +184,13 @@ mu_Neu = 0
 xbar_Neu = mean(l_Neu_d) - mean(l_Neu_u)
 sd_Neu = sqrt(sd(l_Neu_d)/5 + sd(l_Neu_u)/9)
 lu_Neu = qt(0.95, df=13)
-v_t_Neu = (xbar_Neu-mu_Neu)/sd(l_Neu)
+v_t_Neu = (xbar_Neu-mu_Neu)/sd_Neu
 
 mu_End = 0
 xbar_End = mean(l_End_u) - mean(l_End_d)
 sd_End = sqrt(sd(l_Neu_u)/10 + sd(l_Neu_d)/2)
 lu_End = qt(0.95, df=11)
-v_t_End = (xbar_End-mu_End)/sd(l_End)
+v_t_End = (xbar_End-mu_End)/sd_End
 
 
 df_AST <- data.frame(x=seq(-6, 6, 0.1), pdf=dt(x=seq(-6, 6, 0.1),df=8)) %>% mutate(p_val= ifelse(x>=lu_AST,"blue","white"))
